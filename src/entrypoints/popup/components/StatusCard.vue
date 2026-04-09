@@ -21,7 +21,6 @@
 		</div>
 		<button
 			class="btn"
-			:class="status === 'enabled' ? 'btn-danger' : 'btn-success'"
 			:disabled="disabled"
 			@click="$emit('toggle')"
 		>
