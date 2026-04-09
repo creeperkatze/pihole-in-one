@@ -1,5 +1,9 @@
+import { createRequire } from 'node:module'
+
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'wxt'
+
+const { version } = createRequire(import.meta.url)('./package.json')
 
 export default defineConfig({
 	srcDir: 'src',
@@ -11,8 +15,7 @@ export default defineConfig({
 	manifest: {
 		name: 'Pi-hole In One',
 		description: 'Control your Pi-hole directly from the browser.',
-		permissions: ['storage', 'alarms', 'activeTab'],
-		options_ui: { open_in_tab: true },
+		version,
 		icons: {
 			16: 'icon-16.png',
 			32: 'icon-32.png',
@@ -21,6 +24,8 @@ export default defineConfig({
 			128: 'icon-128.png',
 		},
 		host_permissions: ['<all_urls>'],
+		permissions: ['storage', 'alarms', 'activeTab'],
+		options_ui: { open_in_tab: true },
 		browser_specific_settings: {
 			gecko: {
 				id: 'pihole-in-one@creeperkatze.de',

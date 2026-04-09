@@ -1,0 +1,65 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: false
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ inputs.tag || github.ref }}
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          submodules: recursive
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - run: pnpm zip && pnpm zip:firefox
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zips
+          path: .output/*.zip
+          if-no-files-found: error
+          include-hidden-files: true
+
+  release:
+    name: GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: zips
+          path: zips/
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: zips/*.zip
+          draft: true
+          token: ${{ secrets.GH_PAT }}
+          tag_name: ${{ inputs.tag || github.ref_name }}

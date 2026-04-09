@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+    tags-ignore: ['**']
+  pull_request:
+    branches: [main]
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: false
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          submodules: recursive
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - run: pnpm lint

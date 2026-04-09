@@ -90,7 +90,7 @@
 
 			<footer class="flex items-center justify-between px-3.5 py-2">
 				<a
-					href="https://github.com/creeperkatze/modrinth-extras"
+					href="https://github.com/creeperkatze/pihole-in-one"
 					target="_blank"
 					rel="noopener"
 					class="text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
