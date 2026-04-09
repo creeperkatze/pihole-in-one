@@ -23,6 +23,40 @@
 					{{ tab.label }}
 				</button>
 			</nav>
+
+			<!-- Bottom cards -->
+			<div class="border-t border-zinc-200 dark:border-zinc-800 p-2 flex flex-col gap-1.5">
+				<Card
+					as="a"
+					href="https://github.com/creeperkatze/pihole-in-one"
+					target="_blank"
+					rel="noopener"
+					title="View on GitHub"
+					description="Star if you like it!"
+					class="no-underline"
+				>
+					<template #icon>
+						<ExternalLink
+							:size="12"
+							class="shrink-0 text-zinc-500 dark:text-zinc-400 opacity-75 group-hover:opacity-100"
+						/>
+					</template>
+				</Card>
+				<Card
+					as="a"
+					href="https://ko-fi.com/creeperkatze"
+					target="_blank"
+					rel="noopener"
+					color="#7c3aed"
+					title="Support on Ko-fi"
+					description="Every tip is truly appreciated!"
+					class="no-underline"
+				>
+					<template #icon>
+						<Heart :size="12" class="shrink-0 text-[#7c3aed] opacity-75 group-hover:opacity-100" />
+					</template>
+				</Card>
+			</div>
 		</aside>
 
 		<!-- Content -->
@@ -259,10 +293,19 @@
 </template>
 
 <script setup lang="ts">
-import { Pencil, Plus, Server, SlidersHorizontal, Trash2 } from 'lucide-vue-next'
+import {
+	ExternalLink,
+	Heart,
+	Pencil,
+	Plus,
+	Server,
+	SlidersHorizontal,
+	Trash2,
+} from 'lucide-vue-next'
 import { onMounted, reactive, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
+import Card from '../../components/Card.vue'
 import { getSummary } from '../../helpers/api'
 import {
 	DEFAULTS,
