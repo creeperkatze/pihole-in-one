@@ -2,11 +2,8 @@
 	<div class="min-h-screen bg-white dark:bg-zinc-900 px-4 py-8">
 		<div class="max-w-130 mx-auto">
 			<header class="mb-7">
-				<div class="flex items-center gap-2.5 text-xl font-bold mb-1.5">
-					<img :src="iconUrl" width="24" height="24" alt="" />
-					Pi-hole In One
-				</div>
-				<p class="m-0 text-zinc-500 dark:text-zinc-400 text-sm">
+				<img :src="browser.runtime.getURL('/logo.svg')" width="128" alt="Pi-hole In One" />
+				<p class="m-0 text-zinc-500 dark:text-zinc-400 text-sm mt-2">
 					Configure your Pi-hole connection settings.
 				</p>
 			</header>
@@ -97,8 +94,6 @@ import { onMounted, reactive, ref } from 'vue'
 
 import { getSummary } from '../../helpers/api'
 import { DEFAULTS, getSettings, saveSettings, type PiholeSettings } from '../../helpers/settings'
-
-const iconUrl = browser.runtime.getURL('/icon.svg')
 
 const form = reactive<PiholeSettings>({ ...DEFAULTS })
 const saving = ref(false)

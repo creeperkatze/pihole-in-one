@@ -2,8 +2,7 @@
 	<div class="w-85 flex flex-col">
 		<header class="flex items-center justify-between px-3.5 py-3">
 			<div class="flex items-center gap-2 font-bold text-[15px]">
-				<img :src="iconUrl" width="22" height="22" alt="" />
-				Pi-hole In One
+				<img :src="browser.runtime.getURL('/logo.svg')" width="128" alt="Pi-hole In One" />
 			</div>
 			<button
 				class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
@@ -32,11 +31,18 @@
 		<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
 
 		<div v-if="loading" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
-			<div class="w-7 h-7 border-[3px] border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin"></div>
+			<div
+				class="w-7 h-7 border-[3px] border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin"
+			></div>
 		</div>
 
-		<div v-else-if="!configured" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
-			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">Configure your Pi-hole to get started.</p>
+		<div
+			v-else-if="!configured"
+			class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
+		>
+			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">
+				Configure your Pi-hole to get started.
+			</p>
 			<button class="btn btn-primary" @click="openOptions">Open Settings</button>
 		</div>
 
@@ -50,8 +56,10 @@
 				/>
 
 				<div v-if="blockingEnabled" class="flex flex-col gap-1.5">
-					<div class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5px]">
-						Disable for:
+					<div
+						class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5px]"
+					>
+						Disable for
 					</div>
 					<div class="flex gap-1.5 flex-wrap">
 						<button
@@ -75,17 +83,20 @@
 
 				<StatsGrid v-if="summary" :stats="formattedStats" />
 
-				<DomainCard
-					v-if="currentDomain && settings"
-					:domain="currentDomain"
-					:settings="settings"
-				/>
+				<DomainCard v-if="currentDomain && settings" :domain="currentDomain" :settings="settings" />
 			</div>
 
 			<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
 
 			<footer class="flex items-center justify-between px-3.5 py-2">
-				<span class="text-[11px] text-zinc-500 dark:text-zinc-400">{{ lastUpdatedText }}</span>
+				<a
+					href="https://github.com/creeperkatze/modrinth-extras"
+					target="_blank"
+					rel="noopener"
+					class="text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+				>
+					★ On GitHub
+				</a>
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
 					title="Refresh"
@@ -125,8 +136,6 @@ import DomainCard from './components/DomainCard.vue'
 import StatusCard from './components/StatusCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
 
-const iconUrl = browser.runtime.getURL('/icon.svg')
-
 const loading = ref(true)
 const refreshing = ref(false)
 const toggling = ref(false)
@@ -154,7 +163,7 @@ const formattedStats = computed(() => {
 	return [
 		{ label: 'Queries Today', value: fmt(q.total) },
 		{ label: 'Blocked Today', value: fmt(q.blocked) },
-		{ label: '% Blocked', value: `${q.percent_blocked.toFixed(1)}%` },
+		{ label: 'Blocked', value: `${q.percent_blocked.toFixed(1)}%` },
 		{ label: 'Unique Domains', value: fmt(q.unique_domains) },
 	]
 })
@@ -227,7 +236,9 @@ function openOptions(): void {
 onMounted(async () => {
 	const [tab] = await browser.tabs.query({ active: true, currentWindow: true })
 	if (tab?.url) {
-		try { currentDomain.value = new URL(tab.url).hostname } catch {}
+		try {
+			currentDomain.value = new URL(tab.url).hostname
+		} catch {}
 	}
 	const s = await getSettings()
 	settings.value = s
