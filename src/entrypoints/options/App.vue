@@ -20,8 +20,8 @@
 						required
 					/>
 					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
-						Base URL of your Pi-hole (no trailing slash or <code>/api</code>). Pi-hole v6
-						uses HTTPS by default, e.g. <code>https://pi.hole</code>.
+						Base URL of your Pi-hole (no trailing slash or <code>/api</code>). Pi-hole v6 uses HTTPS
+						by default, e.g. <code>https://pi.hole</code>.
 					</p>
 				</div>
 
@@ -89,11 +89,11 @@
 </template>
 
 <script setup lang="ts">
-import { browser } from 'wxt/browser'
 import { onMounted, reactive, ref } from 'vue'
+import { browser } from 'wxt/browser'
 
 import { getSummary } from '../../helpers/api'
-import { DEFAULTS, getSettings, saveSettings, type PiholeSettings } from '../../helpers/settings'
+import { DEFAULTS, getSettings, type PiholeSettings, saveSettings } from '../../helpers/settings'
 
 const form = reactive<PiholeSettings>({ ...DEFAULTS })
 const saving = ref(false)
@@ -129,7 +129,10 @@ async function testConnection(): Promise<void> {
 		const blocked = summary.queries.blocked.toLocaleString()
 		const total = summary.queries.total.toLocaleString()
 		const status = summary.blocking.blocking ? 'enabled' : 'disabled'
-		showMessage(`Connected! Blocking ${status}. ${blocked} / ${total} queries blocked today.`, 'success')
+		showMessage(
+			`Connected! Blocking ${status}. ${blocked} / ${total} queries blocked today.`,
+			'success',
+		)
 	} catch (e) {
 		showMessage(e instanceof Error ? e.message : 'Connection failed.', 'error')
 	} finally {

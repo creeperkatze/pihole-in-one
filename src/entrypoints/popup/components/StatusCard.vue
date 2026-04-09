@@ -1,7 +1,11 @@
 <template>
 	<div
 		class="flex items-center justify-between gap-3 px-4 py-3.5 rounded-lg border transition-colors duration-200"
-		:class="status === 'enabled' ? 'border-success-border bg-success-bg' : 'border-danger-border bg-danger-bg'"
+		:class="
+			status === 'enabled'
+				? 'border-success-border bg-success-bg'
+				: 'border-danger-border bg-danger-bg'
+		"
 	>
 		<div class="flex items-center gap-2.5">
 			<span
@@ -19,11 +23,7 @@
 				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-px">{{ sub }}</div>
 			</div>
 		</div>
-		<button
-			class="btn"
-			:disabled="disabled"
-			@click="$emit('toggle')"
-		>
+		<button class="btn" :disabled="disabled" @click="$emit('toggle')">
 			{{ status === 'enabled' ? 'Disable' : 'Enable' }}
 		</button>
 	</div>

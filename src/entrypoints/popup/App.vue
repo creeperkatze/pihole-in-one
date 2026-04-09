@@ -127,14 +127,14 @@
 </template>
 
 <script setup lang="ts">
-import { browser } from 'wxt/browser'
 import { computed, onMounted, ref } from 'vue'
+import { browser } from 'wxt/browser'
 
-import { getSummary, setBlocking, type PiholeSummary } from '../../helpers/api'
+import { getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { getSettings, isConfigured, type PiholeSettings } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
-import StatusCard from './components/StatusCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
+import StatusCard from './components/StatusCard.vue'
 
 const loading = ref(true)
 const refreshing = ref(false)
@@ -166,14 +166,6 @@ const formattedStats = computed(() => {
 		{ label: 'Blocked', value: `${q.percent_blocked.toFixed(1)}%` },
 		{ label: 'Unique Domains', value: fmt(q.unique_domains) },
 	]
-})
-
-const lastUpdatedText = computed(() => {
-	if (!lastUpdated.value) return 'Never updated'
-	const diff = Math.floor((Date.now() - lastUpdated.value.getTime()) / 1000)
-	if (diff < 5) return 'Just now'
-	if (diff < 60) return `${diff}s ago`
-	return `${Math.floor(diff / 60)}m ago`
 })
 
 function fmt(n: number): string {
@@ -236,9 +228,7 @@ function openOptions(): void {
 onMounted(async () => {
 	const [tab] = await browser.tabs.query({ active: true, currentWindow: true })
 	if (tab?.url) {
-		try {
-			currentDomain.value = new URL(tab.url).hostname
-		} catch {}
+		currentDomain.value = new URL(tab.url).hostname
 	}
 	const s = await getSettings()
 	settings.value = s

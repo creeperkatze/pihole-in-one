@@ -23,6 +23,7 @@
 		"@types/node": "^22.10.2",
 		"@wxt-dev/module-vue": "^1.0.3",
 		"eslint": "^9.17.0",
+		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.2.1",
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-vue": "^9.32.0",

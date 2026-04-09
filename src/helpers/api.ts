@@ -133,7 +133,11 @@ async function withSession<T>(
 export async function getSummary(base: string, password: string): Promise<PiholeSummary> {
 	return withSession(base, password, async (sid) => {
 		const [stats, blocking] = await Promise.all([
-			apiFetch<{ queries: PiholeSummary['queries']; clients: PiholeSummary['clients'] }>(base, 'stats/summary', sid),
+			apiFetch<{ queries: PiholeSummary['queries']; clients: PiholeSummary['clients'] }>(
+				base,
+				'stats/summary',
+				sid,
+			),
 			apiFetch<BlockingStatus>(base, 'dns/blocking', sid),
 		])
 		return { queries: stats.queries, clients: stats.clients, blocking }

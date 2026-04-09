@@ -61,8 +61,14 @@ const statusText = computed(() => {
 })
 
 async function fetchStatus(): Promise<void> {
-	const result = await searchDomain(props.settings.baseUrl, props.settings.apiPassword, props.domain)
-	blockedByUser.value = result.domains.some((d) => d.type === 'deny' && d.kind === 'exact' && d.enabled)
+	const result = await searchDomain(
+		props.settings.baseUrl,
+		props.settings.apiPassword,
+		props.domain,
+	)
+	blockedByUser.value = result.domains.some(
+		(d) => d.type === 'deny' && d.kind === 'exact' && d.enabled,
+	)
 	blockedByGravity.value = result.gravity.length > 0
 }
 
