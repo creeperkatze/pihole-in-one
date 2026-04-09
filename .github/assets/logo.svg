@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 300 100.00001"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="logo.svg"
+   width="300"
+   height="100"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="icon-16.png"
+   inkscape:export-xdpi="22.588028"
+   inkscape:export-ydpi="22.588028"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     showguides="true"
+     inkscape:zoom="2.1959332"
+     inkscape:cx="110.20372"
+     inkscape:cy="52.597228"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect9"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,18.886584,0,1 @ F,0,0,1,0,18.886584,0,1 @ F,0,0,1,0,42.510343,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect8"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,3.7614127,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       id="New_Gradient_Swatch_1"
+       x1="2.71"
+       x2="69.769997"
+       y1="20.040001"
+       y2="20.040001"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4721835,0,0,1.4721835,81.318043,8.0313393)">
+      <stop
+         offset="0"
+         stop-color="#12b212"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#0f0"
+         id="stop2" />
+    </linearGradient>
+    <style
+       id="style2">.cls-2{fill:#980200}.cls-3{fill:red}</style>
+  </defs>
+  <path
+     id="rect8"
+     style="fill:#ff0000;fill-opacity:1;stroke-width:4.03058;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
+     d="m 34.000311,31.999585 c -4.703904,0 -9.407344,1.801806 -13.011719,5.40625 L 5.4065611,52.985913 c -7.2087481,7.208891 -7.2087481,18.816499 0,26.025391 L 20.988592,94.593335 c 7.208751,7.208885 18.814688,7.208885 26.023438,0 L 62.594061,79.011304 c 7.20875,-7.208893 7.208751,-18.816498 0,-26.025391 L 47.01203,37.405835 c -3.604374,-3.604445 -8.307814,-5.40625 -13.011719,-5.40625 z m 0,19 a 15,15 0 0 1 15,15 15,15 0 0 1 -15,15 15,15 0 0 1 -15,-15 15,15 0 0 1 15,-15 z" />
+  <path
+     fill="url(#New_Gradient_Swatch_1)"
+     d="M 34.000311,28.21372 C 39.263885,-3.5948703 63.934143,0.13410293 63.934143,0.13410293 65.106281,18.161217 50.531921,29.089804 34.000311,29.999585"
+     id="path2"
+     style="fill:#00ff00;fill-opacity:1;stroke-width:1.11445"
+     sodipodi:nodetypes="ccc" />
+  <path
+     fill="url(#New_Gradient_Swatch_1)"
+     d="M 32.21445,29.999584 C 0.40585797,24.736009 4.1348301,0.06575109 4.1348301,0.06575109 22.16194,-1.1063869 33.09053,13.467973 34.000312,29.999584"
+     id="path2-8"
+     style="fill:#00ff00;fill-opacity:1;stroke-width:1.11445"
+     sodipodi:nodetypes="ccc" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;line-height:1;font-family:inter;-inkscape-font-specification:'inter Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
+     x="79.909988"
+     y="42.734379"
+     id="text1"><tspan
+       sodipodi:role="line"
+       x="79.909988"
+       y="42.734379"
+       id="tspan1">PI-HOLE</tspan><tspan
+       sodipodi:role="line"
+       x="79.909988"
+       y="96.067688"
+       id="tspan3">IN ONE</tspan></text>
+</svg>
