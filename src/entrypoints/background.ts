@@ -21,7 +21,7 @@ async function updateBadge(): Promise<void> {
 			await browser.action.setBadgeBackgroundColor({ color: '#ff0000' })
 		}
 	} catch {
-		await browser.action.setBadgeText({ text: '' })
+		// Keep last known badge state on error rather than clearing it
 	}
 }
 

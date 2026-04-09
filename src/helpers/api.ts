@@ -1,9 +1,6 @@
-// Pi-hole v6 REST API
-// Base: {userHost}/api/…   Auth: POST /api/auth → session sid header
-
 export interface BlockingStatus {
 	blocking: 'enabled' | 'disabled'
-	timer: number | null // remaining seconds, null = no timer
+	timer: number | null
 }
 
 export interface PiholeSummary {
@@ -20,7 +17,7 @@ export interface PiholeSummary {
 	blocking: BlockingStatus
 }
 
-// Per-process session cache — resets if SW is killed, which is fine
+// Per-process session cache
 const sessionCache = new Map<string, { sid: string; expires: number }>()
 const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
 
@@ -69,14 +66,16 @@ async function apiFetch<T>(
 	return res.json() as Promise<T>
 }
 
+type AuthResponse = { session?: { valid: boolean; sid: string | null; message: string | null } }
+
 async function authenticate(base: string, password: string): Promise<string> {
 	// For passwordless installations: GET /api/auth returns a valid session
 	if (!password) {
 		const res = await fetch(`${base}/api/auth`)
-		if (res.ok) {
-			const data = (await res.json()) as { session?: { valid: boolean; sid: string } }
-			if (data.session?.valid) return data.session.sid
-		}
+		const data = (await res.json().catch(() => null)) as AuthResponse | null
+		if (res.ok && data?.session?.valid && data.session.sid) return data.session.sid
+		// Server requires a password — don't fall through with an empty one
+		throw new ApiError(401, 'Password required — configure one in Settings')
 	}
 
 	const res = await fetch(`${base}/api/auth`, {
@@ -85,14 +84,15 @@ async function authenticate(base: string, password: string): Promise<string> {
 		body: JSON.stringify({ password }),
 	})
 
+	const data = (await res.json().catch(() => null)) as AuthResponse | null
+
 	if (!res.ok) {
-		const body = await res.json().catch(() => null)
-		console.error(`[Pi-hole] POST /api/auth → ${res.status}`, body)
-		throw new ApiError(res.status, `Auth failed: ${extractErrorMessage(body, res.status)}`)
+		const msg = data?.session?.message ?? extractErrorMessage(data, res.status)
+		console.error(`[Pi-hole] POST /api/auth → ${res.status}`, JSON.stringify(data))
+		throw new ApiError(res.status, `Auth failed: ${msg}`)
 	}
 
-	const data = (await res.json()) as { session?: { valid: boolean; sid: string } }
-	if (!data.session?.valid) {
+	if (!data?.session?.valid || !data.session.sid) {
 		throw new ApiError(401, 'Auth failed — wrong password?')
 	}
 
@@ -196,10 +196,10 @@ export async function setBlocking(
 	base: string,
 	password: string,
 	enabled: boolean,
-	seconds?: number, // undefined or 0 = permanent
-): Promise<void> {
+	seconds?: number,
+): Promise<BlockingStatus> {
 	return withSession(base, password, (sid) =>
-		apiFetch<void>(base, 'dns/blocking', sid, {
+		apiFetch<BlockingStatus>(base, 'dns/blocking', sid, {
 			method: 'POST',
 			body: JSON.stringify({
 				blocking: enabled,

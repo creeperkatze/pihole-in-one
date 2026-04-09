@@ -49,9 +49,10 @@
 		<template v-else>
 			<div class="flex flex-col gap-2.5 px-3.5 py-3">
 				<StatusCard
+					v-if="summary"
 					:status="blockingEnabled ? 'enabled' : 'disabled'"
-					:sub="summary ? `${summary.clients.active} client(s) active` : undefined"
-					:disabled="toggling || !summary"
+					:sub="statusSub"
+					:disabled="toggling"
 					@toggle="toggleBlocking"
 				/>
 
@@ -127,10 +128,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
-import { getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
+import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
+import { formatDuration, formatNumber } from '../../helpers/format'
 import { getSettings, isConfigured, type PiholeSettings } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
@@ -143,8 +145,48 @@ const configured = ref(false)
 const error = ref('')
 const summary = ref<PiholeSummary | null>(null)
 const settings = ref<PiholeSettings | null>(null)
-const lastUpdated = ref<Date | null>(null)
 const currentDomain = ref<string | null>(null)
+
+// Timer countdown
+const timerEndsAt = ref<number | null>(null)
+const timerRemaining = ref<number | null>(null)
+let countdownInterval: ReturnType<typeof setInterval> | null = null
+
+function syncTimer(blocking: BlockingStatus): void {
+	if (blocking.timer !== null && blocking.timer > 0) {
+		timerEndsAt.value = Date.now() + blocking.timer * 1000
+		if (!countdownInterval) {
+			countdownInterval = setInterval(tickTimer, 1000)
+		}
+	} else {
+		timerEndsAt.value = null
+		timerRemaining.value = null
+		if (countdownInterval) {
+			clearInterval(countdownInterval)
+			countdownInterval = null
+		}
+	}
+}
+
+function tickTimer(): void {
+	if (timerEndsAt.value === null) return
+	const remaining = Math.max(0, Math.round((timerEndsAt.value - Date.now()) / 1000))
+	timerRemaining.value = remaining
+	if (remaining === 0) {
+		if (countdownInterval) {
+			clearInterval(countdownInterval)
+			countdownInterval = null
+		}
+		void fetchSummary().then(() => {
+			void browser.runtime.sendMessage({ type: 'refresh' })
+		})
+	}
+}
+
+
+onUnmounted(() => {
+	if (countdownInterval) clearInterval(countdownInterval)
+})
 
 const disablePresets = [
 	{ label: '10s', seconds: 10 },
@@ -157,27 +199,33 @@ const disablePresets = [
 
 const blockingEnabled = computed(() => summary.value?.blocking.blocking === 'enabled')
 
+const statusSub = computed(() => {
+	if (timerRemaining.value !== null && timerRemaining.value > 0) {
+		return `Re-enables in ${formatDuration(timerRemaining.value)}`
+	}
+	if (summary.value) {
+		return `${summary.value.clients.active} client(s) active`
+	}
+	return undefined
+})
+
 const formattedStats = computed(() => {
 	if (!summary.value) return []
 	const q = summary.value.queries
 	return [
-		{ label: 'Queries Today', value: fmt(q.total) },
-		{ label: 'Blocked Today', value: fmt(q.blocked) },
+		{ label: 'Queries Today', value: formatNumber(q.total) },
+		{ label: 'Blocked Today', value: formatNumber(q.blocked) },
 		{ label: 'Blocked', value: `${q.percent_blocked.toFixed(1)}%` },
-		{ label: 'Unique Domains', value: fmt(q.unique_domains) },
+		{ label: 'Unique Domains', value: formatNumber(q.unique_domains) },
 	]
 })
-
-function fmt(n: number): string {
-	return n.toLocaleString()
-}
 
 async function fetchSummary(): Promise<void> {
 	if (!settings.value) return
 	error.value = ''
 	try {
 		summary.value = await getSummary(settings.value.baseUrl, settings.value.apiPassword)
-		lastUpdated.value = new Date()
+		syncTimer(summary.value.blocking)
 	} catch (e) {
 		error.value = e instanceof Error ? e.message : 'Failed to fetch status'
 	}
@@ -190,15 +238,27 @@ async function refresh(): Promise<void> {
 	refreshing.value = false
 }
 
+async function applyBlockingState(newBlocking: BlockingStatus): Promise<void> {
+	if (summary.value) {
+		summary.value = { ...summary.value, blocking: newBlocking }
+	}
+	syncTimer(newBlocking)
+	void browser.runtime.sendMessage({ type: 'refresh' })
+	await fetchSummary()
+}
+
 async function toggleBlocking(): Promise<void> {
 	if (!settings.value || !summary.value) return
 	toggling.value = true
 	error.value = ''
 	try {
 		const enable = summary.value.blocking.blocking !== 'enabled'
-		await setBlocking(settings.value.baseUrl, settings.value.apiPassword, enable)
-		await fetchSummary()
-		void browser.runtime.sendMessage({ type: 'refresh' })
+		const newBlocking = await setBlocking(
+			settings.value.baseUrl,
+			settings.value.apiPassword,
+			enable,
+		)
+		await applyBlockingState(newBlocking)
 	} catch (e) {
 		error.value = e instanceof Error ? e.message : 'Action failed'
 	} finally {
@@ -211,9 +271,13 @@ async function disableFor(seconds: number): Promise<void> {
 	toggling.value = true
 	error.value = ''
 	try {
-		await setBlocking(settings.value.baseUrl, settings.value.apiPassword, false, seconds)
-		await fetchSummary()
-		void browser.runtime.sendMessage({ type: 'refresh' })
+		const newBlocking = await setBlocking(
+			settings.value.baseUrl,
+			settings.value.apiPassword,
+			false,
+			seconds,
+		)
+		await applyBlockingState(newBlocking)
 	} catch (e) {
 		error.value = e instanceof Error ? e.message : 'Action failed'
 	} finally {
