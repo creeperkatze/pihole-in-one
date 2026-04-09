@@ -7,7 +7,7 @@ const ALARM = 'pihole-refresh'
 
 async function updateBadge(): Promise<void> {
 	const settings = await getSettings()
-	if (!settings.baseUrl) {
+	if (!settings.baseUrl || !settings.showBadge) {
 		await browser.action.setBadgeText({ text: '' })
 		return
 	}

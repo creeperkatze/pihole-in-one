@@ -15,6 +15,7 @@
 		"lint:fix": "eslint src/ --fix"
 	},
 	"dependencies": {
+		"lucide-vue-next": "^1.0.0",
 		"vue": "^3.5.13"
 	},
 	"devDependencies": {

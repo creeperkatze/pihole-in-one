@@ -4,12 +4,14 @@ export interface PiholeSettings {
 	baseUrl: string
 	apiPassword: string
 	refreshInterval: number
+	showBadge: boolean
 }
 
 export const DEFAULTS: PiholeSettings = {
 	baseUrl: 'https://pi.hole',
 	apiPassword: '',
 	refreshInterval: 60,
+	showBadge: true,
 }
 
 export async function getSettings(): Promise<PiholeSettings> {
