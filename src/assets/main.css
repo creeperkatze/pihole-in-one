@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--bg: #ffffff;
+	--bg-secondary: #f4f4f5;
+	--bg-hover: #e4e4e7;
+	--text: #09090b;
+	--text-muted: #71717a;
+	--border: #e4e4e7;
+	--accent: #ff0000;
+	--accent-hover: #cc0000;
+	--success: #00ff00;
+	--success-bg: #f0fff0;
+	--success-border: #99ff99;
+	--danger: #ff0000;
+	--danger-bg: #fff0f0;
+	--danger-border: #ff9999;
+	--radius: 8px;
+	--radius-sm: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #18181b;
+		--bg-secondary: #27272a;
+		--bg-hover: #3f3f46;
+		--text: #fafafa;
+		--text-muted: #a1a1aa;
+		--border: #3f3f46;
+		--success-bg: #003300;
+		--success-border: #006600;
+		--danger-bg: #330000;
+		--danger-border: #660000;
+	}
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--text);
+	background: var(--bg);
+	-webkit-font-smoothing: antialiased;
+}
+
+button {
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+input,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	color: var(--text);
+	background: var(--bg);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 14px;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	background: var(--bg-secondary);
+	color: var(--text);
+	font-weight: 500;
+	transition:
+		background 0.15s,
+		border-color 0.15s,
+		opacity 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+	background: var(--bg-hover);
+}
+
+.btn-primary {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+	background: var(--accent-hover);
+	border-color: var(--accent-hover);
+}
+
+.btn-success {
+	background: var(--success);
+	border-color: var(--success);
+	color: #000;
+}
+
+.btn-success:hover:not(:disabled) {
+	background: #00cc00;
+	border-color: #00cc00;
+}
+
+.btn-danger {
+	background: var(--danger);
+	border-color: var(--danger);
+	color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+	background: #cc0000;
+	border-color: #cc0000;
+}
+
+.btn-outline {
+	background: transparent;
+	border-color: var(--border);
+}
+
+.btn-sm {
+	padding: 3px 10px;
+	font-size: 12px;
+}
+
+.divider {
+	height: 1px;
+	background: var(--border);
+	margin: 0;
+}

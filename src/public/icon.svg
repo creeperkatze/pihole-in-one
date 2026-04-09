@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100.00001"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="icon.svg"
+   width="100"
+   height="100"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="icon-128.png"
+   inkscape:export-xdpi="122.88"
+   inkscape:export-ydpi="122.88"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     showguides="true"
+     inkscape:zoom="8.7837329"
+     inkscape:cx="42.920249"
+     inkscape:cy="33.641733"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect9"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,18.886584,0,1 @ F,0,0,1,0,18.886584,0,1 @ F,0,0,1,0,42.510343,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect8"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,3.7614127,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       id="New_Gradient_Swatch_1"
+       x1="2.71"
+       x2="69.769997"
+       y1="20.040001"
+       y2="20.040001"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4721835,0,0,1.4721835,81.318043,8.0313393)">
+      <stop
+         offset="0"
+         stop-color="#12b212"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#0f0"
+         id="stop2" />
+    </linearGradient>
+    <style
+       id="style2">.cls-2{fill:#980200}.cls-3{fill:red}</style>
+  </defs>
+  <path
+     id="rect8"
+     style="fill:#ff0000;fill-opacity:1;stroke-width:4.04586;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
+     d="M 13.828633 58.718865 C 10.489825 55.380057 5.8721797 53.31889 0.75544416 53.31889 L -21.36374 53.31889 C -31.597211 53.31889 -39.835523 61.557202 -39.835523 71.790673 L -39.835523 93.909857 C -39.835523 104.14333 -31.597211 112.38164 -21.36374 112.38164 L 0.75544416 112.38164 C 10.988915 112.38164 19.227228 104.14333 19.227228 93.909857 L 19.227228 71.790673 C 19.227228 66.673938 17.167442 62.057674 13.828633 58.718865 z M -0.95708008 72.736705 C 1.5070298 75.200815 3.0259198 78.608589 3.0259198 82.384845 C 3.0259198 89.937359 -3.054088 96.017367 -10.606602 96.017367 C -18.159115 96.017367 -24.239123 89.937359 -24.239123 82.384845 C -24.239123 74.832332 -18.159115 68.752324 -10.606602 68.752324 C -6.8303449 68.752324 -3.4211899 70.272595 -0.95708008 72.736705 z "
+     transform="rotate(-45)" />
+  <path
+     fill="url(#New_Gradient_Swatch_1)"
+     d="M 50.55987,27.759129 C 55.733489,-3.0217452 79.982128,0.58674717 79.982128,0.58674717 81.134234,18.031416 66.808952,28.606907 50.55987,29.487293"
+     id="path2"
+     style="fill:#00ff00;stroke-width:1.08689;fill-opacity:1"
+     sodipodi:nodetypes="ccc" />
+  <path
+     fill="url(#New_Gradient_Swatch_1)"
+     d="M 48.831708,29.487293 C 18.050831,24.313673 21.659323,0.06503602 21.659323,0.06503602 39.103989,-1.0870698 49.679483,13.23821 50.55987,29.487293"
+     id="path2-8"
+     style="fill:#00ff00;stroke-width:1.08689;fill-opacity:1"
+     sodipodi:nodetypes="ccc" />
+</svg>

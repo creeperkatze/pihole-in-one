@@ -1,0 +1,5 @@
+.output
+.wxt
+node_modules
+test-results
+spec
