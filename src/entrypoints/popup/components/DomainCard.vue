@@ -28,11 +28,11 @@
 import { computed, onMounted, ref } from 'vue'
 
 import { blockDomain, searchDomain, unblockDomain } from '../../../helpers/api'
-import type { PiholeSettings } from '../../../helpers/settings'
+import type { PiholeInstance } from '../../../helpers/settings'
 
 const props = defineProps<{
 	domain: string
-	settings: PiholeSettings
+	instances: PiholeInstance[]
 }>()
 
 const loading = ref(true)
@@ -54,12 +54,12 @@ const statusText = computed(() => {
 	return 'Not blocked'
 })
 
+// Search on the first instance; block/unblock applies to all
+const primary = computed(() => props.instances[0])
+
 async function fetchStatus(): Promise<void> {
-	const result = await searchDomain(
-		props.settings.baseUrl,
-		props.settings.apiPassword,
-		props.domain,
-	)
+	if (!primary.value) return
+	const result = await searchDomain(primary.value.baseUrl, primary.value.apiPassword, props.domain)
 	blockedByUser.value = result.domains.some(
 		(d) => d.type === 'deny' && d.kind === 'exact' && d.enabled,
 	)
@@ -69,11 +69,13 @@ async function fetchStatus(): Promise<void> {
 async function toggle(): Promise<void> {
 	acting.value = true
 	try {
-		if (blockedByUser.value) {
-			await unblockDomain(props.settings.baseUrl, props.settings.apiPassword, props.domain)
-		} else {
-			await blockDomain(props.settings.baseUrl, props.settings.apiPassword, props.domain)
-		}
+		await Promise.all(
+			props.instances.map((inst) =>
+				blockedByUser.value
+					? unblockDomain(inst.baseUrl, inst.apiPassword, props.domain)
+					: blockDomain(inst.baseUrl, inst.apiPassword, props.domain),
+			),
+		)
 		await fetchStatus()
 	} finally {
 		acting.value = false

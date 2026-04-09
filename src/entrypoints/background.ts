@@ -7,18 +7,35 @@ const ALARM = 'pihole-refresh'
 
 async function updateBadge(): Promise<void> {
 	const settings = await getSettings()
-	if (!settings.baseUrl || !settings.showBadge) {
+	if (!settings.showBadge || settings.instances.length === 0) {
 		await browser.action.setBadgeText({ text: '' })
 		return
 	}
 	try {
-		const summary = await getSummary(settings.baseUrl, settings.apiPassword)
-		if (summary.blocking.blocking === 'enabled') {
+		const statuses = await Promise.all(
+			settings.instances.map((inst) =>
+				getSummary(inst.baseUrl, inst.apiPassword)
+					.then((s) => s.blocking.blocking)
+					.catch(() => null),
+			),
+		)
+		const valid = statuses.filter((s) => s !== null)
+		if (valid.length === 0) return // keep last known badge
+
+		const allEnabled = valid.every((s) => s === 'enabled')
+		const anyEnabled = valid.some((s) => s === 'enabled')
+
+		if (allEnabled) {
 			await browser.action.setBadgeText({ text: 'ON' })
 			await browser.action.setBadgeBackgroundColor({ color: '#00ff00' })
-		} else {
+		} else if (!anyEnabled) {
 			await browser.action.setBadgeText({ text: 'OFF' })
 			await browser.action.setBadgeBackgroundColor({ color: '#ff0000' })
+		} else {
+			// Mixed: some on, some off
+			const onCount = valid.filter((s) => s === 'enabled').length
+			await browser.action.setBadgeText({ text: `${onCount}/${valid.length}` })
+			await browser.action.setBadgeBackgroundColor({ color: '#ff8800' })
 		}
 	} catch {
 		// Keep last known badge state on error rather than clearing it
