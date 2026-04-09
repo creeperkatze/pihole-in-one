@@ -1,11 +1,15 @@
 <template>
-	<div class="popup">
-		<header class="header">
-			<div class="header-title">
+	<div class="w-85 flex flex-col">
+		<header class="flex items-center justify-between px-3.5 py-3">
+			<div class="flex items-center gap-2 font-bold text-[15px]">
 				<img :src="iconUrl" width="22" height="22" alt="" />
 				Pi-hole In One
 			</div>
-			<button class="icon-btn" title="Settings" @click="openOptions">
+			<button
+				class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
+				title="Settings"
+				@click="openOptions"
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -25,19 +29,19 @@
 			</button>
 		</header>
 
-		<div class="divider"></div>
+		<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
 
-		<div v-if="loading" class="state-center">
-			<div class="spinner"></div>
+		<div v-if="loading" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
+			<div class="w-7 h-7 border-[3px] border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin"></div>
 		</div>
 
-		<div v-else-if="!configured" class="state-center">
-			<p class="state-text">Configure your Pi-hole to get started.</p>
+		<div v-else-if="!configured" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
+			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">Configure your Pi-hole to get started.</p>
 			<button class="btn btn-primary" @click="openOptions">Open Settings</button>
 		</div>
 
 		<template v-else>
-			<div class="content">
+			<div class="flex flex-col gap-2.5 px-3.5 py-3">
 				<StatusCard
 					:status="blockingEnabled ? 'enabled' : 'disabled'"
 					:sub="summary ? `${summary.clients.active} client(s) active` : undefined"
@@ -45,9 +49,11 @@
 					@toggle="toggleBlocking"
 				/>
 
-				<div v-if="blockingEnabled" class="disable-section">
-					<div class="disable-label">Disable for:</div>
-					<div class="disable-btns">
+				<div v-if="blockingEnabled" class="flex flex-col gap-1.5">
+					<div class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5px]">
+						Disable for:
+					</div>
+					<div class="flex gap-1.5 flex-wrap">
 						<button
 							v-for="preset in disablePresets"
 							:key="preset.label"
@@ -60,7 +66,12 @@
 					</div>
 				</div>
 
-				<div v-if="error" class="error-msg">{{ error }}</div>
+				<div
+					v-if="error"
+					class="px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
+				>
+					{{ error }}
+				</div>
 
 				<StatsGrid v-if="summary" :stats="formattedStats" />
 
@@ -71,11 +82,16 @@
 				/>
 			</div>
 
-			<div class="divider"></div>
+			<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
 
-			<footer class="footer">
-				<span class="footer-time">{{ lastUpdatedText }}</span>
-				<button class="icon-btn" title="Refresh" :disabled="refreshing" @click="refresh">
+			<footer class="flex items-center justify-between px-3.5 py-2">
+				<span class="text-[11px] text-zinc-500 dark:text-zinc-400">{{ lastUpdatedText }}</span>
+				<button
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+					title="Refresh"
+					:disabled="refreshing"
+					@click="refresh"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="14"
@@ -86,7 +102,7 @@
 						stroke-width="2.5"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						:class="{ spinning: refreshing }"
+						:class="{ 'animate-spin': refreshing }"
 					>
 						<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
 						<path d="M21 3v5h-5" />
@@ -220,127 +236,3 @@ onMounted(async () => {
 	loading.value = false
 })
 </script>
-
-<style scoped>
-.popup {
-	width: 340px;
-	display: flex;
-	flex-direction: column;
-}
-
-.header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 12px 14px;
-}
-
-.header-title {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-weight: 700;
-	font-size: 15px;
-}
-
-
-.icon-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 5px;
-	border: none;
-	border-radius: var(--radius-sm);
-	background: transparent;
-	color: var(--text-muted);
-	transition: background 0.15s, color 0.15s;
-}
-
-.icon-btn:hover:not(:disabled) {
-	background: var(--bg-hover);
-	color: var(--text);
-}
-
-.state-center {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	padding: 32px 20px;
-	min-height: 160px;
-}
-
-.state-text {
-	margin: 0;
-	color: var(--text-muted);
-	text-align: center;
-}
-
-.spinner {
-	width: 28px;
-	height: 28px;
-	border: 3px solid var(--border);
-	border-top-color: var(--accent);
-	border-radius: 50%;
-	animation: spin 0.7s linear infinite;
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	padding: 12px 14px;
-}
-
-.disable-section {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-}
-
-.disable-label {
-	font-size: 11px;
-	font-weight: 600;
-	color: var(--text-muted);
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-}
-
-.disable-btns {
-	display: flex;
-	gap: 6px;
-	flex-wrap: wrap;
-}
-
-.error-msg {
-	padding: 8px 12px;
-	border-radius: var(--radius-sm);
-	background: var(--danger-bg);
-	border: 1px solid var(--danger-border);
-	color: var(--danger);
-	font-size: 12px;
-}
-
-.footer {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 8px 14px;
-}
-
-.footer-time {
-	font-size: 11px;
-	color: var(--text-muted);
-}
-
-.spinning {
-	animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
-}
-</style>

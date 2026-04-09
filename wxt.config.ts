@@ -1,7 +1,11 @@
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'wxt'
 
 export default defineConfig({
 	srcDir: 'src',
+	vite: () => ({
+		plugins: [tailwindcss()],
+	}),
 	publicDir: 'src/public',
 	modules: ['@wxt-dev/module-vue'],
 	manifest: {

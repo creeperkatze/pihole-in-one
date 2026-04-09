@@ -1,17 +1,19 @@
 <template>
-	<div class="page">
-		<div class="container">
-			<header class="page-header">
-				<div class="page-title">
-					<span class="pihole-dot"></span>
-					Pi-hole Controller
+	<div class="min-h-screen bg-white dark:bg-zinc-900 px-4 py-8">
+		<div class="max-w-130 mx-auto">
+			<header class="mb-7">
+				<div class="flex items-center gap-2.5 text-xl font-bold mb-1.5">
+					<img :src="iconUrl" width="24" height="24" alt="" />
+					Pi-hole In One
 				</div>
-				<p class="page-sub">Configure your Pi-hole connection settings.</p>
+				<p class="m-0 text-zinc-500 dark:text-zinc-400 text-sm">
+					Configure your Pi-hole connection settings.
+				</p>
 			</header>
 
-			<form class="form" @submit.prevent="save">
-				<div class="form-group">
-					<label class="label" for="baseUrl">Pi-hole URL</label>
+			<form class="flex flex-col gap-5" @submit.prevent="save">
+				<div class="flex flex-col gap-1.5">
+					<label class="font-semibold text-[13px]" for="baseUrl">Pi-hole URL</label>
 					<input
 						id="baseUrl"
 						v-model="form.baseUrl"
@@ -20,14 +22,14 @@
 						placeholder="https://pi.hole"
 						required
 					/>
-					<p class="hint">
+					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
 						Base URL of your Pi-hole (no trailing slash or <code>/api</code>). Pi-hole v6
 						uses HTTPS by default, e.g. <code>https://pi.hole</code>.
 					</p>
 				</div>
 
-				<div class="form-group">
-					<label class="label" for="password">API Password</label>
+				<div class="flex flex-col gap-1.5">
+					<label class="font-semibold text-[13px]" for="password">API Password</label>
 					<input
 						id="password"
 						v-model="form.apiPassword"
@@ -36,28 +38,30 @@
 						placeholder="Leave empty if none is set"
 						autocomplete="current-password"
 					/>
-					<p class="hint">
+					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
 						Found in the Pi-hole admin panel under Settings → API / Web interface.
 					</p>
 				</div>
 
-				<div class="form-group">
-					<label class="label" for="interval">Badge Refresh Interval (seconds)</label>
+				<div class="flex flex-col gap-1.5">
+					<label class="font-semibold text-[13px]" for="interval">
+						Badge Refresh Interval (seconds)
+					</label>
 					<input
 						id="interval"
 						v-model.number="form.refreshInterval"
-						class="input input-sm"
+						class="input w-35"
 						type="number"
 						min="60"
 						max="3600"
 						step="10"
 					/>
-					<p class="hint">
+					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
 						Minimum is 60 seconds in Chrome due to MV3 alarm constraints. Firefox allows lower.
 					</p>
 				</div>
 
-				<div class="form-actions">
+				<div class="flex gap-2.5 mt-1">
 					<button
 						type="button"
 						class="btn btn-outline"
@@ -71,7 +75,15 @@
 					</button>
 				</div>
 
-				<div v-if="message" class="message" :class="messageType">
+				<div
+					v-if="message"
+					class="px-3.5 py-2.5 rounded-[5px] text-[13px] border"
+					:class="
+						messageType === 'success'
+							? 'bg-success-bg border-success-border text-pihole-green'
+							: 'bg-danger-bg border-danger-border text-pihole-red'
+					"
+				>
 					{{ message }}
 				</div>
 			</form>
@@ -80,10 +92,13 @@
 </template>
 
 <script setup lang="ts">
+import { browser } from 'wxt/browser'
 import { onMounted, reactive, ref } from 'vue'
 
 import { getSummary } from '../../helpers/api'
 import { DEFAULTS, getSettings, saveSettings, type PiholeSettings } from '../../helpers/settings'
+
+const iconUrl = browser.runtime.getURL('/icon.svg')
 
 const form = reactive<PiholeSettings>({ ...DEFAULTS })
 const saving = ref(false)
@@ -132,108 +147,3 @@ onMounted(async () => {
 	Object.assign(form, settings)
 })
 </script>
-
-<style scoped>
-.page {
-	min-height: 100vh;
-	background: var(--bg);
-	padding: 32px 16px;
-}
-
-.container {
-	max-width: 520px;
-	margin: 0 auto;
-}
-
-.page-header {
-	margin-bottom: 28px;
-}
-
-.page-title {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	font-size: 20px;
-	font-weight: 700;
-	margin-bottom: 6px;
-}
-
-.pihole-dot {
-	width: 14px;
-	height: 14px;
-	border-radius: 50%;
-	background: var(--accent);
-	flex-shrink: 0;
-}
-
-.page-sub {
-	margin: 0;
-	color: var(--text-muted);
-	font-size: 14px;
-}
-
-.form {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
-.form-group {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-}
-
-.label {
-	font-weight: 600;
-	font-size: 13px;
-}
-
-.input {
-	padding: 8px 12px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius-sm);
-	background: var(--bg-secondary);
-	transition: border-color 0.15s;
-	outline: none;
-	width: 100%;
-}
-
-.input:focus {
-	border-color: var(--accent);
-}
-
-.input-sm {
-	width: 140px;
-}
-
-.hint {
-	margin: 0;
-	font-size: 12px;
-	color: var(--text-muted);
-}
-
-.form-actions {
-	display: flex;
-	gap: 10px;
-	margin-top: 4px;
-}
-
-.message {
-	padding: 10px 14px;
-	border-radius: var(--radius-sm);
-	font-size: 13px;
-}
-
-.message.success {
-	background: var(--success-bg);
-	border: 1px solid var(--success-border);
-	color: var(--success);
-}
-
-.message.error {
-	background: var(--danger-bg);
-	border: 1px solid var(--danger-border);
-	color: var(--danger);
-}
-</style>

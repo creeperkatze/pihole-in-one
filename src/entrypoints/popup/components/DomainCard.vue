@@ -1,13 +1,23 @@
 <template>
-	<div class="domain-card">
-		<div class="domain-info">
-			<span class="domain-dot" :class="dotClass"></span>
-			<div class="domain-text">
-				<div class="domain-name" :title="domain">{{ domain }}</div>
-				<div class="domain-status">{{ statusText }}</div>
+	<div
+		class="flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
+	>
+		<div class="flex items-center gap-2.5 min-w-0">
+			<span
+				class="w-2 h-2 rounded-full shrink-0"
+				:class="dotClass === 'allowed' ? 'bg-pihole-green' : 'bg-pihole-red'"
+			></span>
+			<div class="min-w-0">
+				<div class="text-[13px] font-semibold truncate max-w-45" :title="domain">
+					{{ domain }}
+				</div>
+				<div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-px">{{ statusText }}</div>
 			</div>
 		</div>
-		<div v-if="loading" class="domain-spinner"></div>
+		<div
+			v-if="loading"
+			class="w-4 h-4 border-2 border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin shrink-0"
+		></div>
 		<button
 			v-else-if="!gravityOnly"
 			class="btn btn-sm"
@@ -78,78 +88,3 @@ onMounted(async () => {
 	}
 })
 </script>
-
-<style scoped>
-.domain-card {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 10px;
-	padding: 10px 14px;
-	border-radius: var(--radius);
-	border: 1px solid var(--border);
-	background: var(--bg-secondary);
-}
-
-.domain-info {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	min-width: 0;
-}
-
-.domain-dot {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	flex-shrink: 0;
-	background: var(--text-muted);
-}
-
-.domain-dot.user {
-	background: var(--danger);
-}
-
-.domain-dot.gravity {
-	background: var(--accent);
-}
-
-.domain-dot.allowed {
-	background: var(--success);
-}
-
-.domain-text {
-	min-width: 0;
-}
-
-.domain-name {
-	font-size: 13px;
-	font-weight: 600;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 180px;
-}
-
-.domain-status {
-	font-size: 11px;
-	color: var(--text-muted);
-	margin-top: 1px;
-}
-
-.domain-spinner {
-	width: 16px;
-	height: 16px;
-	border: 2px solid var(--border);
-	border-top-color: var(--accent);
-	border-radius: 50%;
-	animation: spin 0.7s linear infinite;
-	flex-shrink: 0;
-}
-
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
-}
-</style>

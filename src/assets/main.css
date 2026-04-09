@@ -1,137 +1,98 @@
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+@import "tailwindcss";
 
-:root {
-	--bg: #ffffff;
-	--bg-secondary: #f4f4f5;
-	--bg-hover: #e4e4e7;
-	--text: #09090b;
-	--text-muted: #71717a;
-	--border: #e4e4e7;
-	--accent: #ff0000;
-	--accent-hover: #cc0000;
-	--success: #00ff00;
-	--success-bg: #f0fff0;
-	--success-border: #99ff99;
-	--danger: #ff0000;
-	--danger-bg: #fff0f0;
-	--danger-border: #ff9999;
-	--radius: 8px;
-	--radius-sm: 5px;
+@theme {
+	--color-pihole-red: #ff0000;
+	--color-pihole-green: #00ff00;
+	--color-success-bg: #f0fff0;
+	--color-success-border: #99ff99;
+	--color-danger-bg: #fff0f0;
+	--color-danger-border: #ff9999;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--bg: #18181b;
-		--bg-secondary: #27272a;
-		--bg-hover: #3f3f46;
-		--text: #fafafa;
-		--text-muted: #a1a1aa;
-		--border: #3f3f46;
-		--success-bg: #003300;
-		--success-border: #006600;
-		--danger-bg: #330000;
-		--danger-border: #660000;
+	@theme {
+		--color-success-bg: #003300;
+		--color-success-border: #006600;
+		--color-danger-bg: #330000;
+		--color-danger-border: #660000;
 	}
 }
 
-body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	color: var(--text);
-	background: var(--bg);
-	-webkit-font-smoothing: antialiased;
+@layer base {
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+		font-size: 14px;
+		line-height: 1.5;
+		-webkit-font-smoothing: antialiased;
+		@apply text-zinc-950 dark:text-zinc-50 bg-white dark:bg-zinc-900;
+	}
+
+	button {
+		font-family: inherit;
+		font-size: inherit;
+	}
+
+	input,
+	select {
+		font-family: inherit;
+		font-size: inherit;
+		@apply text-zinc-950 dark:text-zinc-50 bg-white dark:bg-zinc-900;
+	}
 }
 
-button {
-	cursor: pointer;
-	font-family: inherit;
-	font-size: inherit;
-}
+@layer components {
+	.btn {
+		@apply inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-zinc-200 dark:border-zinc-700 rounded-[5px] bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 font-medium transition-colors duration-150 cursor-pointer;
+	}
 
-button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-}
+	.btn:hover:not(:disabled) {
+		@apply bg-zinc-200 dark:bg-zinc-700;
+	}
 
-input,
-select {
-	font-family: inherit;
-	font-size: inherit;
-	color: var(--text);
-	background: var(--bg);
-}
+	.btn:disabled {
+		@apply opacity-50 cursor-not-allowed;
+	}
 
-.btn {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	padding: 6px 14px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius-sm);
-	background: var(--bg-secondary);
-	color: var(--text);
-	font-weight: 500;
-	transition:
-		background 0.15s,
-		border-color 0.15s,
-		opacity 0.15s;
-}
+	.btn-primary {
+		@apply bg-pihole-red border-pihole-red text-white;
+	}
 
-.btn:hover:not(:disabled) {
-	background: var(--bg-hover);
-}
+	.btn-primary:hover:not(:disabled) {
+		background-color: #cc0000;
+		border-color: #cc0000;
+	}
 
-.btn-primary {
-	background: var(--accent);
-	border-color: var(--accent);
-	color: #fff;
-}
+	.btn-success {
+		@apply bg-pihole-green border-pihole-green text-black;
+	}
 
-.btn-primary:hover:not(:disabled) {
-	background: var(--accent-hover);
-	border-color: var(--accent-hover);
-}
+	.btn-success:hover:not(:disabled) {
+		background-color: #00cc00;
+		border-color: #00cc00;
+	}
 
-.btn-success {
-	background: var(--success);
-	border-color: var(--success);
-	color: #000;
-}
+	.btn-danger {
+		@apply bg-pihole-red border-pihole-red text-white;
+	}
 
-.btn-success:hover:not(:disabled) {
-	background: #00cc00;
-	border-color: #00cc00;
-}
+	.btn-danger:hover:not(:disabled) {
+		background-color: #cc0000;
+		border-color: #cc0000;
+	}
 
-.btn-danger {
-	background: var(--danger);
-	border-color: var(--danger);
-	color: #fff;
-}
+	.btn-outline {
+		@apply bg-transparent border-zinc-200 dark:border-zinc-700;
+	}
 
-.btn-danger:hover:not(:disabled) {
-	background: #cc0000;
-	border-color: #cc0000;
-}
+	.btn-sm {
+		@apply px-2.5 py-[3px] text-xs;
+	}
 
-.btn-outline {
-	background: transparent;
-	border-color: var(--border);
-}
+	.input {
+		@apply px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-[5px] bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 transition-colors duration-150 outline-none w-full;
+	}
 
-.btn-sm {
-	padding: 3px 10px;
-	font-size: 12px;
-}
-
-.divider {
-	height: 1px;
-	background: var(--border);
-	margin: 0;
+	.input:focus {
+		@apply border-pihole-red;
+	}
 }
