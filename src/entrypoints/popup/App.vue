@@ -183,7 +183,6 @@ function tickTimer(): void {
 	}
 }
 
-
 onUnmounted(() => {
 	if (countdownInterval) clearInterval(countdownInterval)
 })
