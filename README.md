@@ -1,6 +1,6 @@
 # <img src=".github/assets/logo.png" alt="Pi-hole In One" height="100">
 
-A browser extension to control your Pi-hole v6 directly from the browser.
+A browser extension to control your Pi-hole conveniently from within the browser.
 
 ![GitHub Branch Check Runs](https://img.shields.io/github/check-runs/creeperkatze/pihole-in-one/main?labelColor=0d143c)
 ![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/pihole-in-one?labelColor=0d143c)
@@ -14,8 +14,8 @@ A browser extension to control your Pi-hole v6 directly from the browser.
 
 Install from your browser's extension store:
 
-- **Chrome Web Store** — coming soon
-- **Firefox Add-Ons** — coming soon
+- **Chrome Web Store** (coming soon)
+- **Firefox Add-Ons**: (coming soon)
 
 Prefer to build from source? See [Building from source](#-building-from-source) below.
 
@@ -23,7 +23,7 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ### Blocking control
 
-Enable or disable Pi-hole blocking with a single click. Use the **Disable for** presets to pause blocking for a set duration — the popup shows a live countdown and automatically re-enables when the timer expires.
+Enable or disable Pi-hole blocking with a single click. Use the **Disable for** presets to pause blocking for a set duration. The popup shows a live countdown and automatically re-enables when the timer expires.
 
 ### Domain management
 
@@ -41,7 +41,7 @@ The toolbar icon shows **ON** or **OFF** reflecting the current blocking state, 
 
 1. Open **Settings** from the extension popup (gear icon).
 2. Enter your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`).
-3. Enter your Pi-hole **application password** (found in Pi-hole → Settings → API).
+3. Enter your Pi-hole **application password** (found in Pi-hole > Settings > API).
 4. Leave the password blank if your Pi-hole has no password set.
 
 ## 🔒 Building from source
