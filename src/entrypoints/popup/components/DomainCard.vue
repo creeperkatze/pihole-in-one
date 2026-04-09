@@ -18,13 +18,7 @@
 			v-if="loading"
 			class="w-4 h-4 border-2 border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin shrink-0"
 		></div>
-		<button
-			v-else-if="!gravityOnly"
-			class="btn btn-sm"
-			:class="blockedByUser ? 'btn-success' : 'btn-danger'"
-			:disabled="acting"
-			@click="toggle"
-		>
+		<button v-else-if="!gravityOnly" class="btn btn-sm" :disabled="acting" @click="toggle">
 			{{ blockedByUser ? 'Unblock' : 'Block' }}
 		</button>
 	</div>
