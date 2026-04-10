@@ -11,7 +11,7 @@
 			</div>
 			<div class="px-2 pt-2">
 				<div class="relative">
-					<SearchIcon
+					<Search
 						:size="15"
 						class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-50 pointer-events-none"
 					/>
@@ -85,6 +85,37 @@
 					</template>
 				</Card>
 			</div>
+
+			<!-- Footer -->
+			<div
+				class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-zinc-200 dark:border-zinc-800"
+			>
+				<span class="text-xs text-zinc-400">v{{ version }}</span>
+				<span v-if="checking" class="flex items-center gap-1 text-xs text-zinc-400">
+					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
+					Checking
+				</span>
+				<a
+					v-else-if="isLatest"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
+				>
+					<CheckCircle2 :size="12" aria-hidden="true" />
+					Latest version
+				</a>
+				<a
+					v-else-if="latestVersion"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
+				>
+					<Clock :size="12" aria-hidden="true" />
+					Update available
+				</a>
+			</div>
 		</aside>
 
 		<!-- Content -->
@@ -96,14 +127,17 @@
 
 <script setup lang="ts">
 import {
+	CheckCircle2,
+	Clock,
 	Coffee,
 	ExternalLink,
-	Search as SearchIcon,
+	Loader2,
+	Search,
 	Server,
 	SlidersHorizontal,
 	X as XIcon,
 } from 'lucide-vue-next'
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
@@ -121,6 +155,11 @@ const tabs = [
 const searchQuery = ref('')
 const lastTabPath = ref('/connection')
 
+const version = browser.runtime.getManifest().version
+const latestVersion = ref<string | null>(null)
+const isLatest = ref(false)
+const checking = ref(true)
+
 watch(route, (r) => {
 	if (r.path !== '/search') lastTabPath.value = r.path
 })
@@ -130,6 +169,36 @@ watch(searchQuery, (q) => {
 		router.push({ path: '/search', query: { q } })
 	} else {
 		router.push(lastTabPath.value)
+	}
+})
+
+onMounted(async () => {
+	try {
+		const CACHE_KEY = 'updateCheckCache'
+		const CACHE_TTL = 10 * 60 * 1000
+
+		const cached = await browser.storage.local.get(CACHE_KEY)
+		const entry = cached[CACHE_KEY] as { tag: string; ts: number } | undefined
+		let tag: string
+
+		if (entry && Date.now() - entry.ts < CACHE_TTL) {
+			tag = entry.tag
+		} else {
+			const res = await fetch(
+				'https://api.github.com/repos/creeperkatze/pihole-in-one/releases/latest',
+			)
+			if (!res.ok) throw new Error(`HTTP ${res.status}`)
+			const data = await res.json()
+			tag = data.tag_name?.replace(/^v/, '') ?? ''
+			await browser.storage.local.set({ [CACHE_KEY]: { tag, ts: Date.now() } })
+		}
+
+		if (tag && tag !== version) latestVersion.value = tag
+		else if (tag) isLatest.value = true
+	} catch (err) {
+		console.error('[Pi-hole In One] Failed to check for updates:', err)
+	} finally {
+		checking.value = false
 	}
 })
 </script>

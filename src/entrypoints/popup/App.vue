@@ -9,13 +9,31 @@
 			>
 				<img :src="browser.runtime.getURL('/logo.svg')" width="128" alt="Pi-hole In One" />
 			</a>
-			<button
-				class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
-				title="Settings"
-				@click="openOptions"
-			>
-				<Settings :size="16" />
-			</button>
+			<div class="flex items-center gap-1">
+				<button
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+					title="Refresh"
+					:disabled="refreshing"
+					@click="refresh"
+				>
+					<RefreshCw :size="16" :class="{ 'animate-spin': refreshing }" />
+				</button>
+				<button
+					v-if="configured && settings"
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
+					:title="`Open ${settings.instances[activeInstance]?.name || 'Pi-hole'}`"
+					@click="openPihole"
+				>
+					<ExternalLink :size="16" />
+				</button>
+				<button
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
+					title="Settings"
+					@click="openOptions"
+				>
+					<Settings :size="16" />
+				</button>
+			</div>
 		</header>
 
 		<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
@@ -107,30 +125,47 @@
 
 			<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
 
-			<footer class="flex items-center justify-between px-3.5 py-2">
+			<footer class="flex items-center gap-2 px-3.5 py-2">
+				<span class="text-xs text-zinc-400">v{{ version }}</span>
+				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-zinc-400">
+					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
+					Checking
+				</span>
+				<a
+					v-else-if="isLatest"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
+				>
+					<CheckCircle2 :size="12" aria-hidden="true" />
+					Latest version
+				</a>
+				<a
+					v-else-if="latestVersion"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
+				>
+					<Clock :size="12" aria-hidden="true" />
+					Update available
+				</a>
 				<a
 					href="https://github.com/creeperkatze/pihole-in-one"
 					target="_blank"
 					rel="noopener"
-					class="text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+					class="ml-auto text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 				>
 					★ On GitHub
 				</a>
-				<button
-					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-					title="Refresh"
-					:disabled="refreshing"
-					@click="refresh"
-				>
-					<RefreshCw :size="14" :class="{ 'animate-spin': refreshing }" />
-				</button>
 			</footer>
 		</template>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { RefreshCw, Settings } from 'lucide-vue-next'
+import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 'lucide-vue-next'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
@@ -152,6 +187,11 @@ interface InstanceState {
 function makeState(): InstanceState {
 	return { summary: null, error: '', toggling: false, timerEndsAt: null, timerRemaining: null }
 }
+
+const version = browser.runtime.getManifest().version
+const latestVersion = ref<string | null>(null)
+const isLatest = ref(false)
+const updateChecking = ref(true)
 
 const loading = ref(true)
 const refreshing = ref(false)
@@ -291,6 +331,11 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 	}
 }
 
+function openPihole(): void {
+	const url = settings.value?.instances[activeInstance.value]?.baseUrl
+	if (url) void browser.tabs.create({ url })
+}
+
 function openOptions(): void {
 	void browser.tabs.create({ url: browser.runtime.getURL('/options.html') })
 }
@@ -319,5 +364,30 @@ onMounted(async () => {
 		await fetchAll()
 	}
 	loading.value = false
+
+	try {
+		const CACHE_KEY = 'updateCheckCache'
+		const CACHE_TTL = 10 * 60 * 1000
+		const cached = await browser.storage.local.get(CACHE_KEY)
+		const entry = cached[CACHE_KEY] as { tag: string; ts: number } | undefined
+		let tag: string
+		if (entry && Date.now() - entry.ts < CACHE_TTL) {
+			tag = entry.tag
+		} else {
+			const res = await fetch(
+				'https://api.github.com/repos/creeperkatze/pihole-in-one/releases/latest',
+			)
+			if (!res.ok) throw new Error(`HTTP ${res.status}`)
+			const data = await res.json()
+			tag = data.tag_name?.replace(/^v/, '') ?? ''
+			await browser.storage.local.set({ [CACHE_KEY]: { tag, ts: Date.now() } })
+		}
+		if (tag && tag !== version) latestVersion.value = tag
+		else if (tag) isLatest.value = true
+	} catch (err) {
+		console.error('[Pi-hole In One] Failed to check for updates:', err)
+	} finally {
+		updateChecking.value = false
+	}
 })
 </script>
