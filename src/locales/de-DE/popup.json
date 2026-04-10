@@ -1,2 +1,75 @@
-{}
+{
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "popup.disableFor": {
+    "defaultMessage": "Deaktivieren für"
+  },
+  "popup.domain.blockedByListPlural": {
+    "defaultMessage": "Blockiert von „{list}“ +{count} mehr"
+  },
+  "popup.domain.blockedByUser": {
+    "defaultMessage": "Blockiert durch Benutzer"
+  },
+  "popup.domain.notBlocked": {
+    "defaultMessage": "Nicht blockiert"
+  },
+  "popup.domain.whitelistedByUser": {
+    "defaultMessage": "Vom Benutzer auf die Whitelist gesetzt"
+  },
+  "popup.footer.checking": {
+    "defaultMessage": "Wird überprüft"
+  },
+  "popup.footer.latestVersion": {
+    "defaultMessage": "Neueste Version"
+  },
+  "popup.footer.starOnGitHub": {
+    "defaultMessage": "★ Auf GitHub"
+  },
+  "popup.footer.updateAvailable": {
+    "defaultMessage": "Aktualisierung verfügbar"
+  },
+  "popup.notConfigured.message": {
+    "defaultMessage": "Konfiguriere dein Pi-hole, um loszulegen."
+  },
+  "popup.notConfigured.openSettings": {
+    "defaultMessage": "Einstellungen öffnen"
+  },
+  "popup.refresh": {
+    "defaultMessage": "Aktualisieren"
+  },
+  "popup.settings": {
+    "defaultMessage": "Einstellungen"
+  },
+  "popup.stats.blocked": {
+    "defaultMessage": "Blockiert"
+  },
+  "popup.stats.blockedToday": {
+    "defaultMessage": "Heute blockiert"
+  },
+  "popup.stats.queriesToday": {
+    "defaultMessage": "Abfragen heute"
+  },
+  "popup.stats.uniqueDomains": {
+    "defaultMessage": "Einzigartige Domains"
+  },
+  "popup.status.blockingDisabled": {
+    "defaultMessage": "Blockieren deaktiviert"
+  },
+  "popup.status.blockingEnabled": {
+    "defaultMessage": "Blockieren aktiviert"
+  },
+  "popup.status.disable": {
+    "defaultMessage": "Deaktivieren"
+  },
+  "popup.status.enable": {
+    "defaultMessage": "Aktivieren"
+  },
+  "popup.statusSub.clients": {
+    "defaultMessage": "{count} Client(s) aktiv"
+  },
+  "popup.statusSub.reenables": {
+    "defaultMessage": "Re-aktiviert in {duration}"
+  }
+}
 

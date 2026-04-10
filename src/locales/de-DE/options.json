@@ -1,4 +1,28 @@
 {
+  "options.colorScheme.auto": {
+    "defaultMessage": "Systemstandard"
+  },
+  "options.colorScheme.dark": {
+    "defaultMessage": "Dunkel"
+  },
+  "options.colorScheme.description": {
+    "defaultMessage": "Wähle zwischen hell, dunkel oder Systemstandard."
+  },
+  "options.colorScheme.label": {
+    "defaultMessage": "Farbschema"
+  },
+  "options.colorScheme.light": {
+    "defaultMessage": "Hell"
+  },
+  "options.connection.description": {
+    "defaultMessage": "Verwalte deine Pi-hole-Instanzen und die Einstellungen für die Aktualisierung der Abzeichens."
+  },
+  "options.connection.refreshInterval.description": {
+    "defaultMessage": "Mindestens 60 Sekunden in Chrome (MV3-Alarm-Einschränkung). Firefox erlaubt niedrigere Werte."
+  },
+  "options.connection.refreshInterval.label": {
+    "defaultMessage": "Aktualisierungsintervall für Abzeichen"
+  },
   "options.connection.title": {
     "defaultMessage": "Verbindung"
   },
@@ -19,6 +43,111 @@
   },
   "options.customization.badge.state": {
     "defaultMessage": "Status"
+  },
+  "options.customization.description": {
+    "defaultMessage": "Passe das Aussehen und Verhalten der Erweiterung an."
+  },
+  "options.customization.title": {
+    "defaultMessage": "Anpassung"
+  },
+  "options.footer.checking": {
+    "defaultMessage": "Wird überprüft"
+  },
+  "options.footer.latestVersion": {
+    "defaultMessage": "Neueste Version"
+  },
+  "options.footer.updateAvailable": {
+    "defaultMessage": "Aktualisierung verfügbar"
+  },
+  "options.language.description": {
+    "defaultMessage": "Wähle die Sprache für die Benutzeroberfläche der Erweiterung aus."
+  },
+  "options.language.label": {
+    "defaultMessage": "Sprache"
+  },
+  "options.piholeselector.addButton": {
+    "defaultMessage": "Pi-hole hinzufügen"
+  },
+  "options.piholeselector.description": {
+    "defaultMessage": "Konfiguriere eine oder mehrere Pi-Hole-Instanzen."
+  },
+  "options.piholeselector.empty": {
+    "defaultMessage": "Keine Pi-Löcher konfiguriert. Füge eins hinzu, um loszulegen."
+  },
+  "options.piholeselector.instance.apiPassword.hint": {
+    "defaultMessage": "Zu finden unter Einstellungen > API."
+  },
+  "options.piholeselector.instance.apiPassword.label": {
+    "defaultMessage": "API-Passwort"
+  },
+  "options.piholeselector.instance.apiPassword.placeholder": {
+    "defaultMessage": "Leer lassen, wenn keins festfelegt ist"
+  },
+  "options.piholeselector.instance.connected": {
+    "defaultMessage": "Verbunden!"
+  },
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.name.label": {
+    "defaultMessage": "Name"
+  },
+  "options.piholeselector.instance.name.placeholder": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.noUrl": {
+    "defaultMessage": "Keine URL festgelegt"
+  },
+  "options.piholeselector.instance.testing": {
+    "defaultMessage": "Verbindung wird getestet…"
+  },
+  "options.piholeselector.instance.url.label": {
+    "defaultMessage": "URL"
+  },
+  "options.piholeselector.title": {
+    "defaultMessage": "Pi-holes"
+  },
+  "options.search.description": {
+    "defaultMessage": "Zeige Einstellungen mit \"{query}\""
+  },
+  "options.search.noResults": {
+    "defaultMessage": "Keine Optionen gefunden"
+  },
+  "options.search.placeholder": {
+    "defaultMessage": "Einstellungen durchsuchen…"
+  },
+  "options.search.title": {
+    "defaultMessage": "Suchergebnisse"
+  },
+  "options.sidebar.github.description": {
+    "defaultMessage": "Mit Stern markieren, falls die Erweiterung dir gefällt"
+  },
+  "options.sidebar.github.title": {
+    "defaultMessage": "Auf GitHub anzeigen"
+  },
+  "options.sidebar.kofi.description": {
+    "defaultMessage": "Ich bin für jede Spende dankbar"
+  },
+  "options.sidebar.kofi.title": {
+    "defaultMessage": "Auf Ko-Fi unterstützen"
+  },
+  "options.simpleOptions.refreshInterval.description": {
+    "defaultMessage": "Mindestens 60 Sekunden in Chrome (MV3-Alarm-Einschränkung). Firefox erlaubt niedrigere Werte."
+  },
+  "options.simpleOptions.refreshInterval.label": {
+    "defaultMessage": "Aktualisierungsintervall für Abzeichen"
+  },
+  "options.simpleOptions.showBadge.description": {
+    "defaultMessage": "Zeige ein ON/OFF-Symbol auf dem Erweiterungssymbol an, das den aktuellen Blockierungsstatus widerspiegelt."
+  },
+  "options.simpleOptions.showBadge.label": {
+    "defaultMessage": "Abzeichen anzeigen"
+  },
+  "options.tabs.connection": {
+    "defaultMessage": "Verbindung"
+  },
+  "options.tabs.customization": {
+    "defaultMessage": "Anpassung"
   }
 }
 
