@@ -88,9 +88,19 @@ git clone https://github.com/creeperkatze/pihole-in-one.git
 cd pihole-in-one
 
 pnpm install
+```
 
+### Running
+
+```bash
 pnpm dev
 ```
+
+## 🌐 Translating
+
+Translations are managed on [Crowdin](https://crowdin.com/project/pihole-in-one). You can contribute without any technical knowledge, just pick your language and start translating.
+
+New translations are automatically pulled every Monday.
 
 ## 🤝 Contributing
 
