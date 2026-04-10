@@ -42,5 +42,10 @@
         "typescript-eslint": "^8.18.2",
         "vue-tsc": "^2.2.0",
         "wxt": "^0.20.1"
+    },
+    "pnpm": {
+        "patchedDependencies": {
+            "wxt@0.20.20": "patches/wxt@0.20.20.patch"
+        }
     }
 }
