@@ -223,7 +223,7 @@ const messages = defineMessages({
 	},
 	'options.piholeselector.instance.testing': {
 		id: 'options.piholeselector.instance.testing',
-		defaultMessage: 'Testing connection\u2026',
+		defaultMessage: 'Testing connection...',
 	},
 	'options.piholeselector.instance.connected': {
 		id: 'options.piholeselector.instance.connected',

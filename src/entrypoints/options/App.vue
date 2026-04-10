@@ -150,7 +150,7 @@ const { formatMessage } = useVIntl()
 const messages = defineMessages({
 	'options.search.placeholder': {
 		id: 'options.search.placeholder',
-		defaultMessage: 'Search options\u2026',
+		defaultMessage: 'Search options...',
 	},
 	'options.sidebar.kofi.title': {
 		id: 'options.sidebar.kofi.title',
