@@ -12,13 +12,11 @@ A browser extension to control your Pi-hole conveniently from within the browser
 
 ## 🚀 Installation
 
-> [!NOTE]
-> Pi-hole In One requires **Pi-hole v6** or later. The v6 REST API is not available on earlier versions.
-
 Install from your browser's extension store:
 
 - **Chrome Web Store** (coming soon)
-- **Firefox Add-Ons**: (coming soon)
+- **Firefox Add-Ons** (coming soon)
+- **Edge Add-Ons** (coming soon)
 
 Prefer to build from source? See [Building from source](#-building-from-source) below.
 
