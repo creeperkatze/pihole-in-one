@@ -17,6 +17,9 @@
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Vom Benutzer auf die Whitelist gesetzt"
   },
+  "popup.error.fix": {
+    "defaultMessage": "Beheben"
+  },
   "popup.footer.checking": {
     "defaultMessage": "Wird überprüft"
   },
@@ -25,6 +28,9 @@
   },
   "popup.footer.starOnGitHub": {
     "defaultMessage": "★ Auf GitHub"
+  },
+  "popup.footer.support": {
+    "defaultMessage": "Unterstützen"
   },
   "popup.footer.updateAvailable": {
     "defaultMessage": "Aktualisierung verfügbar"

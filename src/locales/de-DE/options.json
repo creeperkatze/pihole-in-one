@@ -99,7 +99,7 @@
     "defaultMessage": "Keine URL festgelegt"
   },
   "options.piholeselector.instance.testing": {
-    "defaultMessage": "Verbindung wird getestet…"
+    "defaultMessage": "Verbindung wird getestet..."
   },
   "options.piholeselector.instance.url.label": {
     "defaultMessage": "URL"
@@ -114,19 +114,19 @@
     "defaultMessage": "Keine Optionen gefunden"
   },
   "options.search.placeholder": {
-    "defaultMessage": "Einstellungen durchsuchen…"
+    "defaultMessage": "Einstellungen durchsuchen..."
   },
   "options.search.title": {
     "defaultMessage": "Suchergebnisse"
   },
   "options.sidebar.github.description": {
-    "defaultMessage": "Mit Stern markieren, falls die Erweiterung dir gefällt"
+    "defaultMessage": "Einen Stern hinterlassen"
   },
   "options.sidebar.github.title": {
     "defaultMessage": "Auf GitHub anzeigen"
   },
   "options.sidebar.kofi.description": {
-    "defaultMessage": "Ich bin für jede Spende dankbar"
+    "defaultMessage": "Kauf mir einen Kaffee"
   },
   "options.sidebar.kofi.title": {
     "defaultMessage": "Auf Ko-Fi unterstützen"
