@@ -106,58 +106,66 @@
 
 				<div
 					v-if="states[activeInstance]?.error"
-					class="px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
+					class="flex items-center justify-between gap-2 px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
 				>
-					{{ states[activeInstance].error }}
+					<span>{{ states[activeInstance].error }}</span>
+					<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
+						{{ formatMessage(messages['popup.error.fix']) }}
+					</Button>
 				</div>
 
 				<StatsGrid v-if="states[activeInstance]?.summary" :stats="formattedStats(activeInstance)" />
 
 				<DomainCard
-					v-if="currentDomain && settings && settings.instances.length > 0"
+					v-if="
+						currentDomain &&
+						settings &&
+						settings.instances.length > 0 &&
+						!states[activeInstance]?.error
+					"
 					:domain="currentDomain"
 					:instances="settings.instances"
 				/>
 			</div>
 
 			<div class="h-px bg-border"></div>
-
-			<footer class="flex items-center gap-2 px-3.5 py-2">
-				<span class="text-xs text-muted">v{{ version }}</span>
-				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted">
-					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
-					{{ formatMessage(messages['popup.footer.checking']) }}
-				</span>
-				<a
-					v-else-if="isLatest"
-					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
-					target="_blank"
-					rel="noopener"
-					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
-				>
-					<CheckCircle2 :size="12" aria-hidden="true" />
-					{{ formatMessage(messages['popup.footer.latestVersion']) }}
-				</a>
-				<a
-					v-else-if="latestVersion"
-					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
-					target="_blank"
-					rel="noopener"
-					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
-				>
-					<Clock :size="12" aria-hidden="true" />
-					{{ formatMessage(messages['popup.footer.updateAvailable']) }}
-				</a>
-				<a
-					href="https://github.com/creeperkatze/pihole-in-one"
-					target="_blank"
-					rel="noopener"
-					class="ml-auto text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
-				>
-					{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
-				</a>
-			</footer>
 		</template>
+
+		<footer class="flex items-center gap-2 px-3.5 py-2">
+			<span class="text-xs text-secondary">v{{ version }}</span>
+			<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted">
+				<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
+				{{ formatMessage(messages['popup.footer.checking']) }}
+			</span>
+			<a
+				v-else-if="isLatest"
+				href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+				target="_blank"
+				rel="noopener"
+				class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
+			>
+				<CheckCircle2 :size="12" aria-hidden="true" />
+				{{ formatMessage(messages['popup.footer.latestVersion']) }}
+			</a>
+			<a
+				v-else-if="latestVersion"
+				href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+				target="_blank"
+				rel="noopener"
+				class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
+			>
+				<Clock :size="12" aria-hidden="true" />
+				{{ formatMessage(messages['popup.footer.updateAvailable']) }}
+			</a>
+			<a
+				href="https://github.com/creeperkatze/pihole-in-one"
+				target="_blank"
+				rel="noopener"
+				class="ml-auto text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+			>
+				{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
+			</a>
+		</footer>
 	</div>
 </template>
 
@@ -205,6 +213,7 @@ const messages = defineMessages({
 		id: 'popup.stats.uniqueDomains',
 		defaultMessage: 'Unique Domains',
 	},
+	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
 	'popup.footer.latestVersion': {
 		id: 'popup.footer.latestVersion',

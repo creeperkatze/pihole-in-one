@@ -17,6 +17,9 @@
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Whitelisted by user"
   },
+  "popup.error.fix": {
+    "defaultMessage": "Fix"
+  },
   "popup.footer.checking": {
     "defaultMessage": "Checking"
   },

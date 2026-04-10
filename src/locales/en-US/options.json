@@ -99,7 +99,7 @@
     "defaultMessage": "No URL set"
   },
   "options.piholeselector.instance.testing": {
-    "defaultMessage": "Testing connection…"
+    "defaultMessage": "Testing connection..."
   },
   "options.piholeselector.instance.url.label": {
     "defaultMessage": "URL"
@@ -114,7 +114,7 @@
     "defaultMessage": "No options found"
   },
   "options.search.placeholder": {
-    "defaultMessage": "Search options…"
+    "defaultMessage": "Search options..."
   },
   "options.search.title": {
     "defaultMessage": "Search results"
