@@ -40,5 +40,5 @@ export function useSettings() {
 		initialized.value = true
 	})
 
-	return { form, saveError, setOption, formatSeconds }
+	return { form, saveError, setOption }
 }
