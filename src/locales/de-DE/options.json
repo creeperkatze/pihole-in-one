@@ -1,0 +1,24 @@
+{
+  "options.connection.title": {
+    "defaultMessage": "Verbindung"
+  },
+  "options.customization.badge.clients": {
+    "defaultMessage": "Aktive Clients"
+  },
+  "options.customization.badge.description": {
+    "defaultMessage": "Was auf dem Abzeichens des Erweiterungssymbol angezeigt wird."
+  },
+  "options.customization.badge.label": {
+    "defaultMessage": "Darstellung des Abzeichens"
+  },
+  "options.customization.badge.off": {
+    "defaultMessage": "Aus"
+  },
+  "options.customization.badge.percentage": {
+    "defaultMessage": "Blockierter Anteil"
+  },
+  "options.customization.badge.state": {
+    "defaultMessage": "Status"
+  }
+}
+
