@@ -181,7 +181,7 @@ import Button from '../../components/Button.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { applyColorScheme } from '../../helpers/colorScheme'
 import { formatDuration, formatNumber } from '../../helpers/format'
-import { useVIntl } from '../../helpers/i18n'
+import { i18n, useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
@@ -425,6 +425,7 @@ onMounted(async () => {
 	}
 	const s = await getSettings()
 	applyColorScheme(s.colorScheme)
+	i18n.global.locale.value = s.locale
 	settings.value = s
 	configured.value = isConfigured(s)
 	if (configured.value) {
