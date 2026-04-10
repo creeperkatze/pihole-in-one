@@ -96,16 +96,5 @@ html.dark {
 	select {
 		font-family: inherit;
 		font-size: inherit;
-		@apply text-primary bg-surface-1;
-	}
-}
-
-@layer components {
-	.input {
-		@apply px-3 py-2 border border-border rounded-[5px] bg-surface-3 text-primary transition-colors duration-150 outline-none w-full;
-	}
-
-	.input:focus {
-		@apply border-pihole-red;
 	}
 }

@@ -13,12 +13,12 @@
 						:size="15"
 						class="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
 					/>
-					<input
+					<Input
 						v-model="searchQuery"
 						type="text"
 						:placeholder="formatMessage(messages['options.search.placeholder'])"
-						class="input rounded-lg pl-9 text-sm py-2"
-						:class="searchQuery ? 'pr-8' : ''"
+						class="w-full rounded-lg pl-9 text-sm py-2"
+						:class="searchQuery ? 'pr-8' : 'pr-3'"
 					/>
 					<button
 						v-if="searchQuery"
@@ -132,6 +132,7 @@ import { browser } from 'wxt/browser'
 import Kofi from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
+import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
 import { useVIntl } from '../../helpers/i18n'

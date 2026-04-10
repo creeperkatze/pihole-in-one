@@ -17,6 +17,7 @@
 				:min="60"
 				:max="3600"
 				:step="30"
+				suffix="s"
 				:format="formatSeconds"
 				@update:model-value="form.refreshInterval = $event"
 			/>

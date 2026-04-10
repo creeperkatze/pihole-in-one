@@ -3,7 +3,7 @@
 		class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg border border-border bg-surface-3"
 	>
 		<div class="flex items-center gap-3 min-w-0">
-			<component :is="icon" v-if="icon" :size="16" class="shrink-0 text-muted" />
+			<component :is="icon" v-if="icon" class="size-5 shrink-0 text-muted" />
 			<div>
 				<div class="text-sm font-medium">{{ label }}</div>
 				<div v-if="description" class="text-xs text-secondary mt-0.5">
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<select
-			class="input w-auto text-sm py-1.5"
+			class="px-3 py-1.5 border border-border rounded-[5px] bg-surface-3 text-primary text-sm transition-colors duration-150 outline-none w-auto shrink-0 focus:border-pihole-red"
 			:value="modelValue"
 			@change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
 		>

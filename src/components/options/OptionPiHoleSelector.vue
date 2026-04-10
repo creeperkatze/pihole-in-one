@@ -2,7 +2,7 @@
 	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
 		<div class="flex items-center justify-between gap-3">
 			<div class="flex items-center gap-3">
-				<Server :size="16" class="shrink-0 text-muted" />
+				<Server class="size-5 shrink-0 text-muted" />
 				<div>
 					<div class="text-sm font-medium">
 						{{ formatMessage(messages['options.piholeselector.title']) }}
@@ -18,135 +18,137 @@
 			</Button>
 		</div>
 
-		<div
-			v-if="modelValue.length === 0"
-			class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
-		>
-			<Server :size="22" class="opacity-40" />
-			{{ formatMessage(messages['options.piholeselector.empty']) }}
-		</div>
-
-		<div
-			v-for="inst in modelValue"
-			:key="inst.id"
-			class="rounded-lg border border-border overflow-hidden"
-		>
-			<!-- Header row (always visible) -->
+		<div class="flex flex-col gap-2 pl-7">
 			<div
-				class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised cursor-pointer select-none"
-				@click="toggleEdit(inst.id)"
+				v-if="modelValue.length === 0"
+				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
 			>
-				<div class="min-w-0 flex-1">
-					<div class="text-sm font-medium truncate">
-						{{
-							inst.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])
-						}}
-					</div>
-					<div class="text-xs text-secondary truncate">
-						{{ inst.baseUrl || formatMessage(messages['options.piholeselector.instance.noUrl']) }}
-					</div>
-				</div>
-				<div class="flex items-center gap-2 shrink-0">
-					<Loader2
-						v-if="testStates[inst.id]?.status === 'testing'"
-						:size="14"
-						class="animate-spin text-zinc-400"
-					/>
-					<CheckCircle2
-						v-else-if="testStates[inst.id]?.status === 'ok'"
-						:size="14"
-						class="text-green-500"
-					/>
-					<XCircle
-						v-else-if="testStates[inst.id]?.status === 'error'"
-						:size="14"
-						class="text-pihole-red"
-					/>
-					<button
-						type="button"
-						class="text-zinc-400 hover:text-pihole-red transition-colors duration-150"
-						@click.stop="removeInstance(inst.id)"
-					>
-						<Trash2 :size="14" />
-					</button>
-					<ChevronDown
-						:size="16"
-						class="text-zinc-400 transition-transform duration-200"
-						:class="editingId === inst.id ? 'rotate-180' : ''"
-					/>
-				</div>
+				<Server :size="22" class="opacity-40" />
+				{{ formatMessage(messages['options.piholeselector.empty']) }}
 			</div>
 
-			<!-- Expanded form -->
-			<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border">
-				<div class="flex flex-col gap-1.5">
-					<label class="text-sm font-medium" :for="`name-${inst.id}`">
-						{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
-					</label>
-					<input
-						:id="`name-${inst.id}`"
-						v-model="inst.name"
-						class="input"
-						type="text"
-						:placeholder="
-							formatMessage(messages['options.piholeselector.instance.name.placeholder'])
-						"
-					/>
-				</div>
-				<div class="flex flex-col gap-1.5">
-					<label class="text-sm font-medium" :for="`url-${inst.id}`">
-						{{ formatMessage(messages['options.piholeselector.instance.url.label']) }}
-					</label>
-					<input
-						:id="`url-${inst.id}`"
-						v-model="inst.baseUrl"
-						class="input"
-						type="url"
-						placeholder=""
-						@input="scheduleTest(inst.id)"
-					/>
-					<p class="m-0 text-xs text-secondary">
-						No trailing slash or <code class="font-mono">/api</code>.
-					</p>
-				</div>
-				<div class="flex flex-col gap-1.5">
-					<label class="text-sm font-medium" :for="`pass-${inst.id}`">
-						{{ formatMessage(messages['options.piholeselector.instance.apiPassword.label']) }}
-					</label>
-					<input
-						:id="`pass-${inst.id}`"
-						v-model="inst.apiPassword"
-						class="input"
-						type="password"
-						:placeholder="
-							formatMessage(messages['options.piholeselector.instance.apiPassword.placeholder'])
-						"
-						autocomplete="off"
-						@input="scheduleTest(inst.id)"
-					/>
-					<p class="m-0 text-xs text-secondary">
-						{{ formatMessage(messages['options.piholeselector.instance.apiPassword.hint']) }}
-					</p>
+			<div
+				v-for="inst in modelValue"
+				:key="inst.id"
+				class="rounded-lg border border-border overflow-hidden"
+			>
+				<!-- Header row (always visible) -->
+				<div
+					class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised cursor-pointer select-none"
+					@click="toggleEdit(inst.id)"
+				>
+					<div class="min-w-0 flex-1">
+						<div class="text-sm font-medium truncate">
+							{{
+								inst.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])
+							}}
+						</div>
+						<div class="text-xs text-secondary truncate">
+							{{ inst.baseUrl || formatMessage(messages['options.piholeselector.instance.noUrl']) }}
+						</div>
+					</div>
+					<div class="flex items-center gap-2 shrink-0">
+						<Loader2
+							v-if="testStates[inst.id]?.status === 'testing'"
+							:size="14"
+							class="animate-spin text-zinc-400"
+						/>
+						<CheckCircle2
+							v-else-if="testStates[inst.id]?.status === 'ok'"
+							:size="14"
+							class="text-green-500"
+						/>
+						<XCircle
+							v-else-if="testStates[inst.id]?.status === 'error'"
+							:size="14"
+							class="text-pihole-red"
+						/>
+						<button
+							type="button"
+							class="text-zinc-400 hover:text-pihole-red transition-colors duration-150"
+							@click.stop="removeInstance(inst.id)"
+						>
+							<Trash2 :size="14" />
+						</button>
+						<ChevronDown
+							:size="16"
+							class="text-zinc-400 transition-transform duration-200"
+							:class="editingId === inst.id ? 'rotate-180' : ''"
+						/>
+					</div>
 				</div>
 
-				<div
-					v-if="testStates[inst.id]?.status === 'testing'"
-					class="flex items-center gap-1.5 text-xs text-zinc-400"
-				>
-					<Loader2 :size="12" class="animate-spin" />
-					{{ formatMessage(messages['options.piholeselector.instance.testing']) }}
-				</div>
-				<div
-					v-else-if="testStates[inst.id]?.status === 'ok'"
-					class="px-3 py-2 rounded-[5px] text-xs border bg-success-bg border-success-border text-pihole-green"
-				>
-					{{ testStates[inst.id].message }}
-				</div>
-				<div
-					v-else-if="testStates[inst.id]?.status === 'error'"
-					class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
-				>
-					{{ testStates[inst.id].message }}
+				<!-- Expanded form -->
+				<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border">
+					<div class="flex flex-col gap-1.5">
+						<label class="text-sm font-medium" :for="`name-${inst.id}`">
+							{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
+						</label>
+						<Input
+							:id="`name-${inst.id}`"
+							v-model="inst.name"
+							type="text"
+							class="w-full"
+							:placeholder="
+								formatMessage(messages['options.piholeselector.instance.name.placeholder'])
+							"
+						/>
+					</div>
+					<div class="flex flex-col gap-1.5">
+						<label class="text-sm font-medium" :for="`url-${inst.id}`">
+							{{ formatMessage(messages['options.piholeselector.instance.url.label']) }}
+						</label>
+						<Input
+							:id="`url-${inst.id}`"
+							v-model="inst.baseUrl"
+							type="url"
+							class="w-full"
+							placeholder=""
+							@input="scheduleTest(inst.id)"
+						/>
+						<p class="m-0 text-xs text-secondary">
+							No trailing slash or <code class="font-mono">/api</code>.
+						</p>
+					</div>
+					<div class="flex flex-col gap-1.5">
+						<label class="text-sm font-medium" :for="`pass-${inst.id}`">
+							{{ formatMessage(messages['options.piholeselector.instance.apiPassword.label']) }}
+						</label>
+						<Input
+							:id="`pass-${inst.id}`"
+							v-model="inst.apiPassword"
+							type="password"
+							class="w-full"
+							:placeholder="
+								formatMessage(messages['options.piholeselector.instance.apiPassword.placeholder'])
+							"
+							autocomplete="off"
+							@input="scheduleTest(inst.id)"
+						/>
+						<p class="m-0 text-xs text-secondary">
+							{{ formatMessage(messages['options.piholeselector.instance.apiPassword.hint']) }}
+						</p>
+					</div>
+
+					<div
+						v-if="testStates[inst.id]?.status === 'testing'"
+						class="flex items-center gap-1.5 text-xs text-zinc-400"
+					>
+						<Loader2 :size="12" class="animate-spin" />
+						{{ formatMessage(messages['options.piholeselector.instance.testing']) }}
+					</div>
+					<div
+						v-else-if="testStates[inst.id]?.status === 'ok'"
+						class="px-3 py-2 rounded-[5px] text-xs border bg-success-bg border-success-border text-pihole-green"
+					>
+						{{ testStates[inst.id].message }}
+					</div>
+					<div
+						v-else-if="testStates[inst.id]?.status === 'error'"
+						class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
+					>
+						{{ testStates[inst.id].message }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -162,6 +164,7 @@ import { getSummary } from '../../helpers/api'
 import { useVIntl } from '../../helpers/i18n'
 import { generateInstanceId, type PiholeInstance } from '../../helpers/settings'
 import Button from '../Button.vue'
+import Input from '../Input.vue'
 
 const props = defineProps<{
 	modelValue: PiholeInstance[]
