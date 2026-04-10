@@ -251,7 +251,7 @@ function addInstance(): void {
 	const inst: PiholeInstance = {
 		id: generateInstanceId(),
 		name: '',
-		baseUrl: 'https://pi.hole',
+		baseUrl: 'http://pi.hole',
 		apiPassword: '',
 	}
 	emit('update:modelValue', [...props.modelValue, inst])

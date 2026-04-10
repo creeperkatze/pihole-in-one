@@ -22,7 +22,7 @@ watch(
 		if (saveTimer) clearTimeout(saveTimer)
 		saveTimer = setTimeout(async () => {
 			try {
-				await saveSettings({ ...form, instances: [...form.instances] })
+				await saveSettings(JSON.parse(JSON.stringify(form)))
 				saveError.value = ''
 			} catch (e) {
 				saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
