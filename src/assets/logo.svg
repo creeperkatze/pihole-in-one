@@ -4,14 +4,14 @@
    version="1.1"
    id="svg6"
    sodipodi:docname="logo.svg"
-   width="300"
-   height="100"
+   role="img"
+   aria-label="Pi-hole In One"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    inkscape:export-filename="..\..\.github\assets\logo.png"
    inkscape:export-xdpi="153.60001"
    inkscape:export-ydpi="153.60001"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -91,7 +91,7 @@
   </defs>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;line-height:1;font-family:inter;-inkscape-font-specification:'inter Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;line-height:1;font-family:inter;-inkscape-font-specification:'inter Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:currentColor;fill-opacity:1;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
      x="111.65868"
      y="42.591148"
      id="text1"><tspan
@@ -116,7 +116,7 @@
      cx="20" />
   <path
      id="rect22"
-     style="fill:#ffffff;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     style="fill:currentColor;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
      d="m 18.535534,20.128235 h 2.928932 C 23.423152,20.128235 25,21.705083 25,23.663769 v 62.928932 c 0,1.958686 -1.576848,3.535534 -3.535534,3.535534 H 18.535534 C 16.576848,90.128235 15,88.551387 15,86.592701 V 23.663769 c 0,-1.958686 1.576848,-3.535534 3.535534,-3.535534 z" />
   <path
      style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"

@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module'
 
 import tailwindcss from '@tailwindcss/vite'
+import svgLoader from 'vite-svg-loader'
 import { defineConfig } from 'wxt'
 
 const { version } = createRequire(import.meta.url)('./package.json')
@@ -8,7 +9,7 @@ const { version } = createRequire(import.meta.url)('./package.json')
 export default defineConfig({
 	srcDir: 'src',
 	vite: () => ({
-		plugins: [tailwindcss()],
+		plugins: [tailwindcss(), svgLoader()],
 	}),
 	publicDir: 'src/public',
 	modules: ['@wxt-dev/module-vue'],

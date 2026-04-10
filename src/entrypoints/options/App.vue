@@ -6,7 +6,7 @@
 		>
 			<div class="px-4 py-4 border-b border-zinc-200 dark:border-zinc-800">
 				<a href="https://github.com/creeperkatze/pihole-in-one" target="_blank" rel="noopener">
-					<Logo :width="108" :height="36" />
+					<LogoSvg class="text-zinc-950 dark:text-zinc-50" width="108" height="36" />
 				</a>
 			</div>
 			<div class="px-2 py-2 border-b border-zinc-200 dark:border-zinc-800">
@@ -135,8 +135,8 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
+import LogoSvg from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
-import Logo from '../../components/Logo.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
 import { useVIntl } from '../../helpers/i18n'

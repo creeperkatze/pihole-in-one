@@ -7,9 +7,9 @@
    width="100"
    height="100"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
-   inkscape:export-filename="icon-128.png"
-   inkscape:export-xdpi="122.88"
-   inkscape:export-ydpi="122.88"
+   inkscape:export-filename="icon-16.png"
+   inkscape:export-xdpi="15.36"
+   inkscape:export-ydpi="15.36"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      showguides="true"
-     inkscape:zoom="22.627417"
-     inkscape:cx="26.604893"
-     inkscape:cy="35.333242"
+     inkscape:zoom="4"
+     inkscape:cx="4.75"
+     inkscape:cy="55.125"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -270,15 +270,10 @@
      rx="20"
      cy="90"
      cx="20" />
-  <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.76625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
+  <path
      id="rect22"
-     width="10"
-     height="70"
-     x="15"
-     y="20.128233"
-     rx="0"
-     ry="3.5355339" />
+     style="fill:#ffffff;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     d="m 18.535534,20.128233 h 2.928932 C 23.423152,20.128233 25,21.705081 25,23.663767 v 62.928932 c 0,1.958686 -1.576848,3.535534 -3.535534,3.535534 H 18.535534 C 16.576848,90.128233 15,88.551385 15,86.592699 V 23.663767 c 0,-1.958686 1.576848,-3.535534 3.535534,-3.535534 z" />
   <path
      style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
      d="m 25,23.800699 v 20 l 25,-10 z"
