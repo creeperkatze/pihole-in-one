@@ -43,6 +43,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineMessages } from '@formatjs/intl'
 import { Check, X } from 'lucide-vue-next'
 import { computed, onMounted, ref } from 'vue'
 
@@ -54,7 +55,25 @@ import {
 	type DomainEntry,
 	searchDomain,
 } from '../../../helpers/api'
+import { useVIntl } from '../../../helpers/i18n'
 import type { PiholeInstance } from '../../../helpers/settings'
+
+const { formatMessage } = useVIntl()
+const messages = defineMessages({
+	'popup.domain.whitelistedByUser': {
+		id: 'popup.domain.whitelistedByUser',
+		defaultMessage: 'Whitelisted by user',
+	},
+	'popup.domain.blockedByUser': {
+		id: 'popup.domain.blockedByUser',
+		defaultMessage: 'Blocked by user',
+	},
+	'popup.domain.notBlocked': { id: 'popup.domain.notBlocked', defaultMessage: 'Not blocked' },
+	'popup.domain.blockedByListPlural': {
+		id: 'popup.domain.blockedByListPlural',
+		defaultMessage: 'Blocked by "{list}" +{count} more',
+	},
+})
 
 const props = defineProps<{
 	domain: string
@@ -87,12 +106,15 @@ function listName(address: string, comment: string | null): string {
 }
 
 const statusText = computed(() => {
-	if (allowlistedByUser.value) return 'Whitelisted by user'
-	if (blockedByUser.value) return 'Blocked by user'
+	if (allowlistedByUser.value) return formatMessage(messages['popup.domain.whitelistedByUser'])
+	if (blockedByUser.value) return formatMessage(messages['popup.domain.blockedByUser'])
 	if (gravityListNames.value.length === 1) return gravityListNames.value[0]
 	if (gravityListNames.value.length > 1)
-		return `Blocked by "${gravityListNames.value[0]}" +${gravityListNames.value.length - 1} more`
-	return 'Not blocked'
+		return formatMessage(messages['popup.domain.blockedByListPlural'], {
+			list: gravityListNames.value[0],
+			count: gravityListNames.value.length - 1,
+		})
+	return formatMessage(messages['popup.domain.notBlocked'])
 })
 
 const primary = computed(() => props.instances[0])

@@ -11,6 +11,7 @@
         "zip": "wxt zip",
         "zip:firefox": "wxt zip -b firefox",
         "postinstall": "wxt prepare",
+        "intl:extract": "formatjs extract \"src/entrypoints/popup/**/*.{vue,ts}\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/popup.json --preserve-whitespace && formatjs extract \"src/entrypoints/options/**/*.{vue,ts}\" \"src/components/**/*.vue\" \"src/composables/**/*.ts\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/options.json --preserve-whitespace",
         "lint": "eslint src/",
         "lint:fix": "eslint src/ --fix",
         "release:patch": "pnpm version patch && git push && git push --tags",
@@ -18,12 +19,15 @@
         "release:major": "pnpm version major && git push && git push --tags"
     },
     "dependencies": {
+        "@formatjs/intl": "^3.0.0",
         "lucide-vue-next": "^1.0.0",
         "vue": "^3.5.13",
+        "vue-i18n": "^10.0.0",
         "vue-router": "^5.0.4"
     },
     "devDependencies": {
         "@eslint/js": "^9.17.0",
+        "@formatjs/cli": "^6.2.12",
         "@tailwindcss/vite": "^4.2.2",
         "@types/node": "^22.10.2",
         "@wxt-dev/module-vue": "^1.0.3",

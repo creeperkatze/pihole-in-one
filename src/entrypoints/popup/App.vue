@@ -12,7 +12,7 @@
 			<div class="flex items-center gap-1">
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-					title="Refresh"
+					:title="formatMessage(messages['popup.refresh'])"
 					:disabled="refreshing"
 					@click="refresh"
 				>
@@ -21,14 +21,14 @@
 				<button
 					v-if="configured && settings"
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
-					:title="`Open ${settings.instances[activeInstance]?.name || 'Pi-hole'}`"
+					:title="`Open ${settings.instances[activeInstance]?.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])}`"
 					@click="openPihole"
 				>
 					<ExternalLink :size="16" />
 				</button>
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
-					title="Settings"
+					:title="formatMessage(messages['popup.settings'])"
 					@click="openOptions"
 				>
 					<Settings :size="16" />
@@ -49,9 +49,11 @@
 			class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
 		>
 			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">
-				Configure your Pi-hole to get started.
+				{{ formatMessage(messages['popup.notConfigured.message']) }}
 			</p>
-			<Button variant="primary" @click="openOptions">Open Settings</Button>
+			<Button variant="primary" @click="openOptions">
+				{{ formatMessage(messages['popup.notConfigured.openSettings']) }}
+			</Button>
 		</div>
 
 		<template v-else>
@@ -71,7 +73,10 @@
 					"
 					@click="activeInstance = i"
 				>
-					{{ inst.name || `Pi-hole ${i + 1}` }}
+					{{
+						inst.name ||
+						`${formatMessage(messages['options.piholeselector.instance.fallbackName'])} ${i + 1}`
+					}}
 					<span
 						v-if="activeInstance === i"
 						class="absolute bottom-0 left-0 right-0 h-0.5 bg-pihole-red rounded-full"
@@ -92,7 +97,7 @@
 					<div
 						class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5px]"
 					>
-						Disable for
+						{{ formatMessage(messages['popup.disableFor']) }}
 					</div>
 					<div class="flex gap-1.5 flex-wrap">
 						<Button
@@ -130,7 +135,7 @@
 				<span class="text-xs text-zinc-400">v{{ version }}</span>
 				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-zinc-400">
 					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
-					Checking
+					{{ formatMessage(messages['popup.footer.checking']) }}
 				</span>
 				<a
 					v-else-if="isLatest"
@@ -140,7 +145,7 @@
 					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
 					<CheckCircle2 :size="12" aria-hidden="true" />
-					Latest version
+					{{ formatMessage(messages['popup.footer.latestVersion']) }}
 				</a>
 				<a
 					v-else-if="latestVersion"
@@ -150,7 +155,7 @@
 					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
 					<Clock :size="12" aria-hidden="true" />
-					Update available
+					{{ formatMessage(messages['popup.footer.updateAvailable']) }}
 				</a>
 				<a
 					href="https://github.com/creeperkatze/pihole-in-one"
@@ -158,7 +163,7 @@
 					rel="noopener"
 					class="ml-auto text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 				>
-					★ On GitHub
+					{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
 				</a>
 			</footer>
 		</template>
@@ -166,6 +171,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineMessages } from '@formatjs/intl'
 import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 'lucide-vue-next'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
@@ -173,10 +179,58 @@ import { browser } from 'wxt/browser'
 import Button from '../../components/Button.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { formatDuration, formatNumber } from '../../helpers/format'
+import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
 import StatusCard from './components/StatusCard.vue'
+
+const { formatMessage } = useVIntl()
+const messages = defineMessages({
+	'popup.refresh': { id: 'popup.refresh', defaultMessage: 'Refresh' },
+	'popup.settings': { id: 'popup.settings', defaultMessage: 'Settings' },
+	'popup.notConfigured.message': {
+		id: 'popup.notConfigured.message',
+		defaultMessage: 'Configure your Pi-hole to get started.',
+	},
+	'popup.notConfigured.openSettings': {
+		id: 'popup.notConfigured.openSettings',
+		defaultMessage: 'Open Settings',
+	},
+	'popup.disableFor': { id: 'popup.disableFor', defaultMessage: 'Disable for' },
+	'popup.statusSub.reenables': {
+		id: 'popup.statusSub.reenables',
+		defaultMessage: 'Re-enables in {duration}',
+	},
+	'popup.statusSub.clients': {
+		id: 'popup.statusSub.clients',
+		defaultMessage: '{count} client(s) active',
+	},
+	'popup.stats.queriesToday': { id: 'popup.stats.queriesToday', defaultMessage: 'Queries Today' },
+	'popup.stats.blockedToday': { id: 'popup.stats.blockedToday', defaultMessage: 'Blocked Today' },
+	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
+	'popup.stats.uniqueDomains': {
+		id: 'popup.stats.uniqueDomains',
+		defaultMessage: 'Unique Domains',
+	},
+	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
+	'popup.footer.latestVersion': {
+		id: 'popup.footer.latestVersion',
+		defaultMessage: 'Latest version',
+	},
+	'popup.footer.updateAvailable': {
+		id: 'popup.footer.updateAvailable',
+		defaultMessage: 'Update available',
+	},
+	'popup.footer.starOnGitHub': {
+		id: 'popup.footer.starOnGitHub',
+		defaultMessage: '★ On GitHub',
+	},
+	'options.piholeselector.instance.fallbackName': {
+		id: 'options.piholeselector.instance.fallbackName',
+		defaultMessage: 'Pi-hole',
+	},
+})
 
 interface InstanceState {
 	summary: PiholeSummary | null
@@ -220,10 +274,14 @@ function isEnabled(i: number): boolean {
 function statusSub(i: number): string | undefined {
 	const state = states.value[i]
 	if (state.timerRemaining !== null && state.timerRemaining > 0) {
-		return `Re-enables in ${formatDuration(state.timerRemaining)}`
+		return formatMessage(messages['popup.statusSub.reenables'], {
+			duration: formatDuration(state.timerRemaining),
+		})
 	}
 	if (state.summary) {
-		return `${state.summary.clients.active} client(s) active`
+		return formatMessage(messages['popup.statusSub.clients'], {
+			count: state.summary.clients.active,
+		})
 	}
 	return undefined
 }
@@ -233,10 +291,16 @@ function formattedStats(i: number): Array<{ label: string; value: string }> {
 	if (!summary) return []
 	const q = summary.queries
 	return [
-		{ label: 'Queries Today', value: formatNumber(q.total) },
-		{ label: 'Blocked Today', value: formatNumber(q.blocked) },
-		{ label: 'Blocked', value: `${q.percent_blocked.toFixed(1)}%` },
-		{ label: 'Unique Domains', value: formatNumber(q.unique_domains) },
+		{ label: formatMessage(messages['popup.stats.queriesToday']), value: formatNumber(q.total) },
+		{ label: formatMessage(messages['popup.stats.blockedToday']), value: formatNumber(q.blocked) },
+		{
+			label: formatMessage(messages['popup.stats.blocked']),
+			value: `${q.percent_blocked.toFixed(1)}%`,
+		},
+		{
+			label: formatMessage(messages['popup.stats.uniqueDomains']),
+			value: formatNumber(q.unique_domains),
+		},
 	]
 }
 

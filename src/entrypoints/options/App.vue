@@ -18,7 +18,7 @@
 					<input
 						v-model="searchQuery"
 						type="text"
-						placeholder="Search options…"
+						:placeholder="formatMessage(messages['options.search.placeholder'])"
 						class="input rounded-lg pl-9 text-sm py-2"
 						:class="searchQuery ? 'pr-8' : ''"
 					/>
@@ -53,8 +53,8 @@
 					target="_blank"
 					rel="noopener"
 					color="#FF5E5B"
-					title="Support on Ko-fi"
-					description="Every tip is truly appreciated"
+					:title="formatMessage(messages['options.sidebar.kofi.title'])"
+					:description="formatMessage(messages['options.sidebar.kofi.description'])"
 					class="no-underline"
 				>
 					<template #icon>
@@ -66,8 +66,8 @@
 					href="https://github.com/creeperkatze/pihole-in-one"
 					target="_blank"
 					rel="noopener"
-					title="View on GitHub"
-					description="Star if you like it"
+					:title="formatMessage(messages['options.sidebar.github.title'])"
+					:description="formatMessage(messages['options.sidebar.github.description'])"
 					class="no-underline"
 				>
 					<template #icon>
@@ -86,7 +86,7 @@
 				<span class="text-xs text-zinc-400">v{{ version }}</span>
 				<span v-if="checking" class="flex items-center gap-1 text-xs text-zinc-400">
 					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
-					Checking
+					{{ formatMessage(messages['options.footer.checking']) }}
 				</span>
 				<a
 					v-else-if="isLatest"
@@ -96,7 +96,7 @@
 					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
 					<CheckCircle2 :size="12" aria-hidden="true" />
-					Latest version
+					{{ formatMessage(messages['options.footer.latestVersion']) }}
 				</a>
 				<a
 					v-else-if="latestVersion"
@@ -106,7 +106,7 @@
 					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
 					<Clock :size="12" aria-hidden="true" />
-					Update available
+					{{ formatMessage(messages['options.footer.updateAvailable']) }}
 				</a>
 			</div>
 		</aside>
@@ -119,6 +119,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineMessages } from '@formatjs/intl'
 import {
 	CheckCircle2,
 	Clock,
@@ -130,20 +131,63 @@ import {
 	SlidersHorizontal,
 	X as XIcon,
 } from 'lucide-vue-next'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
 import Card from '../../components/Card.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
+import { useVIntl } from '../../helpers/i18n'
 
 const router = useRouter()
 const route = useRoute()
 
-const tabs = [
-	{ id: 'connection', label: 'Connection', icon: Server },
-	{ id: 'customization', label: 'Customization', icon: SlidersHorizontal },
-]
+const { formatMessage } = useVIntl()
+const messages = defineMessages({
+	'options.search.placeholder': {
+		id: 'options.search.placeholder',
+		defaultMessage: 'Search options\u2026',
+	},
+	'options.sidebar.kofi.title': {
+		id: 'options.sidebar.kofi.title',
+		defaultMessage: 'Support on Ko-fi',
+	},
+	'options.sidebar.kofi.description': {
+		id: 'options.sidebar.kofi.description',
+		defaultMessage: 'Every tip is truly appreciated',
+	},
+	'options.sidebar.github.title': {
+		id: 'options.sidebar.github.title',
+		defaultMessage: 'View on GitHub',
+	},
+	'options.sidebar.github.description': {
+		id: 'options.sidebar.github.description',
+		defaultMessage: 'Star if you like it',
+	},
+	'options.footer.checking': { id: 'options.footer.checking', defaultMessage: 'Checking' },
+	'options.footer.latestVersion': {
+		id: 'options.footer.latestVersion',
+		defaultMessage: 'Latest version',
+	},
+	'options.footer.updateAvailable': {
+		id: 'options.footer.updateAvailable',
+		defaultMessage: 'Update available',
+	},
+	'options.tabs.connection': { id: 'options.tabs.connection', defaultMessage: 'Connection' },
+	'options.tabs.customization': {
+		id: 'options.tabs.customization',
+		defaultMessage: 'Customization',
+	},
+})
+
+const tabs = computed(() => [
+	{ id: 'connection', label: formatMessage(messages['options.tabs.connection']), icon: Server },
+	{
+		id: 'customization',
+		label: formatMessage(messages['options.tabs.customization']),
+		icon: SlidersHorizontal,
+	},
+])
 
 const searchQuery = ref('')
 const lastTabPath = ref('/connection')
