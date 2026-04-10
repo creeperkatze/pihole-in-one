@@ -5,10 +5,10 @@
 		:style="{ '--c': color ?? '#a1a1aa' }"
 	>
 		<div class="min-w-0 flex-1">
-			<div class="text-[11px] font-semibold text-zinc-950 dark:text-zinc-50 leading-tight">
+			<div class="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-tight">
 				{{ title }}
 			</div>
-			<div v-if="description" class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-px">
+			<div v-if="description" class="text-xs text-zinc-500 dark:text-zinc-400 mt-px">
 				{{ description }}
 			</div>
 		</div>

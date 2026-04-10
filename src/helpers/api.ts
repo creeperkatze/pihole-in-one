@@ -174,11 +174,21 @@ export async function searchDomain(
 	})
 }
 
+function domainRegex(domain: string): string {
+	const escaped = domain.replace(/\./g, '\\.')
+	return `(^|\\.)(${escaped})$`
+}
+
 export async function blockDomain(base: string, password: string, domain: string): Promise<void> {
 	return withSession(base, password, (sid) =>
-		apiFetch<void>(base, 'domains/deny/exact', sid, {
+		apiFetch<void>(base, 'domains/deny/regex', sid, {
 			method: 'POST',
-			body: JSON.stringify({ domain, comment: '', groups: [0], enabled: true }),
+			body: JSON.stringify({
+				domain: domainRegex(domain),
+				comment: '',
+				groups: [0],
+				enabled: true,
+			}),
 		}),
 	)
 }
@@ -186,6 +196,52 @@ export async function blockDomain(base: string, password: string, domain: string
 export async function unblockDomain(base: string, password: string, domain: string): Promise<void> {
 	return withSession(base, password, (sid) =>
 		apiFetch<void>(base, `domains/deny/exact/${encodeURIComponent(domain)}`, sid, {
+			method: 'DELETE',
+			noBody: true,
+		}),
+	)
+}
+
+export async function deleteDomainEntry(
+	base: string,
+	password: string,
+	type: 'allow' | 'deny',
+	kind: 'exact' | 'regex',
+	domain: string,
+): Promise<void> {
+	return withSession(base, password, (sid) =>
+		apiFetch<void>(base, `domains/${type}/${kind}/${encodeURIComponent(domain)}`, sid, {
+			method: 'DELETE',
+			noBody: true,
+		}),
+	)
+}
+
+export async function allowlistDomain(
+	base: string,
+	password: string,
+	domain: string,
+): Promise<void> {
+	return withSession(base, password, (sid) =>
+		apiFetch<void>(base, 'domains/allow/regex', sid, {
+			method: 'POST',
+			body: JSON.stringify({
+				domain: domainRegex(domain),
+				comment: '',
+				groups: [0],
+				enabled: true,
+			}),
+		}),
+	)
+}
+
+export async function unallowlistDomain(
+	base: string,
+	password: string,
+	domain: string,
+): Promise<void> {
+	return withSession(base, password, (sid) =>
+		apiFetch<void>(base, `domains/allow/exact/${encodeURIComponent(domain)}`, sid, {
 			method: 'DELETE',
 			noBody: true,
 		}),

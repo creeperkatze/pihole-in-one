@@ -32,7 +32,7 @@
 					target="_blank"
 					rel="noopener"
 					title="View on GitHub"
-					description="Star if you like it!"
+					description="Star if you like it"
 					class="no-underline"
 				>
 					<template #icon>
@@ -49,7 +49,7 @@
 					rel="noopener"
 					color="#7c3aed"
 					title="Support on Ko-fi"
-					description="Every tip is truly appreciated!"
+					description="Every tip is truly appreciated"
 					class="no-underline"
 				>
 					<template #icon>
