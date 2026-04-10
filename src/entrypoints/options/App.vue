@@ -56,7 +56,7 @@
 					class="no-underline"
 				>
 					<template #icon>
-						<Kofi class="size-4 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
+						<Kofi class="size-5 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
 					</template>
 				</Card>
 				<Card
@@ -70,7 +70,7 @@
 				>
 					<template #icon>
 						<ExternalLink
-							class="size-4 shrink-0 text-secondary opacity-75 group-hover:opacity-100"
+							class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100"
 						/>
 					</template>
 				</Card>
