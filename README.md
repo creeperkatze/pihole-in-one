@@ -25,26 +25,31 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ### Blocking control
 
-Enable or disable Pi-hole blocking with a single click. Use the **Disable for** presets to pause blocking for a set duration. The popup shows a live countdown and automatically re-enables when the timer expires.
+Enable or disable Pi-hole blocking with a single click directly from the popup.
 
 ### Domain management
 
-View whether the current tab's domain is on your block or allow list. Block or unblock it directly from the popup without opening the Pi-hole admin interface.
+View whether the current tab's domain is blocked by a gravity list, blocked by a user rule, or allow-listed. Block or whitelist it instantly from the popup, no need to open the Pi-hole admin interface.
 
 ### Stats at a glance
 
-See today's query count, blocked count, block percentage, and unique domain count right in the popup.
+See today's query count, blocked count, block percentage, and unique client count right in the popup.
+
+### Multiple Pi-hole instances
+
+Connect to more than one Pi-hole and control all of them from a single extension. Toggle blocking across all instances at once.
 
 ### Extension badge
 
-The toolbar icon shows **ON** or **OFF** reflecting the current blocking state, updated every minute and immediately after any change.
+The toolbar icon shows the **percentage of queries blocked today**, updated every minute and immediately after any change. Shows **OFF** when blocking is disabled.
 
 ## ⚙️ Setup
 
-1. Open **Settings** from the extension popup (gear icon).
-2. Enter your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`).
-3. Enter your Pi-hole **application password** (found in Pi-hole > Settings > API).
+1. Open the extension options.
+2. Under **Connection**, click **Add** to add a Pi-hole instance.
+3. Enter a name, your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`), and your **API password** (found in Pi-hole > Settings > API).
 4. Leave the password blank if your Pi-hole has no password set.
+5. Use **Test Connection** to verify everything works before saving.
 
 ## 🔒 Building from source
 

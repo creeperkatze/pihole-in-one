@@ -12,31 +12,33 @@ async function updateBadge(): Promise<void> {
 		return
 	}
 	try {
-		const statuses = await Promise.all(
+		const summaries = await Promise.all(
 			settings.instances.map((inst) =>
-				getSummary(inst.baseUrl, inst.apiPassword)
-					.then((s) => s.blocking.blocking)
-					.catch(() => null),
+				getSummary(inst.baseUrl, inst.apiPassword).catch(() => null),
 			),
 		)
-		const valid = statuses.filter((s) => s !== null)
+		const valid = summaries.filter((s) => s !== null)
 		if (valid.length === 0) return // keep last known badge
 
-		const allEnabled = valid.every((s) => s === 'enabled')
-		const anyEnabled = valid.some((s) => s === 'enabled')
+		const allEnabled = valid.every((s) => s.blocking.blocking === 'enabled')
+		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
 
-		if (allEnabled) {
-			await browser.action.setBadgeText({ text: 'ON' })
-			await browser.action.setBadgeBackgroundColor({ color: '#00ff00' })
-		} else if (!anyEnabled) {
+		if (!anyEnabled) {
 			await browser.action.setBadgeText({ text: 'OFF' })
-			await browser.action.setBadgeBackgroundColor({ color: '#ff0000' })
-		} else {
-			// Mixed: some on, some off
-			const onCount = valid.filter((s) => s === 'enabled').length
-			await browser.action.setBadgeText({ text: `${onCount}/${valid.length}` })
-			await browser.action.setBadgeBackgroundColor({ color: '#ff8800' })
+			await browser.action.setBadgeBackgroundColor({ color: '#ef4444' })
+			return
 		}
+
+		// Show combined percent blocked across all responding instances
+		const totalQueries = valid.reduce((sum, s) => sum + s.queries.total, 0)
+		const totalBlocked = valid.reduce((sum, s) => sum + s.queries.blocked, 0)
+		const pct = totalQueries > 0 ? Math.round((totalBlocked / totalQueries) * 100) : 0
+		const text = `${pct}%`
+
+		await browser.action.setBadgeText({ text })
+		await browser.action.setBadgeBackgroundColor({
+			color: allEnabled ? '#22c55e' : '#f97316', // green = all on, orange = mixed
+		})
 	} catch {
 		// Keep last known badge state on error rather than clearing it
 	}
