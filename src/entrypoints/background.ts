@@ -6,9 +6,10 @@ import { getSettings } from '../helpers/settings'
 const ALARM = 'pihole-refresh'
 
 async function updateBadge(): Promise<void> {
+	const action = browser.action ?? browser.browserAction
 	const settings = await getSettings()
 	if (settings.badgeMode === 'off' || settings.instances.length === 0) {
-		await browser.action.setBadgeText({ text: '' })
+		await action.setBadgeText({ text: '' })
 		return
 	}
 	try {
@@ -24,8 +25,8 @@ async function updateBadge(): Promise<void> {
 		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
 
 		if (!anyEnabled) {
-			await browser.action.setBadgeText({ text: 'OFF' })
-			await browser.action.setBadgeBackgroundColor({ color: '#ef4444' })
+			await action.setBadgeText({ text: 'OFF' })
+			await action.setBadgeBackgroundColor({ color: '#ef4444' })
 			return
 		}
 
@@ -45,8 +46,8 @@ async function updateBadge(): Promise<void> {
 			text = `${pct}%`
 		}
 
-		await browser.action.setBadgeText({ text })
-		await browser.action.setBadgeBackgroundColor({ color })
+		await action.setBadgeText({ text })
+		await action.setBadgeBackgroundColor({ color })
 	} catch {
 		// Keep last known badge state on error rather than clearing it
 	}
