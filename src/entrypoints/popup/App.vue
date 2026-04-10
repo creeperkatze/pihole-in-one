@@ -1,5 +1,5 @@
 <template>
-	<div class="w-85 flex flex-col">
+	<div class="w-96 flex flex-col">
 		<header class="flex items-center justify-between px-3.5 py-3">
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
