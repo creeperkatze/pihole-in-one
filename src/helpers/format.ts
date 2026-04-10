@@ -1,3 +1,9 @@
+export function formatSeconds(s: number): string {
+	if (s < 60) return `${s}s`
+	if (s % 3600 === 0) return `${s / 3600}h`
+	return `${Math.round(s / 60)}min`
+}
+
 export function formatNumber(n: number): string {
 	return n.toLocaleString()
 }

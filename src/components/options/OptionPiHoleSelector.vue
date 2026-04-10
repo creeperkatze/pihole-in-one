@@ -1,5 +1,7 @@
 <template>
-	<div class="flex flex-col gap-2 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
+	<div
+		class="flex flex-col gap-2 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"
+	>
 		<div class="flex items-center justify-between">
 			<div>
 				<div class="text-sm font-medium">Pi-holes</div>
