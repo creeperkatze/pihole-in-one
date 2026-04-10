@@ -129,10 +129,10 @@
 			</div>
 		</div>
 
-		<button type="button" class="btn w-full justify-center" @click="addInstance">
+		<Button class="w-full justify-center" @click="addInstance">
 			<Plus :size="15" />
 			Add Pi-hole
-		</button>
+		</Button>
 	</div>
 </template>
 
@@ -142,6 +142,7 @@ import { ref } from 'vue'
 
 import { getSummary } from '../../helpers/api'
 import { generateInstanceId, type PiholeInstance } from '../../helpers/settings'
+import Button from '../Button.vue'
 
 const props = defineProps<{
 	modelValue: PiholeInstance[]
@@ -199,13 +200,9 @@ async function runTest(id: string): Promise<void> {
 	}
 	testStates.value[id] = { status: 'testing' }
 	try {
-		const summary = await getSummary(inst.baseUrl, inst.apiPassword)
-		const blocked = summary.queries.blocked.toLocaleString()
-		const total = summary.queries.total.toLocaleString()
-		const state = summary.blocking.blocking === 'enabled' ? 'enabled' : 'disabled'
 		testStates.value[id] = {
 			status: 'ok',
-			message: `Connected! Blocking ${state}. ${blocked} / ${total} queries blocked today.`,
+			message: `Connected!`,
 		}
 	} catch (e) {
 		testStates.value[id] = {

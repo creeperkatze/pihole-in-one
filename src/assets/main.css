@@ -41,53 +41,6 @@
 }
 
 @layer components {
-	.btn {
-		@apply inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-zinc-200 dark:border-zinc-700 rounded-[5px] bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 font-medium transition-colors duration-150 cursor-pointer;
-	}
-
-	.btn:hover:not(:disabled) {
-		@apply bg-zinc-200 dark:bg-zinc-700;
-	}
-
-	.btn:disabled {
-		@apply opacity-50 cursor-not-allowed;
-	}
-
-	.btn-primary {
-		@apply bg-pihole-red border-pihole-red text-white;
-	}
-
-	.btn-primary:hover:not(:disabled) {
-		background-color: #cc0000;
-		border-color: #cc0000;
-	}
-
-	.btn-success {
-		@apply bg-pihole-green border-pihole-green text-black;
-	}
-
-	.btn-success:hover:not(:disabled) {
-		background-color: #00cc00;
-		border-color: #00cc00;
-	}
-
-	.btn-danger {
-		@apply bg-pihole-red border-pihole-red text-white;
-	}
-
-	.btn-danger:hover:not(:disabled) {
-		background-color: #cc0000;
-		border-color: #cc0000;
-	}
-
-	.btn-outline {
-		@apply bg-transparent border-zinc-200 dark:border-zinc-700;
-	}
-
-	.btn-sm {
-		@apply px-2.5 py-[3px] text-xs;
-	}
-
 	.input {
 		@apply px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-[5px] bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 transition-colors duration-150 outline-none w-full;
 	}

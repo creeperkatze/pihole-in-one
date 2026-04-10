@@ -51,7 +51,7 @@
 			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">
 				Configure your Pi-hole to get started.
 			</p>
-			<button class="btn btn-primary" @click="openOptions">Open Settings</button>
+			<Button variant="primary" @click="openOptions">Open Settings</Button>
 		</div>
 
 		<template v-else>
@@ -95,15 +95,16 @@
 						Disable for
 					</div>
 					<div class="flex gap-1.5 flex-wrap">
-						<button
+						<Button
 							v-for="preset in disablePresets"
 							:key="preset.label"
-							class="btn btn-sm btn-outline"
+							size="small"
+							variant="outline"
 							:disabled="states[activeInstance].toggling"
 							@click="disableFor(activeInstance, preset.seconds)"
 						>
 							{{ preset.label }}
-						</button>
+						</Button>
 					</div>
 				</div>
 
@@ -169,6 +170,7 @@ import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
+import Button from '../../components/Button.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'

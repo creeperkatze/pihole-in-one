@@ -6,6 +6,7 @@ A browser extension to control your Pi-hole conveniently from within the browser
 ![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/pihole-in-one?labelColor=0d143c)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/creeperkatze/pihole-in-one?labelColor=0d143c)
 ![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat&labelColor=0d143c)
+[![Crowdin](https://badges.crowdin.net/pihole-in-one/localized.svg)](https://crowdin.com/project/pihole-in-one)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F11WYJU3)
 

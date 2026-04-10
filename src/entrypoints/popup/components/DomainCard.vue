@@ -20,24 +20,24 @@
 			class="w-4 h-4 border-2 border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin shrink-0"
 		></div>
 		<div v-else class="flex gap-1.5 shrink-0">
-			<button
-				class="btn btn-sm"
-				:class="allowlistedByUser ? 'btn-success' : 'btn-outline'"
+			<Button
+				size="small"
+				:variant="allowlistedByUser ? 'success' : 'outline'"
 				:disabled="acting"
 				:title="allowlistedByUser ? 'Remove from whitelist' : 'Whitelist'"
 				@click="toggleAllowlist"
 			>
 				<Check :size="13" />
-			</button>
-			<button
-				class="btn btn-sm"
-				:class="blockedByUser ? 'btn-danger' : 'btn-outline'"
+			</Button>
+			<Button
+				size="small"
+				:variant="blockedByUser ? 'danger' : 'outline'"
 				:disabled="acting"
 				:title="blockedByUser ? 'Unblock' : 'Block'"
 				@click="toggleBlock"
 			>
 				<X :size="13" />
-			</button>
+			</Button>
 		</div>
 	</div>
 </template>
@@ -46,6 +46,7 @@
 import { Check, X } from 'lucide-vue-next'
 import { computed, onMounted, ref } from 'vue'
 
+import Button from '../../../components/Button.vue'
 import {
 	allowlistDomain,
 	blockDomain,

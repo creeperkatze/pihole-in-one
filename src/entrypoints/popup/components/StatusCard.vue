@@ -23,13 +23,15 @@
 				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-px">{{ sub }}</div>
 			</div>
 		</div>
-		<button class="btn" :disabled="disabled" @click="$emit('toggle')">
+		<Button :disabled="disabled" @click="$emit('toggle')">
 			{{ status === 'enabled' ? 'Disable' : 'Enable' }}
-		</button>
+		</Button>
 	</div>
 </template>
 
 <script setup lang="ts">
+import Button from '../../../components/Button.vue'
+
 defineProps<{
 	status: 'enabled' | 'disabled'
 	sub?: string
