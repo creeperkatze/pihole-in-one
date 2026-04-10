@@ -120,13 +120,13 @@
     "defaultMessage": "Search results"
   },
   "options.sidebar.github.description": {
-    "defaultMessage": "Star if you like it"
+    "defaultMessage": "Leave a star"
   },
   "options.sidebar.github.title": {
     "defaultMessage": "View on GitHub"
   },
   "options.sidebar.kofi.description": {
-    "defaultMessage": "Every tip is truly appreciated"
+    "defaultMessage": "Buy me a coffee"
   },
   "options.sidebar.kofi.title": {
     "defaultMessage": "Support on Ko-fi"

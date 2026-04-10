@@ -153,7 +153,7 @@ const messages = defineMessages({
 	},
 	'options.sidebar.kofi.description': {
 		id: 'options.sidebar.kofi.description',
-		defaultMessage: 'Every tip is truly appreciated',
+		defaultMessage: 'Buy me a coffee',
 	},
 	'options.sidebar.github.title': {
 		id: 'options.sidebar.github.title',
@@ -161,7 +161,7 @@ const messages = defineMessages({
 	},
 	'options.sidebar.github.description': {
 		id: 'options.sidebar.github.description',
-		defaultMessage: 'Star if you like it',
+		defaultMessage: 'Leave a star',
 	},
 	'options.footer.checking': { id: 'options.footer.checking', defaultMessage: 'Checking' },
 	'options.footer.latestVersion': {
