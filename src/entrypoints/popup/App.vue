@@ -7,7 +7,7 @@
 				rel="noopener"
 				class="flex items-center gap-2"
 			>
-				<LogoSvg class="text-zinc-950 dark:text-zinc-50" width="128" height="43" />
+				<Logo class="text-zinc-950 dark:text-zinc-50" width="128" height="43" />
 			</a>
 			<div class="flex items-center gap-1">
 				<button
@@ -176,7 +176,7 @@ import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
-import LogoSvg from '../../assets/logo.svg?component'
+import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { applyColorScheme } from '../../helpers/colorScheme'
