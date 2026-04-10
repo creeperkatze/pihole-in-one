@@ -2,17 +2,11 @@
 	<div
 		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50"
 	>
-		<div class="flex items-center justify-between">
-			<div>
-				<div class="text-sm font-medium">Pi-holes</div>
-				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-					Configure one or more Pi-hole instances.
-				</div>
+		<div>
+			<div class="text-sm font-medium">Pi-holes</div>
+			<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+				Configure one or more Pi-hole instances.
 			</div>
-			<button type="button" class="btn btn-sm btn-outline shrink-0" @click="addInstance">
-				<Plus :size="13" />
-				Add
-			</button>
 		</div>
 
 		<div
@@ -28,34 +22,53 @@
 			:key="inst.id"
 			class="rounded-lg border border-zinc-200 dark:border-zinc-700 overflow-hidden"
 		>
-			<!-- Collapsed row -->
+			<!-- Header row (always visible) -->
 			<div
-				v-if="editingId !== inst.id"
-				class="flex items-center justify-between gap-3 px-3.5 py-2.5 bg-zinc-50 dark:bg-zinc-800/50"
+				class="flex items-center gap-3 px-3.5 py-2.5 bg-white dark:bg-zinc-800 cursor-pointer select-none"
+				@click="toggleEdit(inst.id)"
 			>
-				<div class="min-w-0">
+				<div class="min-w-0 flex-1">
 					<div class="text-sm font-medium truncate">{{ inst.name || 'Pi-hole' }}</div>
 					<div class="text-xs text-zinc-500 dark:text-zinc-400 truncate">
 						{{ inst.baseUrl || 'No URL set' }}
 					</div>
 				</div>
-				<div class="flex gap-1.5 shrink-0">
-					<button type="button" class="btn btn-sm btn-outline" @click="editingId = inst.id">
-						<Pencil :size="12" />
-						Edit
-					</button>
+				<div class="flex items-center gap-2 shrink-0">
+					<Loader2
+						v-if="testStates[inst.id]?.status === 'testing'"
+						:size="14"
+						class="animate-spin text-zinc-400"
+					/>
+					<CheckCircle2
+						v-else-if="testStates[inst.id]?.status === 'ok'"
+						:size="14"
+						class="text-green-500"
+					/>
+					<XCircle
+						v-else-if="testStates[inst.id]?.status === 'error'"
+						:size="14"
+						class="text-pihole-red"
+					/>
 					<button
 						type="button"
-						class="btn btn-sm btn-outline text-pihole-red border-pihole-red/30 hover:bg-pihole-red/10"
-						@click="removeInstance(inst.id)"
+						class="text-zinc-400 hover:text-pihole-red transition-colors duration-150"
+						@click.stop="removeInstance(inst.id)"
 					>
-						<Trash2 :size="12" />
+						<Trash2 :size="14" />
 					</button>
+					<ChevronDown
+						:size="16"
+						class="text-zinc-400 transition-transform duration-200"
+						:class="editingId === inst.id ? 'rotate-180' : ''"
+					/>
 				</div>
 			</div>
 
-			<!-- Expanded edit form -->
-			<div v-else class="flex flex-col gap-4 p-4">
+			<!-- Expanded form -->
+			<div
+				v-if="editingId === inst.id"
+				class="flex flex-col gap-4 p-4 border-t border-zinc-200 dark:border-zinc-700"
+			>
 				<div class="flex flex-col gap-1.5">
 					<label class="text-sm font-medium" :for="`name-${inst.id}`">Name</label>
 					<input
@@ -73,7 +86,8 @@
 						v-model="inst.baseUrl"
 						class="input"
 						type="url"
-						placeholder="https://pi.hole"
+						placeholder=""
+						@input="scheduleTest(inst.id)"
 					/>
 					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
 						No trailing slash or <code class="font-mono">/api</code>.
@@ -88,42 +102,42 @@
 						type="password"
 						placeholder="Leave empty if none is set"
 						autocomplete="off"
+						@input="scheduleTest(inst.id)"
 					/>
-					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
-						Found in Pi-hole → Settings → API.
-					</p>
-				</div>
-
-				<div class="flex items-center gap-2 flex-wrap">
-					<button
-						type="button"
-						class="btn btn-outline"
-						:disabled="testingId === inst.id || !inst.baseUrl"
-						@click="testInstance(inst.id)"
-					>
-						{{ testingId === inst.id ? 'Testing…' : 'Test Connection' }}
-					</button>
-					<button type="button" class="btn" @click="editingId = null">Done</button>
+					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">Found under Settings > API.</p>
 				</div>
 
 				<div
-					v-if="testMessages[inst.id]"
-					class="px-3 py-2 rounded-[5px] text-xs border"
-					:class="
-						testMessages[inst.id].type === 'success'
-							? 'bg-success-bg border-success-border text-pihole-green'
-							: 'bg-danger-bg border-danger-border text-pihole-red'
-					"
+					v-if="testStates[inst.id]?.status === 'testing'"
+					class="flex items-center gap-1.5 text-xs text-zinc-400"
 				>
-					{{ testMessages[inst.id].text }}
+					<Loader2 :size="12" class="animate-spin" />
+					Testing connection…
+				</div>
+				<div
+					v-else-if="testStates[inst.id]?.status === 'ok'"
+					class="px-3 py-2 rounded-[5px] text-xs border bg-success-bg border-success-border text-pihole-green"
+				>
+					{{ testStates[inst.id].message }}
+				</div>
+				<div
+					v-else-if="testStates[inst.id]?.status === 'error'"
+					class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
+				>
+					{{ testStates[inst.id].message }}
 				</div>
 			</div>
 		</div>
+
+		<button type="button" class="btn w-full justify-center" @click="addInstance">
+			<Plus :size="15" />
+			Add Pi-hole
+		</button>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { Pencil, Plus, Server, Trash2 } from 'lucide-vue-next'
+import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from 'lucide-vue-next'
 import { ref } from 'vue'
 
 import { getSummary } from '../../helpers/api'
@@ -138,50 +152,66 @@ const emit = defineEmits<{
 }>()
 
 const editingId = ref<string | null>(null)
-const testingId = ref<string | null>(null)
-const testMessages = ref<Record<string, { text: string; type: 'success' | 'error' }>>({})
+
+interface TestState {
+	status: 'testing' | 'ok' | 'error'
+	message?: string
+}
+const testStates = ref<Record<string, TestState>>({})
+const testTimers: Record<string, ReturnType<typeof setTimeout>> = {}
+
+function toggleEdit(id: string): void {
+	editingId.value = editingId.value === id ? null : id
+}
 
 function addInstance(): void {
 	const inst: PiholeInstance = {
 		id: generateInstanceId(),
 		name: '',
-		baseUrl: '',
+		baseUrl: 'https://pi.hole',
 		apiPassword: '',
 	}
 	emit('update:modelValue', [...props.modelValue, inst])
 	editingId.value = inst.id
+	scheduleTest(inst.id)
 }
 
 function removeInstance(id: string): void {
 	if (editingId.value === id) editingId.value = null
-	delete testMessages.value[id]
+	delete testStates.value[id]
+	if (testTimers[id]) clearTimeout(testTimers[id])
 	emit(
 		'update:modelValue',
 		props.modelValue.filter((i) => i.id !== id),
 	)
 }
 
-async function testInstance(id: string): Promise<void> {
+function scheduleTest(id: string): void {
+	if (testTimers[id]) clearTimeout(testTimers[id])
+	testTimers[id] = setTimeout(() => void runTest(id), 800)
+}
+
+async function runTest(id: string): Promise<void> {
 	const inst = props.modelValue.find((i) => i.id === id)
-	if (!inst) return
-	testingId.value = id
-	delete testMessages.value[id]
+	if (!inst?.baseUrl) {
+		delete testStates.value[id]
+		return
+	}
+	testStates.value[id] = { status: 'testing' }
 	try {
 		const summary = await getSummary(inst.baseUrl, inst.apiPassword)
 		const blocked = summary.queries.blocked.toLocaleString()
 		const total = summary.queries.total.toLocaleString()
-		const status = summary.blocking.blocking === 'enabled' ? 'enabled' : 'disabled'
-		testMessages.value[id] = {
-			text: `Connected! Blocking ${status}. ${blocked} / ${total} queries blocked today.`,
-			type: 'success',
+		const state = summary.blocking.blocking === 'enabled' ? 'enabled' : 'disabled'
+		testStates.value[id] = {
+			status: 'ok',
+			message: `Connected! Blocking ${state}. ${blocked} / ${total} queries blocked today.`,
 		}
 	} catch (e) {
-		testMessages.value[id] = {
-			text: e instanceof Error ? e.message : 'Connection failed.',
-			type: 'error',
+		testStates.value[id] = {
+			status: 'error',
+			message: e instanceof Error ? e.message : 'Connection failed.',
 		}
-	} finally {
-		testingId.value = null
 	}
 }
 </script>
