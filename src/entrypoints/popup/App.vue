@@ -158,10 +158,19 @@
 				{{ formatMessage(messages['popup.footer.updateAvailable']) }}
 			</a>
 			<a
+				href="https://ko-fi.com/creeperkatze"
+				target="_blank"
+				rel="noopener"
+				class="ml-auto flex items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
+			>
+				<KofiIcon class="size-3.5" aria-hidden="true" />
+				{{ formatMessage(messages['popup.footer.support']) }}
+			</a>
+			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
 				target="_blank"
 				rel="noopener"
-				class="ml-auto text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+				class="text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 			>
 				{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
 			</a>
@@ -175,6 +184,7 @@ import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
+import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
@@ -214,6 +224,7 @@ const messages = defineMessages({
 		defaultMessage: 'Unique Domains',
 	},
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
+	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
 	'popup.footer.latestVersion': {
 		id: 'popup.footer.latestVersion',

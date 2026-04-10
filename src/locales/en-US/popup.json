@@ -29,6 +29,9 @@
   "popup.footer.starOnGitHub": {
     "defaultMessage": "★ On GitHub"
   },
+  "popup.footer.support": {
+    "defaultMessage": "Support"
+  },
   "popup.footer.updateAvailable": {
     "defaultMessage": "Update available"
   },

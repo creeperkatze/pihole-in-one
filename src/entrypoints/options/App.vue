@@ -78,7 +78,7 @@
 
 			<!-- Footer -->
 			<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-border-subtle">
-				<span class="text-xs text-muted">v{{ version }}</span>
+				<span class="text-xs text-secondary">v{{ version }}</span>
 				<span v-if="checking" class="flex items-center gap-1 text-xs text-muted">
 					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
 					{{ formatMessage(messages['options.footer.checking']) }}
