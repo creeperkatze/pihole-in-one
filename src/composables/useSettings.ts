@@ -1,5 +1,6 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
+import { detectBrowserLocale, i18n } from '../helpers/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../helpers/settings'
 
 // Module-level singleton so all views share the same state
@@ -30,6 +31,14 @@ watch(
 	{ deep: true },
 )
 
+watch(
+	() => form.locale,
+	(locale) => {
+		if (!initialized.value) return
+		i18n.global.locale.value = locale || detectBrowserLocale()
+	},
+)
+
 function setOption(key: 'badgeMode' | 'refreshInterval', value: string | number): void {
 	;(form as Record<string, unknown>)[key] = value
 }
@@ -41,6 +50,8 @@ export function useSettings() {
 		form.instances = settings.instances.map((inst) => ({ ...inst }))
 		form.refreshInterval = settings.refreshInterval
 		form.badgeMode = settings.badgeMode
+		form.locale = settings.locale || detectBrowserLocale()
+		i18n.global.locale.value = form.locale
 		initialized.value = true
 	})
 

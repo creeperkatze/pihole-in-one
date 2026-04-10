@@ -6,6 +6,13 @@
 		/>
 		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionSelect
+				:label="formatMessage(messages['options.language.label'])"
+				:description="formatMessage(messages['options.language.description'])"
+				:model-value="form.locale"
+				:options="languageOptions"
+				@update:model-value="form.locale = $event"
+			/>
+			<OptionSelect
 				:label="formatMessage(messages['options.customization.badge.label'])"
 				:description="formatMessage(messages['options.customization.badge.description'])"
 				:model-value="form.badgeMode"
@@ -30,6 +37,7 @@ import OptionSelect from '../../../components/options/OptionSelect.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import { useVIntl } from '../../../helpers/i18n'
+import { LOCALES } from '../../../helpers/locales'
 import type { BadgeMode } from '../../../helpers/settings'
 
 const { form, saveError } = useSettings()
@@ -43,6 +51,14 @@ const messages = defineMessages({
 	'options.customization.description': {
 		id: 'options.customization.description',
 		defaultMessage: 'Adjust the appearance and behavior of the extension.',
+	},
+	'options.language.label': {
+		id: 'options.language.label',
+		defaultMessage: 'Language',
+	},
+	'options.language.description': {
+		id: 'options.language.description',
+		defaultMessage: 'Choose the language for the extension interface.',
 	},
 	'options.customization.badge.label': {
 		id: 'options.customization.badge.label',
@@ -69,6 +85,8 @@ const messages = defineMessages({
 		defaultMessage: 'Active clients',
 	},
 })
+
+const languageOptions = computed(() => LOCALES.map((l) => ({ value: l.code, label: l.name })))
 
 const badgeModeOptions = computed(() => [
 	{ value: 'off', label: formatMessage(messages['options.customization.badge.off']) },

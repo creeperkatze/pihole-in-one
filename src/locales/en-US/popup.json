@@ -1,2 +1,74 @@
-{}
-
+{
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "popup.disableFor": {
+    "defaultMessage": "Disable for"
+  },
+  "popup.domain.blockedByListPlural": {
+    "defaultMessage": "Blocked by \"{list}\" +{count} more"
+  },
+  "popup.domain.blockedByUser": {
+    "defaultMessage": "Blocked by user"
+  },
+  "popup.domain.notBlocked": {
+    "defaultMessage": "Not blocked"
+  },
+  "popup.domain.whitelistedByUser": {
+    "defaultMessage": "Whitelisted by user"
+  },
+  "popup.footer.checking": {
+    "defaultMessage": "Checking"
+  },
+  "popup.footer.latestVersion": {
+    "defaultMessage": "Latest version"
+  },
+  "popup.footer.starOnGitHub": {
+    "defaultMessage": "★ On GitHub"
+  },
+  "popup.footer.updateAvailable": {
+    "defaultMessage": "Update available"
+  },
+  "popup.notConfigured.message": {
+    "defaultMessage": "Configure your Pi-hole to get started."
+  },
+  "popup.notConfigured.openSettings": {
+    "defaultMessage": "Open Settings"
+  },
+  "popup.refresh": {
+    "defaultMessage": "Refresh"
+  },
+  "popup.settings": {
+    "defaultMessage": "Settings"
+  },
+  "popup.stats.blocked": {
+    "defaultMessage": "Blocked"
+  },
+  "popup.stats.blockedToday": {
+    "defaultMessage": "Blocked Today"
+  },
+  "popup.stats.queriesToday": {
+    "defaultMessage": "Queries Today"
+  },
+  "popup.stats.uniqueDomains": {
+    "defaultMessage": "Unique Domains"
+  },
+  "popup.status.blockingDisabled": {
+    "defaultMessage": "Blocking Disabled"
+  },
+  "popup.status.blockingEnabled": {
+    "defaultMessage": "Blocking Enabled"
+  },
+  "popup.status.disable": {
+    "defaultMessage": "Disable"
+  },
+  "popup.status.enable": {
+    "defaultMessage": "Enable"
+  },
+  "popup.statusSub.clients": {
+    "defaultMessage": "{count} client(s) active"
+  },
+  "popup.statusSub.reenables": {
+    "defaultMessage": "Re-enables in {duration}"
+  }
+}

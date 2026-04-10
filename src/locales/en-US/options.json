@@ -1,2 +1,137 @@
-{}
-
+{
+  "options.connection.description": {
+    "defaultMessage": "Manage your Pi-hole instances and badge refresh settings."
+  },
+  "options.connection.refreshInterval.description": {
+    "defaultMessage": "Minimum 60s in Chrome (MV3 alarm constraint). Firefox allows lower values."
+  },
+  "options.connection.refreshInterval.label": {
+    "defaultMessage": "Badge Refresh Interval"
+  },
+  "options.connection.title": {
+    "defaultMessage": "Connection"
+  },
+  "options.customization.badge.clients": {
+    "defaultMessage": "Active clients"
+  },
+  "options.customization.badge.description": {
+    "defaultMessage": "What to display on the extension icon badge."
+  },
+  "options.customization.badge.label": {
+    "defaultMessage": "Badge appearance"
+  },
+  "options.customization.badge.off": {
+    "defaultMessage": "Off"
+  },
+  "options.customization.badge.percentage": {
+    "defaultMessage": "Percentage blocked"
+  },
+  "options.customization.badge.state": {
+    "defaultMessage": "State"
+  },
+  "options.customization.description": {
+    "defaultMessage": "Adjust the appearance and behavior of the extension."
+  },
+  "options.customization.title": {
+    "defaultMessage": "Customization"
+  },
+  "options.footer.checking": {
+    "defaultMessage": "Checking"
+  },
+  "options.footer.latestVersion": {
+    "defaultMessage": "Latest version"
+  },
+  "options.footer.updateAvailable": {
+    "defaultMessage": "Update available"
+  },
+  "options.language.description": {
+    "defaultMessage": "Choose the language for the extension interface."
+  },
+  "options.language.label": {
+    "defaultMessage": "Language"
+  },
+  "options.piholeselector.addButton": {
+    "defaultMessage": "Add Pi-hole"
+  },
+  "options.piholeselector.description": {
+    "defaultMessage": "Configure one or more Pi-hole instances."
+  },
+  "options.piholeselector.empty": {
+    "defaultMessage": "No Pi-holes configured. Add one to get started."
+  },
+  "options.piholeselector.instance.apiPassword.hint": {
+    "defaultMessage": "Found under Settings > API."
+  },
+  "options.piholeselector.instance.apiPassword.label": {
+    "defaultMessage": "API Password"
+  },
+  "options.piholeselector.instance.apiPassword.placeholder": {
+    "defaultMessage": "Leave empty if none is set"
+  },
+  "options.piholeselector.instance.connected": {
+    "defaultMessage": "Connected!"
+  },
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.name.label": {
+    "defaultMessage": "Name"
+  },
+  "options.piholeselector.instance.name.placeholder": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.noUrl": {
+    "defaultMessage": "No URL set"
+  },
+  "options.piholeselector.instance.testing": {
+    "defaultMessage": "Testing connection…"
+  },
+  "options.piholeselector.instance.url.label": {
+    "defaultMessage": "URL"
+  },
+  "options.piholeselector.title": {
+    "defaultMessage": "Pi-holes"
+  },
+  "options.search.description": {
+    "defaultMessage": "Showing options matching \"{query}\""
+  },
+  "options.search.noResults": {
+    "defaultMessage": "No options found"
+  },
+  "options.search.placeholder": {
+    "defaultMessage": "Search options…"
+  },
+  "options.search.title": {
+    "defaultMessage": "Search results"
+  },
+  "options.sidebar.github.description": {
+    "defaultMessage": "Star if you like it"
+  },
+  "options.sidebar.github.title": {
+    "defaultMessage": "View on GitHub"
+  },
+  "options.sidebar.kofi.description": {
+    "defaultMessage": "Every tip is truly appreciated"
+  },
+  "options.sidebar.kofi.title": {
+    "defaultMessage": "Support on Ko-fi"
+  },
+  "options.simpleOptions.refreshInterval.description": {
+    "defaultMessage": "Minimum 60s in Chrome (MV3 alarm constraint). Firefox allows lower values."
+  },
+  "options.simpleOptions.refreshInterval.label": {
+    "defaultMessage": "Badge Refresh Interval"
+  },
+  "options.simpleOptions.showBadge.description": {
+    "defaultMessage": "Display an ON / OFF badge on the extension icon reflecting the current blocking state."
+  },
+  "options.simpleOptions.showBadge.label": {
+    "defaultMessage": "Show badge"
+  },
+  "options.tabs.connection": {
+    "defaultMessage": "Connection"
+  },
+  "options.tabs.customization": {
+    "defaultMessage": "Customization"
+  }
+}
