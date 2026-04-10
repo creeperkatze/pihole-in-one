@@ -9,7 +9,19 @@ const { version } = createRequire(import.meta.url)('./package.json')
 export default defineConfig({
 	srcDir: 'src',
 	vite: () => ({
-		plugins: [tailwindcss(), svgLoader()],
+		plugins: [
+			tailwindcss(),
+			svgLoader(),
+			{
+				name: 'inject-theme-init',
+				transformIndexHtml: {
+					order: 'pre',
+					handler: () => [
+						{ tag: 'script', injectTo: 'head-prepend', attrs: { src: '/theme-init.js' } },
+					],
+				},
+			},
+		],
 	}),
 	publicDir: 'src/public',
 	modules: ['@wxt-dev/module-vue'],

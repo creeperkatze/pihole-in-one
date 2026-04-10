@@ -36,22 +36,12 @@ withDefaults(
 
 <style>
 .card {
-	background-color: color-mix(in srgb, var(--c) 8%, white);
+	background-color: color-mix(in srgb, var(--c) 8%, var(--color-surface-raised));
 	border-color: color-mix(in srgb, var(--c) 22%, transparent);
 }
 
 .card:hover {
-	background-color: color-mix(in srgb, var(--c) 22%, white);
+	background-color: color-mix(in srgb, var(--c) 22%, var(--color-surface-raised));
 	border-color: color-mix(in srgb, var(--c) 60%, transparent);
-}
-
-.dark .card {
-	background-color: color-mix(in srgb, var(--c) 12%, var(--color-surface-raised));
-	border-color: color-mix(in srgb, var(--c) 28%, transparent);
-}
-
-.dark .card:hover {
-	background-color: color-mix(in srgb, var(--c) 28%, var(--color-surface-raised));
-	border-color: color-mix(in srgb, var(--c) 65%, transparent);
 }
 </style>

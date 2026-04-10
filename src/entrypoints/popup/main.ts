@@ -2,9 +2,15 @@ import '../../assets/main.css'
 
 import { createApp } from 'vue'
 
-import { installI18n } from '../../helpers/i18n'
+import { applyColorScheme } from '../../helpers/colorScheme'
+import { detectBrowserLocale, i18n } from '../../helpers/i18n'
+import { getSettings } from '../../helpers/settings'
 import App from './App.vue'
 
+const settings = await getSettings()
+applyColorScheme(settings.colorScheme)
+i18n.global.locale.value = settings.locale || detectBrowserLocale()
+
 const app = createApp(App)
-installI18n(app)
+app.use(i18n)
 app.mount('#app')

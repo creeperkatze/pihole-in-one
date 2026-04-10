@@ -56,7 +56,7 @@
 					class="no-underline"
 				>
 					<template #icon>
-						<Coffee :size="16" class="shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
+						<Kofi :size="18" class="shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
 					</template>
 				</Card>
 				<Card
@@ -70,7 +70,7 @@
 				>
 					<template #icon>
 						<ExternalLink
-							:size="16"
+							:size="18"
 							class="shrink-0 text-secondary opacity-75 group-hover:opacity-100"
 						/>
 					</template>
@@ -119,7 +119,6 @@ import { defineMessages } from '@formatjs/intl'
 import {
 	CheckCircle2,
 	Clock,
-	Coffee,
 	ExternalLink,
 	Loader2,
 	Search,
@@ -131,6 +130,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
+import Kofi from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'

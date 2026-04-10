@@ -25,6 +25,30 @@
 	--color-danger-border: #ff9999;
 }
 
+@media (prefers-color-scheme: dark) {
+	html:not(.light) {
+		--color-surface-1:      theme(--color-zinc-900);
+		--color-surface-2:      theme(--color-zinc-900);
+		--color-surface-3:      theme(--color-zinc-800);
+		--color-surface-raised: theme(--color-zinc-800);
+		--color-surface-hover:  theme(--color-zinc-700);
+
+		--color-primary:   theme(--color-zinc-50);
+		--color-secondary: theme(--color-zinc-400);
+		--color-muted:     theme(--color-zinc-500);
+
+		--color-border:        theme(--color-zinc-700);
+		--color-border-subtle: theme(--color-zinc-800);
+
+		--color-control-track: theme(--color-zinc-600);
+
+		--color-success-bg: #003300;
+		--color-success-border: #006600;
+		--color-danger-bg: #330000;
+		--color-danger-border: #660000;
+	}
+}
+
 html.dark {
 	--color-surface-1:      theme(--color-zinc-900);
 	--color-surface-2:      theme(--color-zinc-900);     /* border provides separation */
