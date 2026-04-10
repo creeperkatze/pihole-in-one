@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="0 0 320 100.00001"
+   viewBox="0 0 300 100.00001"
    version="1.1"
    id="svg6"
    sodipodi:docname="logo.svg"
-   width="320"
+   width="300"
    height="100"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    inkscape:export-filename="..\..\.github\assets\logo.png"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      showguides="true"
-     inkscape:zoom="1.5527593"
-     inkscape:cx="132.02304"
-     inkscape:cy="71.163639"
+     inkscape:zoom="1.0979666"
+     inkscape:cx="60.111116"
+     inkscape:cy="122.49917"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -89,22 +89,43 @@
     <style
        id="style2">.cls-2{fill:#980200}.cls-3{fill:red}</style>
   </defs>
-  <path
-     id="rect8"
-     style="fill:#ff0000;fill-opacity:1;stroke-width:5.92727;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
-     d="M 49.999998,0 C 43.082556,0 36.165795,2.6496986 30.865293,7.9503192 L 7.9507521,30.862059 c -10.6010028,10.601246 -10.6010028,27.671154 0,38.272401 L 30.865293,92.049072 c 10.601007,10.601238 27.668405,10.601238 38.26941,0 L 92.049244,69.13446 c 10.601006,-10.601248 10.601006,-27.671152 0,-38.272401 L 69.134703,7.9503192 C 63.834201,2.6496971 56.917442,0 49.999998,0 Z m 0,27.941006 a 22.058621,22.058689 0 0 1 22.05862,22.058689 22.058621,22.058689 0 0 1 -22.05862,22.05869 22.058621,22.058689 0 0 1 -22.058621,-22.05869 22.058621,22.058689 0 0 1 22.058621,-22.058689 z" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;line-height:1;font-family:inter;-inkscape-font-specification:'inter Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
-     x="105.96555"
-     y="42.734379"
+     x="111.65868"
+     y="42.591148"
      id="text1"><tspan
        sodipodi:role="line"
-       x="105.96555"
-       y="42.734379"
-       id="tspan1">PI-HOLE</tspan><tspan
+       x="111.65868"
+       y="42.591148"
+       id="tspan1">Pi-hole</tspan><tspan
        sodipodi:role="line"
-       x="105.96555"
-       y="96.06768"
-       id="tspan3">IN ONE</tspan></text>
+       x="111.65868"
+       y="95.924454"
+       id="tspan3">In One</tspan></text>
+  <path
+     id="rect8"
+     style="fill:#ff0000;fill-opacity:1;stroke-width:5.92727;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers fill stroke"
+     d="M 49.999998,0 C 43.082556,0 36.165795,2.649699 30.865293,7.950319 L 7.9507522,30.862059 c -10.601003,10.601246 -10.601003,27.671151 0,38.272401 L 30.865293,92.04907 c 10.601007,10.60124 27.668405,10.60124 38.269407,0 L 92.04924,69.13446 c 10.60101,-10.60125 10.60101,-27.671152 0,-38.272401 L 69.1347,7.950319 C 63.8342,2.649697 56.917442,0 49.999998,0 Z m 0,27.941006 A 22.058621,22.058689 0 0 1 72.05862,49.999695 22.058621,22.058689 0 0 1 49.999998,72.05839 22.058621,22.058689 0 0 1 27.941377,49.999695 22.058621,22.058689 0 0 1 49.999998,27.941006 Z" />
+  <ellipse
+     style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5.88236;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
+     id="path18"
+     ry="10"
+     rx="20"
+     cy="90"
+     cx="20" />
+  <rect
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.76625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
+     id="rect22"
+     width="10"
+     height="70"
+     x="15"
+     y="20.128235"
+     rx="0"
+     ry="3.5355339" />
+  <path
+     style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
+     d="m 25,23.800699 v 20 l 25,-10 z"
+     id="path22"
+     sodipodi:nodetypes="cccc" />
 </svg>
