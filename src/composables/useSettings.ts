@@ -1,5 +1,6 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
+import { applyColorScheme } from '../helpers/colorScheme'
 import { detectBrowserLocale, i18n } from '../helpers/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../helpers/settings'
 
@@ -39,6 +40,14 @@ watch(
 	},
 )
 
+watch(
+	() => form.colorScheme,
+	(scheme) => {
+		if (!initialized.value) return
+		applyColorScheme(scheme)
+	},
+)
+
 function setOption(key: 'badgeMode' | 'refreshInterval', value: string | number): void {
 	;(form as Record<string, unknown>)[key] = value
 }
@@ -50,7 +59,9 @@ export function useSettings() {
 		form.instances = settings.instances.map((inst) => ({ ...inst }))
 		form.refreshInterval = settings.refreshInterval
 		form.badgeMode = settings.badgeMode
+		form.colorScheme = settings.colorScheme
 		form.locale = settings.locale || detectBrowserLocale()
+		applyColorScheme(settings.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true
 	})

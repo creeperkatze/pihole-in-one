@@ -34,7 +34,7 @@ withDefaults(
 )
 </script>
 
-<style scoped>
+<style>
 .card {
 	background-color: color-mix(in srgb, var(--c) 8%, white);
 	border-color: color-mix(in srgb, var(--c) 22%, transparent);
@@ -45,15 +45,13 @@ withDefaults(
 	border-color: color-mix(in srgb, var(--c) 60%, transparent);
 }
 
-@media (prefers-color-scheme: dark) {
-	.card {
-		background-color: color-mix(in srgb, var(--c) 12%, #27272a);
-		border-color: color-mix(in srgb, var(--c) 28%, transparent);
-	}
+.dark .card {
+	background-color: color-mix(in srgb, var(--c) 12%, #27272a);
+	border-color: color-mix(in srgb, var(--c) 28%, transparent);
+}
 
-	.card:hover {
-		background-color: color-mix(in srgb, var(--c) 28%, #27272a);
-		border-color: color-mix(in srgb, var(--c) 65%, transparent);
-	}
+.dark .card:hover {
+	background-color: color-mix(in srgb, var(--c) 28%, #27272a);
+	border-color: color-mix(in srgb, var(--c) 65%, transparent);
 }
 </style>

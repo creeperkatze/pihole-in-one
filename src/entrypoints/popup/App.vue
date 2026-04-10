@@ -7,7 +7,7 @@
 				rel="noopener"
 				class="flex items-center gap-2"
 			>
-				<img :src="browser.runtime.getURL('/logo.svg')" width="128" alt="Pi-hole In One" />
+				<Logo />
 			</a>
 			<div class="flex items-center gap-1">
 				<button
@@ -177,7 +177,9 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
 import Button from '../../components/Button.vue'
+import Logo from '../../components/Logo.vue'
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
+import { applyColorScheme } from '../../helpers/colorScheme'
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
@@ -422,6 +424,7 @@ onMounted(async () => {
 		}
 	}
 	const s = await getSettings()
+	applyColorScheme(s.colorScheme)
 	settings.value = s
 	configured.value = isConfigured(s)
 	if (configured.value) {

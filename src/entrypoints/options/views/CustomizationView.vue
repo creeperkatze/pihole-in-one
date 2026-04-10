@@ -13,6 +13,13 @@
 				@update:model-value="form.locale = $event"
 			/>
 			<OptionSelect
+				:label="formatMessage(messages['options.colorScheme.label'])"
+				:description="formatMessage(messages['options.colorScheme.description'])"
+				:model-value="form.colorScheme"
+				:options="colorSchemeOptions"
+				@update:model-value="form.colorScheme = $event as ColorScheme"
+			/>
+			<OptionSelect
 				:label="formatMessage(messages['options.customization.badge.label'])"
 				:description="formatMessage(messages['options.customization.badge.description'])"
 				:model-value="form.badgeMode"
@@ -38,7 +45,7 @@ import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import { useVIntl } from '../../../helpers/i18n'
 import { LOCALES } from '../../../helpers/locales'
-import type { BadgeMode } from '../../../helpers/settings'
+import type { BadgeMode, ColorScheme } from '../../../helpers/settings'
 
 const { form, saveError } = useSettings()
 
@@ -84,9 +91,35 @@ const messages = defineMessages({
 		id: 'options.customization.badge.clients',
 		defaultMessage: 'Active clients',
 	},
+	'options.colorScheme.label': {
+		id: 'options.colorScheme.label',
+		defaultMessage: 'Color scheme',
+	},
+	'options.colorScheme.description': {
+		id: 'options.colorScheme.description',
+		defaultMessage: 'Choose between light, dark, or system default.',
+	},
+	'options.colorScheme.auto': {
+		id: 'options.colorScheme.auto',
+		defaultMessage: 'System default',
+	},
+	'options.colorScheme.dark': {
+		id: 'options.colorScheme.dark',
+		defaultMessage: 'Dark',
+	},
+	'options.colorScheme.light': {
+		id: 'options.colorScheme.light',
+		defaultMessage: 'Light',
+	},
 })
 
 const languageOptions = computed(() => LOCALES.map((l) => ({ value: l.code, label: l.name })))
+
+const colorSchemeOptions = computed(() => [
+	{ value: 'auto', label: formatMessage(messages['options.colorScheme.auto']) },
+	{ value: 'dark', label: formatMessage(messages['options.colorScheme.dark']) },
+	{ value: 'light', label: formatMessage(messages['options.colorScheme.light']) },
+])
 
 const badgeModeOptions = computed(() => [
 	{ value: 'off', label: formatMessage(messages['options.customization.badge.off']) },

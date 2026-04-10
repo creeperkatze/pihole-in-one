@@ -8,11 +8,13 @@ export interface PiholeInstance {
 }
 
 export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
+export type ColorScheme = 'auto' | 'dark' | 'light'
 
 export interface ExtensionSettings {
 	instances: PiholeInstance[]
 	refreshInterval: number
 	badgeMode: BadgeMode
+	colorScheme: ColorScheme
 	locale: string
 }
 
@@ -20,6 +22,7 @@ export const DEFAULTS: ExtensionSettings = {
 	instances: [],
 	refreshInterval: 60,
 	badgeMode: 'percentage',
+	colorScheme: 'auto',
 	locale: '',
 }
 

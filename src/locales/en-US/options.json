@@ -1,4 +1,19 @@
 {
+  "options.colorScheme.auto": {
+    "defaultMessage": "System default"
+  },
+  "options.colorScheme.dark": {
+    "defaultMessage": "Dark"
+  },
+  "options.colorScheme.description": {
+    "defaultMessage": "Choose between light, dark, or system default."
+  },
+  "options.colorScheme.label": {
+    "defaultMessage": "Color scheme"
+  },
+  "options.colorScheme.light": {
+    "defaultMessage": "Light"
+  },
   "options.connection.description": {
     "defaultMessage": "Manage your Pi-hole instances and badge refresh settings."
   },
