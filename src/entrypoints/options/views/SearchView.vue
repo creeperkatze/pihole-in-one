@@ -8,7 +8,7 @@
 			<div v-if="results.length === 0" class="text-sm text-zinc-500 dark:text-zinc-400">
 				No options found
 			</div>
-			<div v-else class="flex flex-col">
+			<div v-else class="flex flex-col gap-2">
 				<template v-for="opt in results" :key="opt.id">
 					<OptionToggle
 						v-if="opt.type === 'toggle'"
