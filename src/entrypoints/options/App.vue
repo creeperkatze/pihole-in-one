@@ -1,19 +1,17 @@
 <template>
-	<div class="flex h-screen overflow-hidden bg-white dark:bg-zinc-900">
+	<div class="flex h-screen overflow-hidden bg-surface-1">
 		<!-- Sidebar -->
-		<aside
-			class="w-52 shrink-0 flex flex-col border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
-		>
-			<div class="px-4 py-4 border-b border-zinc-200 dark:border-zinc-800">
+		<aside class="w-52 shrink-0 flex flex-col border-r border-border-subtle bg-surface-2">
+			<div class="px-4 py-4 border-b border-border-subtle">
 				<a href="https://github.com/creeperkatze/pihole-in-one" target="_blank" rel="noopener">
-					<Logo class="text-zinc-950 dark:text-zinc-50" width="108" height="36" />
+					<Logo class="text-primary" width="108" height="36" />
 				</a>
 			</div>
-			<div class="px-2 py-2 border-b border-zinc-200 dark:border-zinc-800">
+			<div class="px-2 py-2 border-b border-border-subtle">
 				<div class="relative">
 					<Search
 						:size="15"
-						class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none"
+						class="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
 					/>
 					<input
 						v-model="searchQuery"
@@ -25,7 +23,7 @@
 					<button
 						v-if="searchQuery"
 						type="button"
-						class="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+						class="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-secondary"
 						@click="searchQuery = ''"
 					>
 						<XIcon :size="14" />
@@ -46,7 +44,7 @@
 			</nav>
 
 			<!-- Bottom cards -->
-			<div class="border-t border-zinc-200 dark:border-zinc-800 p-2 flex flex-col gap-1.5">
+			<div class="border-t border-border-subtle p-2 flex flex-col gap-1.5">
 				<Card
 					as="a"
 					href="https://ko-fi.com/creeperkatze"
@@ -73,18 +71,16 @@
 					<template #icon>
 						<ExternalLink
 							:size="16"
-							class="shrink-0 text-zinc-500 dark:text-zinc-400 opacity-75 group-hover:opacity-100"
+							class="shrink-0 text-secondary opacity-75 group-hover:opacity-100"
 						/>
 					</template>
 				</Card>
 			</div>
 
 			<!-- Footer -->
-			<div
-				class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-zinc-200 dark:border-zinc-800"
-			>
-				<span class="text-xs text-zinc-400">v{{ version }}</span>
-				<span v-if="checking" class="flex items-center gap-1 text-xs text-zinc-400">
+			<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-border-subtle">
+				<span class="text-xs text-muted">v{{ version }}</span>
+				<span v-if="checking" class="flex items-center gap-1 text-xs text-muted">
 					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
 					{{ formatMessage(messages['options.footer.checking']) }}
 				</span>

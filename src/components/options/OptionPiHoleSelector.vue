@@ -1,14 +1,14 @@
 <template>
 	<div
-		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50"
+		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3"
 	>
 		<div class="flex items-center gap-3">
-			<Server :size="16" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+			<Server :size="16" class="shrink-0 text-muted" />
 			<div>
 				<div class="text-sm font-medium">
 					{{ formatMessage(messages['options.piholeselector.title']) }}
 				</div>
-				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+				<div class="text-xs text-secondary mt-0.5">
 					{{ formatMessage(messages['options.piholeselector.description']) }}
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 
 		<div
 			v-if="modelValue.length === 0"
-			class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 text-zinc-400 dark:text-zinc-500 text-sm"
+			class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
 		>
 			<Server :size="22" class="opacity-40" />
 			{{ formatMessage(messages['options.piholeselector.empty']) }}
@@ -25,11 +25,11 @@
 		<div
 			v-for="inst in modelValue"
 			:key="inst.id"
-			class="rounded-lg border border-zinc-200 dark:border-zinc-700 overflow-hidden"
+			class="rounded-lg border border-border overflow-hidden"
 		>
 			<!-- Header row (always visible) -->
 			<div
-				class="flex items-center gap-3 px-3.5 py-2.5 bg-white dark:bg-zinc-800 cursor-pointer select-none"
+				class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised cursor-pointer select-none"
 				@click="toggleEdit(inst.id)"
 			>
 				<div class="min-w-0 flex-1">
@@ -38,7 +38,7 @@
 							inst.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])
 						}}
 					</div>
-					<div class="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+					<div class="text-xs text-secondary truncate">
 						{{ inst.baseUrl || formatMessage(messages['options.piholeselector.instance.noUrl']) }}
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 			<!-- Expanded form -->
 			<div
 				v-if="editingId === inst.id"
-				class="flex flex-col gap-4 p-4 border-t border-zinc-200 dark:border-zinc-700"
+				class="flex flex-col gap-4 p-4 border-t border-border"
 			>
 				<div class="flex flex-col gap-1.5">
 					<label class="text-sm font-medium" :for="`name-${inst.id}`">
@@ -104,7 +104,7 @@
 						placeholder=""
 						@input="scheduleTest(inst.id)"
 					/>
-					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
+					<p class="m-0 text-xs text-secondary">
 						No trailing slash or <code class="font-mono">/api</code>.
 					</p>
 				</div>
@@ -123,7 +123,7 @@
 						autocomplete="off"
 						@input="scheduleTest(inst.id)"
 					/>
-					<p class="m-0 text-xs text-zinc-500 dark:text-zinc-400">
+					<p class="m-0 text-xs text-secondary">
 						{{ formatMessage(messages['options.piholeselector.instance.apiPassword.hint']) }}
 					</p>
 				</div>

@@ -7,11 +7,11 @@
 				rel="noopener"
 				class="flex items-center gap-2"
 			>
-				<Logo class="text-zinc-950 dark:text-zinc-50" width="128" height="43" />
+				<Logo class="text-primary" width="128" height="43" />
 			</a>
 			<div class="flex items-center gap-1">
 				<button
-					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
 					:title="formatMessage(messages['popup.refresh'])"
 					:disabled="refreshing"
 					@click="refresh"
@@ -20,14 +20,14 @@
 				</button>
 				<button
 					v-if="configured && settings"
-					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
 					:title="`Open ${settings.instances[activeInstance]?.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])}`"
 					@click="openPihole"
 				>
 					<ExternalLink :size="16" />
 				</button>
 				<button
-					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
+					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
 					:title="formatMessage(messages['popup.settings'])"
 					@click="openOptions"
 				>
@@ -36,11 +36,11 @@
 			</div>
 		</header>
 
-		<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
+		<div class="h-px bg-border"></div>
 
 		<div v-if="loading" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
 			<div
-				class="w-7 h-7 border-[3px] border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin"
+				class="w-7 h-7 border-[3px] border-border border-t-pihole-red rounded-full animate-spin"
 			></div>
 		</div>
 
@@ -48,7 +48,7 @@
 			v-else-if="!configured"
 			class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
 		>
-			<p class="m-0 text-zinc-500 dark:text-zinc-400 text-center">
+			<p class="m-0 text-secondary text-center">
 				{{ formatMessage(messages['popup.notConfigured.message']) }}
 			</p>
 			<Button variant="primary" @click="openOptions">
@@ -58,19 +58,12 @@
 
 		<template v-else>
 			<!-- Instance tabs — only shown when there are multiple instances -->
-			<div
-				v-if="settings!.instances.length > 1"
-				class="flex border-b border-zinc-200 dark:border-zinc-700 px-1"
-			>
+			<div v-if="settings!.instances.length > 1" class="flex border-b border-border px-1">
 				<button
 					v-for="(inst, i) in settings!.instances"
 					:key="inst.id"
 					class="relative px-3.5 py-2 text-xs font-medium transition-colors duration-150 cursor-pointer border-0 bg-transparent"
-					:class="
-						activeInstance === i
-							? 'text-zinc-950 dark:text-zinc-50'
-							: 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50'
-					"
+					:class="activeInstance === i ? 'text-primary' : 'text-secondary hover:text-primary'"
 					@click="activeInstance = i"
 				>
 					{{
@@ -94,9 +87,7 @@
 				/>
 
 				<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-1.5">
-					<div
-						class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5px]"
-					>
+					<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
 						{{ formatMessage(messages['popup.disableFor']) }}
 					</div>
 					<div class="flex gap-1.5 flex-wrap">
@@ -129,11 +120,11 @@
 				/>
 			</div>
 
-			<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
+			<div class="h-px bg-border"></div>
 
 			<footer class="flex items-center gap-2 px-3.5 py-2">
-				<span class="text-xs text-zinc-400">v{{ version }}</span>
-				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-zinc-400">
+				<span class="text-xs text-muted">v{{ version }}</span>
+				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted">
 					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
 					{{ formatMessage(messages['popup.footer.checking']) }}
 				</span>

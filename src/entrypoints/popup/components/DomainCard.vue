@@ -6,18 +6,18 @@
 				? 'bg-success-bg border-success-border'
 				: isEffectivelyBlocked
 					? 'bg-danger-bg border-danger-border'
-					: 'bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700'
+					: 'bg-surface-3 border-border'
 		"
 	>
 		<div class="min-w-0">
 			<div class="text-[13px] font-semibold truncate max-w-45" :title="domain">
 				{{ domain }}
 			</div>
-			<div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-px">{{ statusText }}</div>
+			<div class="text-[11px] text-secondary mt-px">{{ statusText }}</div>
 		</div>
 		<div
 			v-if="loading"
-			class="w-4 h-4 border-2 border-zinc-200 dark:border-zinc-700 border-t-pihole-red rounded-full animate-spin shrink-0"
+			class="w-4 h-4 border-2 border-border border-t-pihole-red rounded-full animate-spin shrink-0"
 		></div>
 		<div v-else class="flex gap-1.5 shrink-0">
 			<Button

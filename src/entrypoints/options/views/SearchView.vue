@@ -5,7 +5,7 @@
 			:description="formatMessage(messages['options.search.description'], { query })"
 		/>
 		<div class="px-8 py-4 max-w-xl">
-			<div v-if="results.length === 0" class="text-sm text-zinc-500 dark:text-zinc-400">
+			<div v-if="results.length === 0" class="text-sm text-secondary">
 				{{ formatMessage(messages['options.search.noResults']) }}
 			</div>
 			<div v-else class="flex flex-col gap-2">

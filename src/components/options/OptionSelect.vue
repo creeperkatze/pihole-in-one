@@ -1,17 +1,17 @@
 <template>
 	<div
-		class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50"
+		class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg border border-border bg-surface-3"
 	>
 		<div class="flex items-center gap-3 min-w-0">
 			<component
 				:is="icon"
 				v-if="icon"
 				:size="16"
-				class="shrink-0 text-zinc-400 dark:text-zinc-500"
+				class="shrink-0 text-muted"
 			/>
 			<div>
 				<div class="text-sm font-medium">{{ label }}</div>
-				<div v-if="description" class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+				<div v-if="description" class="text-xs text-secondary mt-0.5">
 					{{ description }}
 				</div>
 			</div>

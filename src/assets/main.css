@@ -2,6 +2,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+	--color-surface-1:      theme(--color-white);        /* page background */
+	--color-surface-2:      theme(--color-zinc-50);      /* sidebar, secondary areas */
+	--color-surface-3:      theme(--color-zinc-100);     /* panels, inputs, buttons, stats */
+	--color-surface-raised: theme(--color-white);        /* active tabs, cards on darker surfaces */
+	--color-surface-hover:  theme(--color-zinc-200);     /* interactive element hover */
+
+	--color-primary:   theme(--color-zinc-950);
+	--color-secondary: theme(--color-zinc-500);
+	--color-muted:     theme(--color-zinc-400);
+
+	--color-border:        theme(--color-zinc-200);
+	--color-border-subtle: theme(--color-zinc-200);      /* same as border in light */
+
+	--color-control-track: theme(--color-zinc-300);      /* toggle off-state */
+
 	--color-pihole-red: #ff0000;
 	--color-pihole-green: #00ff00;
 	--color-success-bg: #f0fff0;
@@ -11,6 +26,21 @@
 }
 
 html.dark {
+	--color-surface-1:      theme(--color-zinc-900);
+	--color-surface-2:      theme(--color-zinc-900);     /* border provides separation */
+	--color-surface-3:      theme(--color-zinc-800);
+	--color-surface-raised: theme(--color-zinc-800);
+	--color-surface-hover:  theme(--color-zinc-700);
+
+	--color-primary:   theme(--color-zinc-50);
+	--color-secondary: theme(--color-zinc-400);
+	--color-muted:     theme(--color-zinc-500);
+
+	--color-border:        theme(--color-zinc-700);
+	--color-border-subtle: theme(--color-zinc-800);
+
+	--color-control-track: theme(--color-zinc-600);
+
 	--color-success-bg: #003300;
 	--color-success-border: #006600;
 	--color-danger-bg: #330000;
@@ -23,7 +53,7 @@ html.dark {
 		font-size: 14px;
 		line-height: 1.5;
 		-webkit-font-smoothing: antialiased;
-		@apply text-zinc-950 dark:text-zinc-50 bg-white dark:bg-zinc-900;
+		@apply text-primary bg-surface-1;
 	}
 
 	button {
@@ -35,13 +65,13 @@ html.dark {
 	select {
 		font-family: inherit;
 		font-size: inherit;
-		@apply text-zinc-950 dark:text-zinc-50 bg-white dark:bg-zinc-900;
+		@apply text-primary bg-surface-1;
 	}
 }
 
 @layer components {
 	.input {
-		@apply px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-[5px] bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 transition-colors duration-150 outline-none w-full;
+		@apply px-3 py-2 border border-border rounded-[5px] bg-surface-3 text-primary transition-colors duration-150 outline-none w-full;
 	}
 
 	.input:focus {

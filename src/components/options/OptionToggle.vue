@@ -1,10 +1,10 @@
 <template>
 	<div
-		class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50"
+		class="flex items-center justify-between gap-4 px-4 py-3 rounded-lg border border-border bg-surface-3"
 	>
 		<div>
 			<div class="text-sm font-medium">{{ label }}</div>
-			<div v-if="description" class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+			<div v-if="description" class="text-xs text-secondary mt-0.5">
 				{{ description }}
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 			role="switch"
 			:aria-checked="modelValue"
 			class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus-visible:outline-none"
-			:class="modelValue ? 'bg-pihole-red' : 'bg-zinc-300 dark:bg-zinc-600'"
+			:class="modelValue ? 'bg-pihole-red' : 'bg-control-track'"
 			@click="$emit('update:modelValue', !modelValue)"
 		>
 			<span

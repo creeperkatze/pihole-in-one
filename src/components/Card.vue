@@ -5,10 +5,10 @@
 		:style="{ '--c': color ?? '#a1a1aa' }"
 	>
 		<div class="min-w-0 flex-1">
-			<div class="text-sm font-semibold text-zinc-950 dark:text-zinc-50 leading-tight">
+			<div class="text-sm font-semibold text-primary leading-tight">
 				{{ title }}
 			</div>
-			<div v-if="description" class="text-xs text-zinc-500 dark:text-zinc-400 mt-px">
+			<div v-if="description" class="text-xs text-secondary mt-px">
 				{{ description }}
 			</div>
 		</div>
@@ -46,12 +46,12 @@ withDefaults(
 }
 
 .dark .card {
-	background-color: color-mix(in srgb, var(--c) 12%, #27272a);
+	background-color: color-mix(in srgb, var(--c) 12%, var(--color-surface-raised));
 	border-color: color-mix(in srgb, var(--c) 28%, transparent);
 }
 
 .dark .card:hover {
-	background-color: color-mix(in srgb, var(--c) 28%, #27272a);
+	background-color: color-mix(in srgb, var(--c) 28%, var(--color-surface-raised));
 	border-color: color-mix(in srgb, var(--c) 65%, transparent);
 }
 </style>

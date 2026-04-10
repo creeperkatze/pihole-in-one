@@ -21,12 +21,11 @@ const props = withDefaults(
 )
 
 const variantClasses: Record<string, string> = {
-	default:
-		'border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50',
+	default: 'border-border bg-surface-3 text-primary',
 	primary: 'bg-pihole-red border-pihole-red text-white',
 	success: 'bg-pihole-green border-pihole-green text-black',
 	danger: 'bg-pihole-red border-pihole-red text-white',
-	outline: 'bg-transparent border-zinc-200 dark:border-zinc-700 text-zinc-950 dark:text-zinc-50',
+	outline: 'bg-transparent border-border text-primary',
 }
 
 const classes = computed(() => [
@@ -38,13 +37,7 @@ const classes = computed(() => [
 
 <style scoped>
 button:hover:not(:disabled) {
-	background-color: #e4e4e7;
-}
-
-@media (prefers-color-scheme: dark) {
-	button:hover:not(:disabled) {
-		background-color: #3f3f46;
-	}
+	background-color: var(--color-surface-hover);
 }
 
 button[data-variant='primary']:hover:not(:disabled),
@@ -59,12 +52,6 @@ button[data-variant='success']:hover:not(:disabled) {
 }
 
 button[data-variant='outline']:hover:not(:disabled) {
-	background-color: #f4f4f5;
-}
-
-@media (prefers-color-scheme: dark) {
-	button[data-variant='outline']:hover:not(:disabled) {
-		background-color: #27272a;
-	}
+	background-color: var(--color-surface-3);
 }
 </style>

@@ -24,7 +24,7 @@
 							: formatMessage(messages['popup.status.blockingDisabled'])
 					}}
 				</div>
-				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-px">{{ sub }}</div>
+				<div class="text-xs text-secondary mt-px">{{ sub }}</div>
 			</div>
 		</div>
 		<Button :disabled="disabled" @click="$emit('toggle')">
