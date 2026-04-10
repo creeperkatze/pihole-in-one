@@ -10,6 +10,7 @@
 				@update:model-value="form.instances = $event"
 			/>
 			<OptionSlider
+				:icon="Timer"
 				:label="formatMessage(messages['options.connection.refreshInterval.label'])"
 				:description="formatMessage(messages['options.connection.refreshInterval.description'])"
 				:model-value="form.refreshInterval"
@@ -31,6 +32,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
+import { Timer } from 'lucide-vue-next'
 
 import OptionPiHoleSelector from '../../../components/options/OptionPiHoleSelector.vue'
 import OptionSlider from '../../../components/options/OptionSlider.vue'

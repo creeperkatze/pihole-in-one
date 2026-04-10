@@ -2,12 +2,15 @@
 	<div
 		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50"
 	>
-		<div>
-			<div class="text-sm font-medium">
-				{{ formatMessage(messages['options.piholeselector.title']) }}
-			</div>
-			<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-				{{ formatMessage(messages['options.piholeselector.description']) }}
+		<div class="flex items-center gap-3">
+			<Server :size="16" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+			<div>
+				<div class="text-sm font-medium">
+					{{ formatMessage(messages['options.piholeselector.title']) }}
+				</div>
+				<div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+					{{ formatMessage(messages['options.piholeselector.description']) }}
+				</div>
 			</div>
 		</div>
 

@@ -6,6 +6,7 @@
 		/>
 		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionSelect
+				:icon="Languages"
 				:label="formatMessage(messages['options.language.label'])"
 				:description="formatMessage(messages['options.language.description'])"
 				:model-value="form.locale"
@@ -13,6 +14,7 @@
 				@update:model-value="form.locale = $event"
 			/>
 			<OptionSelect
+				:icon="Monitor"
 				:label="formatMessage(messages['options.colorScheme.label'])"
 				:description="formatMessage(messages['options.colorScheme.description'])"
 				:model-value="form.colorScheme"
@@ -20,6 +22,7 @@
 				@update:model-value="form.colorScheme = $event as ColorScheme"
 			/>
 			<OptionSelect
+				:icon="Tag"
 				:label="formatMessage(messages['options.customization.badge.label'])"
 				:description="formatMessage(messages['options.customization.badge.description'])"
 				:model-value="form.badgeMode"
@@ -38,6 +41,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
+import { Languages, Monitor, Tag } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 import OptionSelect from '../../../components/options/OptionSelect.vue'
