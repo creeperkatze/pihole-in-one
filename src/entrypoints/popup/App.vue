@@ -169,7 +169,6 @@ const disablePresets = [
 	{ label: '5m', seconds: 5 * 60 },
 	{ label: '30m', seconds: 30 * 60 },
 	{ label: '1h', seconds: 60 * 60 },
-	{ label: '∞', seconds: 0 },
 ]
 
 function isEnabled(i: number): boolean {
