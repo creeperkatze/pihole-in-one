@@ -1,15 +1,8 @@
 <template>
-	<div
-		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3"
-	>
+	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
 		<div class="flex items-center justify-between gap-4">
 			<div class="flex items-center gap-3 min-w-0">
-				<component
-					:is="icon"
-					v-if="icon"
-					:size="16"
-					class="shrink-0 text-muted"
-				/>
+				<component :is="icon" v-if="icon" :size="16" class="shrink-0 text-muted" />
 				<div>
 					<div class="text-sm font-medium">{{ label }}</div>
 					<div v-if="description" class="text-xs text-secondary mt-0.5">

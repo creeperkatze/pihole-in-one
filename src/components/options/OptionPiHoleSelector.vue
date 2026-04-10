@@ -1,7 +1,5 @@
 <template>
-	<div
-		class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3"
-	>
+	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
 		<div class="flex items-center gap-3">
 			<Server :size="16" class="shrink-0 text-muted" />
 			<div>
@@ -74,10 +72,7 @@
 			</div>
 
 			<!-- Expanded form -->
-			<div
-				v-if="editingId === inst.id"
-				class="flex flex-col gap-4 p-4 border-t border-border"
-			>
+			<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border">
 				<div class="flex flex-col gap-1.5">
 					<label class="text-sm font-medium" :for="`name-${inst.id}`">
 						{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
