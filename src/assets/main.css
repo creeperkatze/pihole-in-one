@@ -17,12 +17,15 @@
 
 	--color-control-track: theme(--color-zinc-300);      /* toggle off-state */
 
-	--color-pihole-red: #ff0000;
-	--color-pihole-green: #00ff00;
-	--color-success-bg: #f0fff0;
-	--color-success-border: #99ff99;
-	--color-danger-bg: #fff0f0;
-	--color-danger-border: #ff9999;
+	--color-pihole-red: theme(--color-red-600);
+	--color-pihole-green: theme(--color-green-600);
+	--color-success-bg: theme(--color-green-50);
+	--color-success-border: theme(--color-green-300);
+	--color-danger-bg: theme(--color-red-50);
+	--color-danger-border: theme(--color-red-300);
+
+	--color-muted: theme(--color-zinc-500);
+	--color-border: theme(--color-zinc-300);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,6 +45,8 @@
 
 		--color-control-track: theme(--color-zinc-600);
 
+		--color-pihole-red: #ff0000;
+		--color-pihole-green: #00ff00;
 		--color-success-bg: #003300;
 		--color-success-border: #006600;
 		--color-danger-bg: #330000;
@@ -65,6 +70,8 @@ html.dark {
 
 	--color-control-track: theme(--color-zinc-600);
 
+	--color-pihole-red: #ff0000;
+	--color-pihole-green: #00ff00;
 	--color-success-bg: #003300;
 	--color-success-border: #006600;
 	--color-danger-bg: #330000;
