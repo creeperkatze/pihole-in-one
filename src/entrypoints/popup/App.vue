@@ -1,9 +1,14 @@
 <template>
 	<div class="w-85 flex flex-col">
 		<header class="flex items-center justify-between px-3.5 py-3">
-			<div class="flex items-center gap-2 font-bold text-[15px]">
+			<a
+				href="https://github.com/creeperkatze/pihole-in-one"
+				target="_blank"
+				rel="noopener"
+				class="flex items-center gap-2"
+			>
 				<img :src="browser.runtime.getURL('/logo.svg')" width="128" alt="Pi-hole In One" />
-			</div>
+			</a>
 			<button
 				class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors duration-150 cursor-pointer"
 				title="Settings"

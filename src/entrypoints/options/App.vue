@@ -5,7 +5,9 @@
 			class="w-52 shrink-0 flex flex-col border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
 		>
 			<div class="px-4 py-4 border-b border-zinc-200 dark:border-zinc-800">
-				<img :src="browser.runtime.getURL('/logo.svg')" width="108" alt="Pi-hole In One" />
+				<a href="https://github.com/creeperkatze/pihole-in-one" target="_blank" rel="noopener">
+					<img :src="browser.runtime.getURL('/logo.svg')" width="108" alt="Pi-hole In One" />
+				</a>
 			</div>
 			<div class="px-2 pt-2">
 				<div class="relative">
@@ -21,7 +23,7 @@
 					/>
 				</div>
 			</div>
-			<nav class="flex flex-col gap-0.5 p-2 flex-1">
+			<nav class="flex flex-col gap-1.5 p-2 flex-1">
 				<template v-if="!searchQuery">
 					<SidebarTab
 						v-for="tab in tabs"
@@ -110,22 +112,6 @@
 							@update:model-value="setOption(opt.formKey, $event)"
 						/>
 					</template>
-				</div>
-				<div class="flex gap-2.5 mt-6">
-					<button type="button" class="btn btn-primary" :disabled="saving" @click="save">
-						{{ saving ? 'Saving…' : 'Save' }}
-					</button>
-				</div>
-				<div
-					v-if="message"
-					class="mt-4 px-3.5 py-2.5 rounded-lg text-[13px] border"
-					:class="
-						messageType === 'success'
-							? 'bg-success-bg border-success-border text-pihole-green'
-							: 'bg-danger-bg border-danger-border text-pihole-red'
-					"
-				>
-					{{ message }}
 				</div>
 			</section>
 
@@ -274,22 +260,11 @@
 						@update:model-value="form.refreshInterval = $event"
 					/>
 
-					<div class="flex gap-2.5">
-						<button type="button" class="btn btn-primary" :disabled="saving" @click="save">
-							{{ saving ? 'Saving…' : 'Save' }}
-						</button>
-					</div>
-
-					<div
-						v-if="message"
-						class="px-3.5 py-2.5 rounded-lg text-[13px] border"
-						:class="
-							messageType === 'success'
-								? 'bg-success-bg border-success-border text-pihole-green'
-								: 'bg-danger-bg border-danger-border text-pihole-red'
-						"
+				<div
+						v-if="saveError"
+						class="px-3.5 py-2.5 rounded-lg text-[13px] border bg-danger-bg border-danger-border text-pihole-red"
 					>
-						{{ message }}
+						{{ saveError }}
 					</div>
 				</div>
 			</section>
@@ -310,23 +285,11 @@
 						:model-value="form.showBadge"
 						@update:model-value="form.showBadge = $event"
 					/>
-
-					<div class="flex gap-2.5">
-						<button type="button" class="btn btn-primary" :disabled="saving" @click="save">
-							{{ saving ? 'Saving…' : 'Save' }}
-						</button>
-					</div>
-
 					<div
-						v-if="message"
-						class="px-3.5 py-2.5 rounded-lg text-[13px] border"
-						:class="
-							messageType === 'success'
-								? 'bg-success-bg border-success-border text-pihole-green'
-								: 'bg-danger-bg border-danger-border text-pihole-red'
-						"
+						v-if="saveError"
+						class="mt-3 px-3.5 py-2.5 rounded-lg text-[13px] border bg-danger-bg border-danger-border text-pihole-red"
 					>
-						{{ message }}
+						{{ saveError }}
 					</div>
 				</div>
 			</section>
@@ -345,7 +308,7 @@ import {
 	SlidersHorizontal,
 	Trash2,
 } from 'lucide-vue-next'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { browser } from 'wxt/browser'
 
 import Card from '../../components/Card.vue'
@@ -429,24 +392,34 @@ const searchResults = computed(() => {
 })
 
 const form = reactive<PiholeSettings>({ ...DEFAULTS, instances: [] })
-const saving = ref(false)
-const message = ref('')
-const messageType = ref<'success' | 'error'>('success')
+const saveError = ref('')
+const initialized = ref(false)
 
 const editingId = ref<string | null>(null)
 const testingId = ref<string | null>(null)
 const testMessages = ref<Record<string, { text: string; type: 'success' | 'error' }>>({})
 
+let saveTimer: ReturnType<typeof setTimeout> | null = null
+
+watch(
+	form,
+	() => {
+		if (!initialized.value) return
+		if (saveTimer) clearTimeout(saveTimer)
+		saveTimer = setTimeout(async () => {
+			try {
+				await saveSettings({ ...form, instances: [...form.instances] })
+				saveError.value = ''
+			} catch (e) {
+				saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
+			}
+		}, 600)
+	},
+	{ deep: true },
+)
+
 function setOption(key: 'showBadge' | 'refreshInterval', value: boolean | number): void {
 	;(form as Record<string, unknown>)[key] = value
-}
-
-function showMessage(text: string, type: 'success' | 'error'): void {
-	message.value = text
-	messageType.value = type
-	setTimeout(() => {
-		message.value = ''
-	}, 4000)
 }
 
 function addInstance(): void {
@@ -495,22 +468,11 @@ async function testInstance(id: string): Promise<void> {
 	}
 }
 
-async function save(): Promise<void> {
-	saving.value = true
-	try {
-		await saveSettings({ ...form, instances: [...form.instances] })
-		showMessage('Settings saved.', 'success')
-	} catch (e) {
-		showMessage(e instanceof Error ? e.message : 'Failed to save settings.', 'error')
-	} finally {
-		saving.value = false
-	}
-}
-
 onMounted(async () => {
 	const settings = await getSettings()
 	form.instances = settings.instances.map((inst) => ({ ...inst }))
 	form.refreshInterval = settings.refreshInterval
 	form.showBadge = settings.showBadge
+	initialized.value = true
 })
 </script>

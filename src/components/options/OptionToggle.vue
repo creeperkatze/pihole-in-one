@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex items-center justify-between gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800"
+		class="flex items-center justify-between gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0"
 	>
 		<div>
 			<div class="text-sm font-medium">{{ label }}</div>
