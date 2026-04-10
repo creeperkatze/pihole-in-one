@@ -4,12 +4,13 @@
 			title="Customization"
 			description="Adjust the appearance and behavior of the extension."
 		/>
-		<div class="px-8 py-4 max-w-xl flex flex-col">
-			<OptionToggle
-				label="Show badge"
-				description="Display an ON / OFF badge on the extension icon reflecting the current blocking state."
-				:model-value="form.showBadge"
-				@update:model-value="form.showBadge = $event"
+		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
+			<OptionSelect
+				label="Badge appearance"
+				description="What to display on the extension icon badge."
+				:model-value="form.badgeMode"
+				:options="badgeModeOptions"
+				@update:model-value="form.badgeMode = $event as BadgeMode"
 			/>
 			<div
 				v-if="saveError"
@@ -22,9 +23,17 @@
 </template>
 
 <script setup lang="ts">
-import OptionToggle from '../../../components/options/OptionToggle.vue'
+import OptionSelect from '../../../components/options/OptionSelect.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
+import type { BadgeMode } from '../../../helpers/settings'
 
 const { form, saveError } = useSettings()
+
+const badgeModeOptions: { value: BadgeMode; label: string }[] = [
+	{ value: 'off', label: 'Off' },
+	{ value: 'state', label: 'State' },
+	{ value: 'percentage', label: 'Percentage blocked' },
+	{ value: 'clients', label: 'Active clients' },
+]
 </script>

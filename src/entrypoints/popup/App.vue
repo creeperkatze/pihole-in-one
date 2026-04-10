@@ -171,7 +171,7 @@ import { browser } from 'wxt/browser'
 
 import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
 import { formatDuration, formatNumber } from '../../helpers/format'
-import { getSettings, isConfigured, type PiholeSettings } from '../../helpers/settings'
+import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
 import StatusCard from './components/StatusCard.vue'
@@ -196,7 +196,7 @@ const updateChecking = ref(true)
 const loading = ref(true)
 const refreshing = ref(false)
 const configured = ref(false)
-const settings = ref<PiholeSettings | null>(null)
+const settings = ref<ExtensionSettings | null>(null)
 const states = ref<InstanceState[]>([])
 const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)

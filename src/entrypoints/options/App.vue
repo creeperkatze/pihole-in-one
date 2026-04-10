@@ -9,7 +9,7 @@
 					<img :src="browser.runtime.getURL('/logo.svg')" width="108" alt="Pi-hole In One" />
 				</a>
 			</div>
-			<div class="px-2 pt-2">
+			<div class="px-2 py-2 border-b border-zinc-200 dark:border-zinc-800">
 				<div class="relative">
 					<Search
 						:size="15"
@@ -19,7 +19,7 @@
 						v-model="searchQuery"
 						type="text"
 						placeholder="Search options…"
-						class="input pl-9 text-sm py-2"
+						class="input rounded-lg pl-9 text-sm py-2"
 						:class="searchQuery ? 'pr-8' : ''"
 					/>
 					<button
@@ -43,13 +43,6 @@
 						@click="router.push('/' + tab.id)"
 					/>
 				</template>
-				<div
-					v-else
-					class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-zinc-500 dark:text-zinc-400"
-				>
-					<SearchIcon :size="16" />
-					Search results
-				</div>
 			</nav>
 
 			<!-- Bottom cards -->

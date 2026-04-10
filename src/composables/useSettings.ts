@@ -1,9 +1,13 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
-import { DEFAULTS, getSettings, type PiholeSettings, saveSettings } from '../helpers/settings'
+import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../helpers/settings'
 
 // Module-level singleton so all views share the same state
-const form = reactive<PiholeSettings>({ ...DEFAULTS, instances: [] })
+const form = reactive<ExtensionSettings>({
+	...DEFAULTS,
+	instances: [],
+	badgeMode: DEFAULTS.badgeMode,
+})
 const saveError = ref('')
 const initialized = ref(false)
 
@@ -26,7 +30,7 @@ watch(
 	{ deep: true },
 )
 
-function setOption(key: 'showBadge' | 'refreshInterval', value: boolean | number): void {
+function setOption(key: 'badgeMode' | 'refreshInterval', value: string | number): void {
 	;(form as Record<string, unknown>)[key] = value
 }
 
@@ -36,7 +40,7 @@ export function useSettings() {
 		const settings = await getSettings()
 		form.instances = settings.instances.map((inst) => ({ ...inst }))
 		form.refreshInterval = settings.refreshInterval
-		form.showBadge = settings.showBadge
+		form.badgeMode = settings.badgeMode
 		initialized.value = true
 	})
 

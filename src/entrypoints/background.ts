@@ -7,7 +7,7 @@ const ALARM = 'pihole-refresh'
 
 async function updateBadge(): Promise<void> {
 	const settings = await getSettings()
-	if (!settings.showBadge || settings.instances.length === 0) {
+	if (settings.badgeMode === 'off' || settings.instances.length === 0) {
 		await browser.action.setBadgeText({ text: '' })
 		return
 	}
@@ -29,16 +29,24 @@ async function updateBadge(): Promise<void> {
 			return
 		}
 
-		// Show combined percent blocked across all responding instances
-		const totalQueries = valid.reduce((sum, s) => sum + s.queries.total, 0)
-		const totalBlocked = valid.reduce((sum, s) => sum + s.queries.blocked, 0)
-		const pct = totalQueries > 0 ? Math.round((totalBlocked / totalQueries) * 100) : 0
-		const text = `${pct}%`
+		const color = allEnabled ? '#22c55e' : '#f97316' // green = all on, orange = mixed
+		let text: string
+
+		if (settings.badgeMode === 'state') {
+			text = 'ON'
+		} else if (settings.badgeMode === 'clients') {
+			const totalClients = valid.reduce((sum, s) => sum + s.clients.active, 0)
+			text = String(totalClients)
+		} else {
+			// percentage (default)
+			const totalQueries = valid.reduce((sum, s) => sum + s.queries.total, 0)
+			const totalBlocked = valid.reduce((sum, s) => sum + s.queries.blocked, 0)
+			const pct = totalQueries > 0 ? Math.round((totalBlocked / totalQueries) * 100) : 0
+			text = `${pct}%`
+		}
 
 		await browser.action.setBadgeText({ text })
-		await browser.action.setBadgeBackgroundColor({
-			color: allEnabled ? '#22c55e' : '#f97316', // green = all on, orange = mixed
-		})
+		await browser.action.setBadgeBackgroundColor({ color })
 	} catch {
 		// Keep last known badge state on error rather than clearing it
 	}

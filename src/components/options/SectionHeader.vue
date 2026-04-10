@@ -5,7 +5,7 @@
 			{{ description }}
 		</p>
 	</div>
-	<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
+	<div class="border-b border-zinc-200 dark:border-zinc-800"></div>
 </template>
 
 <script setup lang="ts">

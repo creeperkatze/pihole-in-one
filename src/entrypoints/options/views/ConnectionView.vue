@@ -4,7 +4,7 @@
 			title="Connection"
 			description="Manage your Pi-hole instances and badge refresh settings."
 		/>
-		<div class="px-8 py-4 max-w-xl flex flex-col">
+		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionPiHoleSelector
 				:model-value="form.instances"
 				@update:model-value="form.instances = $event"
