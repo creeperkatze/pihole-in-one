@@ -1,15 +1,21 @@
 <template>
 	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
-		<div class="flex items-center gap-3">
-			<Server :size="16" class="shrink-0 text-muted" />
-			<div>
-				<div class="text-sm font-medium">
-					{{ formatMessage(messages['options.piholeselector.title']) }}
-				</div>
-				<div class="text-xs text-secondary mt-0.5">
-					{{ formatMessage(messages['options.piholeselector.description']) }}
+		<div class="flex items-center justify-between gap-3">
+			<div class="flex items-center gap-3">
+				<Server :size="16" class="shrink-0 text-muted" />
+				<div>
+					<div class="text-sm font-medium">
+						{{ formatMessage(messages['options.piholeselector.title']) }}
+					</div>
+					<div class="text-xs text-secondary mt-0.5">
+						{{ formatMessage(messages['options.piholeselector.description']) }}
+					</div>
 				</div>
 			</div>
+			<Button class="shrink-0" @click="addInstance">
+				<Plus :size="13" />
+				{{ formatMessage(messages['options.piholeselector.addButton']) }}
+			</Button>
 		</div>
 
 		<div
@@ -144,18 +150,13 @@
 				</div>
 			</div>
 		</div>
-
-		<Button class="w-full justify-center" @click="addInstance">
-			<Plus :size="15" />
-			{{ formatMessage(messages['options.piholeselector.addButton']) }}
-		</Button>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from 'lucide-vue-next'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import { getSummary } from '../../helpers/api'
 import { useVIntl } from '../../helpers/i18n'
@@ -290,4 +291,14 @@ async function runTest(id: string): Promise<void> {
 		}
 	}
 }
+
+watch(
+	() => props.modelValue,
+	(instances) => {
+		for (const inst of instances) {
+			if (!testStates.value[inst.id]) void runTest(inst.id)
+		}
+	},
+	{ immediate: true },
+)
 </script>
