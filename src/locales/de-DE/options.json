@@ -15,10 +15,10 @@
     "defaultMessage": "Hell"
   },
   "options.connection.description": {
-    "defaultMessage": "Verwalte deine Pi-hole-Instanzen und die Einstellungen für die Aktualisierung der Abzeichens."
+    "defaultMessage": "Verwalte deine Pi-hole-Instanzen und die Einstellungen für die Aktualisierung des Abzeichens."
   },
   "options.connection.refreshInterval.description": {
-    "defaultMessage": "Mindestens 60 Sekunden in Chrome (MV3-Alarm-Einschränkung). Firefox erlaubt niedrigere Werte."
+    "defaultMessage": "Wie oft das Abzeichen aktualisiert wird. Wählen zwischen einer Minute und einer Stunde."
   },
   "options.connection.refreshInterval.label": {
     "defaultMessage": "Aktualisierungsintervall für Abzeichen"
@@ -50,6 +50,12 @@
   "options.customization.title": {
     "defaultMessage": "Anpassung"
   },
+  "options.diagnostics.description": {
+    "defaultMessage": "Hilf dabei, die Erweiterung zu verbessern, indem du anonyme Nutzungsdaten teilst."
+  },
+  "options.diagnostics.title": {
+    "defaultMessage": "Diagnose"
+  },
   "options.footer.checking": {
     "defaultMessage": "Wird überprüft"
   },
@@ -72,7 +78,7 @@
     "defaultMessage": "Konfiguriere eine oder mehrere Pi-Hole-Instanzen."
   },
   "options.piholeselector.empty": {
-    "defaultMessage": "Keine Pi-Löcher konfiguriert. Füge eins hinzu, um loszulegen."
+    "defaultMessage": "Keine Pi-holes konfiguriert. Füge eins hinzu, um loszulegen."
   },
   "options.piholeselector.instance.apiPassword.hint": {
     "defaultMessage": "Zu finden unter Einstellungen > API."
@@ -81,7 +87,7 @@
     "defaultMessage": "API-Passwort"
   },
   "options.piholeselector.instance.apiPassword.placeholder": {
-    "defaultMessage": "Leer lassen, wenn keins festfelegt ist"
+    "defaultMessage": "Leer lassen, wenn keins festgelegt ist"
   },
   "options.piholeselector.instance.connected": {
     "defaultMessage": "Verbunden!"
@@ -148,6 +154,18 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Anpassung"
+  },
+  "options.tabs.privacy": {
+    "defaultMessage": "Diagnose"
+  },
+  "options.telemetry.description": {
+    "defaultMessage": "Hilf dabei, die Erweiterung zu verbessern, indem du anonym Statistiken wie die Version der Erweiterung und die aktivierten Funktionen teilst. Es werden keine Daten vom Pi-hole, Aktivitäten oder persönliche Informationen erfasst."
+  },
+  "options.telemetry.disabledTooltip": {
+    "defaultMessage": "Wird durch die Firefox-Einstellungen zur Datenerfassung gesteuert"
+  },
+  "options.telemetry.label": {
+    "defaultMessage": "Telemetrie"
   }
 }
 
