@@ -116,7 +116,6 @@ import {
 	Activity,
 	CheckCircle2,
 	Clock,
-	ExternalLink,
 	Loader2,
 	Search,
 	Server,
