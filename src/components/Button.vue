@@ -42,16 +42,14 @@ button:hover:not(:disabled) {
 
 button[data-variant='primary']:hover:not(:disabled),
 button[data-variant='danger']:hover:not(:disabled) {
-	background-color: #cc0000;
-	border-color: #cc0000;
+	background-color: #990000;
 }
 
 button[data-variant='success']:hover:not(:disabled) {
-	background-color: #00cc00;
-	border-color: #00cc00;
+	background-color: #009900;
 }
 
 button[data-variant='outline']:hover:not(:disabled) {
-	background-color: var(--color-surface-3);
+	background-color: var(--color-surface-hover);
 }
 </style>
