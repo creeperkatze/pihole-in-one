@@ -50,7 +50,7 @@ const messages = defineMessages({
 	'options.telemetry.description': {
 		id: 'options.telemetry.description',
 		defaultMessage:
-			'Help improve the extension by anonymously sharing statistics like the extension version and platform. No Pi-hole data, activity, or personal information is ever collected.',
+			'Help improve the extension by anonymously sharing statistics like the extension version and which features are used. No Pi-hole data, activity, or personal information is ever collected.',
 	},
 	'options.telemetry.disabledTooltip': {
 		id: 'options.telemetry.disabledTooltip',

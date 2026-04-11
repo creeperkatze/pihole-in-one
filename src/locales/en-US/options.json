@@ -159,7 +159,7 @@
     "defaultMessage": "Diagnostics"
   },
   "options.telemetry.description": {
-    "defaultMessage": "Help improve the extension by anonymously sharing statistics like the extension version and platform. No Pi-hole data, activity, or personal information is ever collected."
+    "defaultMessage": "Help improve the extension by anonymously sharing statistics like the extension version and which features are used. No Pi-hole data, activity, or personal information is ever collected."
   },
   "options.telemetry.disabledTooltip": {
     "defaultMessage": "Controlled by Firefox data collection settings"
