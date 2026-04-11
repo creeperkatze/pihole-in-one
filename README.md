@@ -24,23 +24,23 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ### Blocking control
 
-Enable or disable Pi-hole blocking with a single click directly from the popup.
+Toggle Pi-hole blocking from the popup. Temporarily disable for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables blocking automatically.
 
 ### Domain management
 
-View whether the current tab's domain is blocked by a gravity list, blocked by a user rule, or allow-listed. Block or whitelist it instantly from the popup, no need to open the Pi-hole admin interface.
+See if the current tab's domain is blocked or allow-listed and toggle it instantly, without opening the Pi-hole admin interface.
 
 ### Stats at a glance
 
-See today's query count, blocked count, block percentage, and unique domain count right in the popup.
+See today's query count, blocked count, block percentage, and unique domain count in the popup.
 
 ### Multiple Pi-hole instances
 
-Connect to more than one Pi-hole and control all of them from a single extension. Toggle blocking across all instances at once.
+Connect to multiple Pi-holes and control them all from one extension, with per-instance tabs in the popup.
 
 ### Extension badge
 
-The toolbar icon shows the **percentage of queries blocked today**, updated every minute and immediately after any change. Shows **OFF** when blocking is disabled.
+Configurable toolbar badge: blocked percentage, ON/OFF state, or the active client count Updates every minute, on browser startup, and after any change.
 
 ## ⚙️ Setup
 
