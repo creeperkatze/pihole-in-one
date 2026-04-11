@@ -33,10 +33,7 @@
 				class="rounded-lg border border-border overflow-hidden"
 			>
 				<!-- Header row (always visible) -->
-				<div
-					class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised cursor-pointer select-none"
-					@click="toggleEdit(inst.id)"
-				>
+				<div class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised">
 					<div class="min-w-0 flex-1">
 						<div class="text-sm font-medium truncate">
 							{{
@@ -47,7 +44,7 @@
 							{{ inst.baseUrl || formatMessage(messages['options.piholeselector.instance.noUrl']) }}
 						</div>
 					</div>
-					<div class="flex items-center gap-2 shrink-0">
+					<div class="flex items-center gap-2">
 						<Loader2
 							v-if="testStates[inst.id]?.status === 'testing'"
 							:size="14"
@@ -63,18 +60,16 @@
 							:size="14"
 							class="text-pihole-red"
 						/>
-						<button
-							type="button"
-							class="text-zinc-400 hover:text-pihole-red transition-colors duration-150"
-							@click.stop="removeInstance(inst.id)"
-						>
-							<Trash2 :size="14" />
-						</button>
-						<ChevronDown
-							:size="16"
-							class="text-zinc-400 transition-transform duration-200"
-							:class="editingId === inst.id ? 'rotate-180' : ''"
-						/>
+						<Button size="small" variant="outline" @click="removeInstance(inst.id)">
+							<Trash2 :size="13" />
+						</Button>
+						<Button size="small" variant="outline" @click="toggleEdit(inst.id)">
+							<ChevronDown
+								:size="13"
+								class="transition-transform duration-200"
+								:class="editingId === inst.id ? 'rotate-180' : ''"
+							/>
+						</Button>
 					</div>
 				</div>
 
