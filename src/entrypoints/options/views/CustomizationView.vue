@@ -8,11 +8,25 @@
 			<OptionSelect
 				:icon="Languages"
 				:label="formatMessage(messages['options.language.label'])"
-				:description="formatMessage(messages['options.language.description'])"
 				:model-value="form.locale"
 				:options="languageOptions"
 				@update:model-value="form.locale = $event"
-			/>
+			>
+				<template #description>
+					<i18n-t keypath="options.language.description" tag="span">
+						<template #crowdin>
+							<a
+								href="https://crowdin.com/project/pihole-in-one"
+								target="_blank"
+								rel="noopener"
+								class="text-pihole-red hover:underline"
+								@click.stop
+								>Crowdin</a
+							>
+						</template>
+					</i18n-t>
+				</template>
+			</OptionSelect>
 			<OptionSelect
 				:icon="Monitor"
 				:label="formatMessage(messages['options.colorScheme.label'])"
@@ -69,7 +83,8 @@ const messages = defineMessages({
 	},
 	'options.language.description': {
 		id: 'options.language.description',
-		defaultMessage: 'Choose the language for the extension interface.',
+		defaultMessage:
+			'Choose the language for the extension interface. Help translate on {crowdin}. Some languages may be incomplete.',
 	},
 	'options.customization.badge.label': {
 		id: 'options.customization.badge.label',

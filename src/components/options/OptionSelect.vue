@@ -6,8 +6,8 @@
 			<component :is="icon" v-if="icon" class="size-5 shrink-0 text-muted" />
 			<div>
 				<div class="text-sm font-medium">{{ label }}</div>
-				<div v-if="description" class="text-xs text-secondary mt-0.5">
-					{{ description }}
+				<div v-if="$slots.description || description" class="text-xs text-secondary mt-0.5">
+					<slot name="description">{{ description }}</slot>
 				</div>
 			</div>
 		</div>
