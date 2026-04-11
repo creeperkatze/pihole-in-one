@@ -133,7 +133,7 @@
      cx="20" />
   <path
      id="rect22"
-     style="fill:currentColor;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     style="fill:#790200;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
      d="m 18.535534,20.128235 h 2.928932 C 23.423152,20.128235 25,21.705083 25,23.663769 v 62.928932 c 0,1.958686 -1.576848,3.535534 -3.535534,3.535534 H 18.535534 C 16.576848,90.128235 15,88.551387 15,86.592701 V 23.663769 c 0,-1.958686 1.576848,-3.535534 3.535534,-3.535534 z" />
   <path
      style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"

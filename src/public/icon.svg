@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      showguides="true"
-     inkscape:zoom="4"
-     inkscape:cx="4.75"
-     inkscape:cy="55.125"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="33.410795"
+     inkscape:cy="75.837202"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -272,7 +272,7 @@
      cx="20" />
   <path
      id="rect22"
-     style="fill:#ffffff;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     style="fill:#790200;stroke-width:4.76625;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill;fill-opacity:1"
      d="m 18.535534,20.128233 h 2.928932 C 23.423152,20.128233 25,21.705081 25,23.663767 v 62.928932 c 0,1.958686 -1.576848,3.535534 -3.535534,3.535534 H 18.535534 C 16.576848,90.128233 15,88.551385 15,86.592699 V 23.663767 c 0,-1.958686 1.576848,-3.535534 3.535534,-3.535534 z" />
   <path
      style="fill:#43d021;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:0;paint-order:markers stroke fill"
