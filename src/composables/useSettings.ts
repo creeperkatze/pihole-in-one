@@ -3,12 +3,14 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import { applyColorScheme } from '../helpers/colorScheme'
 import { detectBrowserLocale, i18n } from '../helpers/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../helpers/settings'
+import { setTelemetryEnabled } from '../helpers/telemetry'
 
 // Module-level singleton so all views share the same state
 const form = reactive<ExtensionSettings>({
 	...DEFAULTS,
 	instances: [],
 	badgeMode: DEFAULTS.badgeMode,
+	telemetry: true,
 })
 const saveError = ref('')
 const initialized = ref(false)
@@ -48,6 +50,14 @@ watch(
 	},
 )
 
+watch(
+	() => form.telemetry,
+	(value) => {
+		if (!initialized.value) return
+		setTelemetryEnabled(value)
+	},
+)
+
 function setOption(key: 'badgeMode' | 'refreshInterval', value: string | number): void {
 	;(form as Record<string, unknown>)[key] = value
 }
@@ -61,6 +71,7 @@ export function useSettings() {
 		form.badgeMode = settings.badgeMode
 		form.colorScheme = settings.colorScheme
 		form.locale = settings.locale || detectBrowserLocale()
+		form.telemetry = settings.telemetry
 		applyColorScheme(settings.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true

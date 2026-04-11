@@ -2,6 +2,7 @@ import { browser } from 'wxt/browser'
 
 import { getSummary } from '../helpers/api'
 import { getSettings } from '../helpers/settings'
+import { capture, initTelemetry } from '../helpers/telemetry'
 
 const ALARM = 'pihole-refresh'
 
@@ -54,6 +55,12 @@ async function updateBadge(): Promise<void> {
 }
 
 export default defineBackground(() => {
+	void initTelemetry()
+	void getSettings().then((settings) => {
+		// Capture settings, except sensitive instance info and just include instance count
+		capture('extension_started', { ...settings, instances: settings.instances.length })
+	})
+
 	void updateBadge()
 
 	// Chrome MV3 minimum alarm interval is 1 minute
@@ -72,6 +79,14 @@ export default defineBackground(() => {
 		if (message?.type === 'refresh') {
 			void updateBadge().then(() => sendResponse({ ok: true }))
 			return true
+		}
+	})
+
+	browser.runtime.onInstalled.addListener((details) => {
+		if (details.reason === 'install') {
+			capture('extension_installed')
+		} else if (details.reason === 'update') {
+			capture('extension_updated', { from_extension_version: details.previousVersion })
 		}
 	})
 })

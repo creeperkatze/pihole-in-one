@@ -50,6 +50,12 @@
   "options.customization.title": {
     "defaultMessage": "Customization"
   },
+  "options.diagnostics.description": {
+    "defaultMessage": "Help improve the extension by sharing anonymous usage data."
+  },
+  "options.diagnostics.title": {
+    "defaultMessage": "Diagnostics"
+  },
   "options.footer.checking": {
     "defaultMessage": "Checking"
   },
@@ -148,5 +154,17 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Customization"
+  },
+  "options.tabs.privacy": {
+    "defaultMessage": "Diagnostics"
+  },
+  "options.telemetry.description": {
+    "defaultMessage": "Help improve the extension by anonymously sharing statistics like the extension version and platform. No Pi-hole data, activity, or personal information is ever collected."
+  },
+  "options.telemetry.disabledTooltip": {
+    "defaultMessage": "Controlled by Firefox data collection settings"
+  },
+  "options.telemetry.label": {
+    "defaultMessage": "Telemetry"
   }
 }

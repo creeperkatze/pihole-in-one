@@ -16,6 +16,7 @@ export interface ExtensionSettings {
 	badgeMode: BadgeMode
 	colorScheme: ColorScheme
 	locale: string
+	telemetry: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -24,6 +25,7 @@ export const DEFAULTS: ExtensionSettings = {
 	badgeMode: 'percentage',
 	colorScheme: 'auto',
 	locale: '',
+	telemetry: true,
 }
 
 export function generateInstanceId(): string {
