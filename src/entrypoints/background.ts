@@ -82,6 +82,8 @@ export default defineBackground(() => {
 		}
 	})
 
+	browser.runtime.onStartup.addListener(() => void updateBadge())
+
 	browser.runtime.onInstalled.addListener((details) => {
 		if (details.reason === 'install') {
 			capture('extension_installed')

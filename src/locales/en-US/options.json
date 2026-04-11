@@ -125,6 +125,12 @@
   "options.search.title": {
     "defaultMessage": "Search results"
   },
+  "options.sidebar.crowdin.description": {
+    "defaultMessage": "Help translate"
+  },
+  "options.sidebar.crowdin.title": {
+    "defaultMessage": "View on Crowdin"
+  },
   "options.sidebar.github.description": {
     "defaultMessage": "Leave a star"
   },

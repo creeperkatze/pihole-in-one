@@ -55,7 +55,22 @@
 					class="no-underline"
 				>
 					<template #icon>
-						<Kofi class="size-5 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
+						<KofiLogo class="size-5 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
+					</template>
+				</Card>
+				<Card
+					as="a"
+					href="https://crowdin.com/project/pihole-in-one"
+					target="_blank"
+					rel="noopener"
+					:title="formatMessage(messages['options.sidebar.crowdin.title'])"
+					:description="formatMessage(messages['options.sidebar.crowdin.description'])"
+					class="no-underline"
+				>
+					<template #icon>
+						<CrowdinLogo
+							class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100"
+						/>
 					</template>
 				</Card>
 				<Card
@@ -68,7 +83,7 @@
 					class="no-underline"
 				>
 					<template #icon>
-						<GitHub class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100" />
+						<GitHubLogo class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100" />
 					</template>
 				</Card>
 			</div>
@@ -126,8 +141,9 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
-import GitHub from '../../assets/icons/github.svg?component'
-import Kofi from '../../assets/icons/kofi.svg?component'
+import CrowdinLogo from '../../assets/icons/crowdin.svg?component'
+import GitHubLogo from '../../assets/icons/github.svg?component'
+import KofiLogo from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
 import Input from '../../components/Input.vue'
@@ -153,6 +169,14 @@ const messages = defineMessages({
 	'options.sidebar.kofi.description': {
 		id: 'options.sidebar.kofi.description',
 		defaultMessage: 'Buy me a coffee',
+	},
+	'options.sidebar.crowdin.title': {
+		id: 'options.sidebar.crowdin.title',
+		defaultMessage: 'View on Crowdin',
+	},
+	'options.sidebar.crowdin.description': {
+		id: 'options.sidebar.crowdin.description',
+		defaultMessage: 'Help translate',
 	},
 	'options.sidebar.github.title': {
 		id: 'options.sidebar.github.title',

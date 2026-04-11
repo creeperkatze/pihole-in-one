@@ -339,10 +339,17 @@ function tickTimer(i: number): void {
 	if (remaining === 0) {
 		clearInterval(intervals[i]!)
 		intervals[i] = null
-		void fetchSummary(i).then(() => {
-			void browser.runtime.sendMessage({ type: 'refresh' })
-		})
+		void pollUntilEnabled(i)
 	}
+}
+
+async function pollUntilEnabled(i: number, maxAttempts = 5, delayMs = 1000): Promise<void> {
+	for (let attempt = 0; attempt < maxAttempts; attempt++) {
+		if (attempt > 0) await new Promise((r) => setTimeout(r, delayMs))
+		await fetchSummary(i)
+		if (isEnabled(i)) break
+	}
+	void browser.runtime.sendMessage({ type: 'refresh' })
 }
 
 async function fetchSummary(i: number): Promise<void> {
