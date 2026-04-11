@@ -10,8 +10,7 @@
 			<div class="px-2 py-2 border-b border-border-subtle">
 				<div class="relative">
 					<Search
-						:size="15"
-						class="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+						class="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
 					/>
 					<Input
 						v-model="searchQuery"
@@ -26,7 +25,7 @@
 						class="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-secondary"
 						@click="searchQuery = ''"
 					>
-						<XIcon :size="14" />
+						<XIcon class="size-4" />
 					</button>
 				</div>
 			</div>
@@ -80,7 +79,7 @@
 			<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-border-subtle">
 				<span class="text-xs text-secondary">v{{ version }}</span>
 				<span v-if="checking" class="flex items-center gap-1 text-xs text-muted">
-					<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
+					<Loader2 class="size-3 animate-spin" aria-hidden="true" />
 					{{ formatMessage(messages['options.footer.checking']) }}
 				</span>
 				<a
@@ -90,7 +89,7 @@
 					rel="noopener"
 					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
-					<CheckCircle2 :size="12" aria-hidden="true" />
+					<CheckCircle2 class="size-3" aria-hidden="true" />
 					{{ formatMessage(messages['options.footer.latestVersion']) }}
 				</a>
 				<a
@@ -100,7 +99,7 @@
 					rel="noopener"
 					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
-					<Clock :size="12" aria-hidden="true" />
+					<Clock class="size-3" aria-hidden="true" />
 					{{ formatMessage(messages['options.footer.updateAvailable']) }}
 				</a>
 			</div>

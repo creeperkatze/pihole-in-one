@@ -16,7 +16,7 @@
 					:disabled="refreshing"
 					@click="refresh"
 				>
-					<RefreshCw :size="16" :class="{ 'animate-spin': refreshing }" />
+					<RefreshCw class="size-4" :class="{ 'animate-spin': refreshing }" />
 				</button>
 				<button
 					v-if="configured && settings"
@@ -24,14 +24,14 @@
 					:title="`Open ${settings.instances[activeInstance]?.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])}`"
 					@click="openPihole"
 				>
-					<ExternalLink :size="16" />
+					<ExternalLink class="size-4" />
 				</button>
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
 					:title="formatMessage(messages['popup.settings'])"
 					@click="openOptions"
 				>
-					<Settings :size="16" />
+					<Settings class="size-4" />
 				</button>
 			</div>
 		</header>
@@ -133,7 +133,7 @@
 		<footer class="flex items-center gap-2 px-3.5 py-2">
 			<span class="text-xs text-secondary">v{{ version }}</span>
 			<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted">
-				<Loader2 :size="12" class="animate-spin" aria-hidden="true" />
+				<Loader2 class="size-3 animate-spin" aria-hidden="true" />
 				{{ formatMessage(messages['popup.footer.checking']) }}
 			</span>
 			<a
@@ -143,7 +143,7 @@
 				rel="noopener"
 				class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 			>
-				<CheckCircle2 :size="12" aria-hidden="true" />
+				<CheckCircle2 class="size-3" aria-hidden="true" />
 				{{ formatMessage(messages['popup.footer.latestVersion']) }}
 			</a>
 			<a
@@ -153,7 +153,7 @@
 				rel="noopener"
 				class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 			>
-				<Clock :size="12" aria-hidden="true" />
+				<Clock class="size-3" aria-hidden="true" />
 				{{ formatMessage(messages['popup.footer.updateAvailable']) }}
 			</a>
 			<a

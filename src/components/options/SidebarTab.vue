@@ -9,7 +9,7 @@
 		"
 		@click="$emit('click')"
 	>
-		<component :is="icon" :size="16" />
+		<component :is="icon" class="size-4" />
 		{{ label }}
 	</button>
 </template>

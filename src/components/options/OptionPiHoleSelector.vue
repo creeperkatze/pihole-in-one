@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<Button class="shrink-0" @click="addInstance">
-				<Plus :size="13" />
+				<Plus class="size-4" />
 				{{ formatMessage(messages['options.piholeselector.addButton']) }}
 			</Button>
 		</div>
@@ -23,7 +23,6 @@
 				v-if="modelValue.length === 0"
 				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
 			>
-				<Server :size="22" class="opacity-40" />
 				{{ formatMessage(messages['options.piholeselector.empty']) }}
 			</div>
 
@@ -57,10 +56,10 @@
 							v-else-if="testStates[inst.id]?.status === 'error'"
 							class="size-4 text-pihole-red"
 						/>
-						<Button variant="outline" @click="removeInstance(inst.id)">
+						<Button size="small" variant="outline" @click="removeInstance(inst.id)">
 							<Trash2 class="size-4" />
 						</Button>
-						<Button variant="outline" @click="toggleEdit(inst.id)">
+						<Button size="small" variant="outline" @click="toggleEdit(inst.id)">
 							<ChevronDown
 								class="size-4 transition-transform duration-200"
 								:class="editingId === inst.id ? 'rotate-180' : ''"
@@ -125,7 +124,7 @@
 						v-if="testStates[inst.id]?.status === 'testing'"
 						class="flex items-center gap-1.5 text-xs text-zinc-400"
 					>
-						<Loader2 :size="12" class="animate-spin" />
+						<Loader2 class="size-4 animate-spin" />
 						{{ formatMessage(messages['options.piholeselector.instance.testing']) }}
 					</div>
 					<div
