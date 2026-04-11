@@ -174,7 +174,7 @@ export async function searchDomain(
 	})
 }
 
-function domainRegex(domain: string): string {
+export function domainRegex(domain: string): string {
 	const escaped = domain.replace(/\./g, '\\.')
 	return `(^|\\.)(${escaped})$`
 }

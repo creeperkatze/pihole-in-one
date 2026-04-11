@@ -7,7 +7,7 @@
    width="300"
    height="188"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
-   inkscape:export-filename="banner-medium.png"
+   inkscape:export-filename="banner-small.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,8 +26,8 @@
      inkscape:deskcolor="#505050"
      showguides="true"
      inkscape:zoom="2.1959332"
-     inkscape:cx="167.8102"
-     inkscape:cy="166.44404"
+     inkscape:cx="187.84724"
+     inkscape:cy="172.36408"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -41,7 +41,7 @@
        xlink:href="#pattern103"
        preserveAspectRatio="xMidYMid"
        id="pattern104"
-       patternTransform="matrix(1.5,0,0,1.5,2.24,-0.56999995)"
+       patternTransform="scale(1)"
        x="0"
        y="0" />
     <inkscape:path-effect
@@ -422,18 +422,18 @@
     </pattern>
   </defs>
   <rect
-     style="fill:#18181b;fill-opacity:1;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     style="fill:#18181b;fill-opacity:1;stroke-width:4.99233;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
      id="rect1-1"
-     width="440"
-     height="280"
+     width="437.76001"
+     height="280.57001"
      x="0"
      y="0" />
   <rect
      style="fill:url(#pattern104);stroke:none;stroke-width:3.52182"
      width="437.76001"
      height="280.57001"
-     x="2.2400002"
-     y="-0.56999999"
+     x="0"
+     y="0"
      id="rect103" />
   <text
      xml:space="preserve"

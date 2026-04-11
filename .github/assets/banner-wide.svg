@@ -26,8 +26,8 @@
      inkscape:deskcolor="#505050"
      showguides="true"
      inkscape:zoom="0.5489833"
-     inkscape:cx="769.60447"
-     inkscape:cy="527.33844"
+     inkscape:cx="516.40915"
+     inkscape:cy="361.57748"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -36,14 +36,6 @@
      inkscape:current-layer="svg6" />
   <defs
      id="defs2">
-    <pattern
-       inkscape:collect="always"
-       xlink:href="#pattern103"
-       preserveAspectRatio="xMidYMid"
-       id="pattern104"
-       patternTransform="matrix(4.7894736,0,0,4.7894736,2.2399995,-0.56999991)"
-       x="0"
-       y="0" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect9"
@@ -420,20 +412,301 @@
          r="1.5"
          id="circle103" />
     </pattern>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern103-8"
+       preserveAspectRatio="xMidYMid"
+       id="pattern104"
+       patternTransform="scale(3.1980993)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="96.139997"
+       height="103.00001"
+       patternTransform="translate(2.2400002,-0.56999999)"
+       preserveAspectRatio="xMidYMid"
+       id="pattern103-8"
+       inkscape:label="pattern103">
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="23.429998"
+         cy="8.6700001"
+         r="1.5"
+         id="circle60-7" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="28.240002"
+         cy="23.869999"
+         r="1.5"
+         id="circle61-4" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="41.939999"
+         cy="24.719999"
+         r="1.5"
+         id="circle62-2" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="16.200001"
+         cy="30.860001"
+         r="1.5"
+         id="circle63-7" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="58.559998"
+         cy="14.2"
+         r="1.5"
+         id="circle64-7" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="55.949997"
+         cy="44.700001"
+         r="1.5"
+         id="circle65-9" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="40.809998"
+         cy="41.049999"
+         r="1.5"
+         id="circle66-3" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="53.169998"
+         cy="31.02"
+         r="1.5"
+         id="circle67-1" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="45.609997"
+         cy="55.84"
+         r="1.5"
+         id="circle68-9" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="24.43"
+         cy="52.41"
+         r="1.5"
+         id="circle69-8" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="77.410004"
+         cy="15.049999"
+         r="1.5"
+         id="circle70-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="68.230003"
+         cy="51.059998"
+         r="1.5"
+         id="circle71-5" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="41.16"
+         cy="9.5199995"
+         r="1.5"
+         id="circle72-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="69.010002"
+         cy="3.97"
+         r="1.5"
+         id="circle73-2" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="93.260002"
+         cy="11.059999"
+         r="1.5"
+         id="circle74-8" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="67.82"
+         cy="27.459999"
+         r="1.5"
+         id="circle75-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="86.850006"
+         cy="27.459999"
+         r="1.5"
+         id="circle76-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="90.909996"
+         cy="44.639999"
+         r="1.5"
+         id="circle77-2" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="75.960007"
+         cy="39.269997"
+         r="1.5"
+         id="circle78-4" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="80.460007"
+         cy="60.049999"
+         r="1.5"
+         id="circle79-8" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="77.490005"
+         cy="74.849998"
+         r="1.5"
+         id="circle80-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="91.18"
+         cy="81.289993"
+         r="1.5"
+         id="circle81-5" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="79.820007"
+         cy="93.719994"
+         r="1.5"
+         id="circle82-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="94.580002"
+         cy="95.32"
+         r="1.5"
+         id="circle83-9" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="94.639999"
+         cy="62.43"
+         r="1.5"
+         id="circle84-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="31.550001"
+         cy="63.529999"
+         r="1.5"
+         id="circle85-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="26.470001"
+         cy="82.610008"
+         r="1.5"
+         id="circle86-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="43.66"
+         cy="87.760002"
+         r="1.5"
+         id="circle87-1" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="29.57"
+         cy="97.279991"
+         r="1.5"
+         id="circle88-3" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="55.100002"
+         cy="73.720001"
+         r="1.5"
+         id="circle89-8" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="64.830002"
+         cy="65.699997"
+         r="1.5"
+         id="circle90-9" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="55.059998"
+         cy="97.269997"
+         r="1.5"
+         id="circle91-3" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="63.109997"
+         cy="84.300003"
+         r="1.5"
+         id="circle92-4" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="41.459995"
+         cy="72.110001"
+         r="1.5"
+         id="circle93-4" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="3.9799995"
+         cy="73.07"
+         r="1.5"
+         id="circle94-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="6.0699992"
+         cy="57.360001"
+         r="1.5"
+         id="circle95-0" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="10.33"
+         cy="85.760002"
+         r="1.5"
+         id="circle96-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="17.65"
+         cy="69.339996"
+         r="1.5"
+         id="circle97-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="1.5"
+         cy="32.380001"
+         r="1.5"
+         id="circle98-1" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="9.4200001"
+         cy="17.209999"
+         r="1.5"
+         id="circle99-8" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="9.2700005"
+         cy="1.5"
+         r="1.5"
+         id="circle100-4" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="9.2700005"
+         cy="101.50001"
+         r="1.5"
+         id="circle101-9" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="10.780001"
+         cy="45.080002"
+         r="1.5"
+         id="circle102-6" />
+      <circle
+         style="fill:#27272a;fill-opacity:1;stroke:none;stroke-width:10"
+         cx="28.23"
+         cy="38.200001"
+         r="1.5"
+         id="circle103-3" />
+    </pattern>
   </defs>
   <rect
-     style="fill:#18181b;fill-opacity:1;stroke-width:15.9345;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
+     style="fill:#18181b;fill-opacity:1;stroke-width:15.9659;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:0;paint-order:markers stroke fill"
      id="rect1-1"
-     width="1402.24"
-     height="892.33453"
+     width="1400"
+     height="897.29077"
      x="0"
      y="0" />
   <rect
-     style="fill:url(#pattern104);stroke:none;stroke-width:11.2451"
-     width="1397.76"
-     height="895.8551"
-     x="2.2400002"
-     y="-0.56999999"
+     style="fill:url(#pattern104);stroke:none;stroke-width:11.2631"
+     width="1400"
+     height="897.29077"
+     x="0"
+     y="0"
      id="rect103" />
   <text
      xml:space="preserve"

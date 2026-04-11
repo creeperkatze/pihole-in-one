@@ -57,7 +57,7 @@ const messages = defineMessages({
 	},
 	'options.connection.refreshInterval.description': {
 		id: 'options.connection.refreshInterval.description',
-		defaultMessage: 'Minimum 60s in Chrome (MV3 alarm constraint). Firefox allows lower values.',
+		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
 	},
 })
 </script>

@@ -53,6 +53,7 @@ import {
 	blockDomain,
 	deleteDomainEntry,
 	type DomainEntry,
+	domainRegex,
 	searchDomain,
 } from '../../../helpers/api'
 import { useVIntl } from '../../../helpers/i18n'
@@ -135,10 +136,11 @@ async function deleteEntries(inst: PiholeInstance, entries: DomainEntry[]): Prom
 
 async function toggleAllowlist(): Promise<void> {
 	acting.value = true
+	const wasAllowlisted = allowlistedByUser.value
 	try {
 		await Promise.all(
 			props.instances.map(async (inst) => {
-				if (allowlistedByUser.value) {
+				if (wasAllowlisted) {
 					await deleteEntries(inst, allowEntries.value)
 				} else {
 					await deleteEntries(inst, denyEntries.value)
@@ -146,7 +148,23 @@ async function toggleAllowlist(): Promise<void> {
 				}
 			}),
 		)
-		await fetchStatus()
+		// Optimistic update
+		if (wasAllowlisted) {
+			allowEntries.value = []
+		} else {
+			denyEntries.value = []
+			allowEntries.value = [
+				{
+					domain: domainRegex(props.domain),
+					type: 'allow',
+					kind: 'regex',
+					enabled: true,
+					comment: null,
+					id: -1,
+					groups: [0],
+				},
+			]
+		}
 	} finally {
 		acting.value = false
 	}
@@ -154,10 +172,11 @@ async function toggleAllowlist(): Promise<void> {
 
 async function toggleBlock(): Promise<void> {
 	acting.value = true
+	const wasBlocked = blockedByUser.value
 	try {
 		await Promise.all(
 			props.instances.map(async (inst) => {
-				if (blockedByUser.value) {
+				if (wasBlocked) {
 					await deleteEntries(inst, denyEntries.value)
 				} else {
 					await deleteEntries(inst, allowEntries.value)
@@ -165,7 +184,23 @@ async function toggleBlock(): Promise<void> {
 				}
 			}),
 		)
-		await fetchStatus()
+		// Optimistic update
+		if (wasBlocked) {
+			denyEntries.value = []
+		} else {
+			allowEntries.value = []
+			denyEntries.value = [
+				{
+					domain: domainRegex(props.domain),
+					type: 'deny',
+					kind: 'regex',
+					enabled: true,
+					comment: null,
+					id: -1,
+					groups: [0],
+				},
+			]
+		}
 	} finally {
 		acting.value = false
 	}
