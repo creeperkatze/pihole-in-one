@@ -68,9 +68,7 @@
 					class="no-underline"
 				>
 					<template #icon>
-						<ExternalLink
-							class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100"
-						/>
+						<GitHub class="size-5 shrink-0 text-secondary opacity-75 group-hover:opacity-100" />
 					</template>
 				</Card>
 			</div>
@@ -129,6 +127,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
+import GitHub from '../../assets/icons/github.svg?component'
 import Kofi from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
