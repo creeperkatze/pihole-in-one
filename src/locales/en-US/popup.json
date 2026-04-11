@@ -5,6 +5,9 @@
   "popup.disableFor": {
     "defaultMessage": "Disable for"
   },
+  "popup.domain.block": {
+    "defaultMessage": "Block"
+  },
   "popup.domain.blockedByListPlural": {
     "defaultMessage": "Blocked by \"{list}\" +{count} more"
   },
@@ -14,8 +17,23 @@
   "popup.domain.notBlocked": {
     "defaultMessage": "Not blocked"
   },
+  "popup.domain.removeFromWhitelist": {
+    "defaultMessage": "Remove from whitelist"
+  },
+  "popup.domain.unblock": {
+    "defaultMessage": "Unblock"
+  },
+  "popup.domain.whitelist": {
+    "defaultMessage": "Whitelist"
+  },
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Whitelisted by user"
+  },
+  "popup.error.actionFailed": {
+    "defaultMessage": "Action failed"
+  },
+  "popup.error.fetchFailed": {
+    "defaultMessage": "Failed to fetch status"
   },
   "popup.error.fix": {
     "defaultMessage": "Fix"
@@ -40,6 +58,9 @@
   },
   "popup.notConfigured.openSettings": {
     "defaultMessage": "Open Settings"
+  },
+  "popup.openInstance": {
+    "defaultMessage": "Open {name}"
   },
   "popup.refresh": {
     "defaultMessage": "Refresh"

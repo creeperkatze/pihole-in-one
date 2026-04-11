@@ -4,12 +4,12 @@
 			:title="formatMessage(messages['options.diagnostics.title'])"
 			:description="formatMessage(messages['options.diagnostics.description'])"
 		/>
-		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
+		<div v-if="initialized && firefoxCheckDone" class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionToggle
 				:icon="ChartColumn"
 				:label="formatMessage(messages['options.telemetry.label'])"
 				:description="formatMessage(messages['options.telemetry.description'])"
-				:model-value="form.telemetry"
+				:model-value="firefoxControlsTelemetry ? false : form.telemetry"
 				:disabled="firefoxControlsTelemetry"
 				:disabled-tooltip="
 					firefoxControlsTelemetry
@@ -33,7 +33,7 @@ import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import { useVIntl } from '../../../helpers/i18n'
 
-const { form } = useSettings()
+const { form, initialized } = useSettings()
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
@@ -61,6 +61,7 @@ const messages = defineMessages({
 })
 
 const firefoxControlsTelemetry = ref(false)
+const firefoxCheckDone = ref(false)
 
 onMounted(async () => {
 	const perms = await browser.permissions.getAll()
@@ -68,5 +69,6 @@ onMounted(async () => {
 		const granted = (perms as unknown as { data_collection: string[] }).data_collection
 		firefoxControlsTelemetry.value = !granted.includes('technicalAndInteraction')
 	}
+	firefoxCheckDone.value = true
 })
 </script>

@@ -21,7 +21,13 @@
 				<button
 					v-if="configured && settings"
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
-					:title="`Open ${settings.instances[activeInstance]?.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])}`"
+					:title="
+						formatMessage(messages['popup.openInstance'], {
+							name:
+								settings.instances[activeInstance]?.name ||
+								formatMessage(messages['options.piholeselector.instance.fallbackName']),
+						})
+					"
 					@click="openPihole"
 				>
 					<ExternalLink class="size-4" />
@@ -241,6 +247,12 @@ const messages = defineMessages({
 		id: 'options.piholeselector.instance.fallbackName',
 		defaultMessage: 'Pi-hole',
 	},
+	'popup.openInstance': { id: 'popup.openInstance', defaultMessage: 'Open {name}' },
+	'popup.error.fetchFailed': {
+		id: 'popup.error.fetchFailed',
+		defaultMessage: 'Failed to fetch status',
+	},
+	'popup.error.actionFailed': { id: 'popup.error.actionFailed', defaultMessage: 'Action failed' },
 })
 
 interface InstanceState {
@@ -361,7 +373,8 @@ async function fetchSummary(i: number): Promise<void> {
 		states.value[i].summary = summary
 		syncTimer(i, summary.blocking)
 	} catch (e) {
-		states.value[i].error = e instanceof Error ? e.message : 'Failed to fetch status'
+		states.value[i].error =
+			e instanceof Error ? e.message : formatMessage(messages['popup.error.fetchFailed'])
 	}
 }
 
@@ -390,7 +403,8 @@ async function toggleBlocking(i: number): Promise<void> {
 		void browser.runtime.sendMessage({ type: 'refresh' })
 		await fetchSummary(i)
 	} catch (e) {
-		state.error = e instanceof Error ? e.message : 'Action failed'
+		state.error =
+			e instanceof Error ? e.message : formatMessage(messages['popup.error.actionFailed'])
 	} finally {
 		state.toggling = false
 	}
@@ -409,7 +423,8 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 		void browser.runtime.sendMessage({ type: 'refresh' })
 		await fetchSummary(i)
 	} catch (e) {
-		state.error = e instanceof Error ? e.message : 'Action failed'
+		state.error =
+			e instanceof Error ? e.message : formatMessage(messages['popup.error.actionFailed'])
 	} finally {
 		state.toggling = false
 	}

@@ -92,6 +92,9 @@
   "options.piholeselector.instance.connected": {
     "defaultMessage": "Connected!"
   },
+  "options.piholeselector.instance.connectionFailed": {
+    "defaultMessage": "Connection failed"
+  },
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
   },

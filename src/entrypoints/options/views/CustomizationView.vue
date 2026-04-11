@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.customization.title'])"
 			:description="formatMessage(messages['options.customization.description'])"
 		/>
-		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
+		<div v-if="initialized" class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionSelect
 				:icon="Languages"
 				:label="formatMessage(messages['options.language.label'])"
@@ -65,7 +65,7 @@ import { useVIntl } from '../../../helpers/i18n'
 import { LOCALES } from '../../../helpers/locales'
 import type { BadgeMode, ColorScheme } from '../../../helpers/settings'
 
-const { form, saveError } = useSettings()
+const { form, saveError, initialized } = useSettings()
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({

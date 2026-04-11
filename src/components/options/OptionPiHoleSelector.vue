@@ -218,6 +218,10 @@ const messages = defineMessages({
 		id: 'options.piholeselector.instance.connected',
 		defaultMessage: 'Connected!',
 	},
+	'options.piholeselector.instance.connectionFailed': {
+		id: 'options.piholeselector.instance.connectionFailed',
+		defaultMessage: 'Connection failed',
+	},
 	'options.piholeselector.addButton': {
 		id: 'options.piholeselector.addButton',
 		defaultMessage: 'Add Pi-hole',
@@ -280,7 +284,10 @@ async function runTest(id: string): Promise<void> {
 	} catch (e) {
 		testStates.value[id] = {
 			status: 'error',
-			message: e instanceof Error ? e.message : 'Connection failed.',
+			message:
+				e instanceof Error
+					? e.message
+					: formatMessage(messages['options.piholeselector.instance.connectionFailed']),
 		}
 	}
 }

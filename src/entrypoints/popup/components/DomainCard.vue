@@ -23,7 +23,11 @@
 			<Button
 				:variant="allowlistedByUser ? 'success' : 'outline'"
 				:disabled="acting"
-				:title="allowlistedByUser ? 'Remove from whitelist' : 'Whitelist'"
+				:title="
+					allowlistedByUser
+						? formatMessage(messages['popup.domain.removeFromWhitelist'])
+						: formatMessage(messages['popup.domain.whitelist'])
+				"
 				@click="toggleAllowlist"
 			>
 				<Check class="size-4" />
@@ -31,7 +35,11 @@
 			<Button
 				:variant="blockedByUser ? 'danger' : 'outline'"
 				:disabled="acting"
-				:title="blockedByUser ? 'Unblock' : 'Block'"
+				:title="
+					blockedByUser
+						? formatMessage(messages['popup.domain.unblock'])
+						: formatMessage(messages['popup.domain.block'])
+				"
 				@click="toggleBlock"
 			>
 				<X class="size-4" />
@@ -72,6 +80,13 @@ const messages = defineMessages({
 		id: 'popup.domain.blockedByListPlural',
 		defaultMessage: 'Blocked by "{list}" +{count} more',
 	},
+	'popup.domain.whitelist': { id: 'popup.domain.whitelist', defaultMessage: 'Whitelist' },
+	'popup.domain.removeFromWhitelist': {
+		id: 'popup.domain.removeFromWhitelist',
+		defaultMessage: 'Remove from whitelist',
+	},
+	'popup.domain.block': { id: 'popup.domain.block', defaultMessage: 'Block' },
+	'popup.domain.unblock': { id: 'popup.domain.unblock', defaultMessage: 'Unblock' },
 })
 
 const props = defineProps<{
