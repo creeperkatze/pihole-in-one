@@ -5,6 +5,9 @@
   "popup.disableFor": {
     "defaultMessage": "Deaktivieren für"
   },
+  "popup.domain.block": {
+    "defaultMessage": "Blockieren"
+  },
   "popup.domain.blockedByListPlural": {
     "defaultMessage": "Blockiert von „{list}“ +{count} mehr"
   },
@@ -14,8 +17,23 @@
   "popup.domain.notBlocked": {
     "defaultMessage": "Nicht blockiert"
   },
+  "popup.domain.removeFromWhitelist": {
+    "defaultMessage": "Von Whitelist entfernen"
+  },
+  "popup.domain.unblock": {
+    "defaultMessage": "Entblockieren"
+  },
+  "popup.domain.whitelist": {
+    "defaultMessage": "Whitelist"
+  },
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Vom Benutzer auf die Whitelist gesetzt"
+  },
+  "popup.error.actionFailed": {
+    "defaultMessage": "Aktion fehlgeschlagen"
+  },
+  "popup.error.fetchFailed": {
+    "defaultMessage": "Status konnte nicht abgerufen werden"
   },
   "popup.error.fix": {
     "defaultMessage": "Beheben"
@@ -40,6 +58,9 @@
   },
   "popup.notConfigured.openSettings": {
     "defaultMessage": "Einstellungen öffnen"
+  },
+  "popup.openInstance": {
+    "defaultMessage": "{name} öffnen"
   },
   "popup.refresh": {
     "defaultMessage": "Aktualisieren"

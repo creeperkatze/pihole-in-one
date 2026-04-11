@@ -66,7 +66,7 @@
     "defaultMessage": "Aktualisierung verfügbar"
   },
   "options.language.description": {
-    "defaultMessage": "Wähle die Sprache für die Benutzeroberfläche der Erweiterung aus."
+    "defaultMessage": "Wähle die Sprache für die Benutzeroberfläche der Erweiterung. Hilf bei der Übersetzung auf {crowdin}. Einige Sprachen sind eventuell unvollständig."
   },
   "options.language.label": {
     "defaultMessage": "Sprache"
@@ -91,6 +91,9 @@
   },
   "options.piholeselector.instance.connected": {
     "defaultMessage": "Verbunden!"
+  },
+  "options.piholeselector.instance.connectionFailed": {
+    "defaultMessage": "Verbindung fehlgeschlagen"
   },
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
@@ -124,6 +127,12 @@
   },
   "options.search.title": {
     "defaultMessage": "Suchergebnisse"
+  },
+  "options.sidebar.crowdin.description": {
+    "defaultMessage": "Hilf beim Übersetzen"
+  },
+  "options.sidebar.crowdin.title": {
+    "defaultMessage": "Auf Crowdin anzeigen"
   },
   "options.sidebar.github.description": {
     "defaultMessage": "Einen Stern hinterlassen"
