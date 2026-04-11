@@ -6,6 +6,7 @@
 		/>
 		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
 			<OptionToggle
+				:icon="ChartColumn"
 				:label="formatMessage(messages['options.telemetry.label'])"
 				:description="formatMessage(messages['options.telemetry.description'])"
 				:model-value="form.telemetry"
@@ -23,6 +24,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
+import { ChartColumn } from 'lucide-vue-next'
 import { onMounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
