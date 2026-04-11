@@ -21,22 +21,20 @@
 		></div>
 		<div v-else class="flex gap-1.5 shrink-0">
 			<Button
-				size="small"
 				:variant="allowlistedByUser ? 'success' : 'outline'"
 				:disabled="acting"
 				:title="allowlistedByUser ? 'Remove from whitelist' : 'Whitelist'"
 				@click="toggleAllowlist"
 			>
-				<Check :size="13" />
+				<Check class="size-4" />
 			</Button>
 			<Button
-				size="small"
 				:variant="blockedByUser ? 'danger' : 'outline'"
 				:disabled="acting"
 				:title="blockedByUser ? 'Unblock' : 'Block'"
 				@click="toggleBlock"
 			>
-				<X :size="13" />
+				<X class="size-4" />
 			</Button>
 		</div>
 	</div>

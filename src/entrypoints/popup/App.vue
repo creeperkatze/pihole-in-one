@@ -94,7 +94,6 @@
 						<Button
 							v-for="preset in disablePresets"
 							:key="preset.label"
-							size="small"
 							variant="outline"
 							:disabled="states[activeInstance].toggling"
 							@click="disableFor(activeInstance, preset.seconds)"

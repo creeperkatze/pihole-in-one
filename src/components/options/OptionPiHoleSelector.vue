@@ -47,26 +47,22 @@
 					<div class="flex items-center gap-2">
 						<Loader2
 							v-if="testStates[inst.id]?.status === 'testing'"
-							:size="14"
-							class="animate-spin text-zinc-400"
+							class="size-4 animate-spin text-zinc-400"
 						/>
 						<CheckCircle2
 							v-else-if="testStates[inst.id]?.status === 'ok'"
-							:size="14"
-							class="text-green-500"
+							class="size-4 text-green-500"
 						/>
 						<XCircle
 							v-else-if="testStates[inst.id]?.status === 'error'"
-							:size="14"
-							class="text-pihole-red"
+							class="size-4 text-pihole-red"
 						/>
-						<Button size="small" variant="outline" @click="removeInstance(inst.id)">
-							<Trash2 :size="13" />
+						<Button variant="outline" @click="removeInstance(inst.id)">
+							<Trash2 class="size-4" />
 						</Button>
-						<Button size="small" variant="outline" @click="toggleEdit(inst.id)">
+						<Button variant="outline" @click="toggleEdit(inst.id)">
 							<ChevronDown
-								:size="13"
-								class="transition-transform duration-200"
+								class="size-4 transition-transform duration-200"
 								:class="editingId === inst.id ? 'rotate-180' : ''"
 							/>
 						</Button>
