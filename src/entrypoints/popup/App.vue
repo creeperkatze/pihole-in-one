@@ -137,36 +137,40 @@
 		</template>
 
 		<footer class="flex items-center gap-2 px-3.5 py-2">
-			<span class="text-xs text-secondary">v{{ version }}</span>
-			<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted">
-				<Loader2 class="size-3 animate-spin" aria-hidden="true" />
-				{{ formatMessage(messages['popup.footer.checking']) }}
-			</span>
-			<a
-				v-else-if="isLatest"
-				href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
-				target="_blank"
-				rel="noopener"
-				class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
-			>
-				<CheckCircle2 class="size-3" aria-hidden="true" />
-				{{ formatMessage(messages['popup.footer.latestVersion']) }}
-			</a>
-			<a
-				v-else-if="latestVersion"
-				href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
-				target="_blank"
-				rel="noopener"
-				class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
-			>
-				<Clock class="size-3" aria-hidden="true" />
-				{{ formatMessage(messages['popup.footer.updateAvailable']) }}
-			</a>
+			<div class="flex items-center gap-2 min-w-0 flex-1">
+				<span class="text-xs text-secondary shrink-0">v{{ version }}</span>
+				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted min-w-0">
+					<Loader2 class="size-3 animate-spin shrink-0" aria-hidden="true" />
+					<span class="truncate">{{ formatMessage(messages['popup.footer.checking']) }}</span>
+				</span>
+				<a
+					v-else-if="isLatest"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400 min-w-0"
+				>
+					<CheckCircle2 class="size-3 shrink-0" aria-hidden="true" />
+					<span class="truncate">{{ formatMessage(messages['popup.footer.latestVersion']) }}</span>
+				</a>
+				<a
+					v-else-if="latestVersion"
+					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
+					target="_blank"
+					rel="noopener"
+					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400 min-w-0"
+				>
+					<Clock class="size-3 shrink-0" aria-hidden="true" />
+					<span class="truncate">{{
+						formatMessage(messages['popup.footer.updateAvailable'])
+					}}</span>
+				</a>
+			</div>
 			<a
 				href="https://ko-fi.com/creeperkatze"
 				target="_blank"
 				rel="noopener"
-				class="ml-auto flex items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
+				class="shrink-0 flex items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
 			>
 				<KofiIcon class="size-3.5" aria-hidden="true" />
 				{{ formatMessage(messages['popup.footer.support']) }}
@@ -175,7 +179,7 @@
 				href="https://github.com/creeperkatze/pihole-in-one"
 				target="_blank"
 				rel="noopener"
-				class="text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+				class="shrink-0 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 			>
 				{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
 			</a>
