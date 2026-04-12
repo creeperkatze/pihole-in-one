@@ -1,3 +1,5 @@
+import { browser } from 'wxt/browser'
+
 export interface BlockingStatus {
 	blocking: 'enabled' | 'disabled'
 	timer: number | null
@@ -17,9 +19,32 @@ export interface PiholeSummary {
 	blocking: BlockingStatus
 }
 
-// Per-process session cache
-const sessionCache = new Map<string, { sid: string; expires: number }>()
 const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
+const SESSION_STORAGE_KEY = 'sessionCache'
+
+type SessionStore = Record<string, { sid: string; expires: number }>
+
+async function getCachedSession(base: string): Promise<string | null> {
+	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
+	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	const entry = store[base]
+	if (entry && entry.expires > Date.now()) return entry.sid
+	return null
+}
+
+async function setCachedSession(base: string, sid: string): Promise<void> {
+	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
+	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	store[base] = { sid, expires: Date.now() + SESSION_TTL }
+	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
+}
+
+async function deleteCachedSession(base: string): Promise<void> {
+	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
+	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	delete store[base]
+	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
+}
 
 class ApiError extends Error {
 	constructor(
@@ -100,11 +125,11 @@ async function authenticate(base: string, password: string): Promise<string> {
 }
 
 async function getSession(base: string, password: string): Promise<string> {
-	const cached = sessionCache.get(base)
-	if (cached && cached.expires > Date.now()) return cached.sid
+	const cached = await getCachedSession(base)
+	if (cached) return cached
 
 	const sid = await authenticate(base, password)
-	sessionCache.set(base, { sid, expires: Date.now() + SESSION_TTL })
+	await setCachedSession(base, sid)
 	return sid
 }
 
@@ -119,9 +144,9 @@ async function withSession<T>(
 	} catch (e) {
 		// Re-auth once on 401
 		if (e instanceof ApiError && e.status === 401) {
-			sessionCache.delete(base)
+			await deleteCachedSession(base)
 			const freshSid = await authenticate(base, password)
-			sessionCache.set(base, { sid: freshSid, expires: Date.now() + SESSION_TTL })
+			await setCachedSession(base, freshSid)
 			return fn(freshSid)
 		}
 		throw e
