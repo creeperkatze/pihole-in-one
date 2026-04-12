@@ -45,7 +45,7 @@
     "defaultMessage": "Latest version"
   },
   "popup.footer.starOnGitHub": {
-    "defaultMessage": "★ On GitHub"
+    "defaultMessage": "On GitHub"
   },
   "popup.footer.support": {
     "defaultMessage": "Support"

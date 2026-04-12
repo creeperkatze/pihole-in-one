@@ -19,6 +19,7 @@
         "release:major": "pnpm version major && git push && git push --tags"
     },
     "dependencies": {
+        "@fontsource-variable/inter": "^5.2.8",
         "@formatjs/intl": "^3.0.0",
         "lucide-vue-next": "^1.0.0",
         "posthog-js": "^1.367.0",

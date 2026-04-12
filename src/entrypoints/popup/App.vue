@@ -136,11 +136,11 @@
 			<div class="h-px bg-border"></div>
 		</template>
 
-		<footer class="flex items-center gap-2 px-3.5 py-2">
-			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<span class="text-xs text-secondary shrink-0">v{{ version }}</span>
-				<span v-if="updateChecking" class="flex items-center gap-1 text-xs text-muted min-w-0">
-					<Loader2 class="size-3 animate-spin shrink-0" aria-hidden="true" />
+		<div class="flex shrink-0 items-center gap-2 px-3 py-1.5">
+			<div class="flex min-w-0 flex-1 items-center gap-2">
+				<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
+				<span v-if="updateChecking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
+					<Loader2 class="size-4 shrink-0 animate-spin" aria-hidden="true" />
 					<span class="truncate">{{ formatMessage(messages['popup.footer.checking']) }}</span>
 				</span>
 				<a
@@ -148,9 +148,9 @@
 					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
 					target="_blank"
 					rel="noopener"
-					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400 min-w-0"
+					class="flex min-w-0 items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
-					<CheckCircle2 class="size-3 shrink-0" aria-hidden="true" />
+					<CheckCircle2 class="size-3.5 shrink-0" aria-hidden="true" />
 					<span class="truncate">{{ formatMessage(messages['popup.footer.latestVersion']) }}</span>
 				</a>
 				<a
@@ -158,9 +158,9 @@
 					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
 					target="_blank"
 					rel="noopener"
-					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400 min-w-0"
+					class="flex min-w-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
-					<Clock class="size-3 shrink-0" aria-hidden="true" />
+					<Clock class="size-3.5 shrink-0" aria-hidden="true" />
 					<span class="truncate">{{
 						formatMessage(messages['popup.footer.updateAvailable'])
 					}}</span>
@@ -170,7 +170,7 @@
 				href="https://ko-fi.com/creeperkatze"
 				target="_blank"
 				rel="noopener"
-				class="shrink-0 flex items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
+				class="flex shrink-0 items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
 			>
 				<KofiIcon class="size-3.5" aria-hidden="true" />
 				{{ formatMessage(messages['popup.footer.support']) }}
@@ -179,17 +179,26 @@
 				href="https://github.com/creeperkatze/pihole-in-one"
 				target="_blank"
 				rel="noopener"
-				class="shrink-0 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
+				class="flex shrink-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 			>
-				{{ formatMessage(messages['popup.footer.starOnGitHub']) }}
+				<Star class="size-3.5 shrink-0" aria-hidden="true" />
+				<span>{{ formatMessage(messages['popup.footer.starOnGitHub']) }}</span>
 			</a>
-		</footer>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings } from 'lucide-vue-next'
+import {
+	CheckCircle2,
+	Clock,
+	ExternalLink,
+	Loader2,
+	RefreshCw,
+	Settings,
+	Star,
+} from 'lucide-vue-next'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
@@ -245,7 +254,7 @@ const messages = defineMessages({
 	},
 	'popup.footer.starOnGitHub': {
 		id: 'popup.footer.starOnGitHub',
-		defaultMessage: '★ On GitHub',
+		defaultMessage: 'On GitHub',
 	},
 	'options.piholeselector.instance.fallbackName': {
 		id: 'options.piholeselector.instance.fallbackName',
