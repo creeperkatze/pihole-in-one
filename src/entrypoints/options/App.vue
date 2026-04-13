@@ -90,30 +90,34 @@
 
 			<!-- Footer -->
 			<div class="flex shrink-0 items-center gap-2 px-3 py-1.5 border-t border-border-subtle">
-				<span class="text-xs text-secondary">v{{ version }}</span>
-				<span v-if="checking" class="flex items-center gap-1 text-xs text-muted">
-					<Loader2 class="size-3 animate-spin" aria-hidden="true" />
-					{{ formatMessage(messages['options.footer.checking']) }}
+				<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
+				<span v-if="checking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
+					<Loader2 class="size-3.5 shrink-0 animate-spin" aria-hidden="true" />
+					<span class="truncate">{{ formatMessage(messages['options.footer.checking']) }}</span>
 				</span>
 				<a
 					v-else-if="isLatest"
 					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
 					target="_blank"
 					rel="noopener"
-					class="flex items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
+					class="flex min-w-0 items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
-					<CheckCircle2 class="size-3" aria-hidden="true" />
-					{{ formatMessage(messages['options.footer.latestVersion']) }}
+					<CheckCircle2 class="size-3.5 shrink-0" aria-hidden="true" />
+					<span class="truncate">{{
+						formatMessage(messages['options.footer.latestVersion'])
+					}}</span>
 				</a>
 				<a
 					v-else-if="latestVersion"
 					href="https://github.com/creeperkatze/pihole-in-one/releases/latest"
 					target="_blank"
 					rel="noopener"
-					class="flex items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
+					class="flex min-w-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
-					<Clock class="size-3" aria-hidden="true" />
-					{{ formatMessage(messages['options.footer.updateAvailable']) }}
+					<Clock class="size-3.5 shrink-0" aria-hidden="true" />
+					<span class="truncate">{{
+						formatMessage(messages['options.footer.updateAvailable'])
+					}}</span>
 				</a>
 			</div>
 		</aside>
