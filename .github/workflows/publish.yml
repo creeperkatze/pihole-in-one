@@ -60,6 +60,9 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: zips/*.zip
+          body: |
+            > [!NOTE]
+            > If you installed the extension from an extension marketplace such as the Chrome Web Store, you will receive the update automatically within the next few days.
           draft: true
           token: ${{ secrets.GH_PAT }}
           tag_name: ${{ inputs.tag || github.ref_name }}
