@@ -173,7 +173,7 @@
 				class="flex shrink-0 items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
 			>
 				<KofiIcon class="size-3.5" aria-hidden="true" />
-				{{ formatMessage(messages['popup.footer.support']) }}
+				<span>{{ formatMessage(messages['popup.footer.support']) }}</span>
 			</a>
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
