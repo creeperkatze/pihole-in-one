@@ -147,7 +147,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from 'lucide-vue-next'
+import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from '@lucide/vue'
 import { ref, watch } from 'vue'
 
 import { getSummary } from '../../helpers/api'

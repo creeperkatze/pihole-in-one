@@ -140,7 +140,7 @@ import {
 	Server,
 	SlidersHorizontal,
 	X as XIcon,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'

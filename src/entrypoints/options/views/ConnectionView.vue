@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Timer } from 'lucide-vue-next'
+import { Timer } from '@lucide/vue'
 
 import OptionPiHoleSelector from '../../../components/options/OptionPiHoleSelector.vue'
 import OptionSlider from '../../../components/options/OptionSlider.vue'

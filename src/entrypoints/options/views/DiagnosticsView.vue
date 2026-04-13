@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { ChartColumn } from 'lucide-vue-next'
+import { ChartColumn } from '@lucide/vue'
 import { onMounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 

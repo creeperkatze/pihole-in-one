@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Check, X } from 'lucide-vue-next'
+import { Check, X } from '@lucide/vue'
 import { computed, onMounted, ref } from 'vue'
 
 import Button from '../../../components/Button.vue'

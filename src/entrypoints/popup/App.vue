@@ -190,15 +190,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import {
-	CheckCircle2,
-	Clock,
-	ExternalLink,
-	Loader2,
-	RefreshCw,
-	Settings,
-	Star,
-} from 'lucide-vue-next'
+import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings, Star } from '@lucide/vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 

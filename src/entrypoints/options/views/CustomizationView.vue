@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Languages, Monitor, Tag } from 'lucide-vue-next'
+import { Languages, Monitor, Tag } from '@lucide/vue'
 import { computed } from 'vue'
 
 import OptionSelect from '../../../components/options/OptionSelect.vue'
