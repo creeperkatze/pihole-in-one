@@ -14,7 +14,7 @@ A browser extension to control your Pi-hole conveniently from within the browser
 
 Install from your browser's extension store:
 
-- **Chrome Web Store** (coming soon)
+- **[Chrome Web Store](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)** ![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/gaaobidjebianpcngcfpkniaocibidhe?label=)![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/gaaobidjebianpcngcfpkniaocibidhe?style=flat&labelColor=0d143c&color=yellow)
 - **Firefox Add-Ons** (coming soon)
 - **Edge Add-Ons** (coming soon)
 
