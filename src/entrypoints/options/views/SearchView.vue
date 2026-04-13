@@ -10,15 +10,7 @@
 			</div>
 			<div v-else class="flex flex-col gap-2">
 				<template v-for="opt in results" :key="opt.id">
-					<OptionToggle
-						v-if="opt.type === 'toggle'"
-						:label="opt.label"
-						:description="opt.description"
-						:model-value="form[opt.formKey]"
-						@update:model-value="setOption(opt.formKey, $event)"
-					/>
 					<OptionSlider
-						v-else-if="opt.type === 'slider'"
 						:label="opt.label"
 						:description="opt.description"
 						:model-value="form[opt.formKey]"
@@ -40,10 +32,9 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import OptionSlider from '../../../components/options/OptionSlider.vue'
-import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
-import { useSimpleOptions } from '../../../composables/simpleOptions'
 import { useSettings } from '../../../composables/useSettings'
+import { formatSeconds } from '../../../helpers/format'
 import { useVIntl } from '../../../helpers/i18n'
 
 const route = useRoute()
@@ -60,16 +51,35 @@ const messages = defineMessages({
 		id: 'options.search.noResults',
 		defaultMessage: 'No options found',
 	},
+	'options.connection.refreshInterval.label': {
+		id: 'options.connection.refreshInterval.label',
+		defaultMessage: 'Badge Refresh Interval',
+	},
+	'options.connection.refreshInterval.description': {
+		id: 'options.connection.refreshInterval.description',
+		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
+	},
 })
 
-const query = computed(() => String(route.query.q ?? ''))
+const allOptions = computed(() => [
+	{
+		id: 'refreshInterval',
+		formKey: 'refreshInterval' as const,
+		label: formatMessage(messages['options.connection.refreshInterval.label']),
+		description: formatMessage(messages['options.connection.refreshInterval.description']),
+		min: 60,
+		max: 3600,
+		step: 30,
+		format: formatSeconds,
+	},
+])
 
-const simpleOptions = useSimpleOptions()
+const query = computed(() => String(route.query.q ?? ''))
 
 const results = computed(() => {
 	const q = query.value.toLowerCase().trim()
 	if (!q) return []
-	return simpleOptions.value.filter(
+	return allOptions.value.filter(
 		(o) => o.label.toLowerCase().includes(q) || o.description.toLowerCase().includes(q),
 	)
 })

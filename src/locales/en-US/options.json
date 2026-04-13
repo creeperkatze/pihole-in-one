@@ -146,18 +146,6 @@
   "options.sidebar.kofi.title": {
     "defaultMessage": "Support on Ko-fi"
   },
-  "options.simpleOptions.refreshInterval.description": {
-    "defaultMessage": "Minimum 60s in Chrome (MV3 alarm constraint). Firefox allows lower values."
-  },
-  "options.simpleOptions.refreshInterval.label": {
-    "defaultMessage": "Badge Refresh Interval"
-  },
-  "options.simpleOptions.showBadge.description": {
-    "defaultMessage": "Display an ON / OFF badge on the extension icon reflecting the current blocking state."
-  },
-  "options.simpleOptions.showBadge.label": {
-    "defaultMessage": "Show badge"
-  },
   "options.tabs.connection": {
     "defaultMessage": "Connection"
   },

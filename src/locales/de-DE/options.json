@@ -146,18 +146,6 @@
   "options.sidebar.kofi.title": {
     "defaultMessage": "Auf Ko-Fi unterstützen"
   },
-  "options.simpleOptions.refreshInterval.description": {
-    "defaultMessage": "Mindestens 60 Sekunden in Chrome (MV3-Alarm-Einschränkung). Firefox erlaubt niedrigere Werte."
-  },
-  "options.simpleOptions.refreshInterval.label": {
-    "defaultMessage": "Aktualisierungsintervall für Abzeichen"
-  },
-  "options.simpleOptions.showBadge.description": {
-    "defaultMessage": "Zeige ein ON/OFF-Symbol auf dem Erweiterungssymbol an, das den aktuellen Blockierungsstatus widerspiegelt."
-  },
-  "options.simpleOptions.showBadge.label": {
-    "defaultMessage": "Abzeichen anzeigen"
-  },
   "options.tabs.connection": {
     "defaultMessage": "Verbindung"
   },
