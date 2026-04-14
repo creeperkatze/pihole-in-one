@@ -10,6 +10,9 @@ A browser extension to control your Pi-hole conveniently from within the browser
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F11WYJU3)
 
+> [!NOTE]
+> The extension is not associated with or endorsed by Pi-hole.
+
 ## 🚀 Installation
 
 Install from your browser's extension store:
