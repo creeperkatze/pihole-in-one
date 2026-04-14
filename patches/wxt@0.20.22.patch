@@ -1,8 +1,8 @@
 diff --git a/dist/core/zip.mjs b/dist/core/zip.mjs
-index d9684391e4987718254373c39843c61c525fe7ae..feb88c4affdeb75ed06929cc6c434e0e47ef30e7 100644
+index 181d843e5b5d38d4331b6a3e4ba8973c82fbe9f4..bd867b9a099db016a2e5b2bb17b187ef9efc650a 100644
 --- a/dist/core/zip.mjs
 +++ b/dist/core/zip.mjs
-@@ -63,12 +63,25 @@ async function zip(config) {
+@@ -63,12 +63,26 @@ async function zip(config) {
  }
  async function zipDir(directory, outputPath, options) {
  	const archive = new JSZip();
@@ -15,10 +15,11 @@ index d9684391e4987718254373c39843c61c525fe7ae..feb88c4affdeb75ed06929cc6c434e0e
 +	let allFiles;
 +	try {
 +		const { execSync } = await import("node:child_process");
++		const { existsSync } = await import("node:fs");
 +		allFiles = execSync("git ls-files --recurse-submodules", {
 +			cwd: directory,
 +			encoding: "utf-8"
-+		}).split("\n").filter(Boolean);
++		}).split("\n").filter((f) => f && existsSync(path.resolve(directory, f)));
 +	} catch {
 +		allFiles = [];
 +	}
@@ -31,6 +32,6 @@ index d9684391e4987718254373c39843c61c525fe7ae..feb88c4affdeb75ed06929cc6c434e0e
 +		});
 +	}
 +	const filesToZip = [...allFiles.filter((relativePath) => {
- 		return minimatchMultiple(relativePath, options?.include) || !minimatchMultiple(relativePath, options?.exclude);
+ 		return picomatchMultiple(relativePath, options?.include) || !picomatchMultiple(relativePath, options?.exclude);
  	}), ...(options?.additionalFiles ?? []).map((file) => path.relative(directory, file))];
  	for (const file of filesToZip) {

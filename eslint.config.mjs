@@ -27,6 +27,7 @@ export default tseslint.config(
 				HTMLInputElement: 'readonly',
 				browser: 'readonly',
 				chrome: 'readonly',
+				localStorage: 'readonly',
 			},
 		},
 		plugins: {

@@ -42,7 +42,6 @@ export default defineConfig({
 		browser_specific_settings: {
 			gecko: {
 				id: 'pihole-in-one@creeperkatze.dev',
-				// @ts-expect-error -- data_collection_permissions is a Firefox-specific field not yet in WXT types
 				data_collection_permissions: {
 					required: ['none'],
 					optional: ['technicalAndInteraction'],
