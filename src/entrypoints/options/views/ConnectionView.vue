@@ -10,15 +10,14 @@
 				@update:model-value="form.instances = $event"
 			/>
 			<OptionSlider
-				:icon="Timer"
-				:label="formatMessage(messages['options.connection.refreshInterval.label'])"
-				:description="formatMessage(messages['options.connection.refreshInterval.description'])"
+				:icon="refreshInterval.icon"
+				:label="refreshInterval.label"
+				:description="refreshInterval.description"
 				:model-value="form.refreshInterval"
-				:min="60"
-				:max="3600"
-				:step="30"
-				suffix="s"
-				:format="formatSeconds"
+				:min="refreshInterval.min"
+				:max="refreshInterval.max"
+				:step="refreshInterval.step"
+				:format="refreshInterval.format"
 				@update:model-value="form.refreshInterval = $event"
 			/>
 			<div
@@ -31,25 +30,27 @@
 	</section>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { Timer } from '@lucide/vue'
+import { computed } from 'vue'
 
-import OptionPiHoleSelector from '../../../components/options/OptionPiHoleSelector.vue'
-import OptionSlider from '../../../components/options/OptionSlider.vue'
-import SectionHeader from '../../../components/options/SectionHeader.vue'
-import { useSettings } from '../../../composables/useSettings'
 import { formatSeconds } from '../../../helpers/format'
 import { useVIntl } from '../../../helpers/i18n'
 
-const { form, saveError } = useSettings()
-
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
+export const messages = defineMessages({
 	'options.connection.title': { id: 'options.connection.title', defaultMessage: 'Connection' },
 	'options.connection.description': {
 		id: 'options.connection.description',
 		defaultMessage: 'Manage your Pi-hole instances and badge refresh settings.',
+	},
+	'options.piholeselector.title': {
+		id: 'options.piholeselector.title',
+		defaultMessage: 'Pi-holes',
+	},
+	'options.piholeselector.description': {
+		id: 'options.piholeselector.description',
+		defaultMessage: 'Configure one or more Pi-hole instances.',
 	},
 	'options.connection.refreshInterval.label': {
 		id: 'options.connection.refreshInterval.label',
@@ -60,4 +61,41 @@ const messages = defineMessages({
 		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
 	},
 })
+
+export function useConnectionOptions() {
+	const { formatMessage } = useVIntl()
+
+	const pihole = computed(() => ({
+		id: 'pihole',
+		type: 'pihole' as const,
+		label: formatMessage(messages['options.piholeselector.title']),
+		description: formatMessage(messages['options.piholeselector.description']),
+	}))
+
+	const refreshInterval = computed(() => ({
+		id: 'refreshInterval',
+		type: 'slider' as const,
+		formKey: 'refreshInterval' as const,
+		icon: Timer,
+		label: formatMessage(messages['options.connection.refreshInterval.label']),
+		description: formatMessage(messages['options.connection.refreshInterval.description']),
+		min: 60,
+		max: 3600,
+		step: 30,
+		format: formatSeconds,
+	}))
+
+	return { pihole, refreshInterval }
+}
+</script>
+
+<script setup lang="ts">
+import OptionPiHoleSelector from '../../../components/options/OptionPiHoleSelector.vue'
+import OptionSlider from '../../../components/options/OptionSlider.vue'
+import SectionHeader from '../../../components/options/SectionHeader.vue'
+import { useSettings } from '../../../composables/useSettings'
+
+const { form, saveError } = useSettings()
+const { refreshInterval } = useConnectionOptions()
+const { formatMessage } = useVIntl()
 </script>

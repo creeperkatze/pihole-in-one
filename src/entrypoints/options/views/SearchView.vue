@@ -11,14 +11,38 @@
 			<div v-else class="flex flex-col gap-2">
 				<template v-for="opt in results" :key="opt.id">
 					<OptionSlider
+						v-if="opt.type === 'slider'"
+						:icon="opt.icon"
 						:label="opt.label"
 						:description="opt.description"
-						:model-value="form[opt.formKey]"
+						:model-value="form[opt.formKey] as number"
 						:min="opt.min"
 						:max="opt.max"
 						:step="opt.step"
 						:format="opt.format"
 						@update:model-value="setOption(opt.formKey, $event)"
+					/>
+					<OptionSelect
+						v-else-if="opt.type === 'select'"
+						:icon="opt.icon"
+						:label="opt.label"
+						:description="opt.description"
+						:model-value="form[opt.formKey] as string"
+						:options="opt.options"
+						@update:model-value="setOption(opt.formKey, $event)"
+					/>
+					<OptionToggle
+						v-else-if="opt.type === 'toggle'"
+						:icon="opt.icon"
+						:label="opt.label"
+						:description="opt.description"
+						:model-value="form[opt.formKey] as boolean"
+						@update:model-value="setOption(opt.formKey, $event)"
+					/>
+					<OptionPiHoleSelector
+						v-else-if="opt.type === 'pihole'"
+						:model-value="form.instances"
+						@update:model-value="form.instances = $event"
 					/>
 				</template>
 			</div>
@@ -31,14 +55,28 @@ import { defineMessages } from '@formatjs/intl'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import type { PiHoleOption } from '../../../components/options/OptionPiHoleSelector.vue'
+import OptionPiHoleSelector from '../../../components/options/OptionPiHoleSelector.vue'
+import type { SelectOption } from '../../../components/options/OptionSelect.vue'
+import OptionSelect from '../../../components/options/OptionSelect.vue'
+import type { SliderOption } from '../../../components/options/OptionSlider.vue'
 import OptionSlider from '../../../components/options/OptionSlider.vue'
+import type { ToggleOption } from '../../../components/options/OptionToggle.vue'
+import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import { formatSeconds } from '../../../helpers/format'
 import { useVIntl } from '../../../helpers/i18n'
+import { useConnectionOptions } from './ConnectionView.vue'
+import { useCustomizationOptions } from './CustomizationView.vue'
+import { useDiagnosticsOptions } from './DiagnosticsView.vue'
+
+type SearchableOption = SliderOption | SelectOption | ToggleOption | PiHoleOption
 
 const route = useRoute()
 const { form, setOption } = useSettings()
+const { pihole, refreshInterval } = useConnectionOptions()
+const { locale, colorScheme, badgeMode } = useCustomizationOptions()
+const { telemetry } = useDiagnosticsOptions()
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
@@ -51,27 +89,15 @@ const messages = defineMessages({
 		id: 'options.search.noResults',
 		defaultMessage: 'No options found',
 	},
-	'options.connection.refreshInterval.label': {
-		id: 'options.connection.refreshInterval.label',
-		defaultMessage: 'Badge Refresh Interval',
-	},
-	'options.connection.refreshInterval.description': {
-		id: 'options.connection.refreshInterval.description',
-		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
-	},
 })
 
-const allOptions = computed(() => [
-	{
-		id: 'refreshInterval',
-		formKey: 'refreshInterval' as const,
-		label: formatMessage(messages['options.connection.refreshInterval.label']),
-		description: formatMessage(messages['options.connection.refreshInterval.description']),
-		min: 60,
-		max: 3600,
-		step: 30,
-		format: formatSeconds,
-	},
+const allOptions = computed<SearchableOption[]>(() => [
+	pihole.value,
+	refreshInterval.value,
+	locale.value,
+	colorScheme.value,
+	badgeMode.value,
+	telemetry.value,
 ])
 
 const query = computed(() => String(route.query.q ?? ''))

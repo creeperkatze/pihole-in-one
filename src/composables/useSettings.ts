@@ -58,7 +58,10 @@ watch(
 	},
 )
 
-function setOption(key: 'badgeMode' | 'refreshInterval', value: string | number): void {
+function setOption(
+	key: keyof Omit<ExtensionSettings, 'instances'>,
+	value: string | number | boolean,
+): void {
 	;(form as Record<string, unknown>)[key] = value
 }
 

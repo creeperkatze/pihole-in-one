@@ -145,6 +145,15 @@
 	</div>
 </template>
 
+<script lang="ts">
+export type PiHoleOption = {
+	id: string
+	type: 'pihole'
+	label: string
+	description: string
+}
+</script>
+
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from '@lucide/vue'

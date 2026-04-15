@@ -21,6 +21,18 @@
 	</div>
 </template>
 
+<script lang="ts">
+export type SelectOption = {
+	id: string
+	type: 'select'
+	formKey: 'locale' | 'colorScheme' | 'badgeMode'
+	icon?: import('vue').Component
+	label: string
+	description: string
+	options: { value: string; label: string }[]
+}
+</script>
+
 <script setup lang="ts">
 import type { Component } from 'vue'
 

@@ -37,6 +37,17 @@
 	</div>
 </template>
 
+<script lang="ts">
+export type ToggleOption = {
+	id: string
+	type: 'toggle'
+	formKey: 'telemetry'
+	icon?: import('vue').Component
+	label: string
+	description: string
+}
+</script>
+
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from 'vue'
 

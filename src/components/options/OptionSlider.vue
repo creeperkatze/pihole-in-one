@@ -38,6 +38,21 @@
 	</div>
 </template>
 
+<script lang="ts">
+export type SliderOption = {
+	id: string
+	type: 'slider'
+	formKey: 'refreshInterval'
+	icon?: import('vue').Component
+	label: string
+	description: string
+	min: number
+	max: number
+	step: number
+	format?: (v: number) => string
+}
+</script>
+
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { ref, watch } from 'vue'
