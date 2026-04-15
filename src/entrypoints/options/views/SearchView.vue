@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.search.title'])"
 			:description="formatMessage(messages['options.search.description'], { query })"
 		/>
-		<div class="px-8 py-4 max-w-xl">
+		<div v-if="initialized" class="px-8 py-4 max-w-xl">
 			<div v-if="results.length === 0" class="text-sm text-secondary">
 				{{ formatMessage(messages['options.search.noResults']) }}
 			</div>
@@ -73,7 +73,7 @@ import { useDiagnosticsOptions } from './DiagnosticsView.vue'
 type SearchableOption = SliderOption | SelectOption | ToggleOption | PiHoleOption
 
 const route = useRoute()
-const { form, setOption } = useSettings()
+const { form, setOption, initialized } = useSettings()
 const { pihole, refreshInterval } = useConnectionOptions()
 const { locale, colorScheme, badgeMode } = useCustomizationOptions()
 const { telemetry } = useDiagnosticsOptions()

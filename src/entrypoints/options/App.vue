@@ -225,9 +225,18 @@ const latestVersion = ref<string | null>(null)
 const isLatest = ref(false)
 const checking = ref(true)
 
-watch(route, (r) => {
-	if (r.path !== '/search') lastTabPath.value = r.path
-})
+watch(
+	route,
+	(r) => {
+		if (r.path !== '/search') {
+			lastTabPath.value = r.path
+			searchQuery.value = ''
+		} else {
+			searchQuery.value = String(r.query.q ?? '')
+		}
+	},
+	{ immediate: true },
+)
 
 watch(searchQuery, (q) => {
 	if (q) {
