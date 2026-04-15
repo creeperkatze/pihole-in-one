@@ -42,99 +42,115 @@
 			</div>
 		</header>
 
-		<div class="h-px bg-border"></div>
+		<div class="h-px bg-border shrink-0"></div>
 
-		<div v-if="loading" class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40">
+		<div class="overflow-y-auto max-h-[480px]">
 			<div
-				class="w-7 h-7 border-[3px] border-border border-t-pihole-red rounded-full animate-spin"
-			></div>
-		</div>
-
-		<div
-			v-else-if="!configured"
-			class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
-		>
-			<p class="m-0 text-secondary text-center">
-				{{ formatMessage(messages['popup.notConfigured.message']) }}
-			</p>
-			<Button variant="primary" @click="openOptions">
-				{{ formatMessage(messages['popup.notConfigured.openSettings']) }}
-			</Button>
-		</div>
-
-		<template v-else>
-			<!-- Instance tabs — only shown when there are multiple instances -->
-			<div v-if="settings!.instances.length > 1" class="flex border-b border-border px-1">
-				<button
-					v-for="(inst, i) in settings!.instances"
-					:key="inst.id"
-					class="relative px-3.5 py-2 text-xs font-medium transition-colors duration-150 cursor-pointer border-0 bg-transparent"
-					:class="activeInstance === i ? 'text-primary' : 'text-secondary hover:text-primary'"
-					@click="activeInstance = i"
-				>
-					{{
-						inst.name ||
-						`${formatMessage(messages['options.piholeselector.instance.fallbackName'])} ${i + 1}`
-					}}
-					<span
-						v-if="activeInstance === i"
-						class="absolute bottom-0 left-0 right-0 h-0.5 bg-pihole-red rounded-full"
-					></span>
-				</button>
+				v-if="loading"
+				class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
+			>
+				<div
+					class="w-7 h-7 border-[3px] border-border border-t-pihole-red rounded-full animate-spin"
+				></div>
 			</div>
 
-			<div class="flex flex-col gap-2.5 px-3.5 py-3">
-				<StatusCard
-					v-if="states[activeInstance]?.summary"
-					:status="isEnabled(activeInstance) ? 'enabled' : 'disabled'"
-					:sub="statusSub(activeInstance)"
-					:disabled="states[activeInstance].toggling"
-					@toggle="toggleBlocking(activeInstance)"
-				/>
+			<div
+				v-else-if="!configured"
+				class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
+			>
+				<p class="m-0 text-secondary text-center">
+					{{ formatMessage(messages['popup.notConfigured.message']) }}
+				</p>
+				<Button variant="primary" @click="openOptions">
+					{{ formatMessage(messages['popup.notConfigured.openSettings']) }}
+				</Button>
+			</div>
 
-				<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-1.5">
-					<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-						{{ formatMessage(messages['popup.disableFor']) }}
+			<template v-else>
+				<!-- Instance tabs — only shown when there are multiple instances -->
+				<div v-if="settings!.instances.length > 1" class="flex border-b border-border px-1">
+					<button
+						v-for="(inst, i) in settings!.instances"
+						:key="inst.id"
+						class="relative px-3.5 py-2 text-xs font-medium transition-colors duration-150 cursor-pointer border-0 bg-transparent"
+						:class="activeInstance === i ? 'text-primary' : 'text-secondary hover:text-primary'"
+						@click="activeInstance = i"
+					>
+						{{
+							inst.name ||
+							`${formatMessage(messages['options.piholeselector.instance.fallbackName'])} ${i + 1}`
+						}}
+						<span
+							v-if="activeInstance === i"
+							class="absolute bottom-0 left-0 right-0 h-0.5 bg-pihole-red rounded-full"
+						></span>
+					</button>
+				</div>
+
+				<div class="flex flex-col gap-2.5 px-3.5 py-3">
+					<StatusCard
+						v-if="states[activeInstance]?.summary"
+						:status="isEnabled(activeInstance) ? 'enabled' : 'disabled'"
+						:sub="statusSub(activeInstance)"
+						:disabled="states[activeInstance].toggling"
+						@toggle="toggleBlocking(activeInstance)"
+					/>
+
+					<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-1.5">
+						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
+							{{ formatMessage(messages['popup.disableFor']) }}
+						</div>
+						<div class="flex gap-1.5 flex-wrap">
+							<Button
+								v-for="preset in disablePresets"
+								:key="preset.label"
+								variant="outline"
+								:disabled="states[activeInstance].toggling"
+								@click="disableFor(activeInstance, preset.seconds)"
+							>
+								{{ preset.label }}
+							</Button>
+						</div>
 					</div>
-					<div class="flex gap-1.5 flex-wrap">
-						<Button
-							v-for="preset in disablePresets"
-							:key="preset.label"
-							variant="outline"
-							:disabled="states[activeInstance].toggling"
-							@click="disableFor(activeInstance, preset.seconds)"
-						>
-							{{ preset.label }}
+
+					<div
+						v-if="states[activeInstance]?.error"
+						class="flex items-center justify-between gap-2 px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
+					>
+						<span>{{ states[activeInstance].error }}</span>
+						<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
+							{{ formatMessage(messages['popup.error.fix']) }}
 						</Button>
 					</div>
+
+					<StatsGrid
+						v-if="states[activeInstance]?.summary && settings?.popupStats !== 'none'"
+						:stats="formattedStats(activeInstance)"
+					/>
+
+					<div
+						v-if="states[activeInstance]?.summary && settings?.popupStats === 'all'"
+						class="grid grid-cols-2 gap-2"
+					>
+						<DonutCard title="Query Status" :segments="statusSegments(activeInstance)" />
+						<DonutCard title="Query Types" :segments="typesSegments(activeInstance)" />
+					</div>
+
+					<DomainCard
+						v-if="
+							currentDomain &&
+							settings &&
+							settings.instances.length > 0 &&
+							!states[activeInstance]?.error
+						"
+						:domain="currentDomain"
+						:instances="settings.instances"
+					/>
 				</div>
+			</template>
+		</div>
 
-				<div
-					v-if="states[activeInstance]?.error"
-					class="flex items-center justify-between gap-2 px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
-				>
-					<span>{{ states[activeInstance].error }}</span>
-					<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
-						{{ formatMessage(messages['popup.error.fix']) }}
-					</Button>
-				</div>
-
-				<StatsGrid v-if="states[activeInstance]?.summary" :stats="formattedStats(activeInstance)" />
-
-				<DomainCard
-					v-if="
-						currentDomain &&
-						settings &&
-						settings.instances.length > 0 &&
-						!states[activeInstance]?.error
-					"
-					:domain="currentDomain"
-					:instances="settings.instances"
-				/>
-			</div>
-
-			<div class="h-px bg-border"></div>
-		</template>
+		<div class="h-px bg-border shrink-0"></div>
 
 		<div class="flex shrink-0 items-center gap-2 px-3 py-1.5">
 			<div class="flex min-w-0 flex-1 items-center gap-2">
@@ -202,6 +218,7 @@ import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
+import DonutCard from './components/DonutCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
 import StatusCard from './components/StatusCard.vue'
 
@@ -346,6 +363,50 @@ function formattedStats(
 			sparkline: history.map((h) => h.cached),
 			sparklineColor: '#8b5cf6',
 		},
+	]
+}
+
+const TYPE_COLORS: Record<string, string> = {
+	A: '#3b82f6',
+	AAAA: '#6366f1',
+	PTR: '#8b5cf6',
+	HTTPS: '#f97316',
+	TXT: '#10b981',
+	MX: '#f59e0b',
+	SRV: '#ec4899',
+	DS: '#14b8a6',
+	SOA: '#84cc16',
+	NS: '#06b6d4',
+	RRSIG: '#f43f5e',
+	DNSKEY: '#a78bfa',
+	NAPTR: '#fb923c',
+	SVCB: '#34d399',
+	ANY: '#94a3b8',
+}
+
+function statusSegments(i: number): Array<{ label: string; value: number; color: string }> {
+	const q = states.value[i]?.summary?.queries
+	if (!q) return []
+	const other = Math.max(0, q.total - q.blocked - q.cached - q.forwarded)
+	return [
+		{ label: 'Blocked', value: q.blocked, color: '#ef4444' },
+		{ label: 'Cached', value: q.cached, color: '#8b5cf6' },
+		{ label: 'Forwarded', value: q.forwarded, color: '#14b8a6' },
+		...(other > 0 ? [{ label: 'Other', value: other, color: '#6b7280' }] : []),
+	]
+}
+
+function typesSegments(i: number): Array<{ label: string; value: number; color: string }> {
+	const types = states.value[i]?.summary?.queries?.types
+	if (!types) return []
+	const entries = Object.entries(types)
+		.filter(([, v]) => v > 0)
+		.sort((a, b) => b[1] - a[1])
+	const top = entries.slice(0, 4)
+	const otherVal = entries.slice(4).reduce((s, [, v]) => s + v, 0)
+	return [
+		...top.map(([name, value]) => ({ label: name, value, color: TYPE_COLORS[name] ?? '#6b7280' })),
+		...(otherVal > 0 ? [{ label: 'Other', value: otherVal, color: '#6b7280' }] : []),
 	]
 }
 

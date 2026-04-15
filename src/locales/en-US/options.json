@@ -47,6 +47,21 @@
   "options.customization.description": {
     "defaultMessage": "Adjust the appearance and behavior of the extension."
   },
+  "options.customization.popupStats.all": {
+    "defaultMessage": "All"
+  },
+  "options.customization.popupStats.description": {
+    "defaultMessage": "What statistics to show in the popup."
+  },
+  "options.customization.popupStats.graphs": {
+    "defaultMessage": "Graphs"
+  },
+  "options.customization.popupStats.label": {
+    "defaultMessage": "Popup stats"
+  },
+  "options.customization.popupStats.none": {
+    "defaultMessage": "None"
+  },
   "options.customization.title": {
     "defaultMessage": "Customization"
   },

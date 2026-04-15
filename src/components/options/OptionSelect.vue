@@ -25,7 +25,7 @@
 export type SelectOption = {
 	id: string
 	type: 'select'
-	formKey: 'locale' | 'colorScheme' | 'badgeMode'
+	formKey: 'locale' | 'colorScheme' | 'badgeMode' | 'popupStats'
 	icon?: import('vue').Component
 	label: string
 	description: string

@@ -43,6 +43,14 @@
 				:options="badgeMode.options"
 				@update:model-value="form.badgeMode = $event as BadgeMode"
 			/>
+			<OptionSelect
+				:icon="popupStats.icon"
+				:label="popupStats.label"
+				:description="popupStats.description"
+				:model-value="form.popupStats"
+				:options="popupStats.options"
+				@update:model-value="form.popupStats = $event as PopupStats"
+			/>
 			<div
 				v-if="saveError"
 				class="mt-3 px-3.5 py-2.5 rounded-lg text-[13px] border bg-danger-bg border-danger-border text-pihole-red"
@@ -55,7 +63,7 @@
 
 <script lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Languages, Monitor, Tag } from '@lucide/vue'
+import { BarChart2, Languages, Monitor, Tag } from '@lucide/vue'
 import { computed } from 'vue'
 
 import { useVIntl } from '../../../helpers/i18n'
@@ -108,6 +116,26 @@ export const messages = defineMessages({
 		id: 'options.customization.badge.clients',
 		defaultMessage: 'Active clients',
 	},
+	'options.customization.popupStats.label': {
+		id: 'options.customization.popupStats.label',
+		defaultMessage: 'Popup stats',
+	},
+	'options.customization.popupStats.description': {
+		id: 'options.customization.popupStats.description',
+		defaultMessage: 'What statistics to show in the popup.',
+	},
+	'options.customization.popupStats.none': {
+		id: 'options.customization.popupStats.none',
+		defaultMessage: 'None',
+	},
+	'options.customization.popupStats.graphs': {
+		id: 'options.customization.popupStats.graphs',
+		defaultMessage: 'Graphs',
+	},
+	'options.customization.popupStats.all': {
+		id: 'options.customization.popupStats.all',
+		defaultMessage: 'All',
+	},
 })
 
 export function useCustomizationOptions() {
@@ -155,7 +183,24 @@ export function useCustomizationOptions() {
 		],
 	}))
 
-	return { locale, colorScheme, badgeMode }
+	const popupStats = computed(() => ({
+		id: 'popupStats',
+		type: 'select' as const,
+		formKey: 'popupStats' as const,
+		icon: BarChart2,
+		label: formatMessage(messages['options.customization.popupStats.label']),
+		description: formatMessage(messages['options.customization.popupStats.description']),
+		options: [
+			{ value: 'none', label: formatMessage(messages['options.customization.popupStats.none']) },
+			{
+				value: 'graphs',
+				label: formatMessage(messages['options.customization.popupStats.graphs']),
+			},
+			{ value: 'all', label: formatMessage(messages['options.customization.popupStats.all']) },
+		],
+	}))
+
+	return { locale, colorScheme, badgeMode, popupStats }
 }
 </script>
 
@@ -163,9 +208,9 @@ export function useCustomizationOptions() {
 import OptionSelect from '../../../components/options/OptionSelect.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import type { BadgeMode, ColorScheme } from '../../../helpers/settings'
+import type { BadgeMode, ColorScheme, PopupStats } from '../../../helpers/settings'
 
 const { form, saveError, initialized } = useSettings()
-const { locale, colorScheme, badgeMode } = useCustomizationOptions()
+const { locale, colorScheme, badgeMode, popupStats } = useCustomizationOptions()
 const { formatMessage } = useVIntl()
 </script>

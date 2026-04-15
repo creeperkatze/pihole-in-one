@@ -75,7 +75,7 @@ type SearchableOption = SliderOption | SelectOption | ToggleOption | PiHoleOptio
 const route = useRoute()
 const { form, setOption, initialized } = useSettings()
 const { pihole, refreshInterval } = useConnectionOptions()
-const { locale, colorScheme, badgeMode } = useCustomizationOptions()
+const { locale, colorScheme, badgeMode, popupStats } = useCustomizationOptions()
 const { telemetry } = useDiagnosticsOptions()
 
 const { formatMessage } = useVIntl()
@@ -97,6 +97,7 @@ const allOptions = computed<SearchableOption[]>(() => [
 	locale.value,
 	colorScheme.value,
 	badgeMode.value,
+	popupStats.value,
 	telemetry.value,
 ])
 

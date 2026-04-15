@@ -75,6 +75,7 @@ export function useSettings() {
 		form.colorScheme = settings.colorScheme
 		form.locale = settings.locale || detectBrowserLocale()
 		form.telemetry = settings.telemetry
+		form.popupStats = settings.popupStats
 		applyColorScheme(settings.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true

@@ -21,6 +21,7 @@ export interface PiholeSummary {
 		unique_domains: number
 		cached: number
 		forwarded: number
+		types: Record<string, number>
 	}
 	clients: {
 		active: number

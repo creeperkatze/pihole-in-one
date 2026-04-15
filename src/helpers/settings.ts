@@ -9,6 +9,7 @@ export interface PiholeInstance {
 
 export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
 export type ColorScheme = 'auto' | 'dark' | 'light'
+export type PopupStats = 'none' | 'graphs' | 'all'
 
 export interface ExtensionSettings {
 	instances: PiholeInstance[]
@@ -17,6 +18,7 @@ export interface ExtensionSettings {
 	colorScheme: ColorScheme
 	locale: string
 	telemetry: boolean
+	popupStats: PopupStats
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -26,6 +28,7 @@ export const DEFAULTS: ExtensionSettings = {
 	colorScheme: 'auto',
 	locale: '',
 	telemetry: true,
+	popupStats: 'graphs',
 }
 
 export function generateInstanceId(): string {
