@@ -97,7 +97,7 @@ jobs:
 
       - uses: wdzeng/firefox-addon@v1.2.0
         with:
-          addon-guid: contact@creeperkatze.de
+          addon-guid: pihole-in-one@creeperkatze.dev
           xpi-path: zips/*firefox*.zip
           source-file-path: zips/*sources*.zip
           compatibility: firefox,android
