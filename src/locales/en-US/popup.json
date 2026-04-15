@@ -74,11 +74,11 @@
   "popup.stats.blockedToday": {
     "defaultMessage": "Blocked Today"
   },
+  "popup.stats.cached": {
+    "defaultMessage": "Cached"
+  },
   "popup.stats.queriesToday": {
     "defaultMessage": "Queries Today"
-  },
-  "popup.stats.uniqueDomains": {
-    "defaultMessage": "Unique Domains"
   },
   "popup.status.blockingDisabled": {
     "defaultMessage": "Blocking Disabled"

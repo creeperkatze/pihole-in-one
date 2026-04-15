@@ -5,18 +5,29 @@ export interface BlockingStatus {
 	timer: number | null
 }
 
+export interface HistoryPoint {
+	timestamp: number
+	total: number
+	cached: number
+	blocked: number
+	forwarded: number
+}
+
 export interface PiholeSummary {
 	queries: {
 		total: number
 		blocked: number
 		percent_blocked: number
 		unique_domains: number
+		cached: number
+		forwarded: number
 	}
 	clients: {
 		active: number
 		total: number
 	}
 	blocking: BlockingStatus
+	history: HistoryPoint[]
 }
 
 const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
@@ -157,15 +168,16 @@ async function withSession<T>(
 
 export async function getSummary(base: string, password: string): Promise<PiholeSummary> {
 	return withSession(base, password, async (sid) => {
-		const [stats, blocking] = await Promise.all([
+		const [stats, blocking, historyRes] = await Promise.all([
 			apiFetch<{ queries: PiholeSummary['queries']; clients: PiholeSummary['clients'] }>(
 				base,
 				'stats/summary',
 				sid,
 			),
 			apiFetch<BlockingStatus>(base, 'dns/blocking', sid),
+			apiFetch<{ history: HistoryPoint[] }>(base, 'history', sid).catch(() => ({ history: [] })),
 		])
-		return { queries: stats.queries, clients: stats.clients, blocking }
+		return { queries: stats.queries, clients: stats.clients, blocking, history: historyRes.history }
 	})
 }
 

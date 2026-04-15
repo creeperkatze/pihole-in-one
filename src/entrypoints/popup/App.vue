@@ -229,10 +229,7 @@ const messages = defineMessages({
 	'popup.stats.queriesToday': { id: 'popup.stats.queriesToday', defaultMessage: 'Queries Today' },
 	'popup.stats.blockedToday': { id: 'popup.stats.blockedToday', defaultMessage: 'Blocked Today' },
 	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
-	'popup.stats.uniqueDomains': {
-		id: 'popup.stats.uniqueDomains',
-		defaultMessage: 'Unique Domains',
-	},
+	'popup.stats.cached': { id: 'popup.stats.cached', defaultMessage: 'Cached' },
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
 	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
@@ -314,20 +311,40 @@ function statusSub(i: number): string | undefined {
 	return undefined
 }
 
-function formattedStats(i: number): Array<{ label: string; value: string }> {
+function formattedStats(
+	i: number,
+): Array<{ label: string; value: string; sparkline?: number[]; sparklineColor?: string }> {
 	const summary = states.value[i]?.summary
 	if (!summary) return []
 	const q = summary.queries
+	const history = summary.history ?? []
+	const totalSparkline = history.map((h) => h.total)
+	const blockedSparkline = history.map((h) => h.blocked)
+	const percentSparkline = history.map((h) => (h.total > 0 ? (h.blocked / h.total) * 100 : 0))
 	return [
-		{ label: formatMessage(messages['popup.stats.queriesToday']), value: formatNumber(q.total) },
-		{ label: formatMessage(messages['popup.stats.blockedToday']), value: formatNumber(q.blocked) },
+		{
+			label: formatMessage(messages['popup.stats.queriesToday']),
+			value: formatNumber(q.total),
+			sparkline: totalSparkline,
+			sparklineColor: '#3b82f6',
+		},
+		{
+			label: formatMessage(messages['popup.stats.blockedToday']),
+			value: formatNumber(q.blocked),
+			sparkline: blockedSparkline,
+			sparklineColor: '#ef4444',
+		},
 		{
 			label: formatMessage(messages['popup.stats.blocked']),
 			value: `${q.percent_blocked.toFixed(1)}%`,
+			sparkline: percentSparkline,
+			sparklineColor: '#f97316',
 		},
 		{
-			label: formatMessage(messages['popup.stats.uniqueDomains']),
-			value: formatNumber(q.unique_domains),
+			label: formatMessage(messages['popup.stats.cached']),
+			value: formatNumber(q.cached),
+			sparkline: history.map((h) => h.cached),
+			sparklineColor: '#8b5cf6',
 		},
 	]
 }
