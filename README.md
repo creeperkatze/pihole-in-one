@@ -25,6 +25,8 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ## ✨ Features
 
+<img src=".github/assets/screenshots/extension.png" width="100%">
+
 ### Blocking control
 
 Toggle Pi-hole blocking from the popup. Temporarily disable for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables blocking automatically.
