@@ -69,7 +69,10 @@
 				</div>
 
 				<!-- Expanded form -->
-				<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border bg-surface-raised">
+				<div
+					v-if="editingId === inst.id"
+					class="flex flex-col gap-4 p-4 border-t border-border bg-surface-raised"
+				>
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`name-${inst.id}`">
 							{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
@@ -140,6 +143,12 @@
 					>
 						{{ testStates[inst.id].message }}
 					</div>
+					<div
+						v-if="permissionError"
+						class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
+					>
+						{{ permissionError }}
+					</div>
 					<div class="flex justify-start">
 						<Button variant="primary" :disabled="!isDirty" @click="save">
 							<Save class="size-4" />
@@ -163,8 +172,18 @@ export type PiHoleOption = {
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { CheckCircle2, ChevronDown, Loader2, Plus, Save, Server, Trash2, XCircle } from '@lucide/vue'
+import {
+	CheckCircle2,
+	ChevronDown,
+	Loader2,
+	Plus,
+	Save,
+	Server,
+	Trash2,
+	XCircle,
+} from '@lucide/vue'
 import { ref, watch } from 'vue'
+import { browser } from 'wxt/browser'
 
 import { getSummary } from '../../helpers/api'
 import { useVIntl } from '../../helpers/i18n'
@@ -247,6 +266,7 @@ const messages = defineMessages({
 // Local working copy — only committed to parent on explicit Save
 const localValue = ref<PiholeInstance[]>(props.modelValue.map((i) => ({ ...i })))
 const isDirty = ref(false)
+const permissionError = ref('')
 
 const editingId = ref<string | null>(null)
 
@@ -256,7 +276,27 @@ interface TestState {
 }
 const testStates = ref<Record<string, TestState>>({})
 
-function save(): void {
+async function save(): Promise<void> {
+	const origins = localValue.value
+		.map((i) => {
+			try {
+				const u = new URL(i.baseUrl)
+				return `${u.protocol}//${u.host}/*`
+			} catch {
+				return null
+			}
+		})
+		.filter((o): o is string => o !== null)
+
+	if (origins.length > 0) {
+		const granted = await browser.permissions.request({ origins })
+		if (!granted) {
+			permissionError.value = 'Permission denied. Grant access to your Pi-hole host to continue.'
+			return
+		}
+	}
+
+	permissionError.value = ''
 	emit(
 		'update:modelValue',
 		localValue.value.map((i) => ({ ...i })),

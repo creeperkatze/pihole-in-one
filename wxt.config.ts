@@ -36,7 +36,7 @@ export default defineConfig({
 			64: 'icon-64.png',
 			128: 'icon-128.png',
 		},
-		host_permissions: ['<all_urls>'],
+		optional_host_permissions: ['*://*/*'],
 		permissions: ['storage', 'alarms', 'activeTab'],
 		options_ui: { open_in_tab: true },
 		browser_specific_settings: {
