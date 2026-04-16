@@ -20,14 +20,14 @@
 
 		<div class="flex flex-col gap-2 pl-7">
 			<div
-				v-if="modelValue.length === 0"
+				v-if="localValue.length === 0"
 				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
 			>
 				{{ formatMessage(messages['options.piholeselector.empty']) }}
 			</div>
 
 			<div
-				v-for="inst in modelValue"
+				v-for="inst in localValue"
 				:key="inst.id"
 				class="rounded-lg border border-border overflow-hidden"
 			>
@@ -69,7 +69,7 @@
 				</div>
 
 				<!-- Expanded form -->
-				<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border">
+				<div v-if="editingId === inst.id" class="flex flex-col gap-4 p-4 border-t border-border bg-surface-raised">
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`name-${inst.id}`">
 							{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
@@ -82,6 +82,7 @@
 							:placeholder="
 								formatMessage(messages['options.piholeselector.instance.name.placeholder'])
 							"
+							@input="isDirty = true"
 						/>
 					</div>
 					<div class="flex flex-col gap-1.5">
@@ -94,7 +95,7 @@
 							type="url"
 							class="w-full"
 							placeholder=""
-							@input="scheduleTest(inst.id)"
+							@input="isDirty = true"
 						/>
 						<p class="m-0 text-xs text-secondary">
 							No trailing slash or <code class="font-mono">/api</code>.
@@ -113,7 +114,7 @@
 								formatMessage(messages['options.piholeselector.instance.apiPassword.placeholder'])
 							"
 							autocomplete="off"
-							@input="scheduleTest(inst.id)"
+							@input="isDirty = true"
 						/>
 						<p class="m-0 text-xs text-secondary">
 							{{ formatMessage(messages['options.piholeselector.instance.apiPassword.hint']) }}
@@ -139,6 +140,12 @@
 					>
 						{{ testStates[inst.id].message }}
 					</div>
+					<div class="flex justify-start">
+						<Button variant="primary" :disabled="!isDirty" @click="save">
+							<Save class="size-4" />
+							Save
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -156,7 +163,7 @@ export type PiHoleOption = {
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { CheckCircle2, ChevronDown, Loader2, Plus, Server, Trash2, XCircle } from '@lucide/vue'
+import { CheckCircle2, ChevronDown, Loader2, Plus, Save, Server, Trash2, XCircle } from '@lucide/vue'
 import { ref, watch } from 'vue'
 
 import { getSummary } from '../../helpers/api'
@@ -237,6 +244,10 @@ const messages = defineMessages({
 	},
 })
 
+// Local working copy — only committed to parent on explicit Save
+const localValue = ref<PiholeInstance[]>(props.modelValue.map((i) => ({ ...i })))
+const isDirty = ref(false)
+
 const editingId = ref<string | null>(null)
 
 interface TestState {
@@ -244,7 +255,17 @@ interface TestState {
 	message?: string
 }
 const testStates = ref<Record<string, TestState>>({})
-const testTimers: Record<string, ReturnType<typeof setTimeout>> = {}
+
+function save(): void {
+	emit(
+		'update:modelValue',
+		localValue.value.map((i) => ({ ...i })),
+	)
+	isDirty.value = false
+	for (const inst of localValue.value) {
+		void runTest(inst.id)
+	}
+}
 
 function toggleEdit(id: string): void {
 	editingId.value = editingId.value === id ? null : id
@@ -257,28 +278,20 @@ function addInstance(): void {
 		baseUrl: 'http://pi.hole',
 		apiPassword: '',
 	}
-	emit('update:modelValue', [...props.modelValue, inst])
+	localValue.value = [...localValue.value, inst]
+	isDirty.value = true
 	editingId.value = inst.id
-	scheduleTest(inst.id)
 }
 
 function removeInstance(id: string): void {
 	if (editingId.value === id) editingId.value = null
 	delete testStates.value[id]
-	if (testTimers[id]) clearTimeout(testTimers[id])
-	emit(
-		'update:modelValue',
-		props.modelValue.filter((i) => i.id !== id),
-	)
-}
-
-function scheduleTest(id: string): void {
-	if (testTimers[id]) clearTimeout(testTimers[id])
-	testTimers[id] = setTimeout(() => void runTest(id), 800)
+	localValue.value = localValue.value.filter((i) => i.id !== id)
+	isDirty.value = true
 }
 
 async function runTest(id: string): Promise<void> {
-	const inst = props.modelValue.find((i) => i.id === id)
+	const inst = localValue.value.find((i) => i.id === id)
 	if (!inst?.baseUrl) {
 		delete testStates.value[id]
 		return
@@ -304,6 +317,9 @@ async function runTest(id: string): Promise<void> {
 watch(
 	() => props.modelValue,
 	(instances) => {
+		if (!isDirty.value) {
+			localValue.value = instances.map((i) => ({ ...i }))
+		}
 		for (const inst of instances) {
 			if (!testStates.value[inst.id]) void runTest(inst.id)
 		}

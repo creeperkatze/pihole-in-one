@@ -34,7 +34,7 @@
 		--color-surface-1:      theme(--color-zinc-900);
 		--color-surface-2:      theme(--color-zinc-900);
 		--color-surface-3:      theme(--color-zinc-800);
-		--color-surface-raised: theme(--color-zinc-800);
+		--color-surface-raised: #323235;
 		--color-surface-hover:  theme(--color-zinc-700);
 
 		--color-primary:   theme(--color-zinc-50);
@@ -59,7 +59,7 @@ html.dark {
 	--color-surface-1:      theme(--color-zinc-900);
 	--color-surface-2:      theme(--color-zinc-900);     /* border provides separation */
 	--color-surface-3:      theme(--color-zinc-800);
-	--color-surface-raised: theme(--color-zinc-800);
+	--color-surface-raised: #323235;
 	--color-surface-hover:  theme(--color-zinc-700);
 
 	--color-primary:   theme(--color-zinc-50);
