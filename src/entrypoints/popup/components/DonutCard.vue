@@ -7,7 +7,7 @@
 			<div class="text-xs text-secondary mb-1">
 				{{ title }}
 			</div>
-			<div class="grid gap-y-0.5">
+			<div class="grid grid-cols-2 gap-x-2 gap-y-0.5">
 				<div v-for="seg in activeSegments" :key="seg.label" class="flex items-center gap-1 min-w-0">
 					<div class="size-1.5 rounded-full shrink-0" :style="{ background: seg.color }" />
 					<span class="text-[10px] text-primary truncate">{{ seg.label }}</span>
