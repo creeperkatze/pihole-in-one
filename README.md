@@ -37,7 +37,7 @@ See if the current tab's domain is blocked or allow-listed and toggle it instant
 
 ### Stats at a glance
 
-See today's query count, blocked count, block percentage, and unique domain count in the popup.
+See today's query count, blocked count, block percentage, and cached count, each with a sparkline graph showing activity over the last 24 hours. Optionally show query-status and query-type donut charts for a breakdown at a glance.
 
 ### Multiple Pi-hole instances
 
