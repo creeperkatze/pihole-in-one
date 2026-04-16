@@ -2,118 +2,130 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-	--color-surface-1:      theme(--color-white);
-	--color-surface-2:      theme(--color-zinc-50);
-	--color-surface-3:      theme(--color-zinc-100);
-	--color-surface-raised: theme(--color-white);
-	--color-surface-hover:  theme(--color-zinc-200);
+@theme
+{
+    --color-surface-1: theme(--color-white);
+    --color-surface-2: theme(--color-zinc-50);
+    --color-surface-3: theme(--color-zinc-100);
+    --color-surface-raised: theme(--color-white);
+    --color-surface-hover: theme(--color-zinc-200);
 
-	--color-primary:   theme(--color-zinc-950);
-	--color-secondary: theme(--color-zinc-500);
-	--color-muted:     theme(--color-zinc-400);
+    --color-primary: theme(--color-zinc-950);
+    --color-secondary: theme(--color-zinc-500);
+    --color-muted: theme(--color-zinc-400);
 
-	--color-border:        theme(--color-zinc-200);
-	--color-border-subtle: theme(--color-zinc-200);
+    --color-border: theme(--color-zinc-200);
+    --color-border-subtle: theme(--color-zinc-200);
 
-	--color-control-track: theme(--color-zinc-300);
+    --color-control-track: theme(--color-zinc-300);
 
-	--color-pihole-red: theme(--color-red-600);
-	--color-pihole-green: theme(--color-green-600);
-	--color-success-bg: theme(--color-green-50);
-	--color-success-border: theme(--color-green-300);
-	--color-danger-bg: theme(--color-red-50);
-	--color-danger-border: theme(--color-red-300);
+    --color-pihole-red: theme(--color-red-600);
+    --color-pihole-green: theme(--color-green-600);
+    --color-success-bg: theme(--color-green-50);
+    --color-success-border: theme(--color-green-300);
+    --color-danger-bg: theme(--color-red-50);
+    --color-danger-border: theme(--color-red-300);
 
-	--color-muted: theme(--color-zinc-500);
-	--color-border: theme(--color-zinc-300);
+    --color-muted: theme(--color-zinc-500);
+    --color-border: theme(--color-zinc-300);
 }
 
-@media (prefers-color-scheme: dark) {
-	html:not(.light) {
-		--color-surface-1:      theme(--color-zinc-900);
-		--color-surface-2:      theme(--color-zinc-900);
-		--color-surface-3:      theme(--color-zinc-800);
-		--color-surface-raised: #2e2e31;
-		--color-surface-hover:  theme(--color-zinc-700);
+@media (prefers-color-scheme: dark)
+{
+    html:not(.light)
+    {
+        --color-surface-1: theme(--color-zinc-900);
+        --color-surface-2: theme(--color-zinc-900);
+        --color-surface-3: theme(--color-zinc-800);
+        --color-surface-raised: theme(--color-zinc-800);
+        --color-surface-hover: theme(--color-zinc-700);
 
-		--color-primary:   theme(--color-zinc-50);
-		--color-secondary: theme(--color-zinc-400);
-		--color-muted:     theme(--color-zinc-500);
+        --color-primary: theme(--color-zinc-50);
+        --color-secondary: theme(--color-zinc-400);
+        --color-muted: theme(--color-zinc-500);
 
-		--color-border:        theme(--color-zinc-700);
-		--color-border-subtle: theme(--color-zinc-800);
+        --color-border: theme(--color-zinc-700);
+        --color-border-subtle: theme(--color-zinc-800);
 
-		--color-control-track: theme(--color-zinc-600);
+        --color-control-track: theme(--color-zinc-600);
 
-		--color-pihole-red: #ff0000;
-		--color-pihole-green: #00ff00;
-		--color-success-bg: #003300;
-		--color-success-border: #006600;
-		--color-danger-bg: #330000;
-		--color-danger-border: #660000;
-	}
+        --color-pihole-red: #ff0000;
+        --color-pihole-green: #00ff00;
+        --color-success-bg: #003300;
+        --color-success-border: #006600;
+        --color-danger-bg: #330000;
+        --color-danger-border: #660000;
+    }
 }
 
-html.dark {
-	--color-surface-1:      theme(--color-zinc-900);
-	--color-surface-2:      theme(--color-zinc-900);
-	--color-surface-3:      theme(--color-zinc-800);
-	--color-surface-raised: #2e2e31;
-	--color-surface-hover:  theme(--color-zinc-700);
+html.dark
+{
+    --color-surface-1: theme(--color-zinc-900);
+    --color-surface-2: theme(--color-zinc-900);
+    --color-surface-3: theme(--color-zinc-800);
+    --color-surface-raised: theme(--color-zinc-800);
+    --color-surface-hover: theme(--color-zinc-700);
 
-	--color-primary:   theme(--color-zinc-50);
-	--color-secondary: theme(--color-zinc-400);
-	--color-muted:     theme(--color-zinc-500);
+    --color-primary: theme(--color-zinc-50);
+    --color-secondary: theme(--color-zinc-400);
+    --color-muted: theme(--color-zinc-500);
 
-	--color-border:        theme(--color-zinc-700);
-	--color-border-subtle: theme(--color-zinc-800);
+    --color-border: theme(--color-zinc-700);
+    --color-border-subtle: theme(--color-zinc-800);
 
-	--color-control-track: theme(--color-zinc-600);
+    --color-control-track: theme(--color-zinc-600);
 
-	--color-pihole-red: #ff0000;
-	--color-pihole-green: #00ff00;
-	--color-success-bg: #003300;
-	--color-success-border: #006600;
-	--color-danger-bg: #330000;
-	--color-danger-border: #660000;
+    --color-pihole-red: #ff0000;
+    --color-pihole-green: #00ff00;
+    --color-success-bg: #003300;
+    --color-success-border: #006600;
+    --color-danger-bg: #330000;
+    --color-danger-border: #660000;
 }
 
-@layer base {
-	* {
-		scrollbar-width: thin;
-		scrollbar-color: var(--color-border) transparent;
-	}
+@layer base
+{
+    *
+    {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-border) transparent;
+    }
 
-	*::-webkit-scrollbar {
-		width: 4px;
-		height: 4px;
-	}
+    *::-webkit-scrollbar
+    {
+        width: 4px;
+        height: 4px;
+    }
 
-	*::-webkit-scrollbar-track {
-		background: transparent;
-	}
+    *::-webkit-scrollbar-track
+    {
+        background: transparent;
+    }
 
-	*::-webkit-scrollbar-thumb {
-		background-color: var(--color-border);
-		border-radius: 9999px;
-	}
+    *::-webkit-scrollbar-thumb
+    {
+        background-color: var(--color-border);
+        border-radius: 9999px;
+    }
 
-	body {
-		font-family: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-		font-size: 14px;
-		line-height: 1.5;
-		@apply text-primary bg-surface-1;
-	}
+    body
+    {
+        font-family: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        @apply text-primary bg-surface-1;
+    }
 
-	button {
-		font-family: inherit;
-		font-size: inherit;
-	}
+    button
+    {
+        font-family: inherit;
+        font-size: inherit;
+    }
 
-	input,
-	select {
-		font-family: inherit;
-		font-size: inherit;
-	}
+    input,
+    select
+    {
+        font-family: inherit;
+        font-size: inherit;
+    }
 }

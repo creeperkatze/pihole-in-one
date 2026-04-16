@@ -17,12 +17,29 @@ const initialized = ref(false)
 
 let saveTimer: ReturnType<typeof setTimeout> | null = null
 
+async function flushSave(): Promise<void> {
+	if (!initialized.value || !saveTimer) return
+	clearTimeout(saveTimer)
+	saveTimer = null
+	try {
+		await saveSettings(JSON.parse(JSON.stringify(form)))
+		saveError.value = ''
+	} catch (e) {
+		saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
+	}
+}
+
+document.addEventListener('visibilitychange', () => {
+	if (document.visibilityState === 'hidden') void flushSave()
+})
+
 watch(
 	form,
 	() => {
 		if (!initialized.value) return
 		if (saveTimer) clearTimeout(saveTimer)
 		saveTimer = setTimeout(async () => {
+			saveTimer = null
 			try {
 				await saveSettings(JSON.parse(JSON.stringify(form)))
 				saveError.value = ''
