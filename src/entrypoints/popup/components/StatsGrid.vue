@@ -73,7 +73,9 @@ function linePath(data: number[]): string {
 
 function areaPath(data: number[]): string {
 	const pts = toPoints(data)
-	const line = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
+	const line = pts
+		.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(2)},${p.y.toFixed(2)}`)
+		.join(' ')
 	return `${line} L ${pts[pts.length - 1].x.toFixed(2)},${HEIGHT} L ${pts[0].x.toFixed(2)},${HEIGHT} Z`
 }
 </script>
