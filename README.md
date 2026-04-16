@@ -51,7 +51,7 @@ Configurable toolbar badge: blocked percentage, ON/OFF state, or the active clie
 
 1. Open the extension options.
 2. Under **Connection**, click **Add Pi-hole** in the top-right of the Pi-holes section.
-3. Enter a name, your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`), and your **API password** (found in > Settings > API).
+3. Enter a name, your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`), and your **API password** (found in Settings > API).
 4. Leave the password blank if your Pi-hole has no password set.
 5. The connection is tested automatically, a green checkmark confirms it's working.
 
