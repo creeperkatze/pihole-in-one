@@ -1,7 +1,7 @@
 <template>
 	<div class="grid grid-cols-2 gap-2">
 		<div
-			v-for="stat in stats"
+			v-for="(stat, index) in stats"
 			:key="stat.label"
 			class="relative overflow-hidden px-3 py-2.5 rounded-lg border border-border bg-surface-3"
 		>
@@ -12,6 +12,13 @@
 				viewBox="0 0 100 56"
 				xmlns="http://www.w3.org/2000/svg"
 			>
+				<defs>
+					<linearGradient :id="`sg${index}`" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0%" :stop-color="stat.sparklineColor" stop-opacity="0.6" />
+						<stop offset="100%" :stop-color="stat.sparklineColor" stop-opacity="0.2" />
+					</linearGradient>
+				</defs>
+				<path :d="areaPath(stat.sparkline)" :fill="`url(#sg${index})`" />
 				<path
 					:d="linePath(stat.sparkline)"
 					:stroke="stat.sparklineColor"
@@ -62,5 +69,11 @@ function toPoints(data: number[]): { x: number; y: number }[] {
 function linePath(data: number[]): string {
 	const pts = toPoints(data)
 	return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
+}
+
+function areaPath(data: number[]): string {
+	const pts = toPoints(data)
+	const line = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
+	return `${line} L ${pts[pts.length - 1].x.toFixed(2)},${HEIGHT} L ${pts[0].x.toFixed(2)},${HEIGHT} Z`
 }
 </script>
