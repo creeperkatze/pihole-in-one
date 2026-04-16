@@ -87,7 +87,7 @@
 					</button>
 				</div>
 
-				<div class="flex flex-col gap-2.5 px-3.5 py-3">
+				<div class="flex flex-col gap-2 p-3">
 					<StatusCard
 						v-if="states[activeInstance]?.summary"
 						:status="isEnabled(activeInstance) ? 'enabled' : 'disabled'"
@@ -96,7 +96,7 @@
 						@toggle="toggleBlocking(activeInstance)"
 					/>
 
-					<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-1.5">
+					<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-2">
 						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
 							{{ formatMessage(messages['popup.disableFor']) }}
 						</div>
@@ -115,7 +115,7 @@
 
 					<div
 						v-if="states[activeInstance]?.error"
-						class="flex items-center justify-between gap-2 px-3 py-2 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
+						class="flex items-center justify-between gap-2 p-3 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
 					>
 						<span>{{ states[activeInstance].error }}</span>
 						<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
