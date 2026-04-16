@@ -56,7 +56,7 @@
 							v-else-if="testStates[inst.id]?.status === 'error'"
 							class="size-4 text-pihole-red"
 						/>
-						<Button size="small" variant="outline" @click="removeInstance(inst.id)">
+						<Button size="small" variant="outline" @click="void removeInstance(inst.id)">
 							<Trash2 class="size-4" />
 						</Button>
 						<Button size="small" variant="outline" @click="toggleEdit(inst.id)">
@@ -276,24 +276,34 @@ interface TestState {
 }
 const testStates = ref<Record<string, TestState>>({})
 
-async function save(): Promise<void> {
-	const origins = localValue.value
-		.map((i) => {
-			try {
-				const u = new URL(i.baseUrl)
-				return `${u.protocol}//${u.host}/*`
-			} catch {
-				return null
-			}
-		})
-		.filter((o): o is string => o !== null)
+function toOrigin(baseUrl: string): string | null {
+	try {
+		const u = new URL(baseUrl)
+		return `${u.protocol}//${u.host}/*`
+	} catch {
+		return null
+	}
+}
 
-	if (origins.length > 0) {
-		const granted = await browser.permissions.request({ origins })
+async function save(): Promise<void> {
+	const newOrigins = localValue.value
+		.map((i) => toOrigin(i.baseUrl))
+		.filter((o): o is string => o !== null)
+	const oldOrigins = props.modelValue
+		.map((i) => toOrigin(i.baseUrl))
+		.filter((o): o is string => o !== null)
+	const removedOrigins = oldOrigins.filter((o) => !newOrigins.includes(o))
+
+	if (newOrigins.length > 0) {
+		const granted = await browser.permissions.request({ origins: newOrigins })
 		if (!granted) {
 			permissionError.value = 'Permission denied. Grant access to your Pi-hole host to continue.'
 			return
 		}
+	}
+
+	if (removedOrigins.length > 0) {
+		await browser.permissions.remove({ origins: removedOrigins })
 	}
 
 	permissionError.value = ''
@@ -323,11 +333,22 @@ function addInstance(): void {
 	editingId.value = inst.id
 }
 
-function removeInstance(id: string): void {
+async function removeInstance(id: string): Promise<void> {
+	const inst = localValue.value.find((i) => i.id === id)
 	if (editingId.value === id) editingId.value = null
 	delete testStates.value[id]
 	localValue.value = localValue.value.filter((i) => i.id !== id)
-	isDirty.value = true
+
+	if (inst?.baseUrl) {
+		const origin = toOrigin(inst.baseUrl)
+		const stillUsed = origin && localValue.value.some((i) => toOrigin(i.baseUrl) === origin)
+		if (origin && !stillUsed) await browser.permissions.remove({ origins: [origin] })
+	}
+
+	emit(
+		'update:modelValue',
+		localValue.value.map((i) => ({ ...i })),
+	)
 }
 
 async function runTest(id: string): Promise<void> {
