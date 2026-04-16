@@ -3,20 +3,20 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-	--color-surface-1:      theme(--color-white);        /* page background */
-	--color-surface-2:      theme(--color-zinc-50);      /* sidebar, secondary areas */
-	--color-surface-3:      theme(--color-zinc-100);     /* panels, inputs, buttons, stats */
-	--color-surface-raised: theme(--color-white);        /* active tabs, cards on darker surfaces */
-	--color-surface-hover:  theme(--color-zinc-200);     /* interactive element hover */
+	--color-surface-1:      theme(--color-white);
+	--color-surface-2:      theme(--color-zinc-50);
+	--color-surface-3:      theme(--color-zinc-100);
+	--color-surface-raised: theme(--color-white);
+	--color-surface-hover:  theme(--color-zinc-200);
 
 	--color-primary:   theme(--color-zinc-950);
 	--color-secondary: theme(--color-zinc-500);
 	--color-muted:     theme(--color-zinc-400);
 
 	--color-border:        theme(--color-zinc-200);
-	--color-border-subtle: theme(--color-zinc-200);      /* same as border in light */
+	--color-border-subtle: theme(--color-zinc-200);
 
-	--color-control-track: theme(--color-zinc-300);      /* toggle off-state */
+	--color-control-track: theme(--color-zinc-300);
 
 	--color-pihole-red: theme(--color-red-600);
 	--color-pihole-green: theme(--color-green-600);
@@ -34,7 +34,7 @@
 		--color-surface-1:      theme(--color-zinc-900);
 		--color-surface-2:      theme(--color-zinc-900);
 		--color-surface-3:      theme(--color-zinc-800);
-		--color-surface-raised: #323235;
+		--color-surface-raised: #2e2e31;
 		--color-surface-hover:  theme(--color-zinc-700);
 
 		--color-primary:   theme(--color-zinc-50);
@@ -57,9 +57,9 @@
 
 html.dark {
 	--color-surface-1:      theme(--color-zinc-900);
-	--color-surface-2:      theme(--color-zinc-900);     /* border provides separation */
+	--color-surface-2:      theme(--color-zinc-900);
 	--color-surface-3:      theme(--color-zinc-800);
-	--color-surface-raised: #323235;
+	--color-surface-raised: #2e2e31;
 	--color-surface-hover:  theme(--color-zinc-700);
 
 	--color-primary:   theme(--color-zinc-50);
