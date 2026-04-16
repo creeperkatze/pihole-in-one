@@ -80,6 +80,25 @@ html.dark {
 }
 
 @layer base {
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--color-border) transparent;
+	}
+
+	*::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: var(--color-border);
+		border-radius: 9999px;
+	}
+
 	body {
 		font-family: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 		font-size: 14px;
