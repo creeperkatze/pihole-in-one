@@ -27,7 +27,8 @@ export default defineConfig({
 	modules: ['@wxt-dev/module-vue'],
 	manifest: {
 		name: 'Pi-hole In One',
-		description: 'Control your Pi-hole directly from the browser.',
+		description:
+			'A browser extension to control your Pi-hole conveniently from within the browser.',
 		version,
 		icons: {
 			16: 'icon-16.png',
