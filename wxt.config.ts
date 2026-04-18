@@ -38,6 +38,8 @@ export default defineConfig({
 			128: 'icon-128.png',
 		},
 		optional_host_permissions: ['*://*/*'],
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Firefox requires this
+		optional_permissions: ['*://*/*' as any],
 		permissions: ['storage', 'alarms', 'activeTab'],
 		options_ui: { open_in_tab: true },
 		browser_specific_settings: {
