@@ -96,22 +96,11 @@
 						@toggle="toggleBlocking(activeInstance)"
 					/>
 
-					<div v-if="isEnabled(activeInstance)" class="flex flex-col gap-2">
-						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-							{{ formatMessage(messages['popup.disableFor']) }}
-						</div>
-						<div class="flex gap-1.5 flex-wrap">
-							<Button
-								v-for="preset in disablePresets"
-								:key="preset.label"
-								variant="outline"
-								:disabled="states[activeInstance].toggling"
-								@click="disableFor(activeInstance, preset.seconds)"
-							>
-								{{ preset.label }}
-							</Button>
-						</div>
-					</div>
+					<DisablePresets
+						v-if="isEnabled(activeInstance)"
+						:disabled="states[activeInstance].toggling"
+						@select="disableFor(activeInstance, $event)"
+					/>
 
 					<GroupsCard
 						v-if="settings?.popupGroups && states[activeInstance]?.summary?.groups?.length"
@@ -235,6 +224,7 @@ import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
+import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import DonutCard from './components/DonutCard.vue'
 import GroupsCard from './components/GroupsCard.vue'
@@ -254,7 +244,6 @@ const messages = defineMessages({
 		id: 'popup.notConfigured.openSettings',
 		defaultMessage: 'Open Settings',
 	},
-	'popup.disableFor': { id: 'popup.disableFor', defaultMessage: 'Disable for' },
 	'popup.statusSub.reenables': {
 		id: 'popup.statusSub.reenables',
 		defaultMessage: 'Re-enables in {duration}',
@@ -322,14 +311,6 @@ const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)
 
 let intervals: (ReturnType<typeof setInterval> | null)[] = []
-
-const disablePresets = [
-	{ label: '10s', seconds: 10 },
-	{ label: '30s', seconds: 30 },
-	{ label: '5m', seconds: 5 * 60 },
-	{ label: '30m', seconds: 30 * 60 },
-	{ label: '1h', seconds: 60 * 60 },
-]
 
 function isEnabled(i: number): boolean {
 	return states.value[i]?.summary?.blocking.blocking === 'enabled'
