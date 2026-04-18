@@ -44,7 +44,7 @@
 
 		<div class="h-px bg-border shrink-0"></div>
 
-		<div class="overflow-y-auto max-h-[480px]">
+		<div class="overflow-y-auto max-h-max">
 			<div
 				v-if="loading"
 				class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
@@ -113,6 +113,20 @@
 						</div>
 					</div>
 
+					<GroupsCard
+						v-if="settings?.popupGroups && states[activeInstance]?.summary?.groups?.length"
+						:groups="states[activeInstance].summary!.groups"
+						:base-url="settings!.instances[activeInstance].baseUrl"
+						:api-password="settings!.instances[activeInstance].apiPassword"
+					/>
+
+					<ListsCard
+						v-if="settings?.popupLists && states[activeInstance]?.summary?.lists?.length"
+						:lists="states[activeInstance].summary!.lists"
+						:base-url="settings!.instances[activeInstance].baseUrl"
+						:api-password="settings!.instances[activeInstance].apiPassword"
+					/>
+
 					<div
 						v-if="states[activeInstance]?.error"
 						class="flex items-center justify-between gap-2 p-3 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
@@ -123,29 +137,33 @@
 						</Button>
 					</div>
 
-					<StatsGrid
-						v-if="states[activeInstance]?.summary && settings?.popupStats !== 'none'"
-						:stats="formattedStats(activeInstance)"
-					/>
+					<template v-if="states[activeInstance]?.summary && settings?.popupStats !== 'none'">
+						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
+							{{ formatMessage(messages['popup.statistics']) }}
+						</div>
 
-					<div
-						v-if="states[activeInstance]?.summary && settings?.popupStats === 'all'"
-						class="grid grid-cols-2 gap-2"
-					>
-						<DonutCard title="Query Status" :segments="statusSegments(activeInstance)" />
-						<DonutCard title="Query Types" :segments="typesSegments(activeInstance)" />
-					</div>
+						<StatsGrid :stats="formattedStats(activeInstance)" />
 
-					<DomainCard
+						<div v-if="settings?.popupStats === 'all'" class="grid grid-cols-2 gap-2">
+							<DonutCard title="Query Status" :segments="statusSegments(activeInstance)" />
+							<DonutCard title="Query Types" :segments="typesSegments(activeInstance)" />
+						</div>
+					</template>
+
+					<template
 						v-if="
 							currentDomain &&
 							settings &&
 							settings.instances.length > 0 &&
 							!states[activeInstance]?.error
 						"
-						:domain="currentDomain"
-						:instances="settings.instances"
-					/>
+					>
+						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
+							{{ formatMessage(messages['popup.currentDomain']) }}
+						</div>
+
+						<DomainCard :domain="currentDomain" :instances="settings.instances" />
+					</template>
 				</div>
 			</template>
 		</div>
@@ -219,6 +237,8 @@ import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DomainCard from './components/DomainCard.vue'
 import DonutCard from './components/DonutCard.vue'
+import GroupsCard from './components/GroupsCard.vue'
+import ListsCard from './components/ListsCard.vue'
 import StatsGrid from './components/StatsGrid.vue'
 import StatusCard from './components/StatusCard.vue'
 
@@ -247,6 +267,8 @@ const messages = defineMessages({
 	'popup.stats.blockedToday': { id: 'popup.stats.blockedToday', defaultMessage: 'Blocked Today' },
 	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
 	'popup.stats.cached': { id: 'popup.stats.cached', defaultMessage: 'Cached' },
+	'popup.statistics': { id: 'popup.statistics', defaultMessage: 'Statistics' },
+	'popup.currentDomain': { id: 'popup.currentDomain', defaultMessage: 'Current domain' },
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
 	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },

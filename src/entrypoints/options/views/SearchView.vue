@@ -31,6 +31,14 @@
 						:options="opt.options"
 						@update:model-value="setOption(opt.formKey, $event)"
 					/>
+					<OptionToggle
+						v-else-if="opt.type === 'toggle'"
+						:icon="opt.icon"
+						:label="opt.label"
+						:description="opt.description"
+						:model-value="form[opt.formKey] as boolean"
+						@update:model-value="setOption(opt.formKey, $event)"
+					/>
 					<OptionPiHoleSelector
 						v-else-if="opt.type === 'pihole'"
 						:model-value="form.instances"
@@ -53,18 +61,22 @@ import type { SelectOption } from '../../../components/options/OptionSelect.vue'
 import OptionSelect from '../../../components/options/OptionSelect.vue'
 import type { SliderOption } from '../../../components/options/OptionSlider.vue'
 import OptionSlider from '../../../components/options/OptionSlider.vue'
+import type { ToggleOption } from '../../../components/options/OptionToggle.vue'
+import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import { useVIntl } from '../../../helpers/i18n'
 import { useConnectionOptions } from './ConnectionView.vue'
 import { useCustomizationOptions } from './CustomizationView.vue'
+import { usePopupOptions } from './PopupView.vue'
 
-type SearchableOption = SliderOption | SelectOption | PiHoleOption
+type SearchableOption = SliderOption | SelectOption | PiHoleOption | ToggleOption
 
 const route = useRoute()
 const { form, setOption, initialized } = useSettings()
 const { pihole, refreshInterval } = useConnectionOptions()
-const { locale, colorScheme, badgeMode, popupStats } = useCustomizationOptions()
+const { locale, colorScheme, badgeMode } = useCustomizationOptions()
+const { popupStats, popupGroupsOption, popupListsOption } = usePopupOptions()
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
@@ -86,6 +98,8 @@ const allOptions = computed<SearchableOption[]>(() => [
 	colorScheme.value,
 	badgeMode.value,
 	popupStats.value,
+	popupGroupsOption.value,
+	popupListsOption.value,
 ])
 
 const query = computed(() => String(route.query.q ?? ''))

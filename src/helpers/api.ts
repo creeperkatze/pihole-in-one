@@ -13,6 +13,26 @@ export interface HistoryPoint {
 	forwarded: number
 }
 
+export interface PiholeGroup {
+	name: string
+	comment: string | null
+	enabled: boolean
+	id: number
+	date_added: number
+	date_modified: number
+}
+
+export interface PiholeList {
+	address: string
+	type: 'allow' | 'block'
+	comment: string | null
+	groups: number[]
+	enabled: boolean
+	id: number
+	date_added: number
+	date_modified: number
+}
+
 export interface PiholeSummary {
 	queries: {
 		total: number
@@ -29,6 +49,8 @@ export interface PiholeSummary {
 	}
 	blocking: BlockingStatus
 	history: HistoryPoint[]
+	groups: PiholeGroup[]
+	lists: PiholeList[]
 }
 
 const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
@@ -169,7 +191,7 @@ async function withSession<T>(
 
 export async function getSummary(base: string, password: string): Promise<PiholeSummary> {
 	return withSession(base, password, async (sid) => {
-		const [stats, blocking, historyRes] = await Promise.all([
+		const [stats, blocking, historyRes, groupsRes, listsRes] = await Promise.all([
 			apiFetch<{ queries: PiholeSummary['queries']; clients: PiholeSummary['clients'] }>(
 				base,
 				'stats/summary',
@@ -177,8 +199,17 @@ export async function getSummary(base: string, password: string): Promise<Pihole
 			),
 			apiFetch<BlockingStatus>(base, 'dns/blocking', sid),
 			apiFetch<{ history: HistoryPoint[] }>(base, 'history', sid).catch(() => ({ history: [] })),
+			apiFetch<{ groups: PiholeGroup[] }>(base, 'groups', sid).catch(() => ({ groups: [] })),
+			apiFetch<{ lists: PiholeList[] }>(base, 'lists', sid).catch(() => ({ lists: [] })),
 		])
-		return { queries: stats.queries, clients: stats.clients, blocking, history: historyRes.history }
+		return {
+			queries: stats.queries,
+			clients: stats.clients,
+			blocking,
+			history: historyRes.history,
+			groups: groupsRes.groups,
+			lists: listsRes.lists,
+		}
 	})
 }
 
@@ -282,6 +313,43 @@ export async function unallowlistDomain(
 		apiFetch<void>(base, `domains/allow/exact/${encodeURIComponent(domain)}`, sid, {
 			method: 'DELETE',
 			noBody: true,
+		}),
+	)
+}
+
+export async function setGroupEnabled(
+	base: string,
+	password: string,
+	group: PiholeGroup,
+	enabled: boolean,
+): Promise<void> {
+	return withSession(base, password, (sid) =>
+		apiFetch<void>(base, `groups/${encodeURIComponent(group.name)}`, sid, {
+			method: 'PUT',
+			body: JSON.stringify({
+				name: group.name,
+				comment: group.comment,
+				enabled,
+			}),
+		}),
+	)
+}
+
+export async function setListEnabled(
+	base: string,
+	password: string,
+	list: PiholeList,
+	enabled: boolean,
+): Promise<void> {
+	return withSession(base, password, (sid) =>
+		apiFetch<void>(base, `lists/${encodeURIComponent(list.address)}?type=${list.type}`, sid, {
+			method: 'PUT',
+			body: JSON.stringify({
+				comment: list.comment,
+				type: list.type,
+				groups: list.groups,
+				enabled,
+			}),
 		}),
 	)
 }

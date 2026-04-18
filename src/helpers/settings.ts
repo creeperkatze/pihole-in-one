@@ -18,6 +18,8 @@ export interface ExtensionSettings {
 	colorScheme: ColorScheme
 	locale: string
 	popupStats: PopupStats
+	popupGroups: boolean
+	popupLists: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -27,6 +29,8 @@ export const DEFAULTS: ExtensionSettings = {
 	colorScheme: 'auto',
 	locale: '',
 	popupStats: 'graphs',
+	popupGroups: false,
+	popupLists: false,
 }
 
 export function generateInstanceId(): string {

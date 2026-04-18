@@ -2,6 +2,9 @@
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
   },
+  "popup.currentDomain": {
+    "defaultMessage": "Current domain"
+  },
   "popup.disableFor": {
     "defaultMessage": "Disable for"
   },
@@ -53,6 +56,12 @@
   "popup.footer.updateAvailable": {
     "defaultMessage": "Update available"
   },
+  "popup.groups.title": {
+    "defaultMessage": "Groups"
+  },
+  "popup.lists.title": {
+    "defaultMessage": "Lists"
+  },
   "popup.notConfigured.message": {
     "defaultMessage": "Configure your Pi-hole to get started."
   },
@@ -67,6 +76,9 @@
   },
   "popup.settings": {
     "defaultMessage": "Settings"
+  },
+  "popup.statistics": {
+    "defaultMessage": "Statistics"
   },
   "popup.stats.blocked": {
     "defaultMessage": "Blocked"

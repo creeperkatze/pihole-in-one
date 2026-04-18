@@ -82,6 +82,8 @@ export function useSettings() {
 		form.colorScheme = settings.colorScheme
 		form.locale = settings.locale || detectBrowserLocale()
 		form.popupStats = settings.popupStats
+		form.popupGroups = settings.popupGroups
+		form.popupLists = settings.popupLists
 		applyColorScheme(settings.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true
