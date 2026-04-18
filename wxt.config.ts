@@ -47,7 +47,6 @@ export default defineConfig({
 				id: 'pihole-in-one@creeperkatze.dev',
 				data_collection_permissions: {
 					required: ['none'],
-					optional: ['technicalAndInteraction'],
 				},
 			},
 		},
