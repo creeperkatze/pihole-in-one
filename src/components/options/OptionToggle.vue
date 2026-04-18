@@ -41,7 +41,7 @@
 export type ToggleOption = {
 	id: string
 	type: 'toggle'
-	formKey: 'telemetry'
+	formKey: string
 	icon?: import('vue').Component
 	label: string
 	description: string

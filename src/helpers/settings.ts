@@ -17,7 +17,6 @@ export interface ExtensionSettings {
 	badgeMode: BadgeMode
 	colorScheme: ColorScheme
 	locale: string
-	telemetry: boolean
 	popupStats: PopupStats
 }
 
@@ -27,7 +26,6 @@ export const DEFAULTS: ExtensionSettings = {
 	badgeMode: 'percentage',
 	colorScheme: 'auto',
 	locale: '',
-	telemetry: true,
 	popupStats: 'graphs',
 }
 

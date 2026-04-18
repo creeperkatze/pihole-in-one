@@ -50,12 +50,6 @@
   "options.customization.title": {
     "defaultMessage": "Anpassung"
   },
-  "options.diagnostics.description": {
-    "defaultMessage": "Hilf dabei, die Erweiterung zu verbessern, indem du anonyme Nutzungsdaten teilst."
-  },
-  "options.diagnostics.title": {
-    "defaultMessage": "Diagnose"
-  },
   "options.footer.checking": {
     "defaultMessage": "Wird überprüft"
   },
@@ -151,18 +145,6 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Anpassung"
-  },
-  "options.tabs.privacy": {
-    "defaultMessage": "Diagnose"
-  },
-  "options.telemetry.description": {
-    "defaultMessage": "Hilf dabei, die Erweiterung zu verbessern, indem du anonym Statistiken wie die Version der Erweiterung und die aktivierten Funktionen teilst. Es werden keine Daten vom Pi-hole, Aktivitäten oder persönliche Informationen erfasst."
-  },
-  "options.telemetry.disabledTooltip": {
-    "defaultMessage": "Wird durch die Firefox-Einstellungen zur Datenerfassung gesteuert"
-  },
-  "options.telemetry.label": {
-    "defaultMessage": "Telemetrie"
   }
 }
 

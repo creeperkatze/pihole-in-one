@@ -132,7 +132,6 @@
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import {
-	Activity,
 	CheckCircle2,
 	Clock,
 	Loader2,
@@ -204,7 +203,6 @@ const messages = defineMessages({
 		id: 'options.tabs.customization',
 		defaultMessage: 'Customization',
 	},
-	'options.tabs.privacy': { id: 'options.tabs.privacy', defaultMessage: 'Diagnostics' },
 })
 
 const tabs = computed(() => [
@@ -214,7 +212,6 @@ const tabs = computed(() => [
 		label: formatMessage(messages['options.tabs.customization']),
 		icon: SlidersHorizontal,
 	},
-	{ id: 'diagnostics', label: formatMessage(messages['options.tabs.privacy']), icon: Activity },
 ])
 
 const searchQuery = ref('')
