@@ -76,5 +76,4 @@ export default defineBackground(() => {
 	})
 
 	browser.runtime.onStartup.addListener(() => void updateBadge())
-
 })
