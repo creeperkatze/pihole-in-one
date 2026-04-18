@@ -22,10 +22,12 @@
 </template>
 
 <script lang="ts">
+import type { SettingsKeyOfType } from '../../helpers/settings'
+
 export type SelectOption = {
 	id: string
 	type: 'select'
-	formKey: 'locale' | 'colorScheme' | 'badgeMode' | 'popupStats'
+	formKey: SettingsKeyOfType<string>
 	icon?: import('vue').Component
 	label: string
 	description: string

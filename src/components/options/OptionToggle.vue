@@ -22,10 +22,12 @@
 </template>
 
 <script lang="ts">
+import type { SettingsKeyOfType } from '../../helpers/settings'
+
 export type ToggleOption = {
 	id: string
 	type: 'toggle'
-	formKey: 'popupGroups' | 'popupLists'
+	formKey: SettingsKeyOfType<boolean>
 	icon?: import('vue').Component
 	label: string
 	description: string

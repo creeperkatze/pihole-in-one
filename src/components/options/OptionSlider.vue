@@ -39,10 +39,12 @@
 </template>
 
 <script lang="ts">
+import type { SettingsKeyOfType } from '../../helpers/settings'
+
 export type SliderOption = {
 	id: string
 	type: 'slider'
-	formKey: 'refreshInterval'
+	formKey: SettingsKeyOfType<number>
 	icon?: import('vue').Component
 	label: string
 	description: string

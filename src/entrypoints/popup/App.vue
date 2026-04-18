@@ -102,6 +102,14 @@
 						@select="disableFor(activeInstance, $event)"
 					/>
 
+					<template v-if="settings?.popupDiagnosis && states[activeInstance]?.summary?.diagnosis">
+						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
+							{{ formatMessage(messages['popup.diagnosis']) }}
+						</div>
+
+						<DiagnosisCard :diagnosis="states[activeInstance].summary!.diagnosis!" />
+					</template>
+
 					<GroupsCard
 						v-if="settings?.popupGroups && states[activeInstance]?.summary?.groups?.length"
 						:groups="states[activeInstance].summary!.groups"
@@ -224,6 +232,7 @@ import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
+import DiagnosisCard from './components/DiagnosisCard.vue'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import DonutCard from './components/DonutCard.vue'
@@ -257,6 +266,7 @@ const messages = defineMessages({
 	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
 	'popup.stats.cached': { id: 'popup.stats.cached', defaultMessage: 'Cached' },
 	'popup.statistics': { id: 'popup.statistics', defaultMessage: 'Statistics' },
+	'popup.diagnosis': { id: 'popup.diagnosis', defaultMessage: 'Diagnosis' },
 	'popup.currentDomain': { id: 'popup.currentDomain', defaultMessage: 'Current domain' },
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
 	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },

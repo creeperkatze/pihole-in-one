@@ -9,6 +9,11 @@ export function formatNumber(n: number): string {
 }
 
 export function formatDuration(seconds: number): string {
+	if (seconds >= 86400) {
+		const d = Math.floor(seconds / 86400)
+		const h = Math.floor((seconds % 86400) / 3600)
+		return h > 0 ? `${d}d ${h}h` : `${d}d`
+	}
 	if (seconds >= 3600) {
 		const h = Math.floor(seconds / 3600)
 		const m = Math.floor((seconds % 3600) / 60)

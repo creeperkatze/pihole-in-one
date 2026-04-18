@@ -84,6 +84,7 @@ export function useSettings() {
 		form.popupStats = settings.popupStats
 		form.popupGroups = settings.popupGroups
 		form.popupLists = settings.popupLists
+		form.popupDiagnosis = settings.popupDiagnosis
 		applyColorScheme(settings.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true

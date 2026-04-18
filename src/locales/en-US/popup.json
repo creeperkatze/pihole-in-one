@@ -5,6 +5,21 @@
   "popup.currentDomain": {
     "defaultMessage": "Current domain"
   },
+  "popup.diagnosis": {
+    "defaultMessage": "Diagnosis"
+  },
+  "popup.diagnosis.cpu": {
+    "defaultMessage": "CPU"
+  },
+  "popup.diagnosis.memory": {
+    "defaultMessage": "Memory"
+  },
+  "popup.diagnosis.temperature": {
+    "defaultMessage": "Temp"
+  },
+  "popup.diagnosis.uptime": {
+    "defaultMessage": "Uptime"
+  },
   "popup.disableFor": {
     "defaultMessage": "Disable for"
   },

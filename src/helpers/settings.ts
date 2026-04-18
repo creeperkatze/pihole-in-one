@@ -11,6 +11,10 @@ export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
 export type ColorScheme = 'auto' | 'dark' | 'light'
 export type PopupStats = 'none' | 'graphs' | 'all'
 
+export type SettingsKeyOfType<V> = {
+	[K in keyof ExtensionSettings]: ExtensionSettings[K] extends V ? K : never
+}[keyof ExtensionSettings]
+
 export interface ExtensionSettings {
 	instances: PiholeInstance[]
 	refreshInterval: number
@@ -20,6 +24,7 @@ export interface ExtensionSettings {
 	popupStats: PopupStats
 	popupGroups: boolean
 	popupLists: boolean
+	popupDiagnosis: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -31,6 +36,7 @@ export const DEFAULTS: ExtensionSettings = {
 	popupStats: 'graphs',
 	popupGroups: false,
 	popupLists: false,
+	popupDiagnosis: false,
 }
 
 export function generateInstanceId(): string {

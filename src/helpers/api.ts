@@ -33,6 +33,14 @@ export interface PiholeList {
 	date_modified: number
 }
 
+export interface PiholeDiagnosis {
+	cpu: number
+	memory: number
+	temperature: number | null
+	tempUnit: string
+	uptime: number
+}
+
 export interface PiholeSummary {
 	queries: {
 		total: number
@@ -51,6 +59,7 @@ export interface PiholeSummary {
 	history: HistoryPoint[]
 	groups: PiholeGroup[]
 	lists: PiholeList[]
+	diagnosis: PiholeDiagnosis | null
 }
 
 const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
@@ -189,9 +198,16 @@ async function withSession<T>(
 
 // ---- Public API ----
 
+interface PaddResponse {
+	'%cpu'?: number
+	'%mem'?: number
+	sensors?: { cpu_temp: number | null; unit: string }
+	system?: { uptime: number }
+}
+
 export async function getSummary(base: string, password: string): Promise<PiholeSummary> {
 	return withSession(base, password, async (sid) => {
-		const [stats, blocking, historyRes, groupsRes, listsRes] = await Promise.all([
+		const [stats, blocking, historyRes, groupsRes, listsRes, paddRes] = await Promise.all([
 			apiFetch<{ queries: PiholeSummary['queries']; clients: PiholeSummary['clients'] }>(
 				base,
 				'stats/summary',
@@ -201,7 +217,17 @@ export async function getSummary(base: string, password: string): Promise<Pihole
 			apiFetch<{ history: HistoryPoint[] }>(base, 'history', sid).catch(() => ({ history: [] })),
 			apiFetch<{ groups: PiholeGroup[] }>(base, 'groups', sid).catch(() => ({ groups: [] })),
 			apiFetch<{ lists: PiholeList[] }>(base, 'lists', sid).catch(() => ({ lists: [] })),
+			apiFetch<PaddResponse>(base, 'padd', sid).catch(() => null),
 		])
+		const diagnosis: PiholeDiagnosis | null = paddRes
+			? {
+					cpu: paddRes['%cpu'] ?? 0,
+					memory: paddRes['%mem'] ?? 0,
+					temperature: paddRes.sensors?.cpu_temp ?? null,
+					tempUnit: paddRes.sensors?.unit ?? 'C',
+					uptime: paddRes.system?.uptime ?? 0,
+				}
+			: null
 		return {
 			queries: stats.queries,
 			clients: stats.clients,
@@ -209,6 +235,7 @@ export async function getSummary(base: string, password: string): Promise<Pihole
 			history: historyRes.history,
 			groups: groupsRes.groups,
 			lists: listsRes.lists,
+			diagnosis,
 		}
 	})
 }
