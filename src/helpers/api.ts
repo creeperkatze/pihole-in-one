@@ -141,7 +141,8 @@ async function authenticate(base: string, password: string): Promise<string> {
 	if (!password) {
 		const res = await fetch(`${base}/api/auth`)
 		const data = (await res.json().catch(() => null)) as AuthResponse | null
-		if (res.ok && data?.session?.valid && data.session.sid) return data.session.sid
+		// Passwordless Pi-hole returns valid:true with sid:null, treat null as empty string
+		if (res.ok && data?.session?.valid) return data.session.sid ?? ''
 		// Server requires a password — don't fall through with an empty one
 		throw new ApiError(401, 'Password required')
 	}
