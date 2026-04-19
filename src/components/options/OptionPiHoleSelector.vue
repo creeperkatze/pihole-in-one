@@ -185,7 +185,8 @@ import {
 import { ref, watch } from 'vue'
 import { browser } from 'wxt/browser'
 
-import { getSummary } from '../../helpers/api'
+import { getApiMessage } from '../../composables/useApiMessages'
+import { ApiError, getSummary } from '../../helpers/api'
 import { useVIntl } from '../../helpers/i18n'
 import { generateInstanceId, type PiholeInstance } from '../../helpers/settings'
 import Button from '../Button.vue'
@@ -368,9 +369,13 @@ async function runTest(id: string): Promise<void> {
 		testStates.value[id] = {
 			status: 'error',
 			message:
-				e instanceof Error
-					? e.message
-					: formatMessage(messages['options.piholeselector.instance.connectionFailed']),
+				e instanceof ApiError && e.messageId
+					? formatMessage(
+							getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
+						)
+					: e instanceof Error
+						? e.message
+						: formatMessage(messages['options.piholeselector.instance.connectionFailed']),
 		}
 	}
 }

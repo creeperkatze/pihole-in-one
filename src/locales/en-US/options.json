@@ -1,4 +1,10 @@
 {
+  "api.error.passwordIncorrect": {
+    "defaultMessage": "Password incorrect"
+  },
+  "api.error.passwordRequired": {
+    "defaultMessage": "Password required"
+  },
   "options.colorScheme.auto": {
     "defaultMessage": "System default"
   },

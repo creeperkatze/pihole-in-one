@@ -89,10 +89,11 @@ async function deleteCachedSession(base: string): Promise<void> {
 	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
 }
 
-class ApiError extends Error {
+export class ApiError extends Error {
 	constructor(
 		readonly status: number,
 		message: string,
+		readonly messageId?: string,
 	) {
 		super(message)
 	}
@@ -141,7 +142,7 @@ async function authenticate(base: string, password: string): Promise<string> {
 		const res = await fetch(`${base}/api/auth`)
 		const data = (await res.json().catch(() => null)) as AuthResponse | null
 		if (res.ok && data?.session?.valid) return data.session.sid ?? ''
-		throw new ApiError(401, 'Password required')
+		throw new ApiError(401, 'Password required', 'api.error.passwordRequired')
 	}
 
 	const res = await fetch(`${base}/api/auth`, {
@@ -152,16 +153,14 @@ async function authenticate(base: string, password: string): Promise<string> {
 	const data = (await res.json().catch(() => null)) as AuthResponse | null
 
 	if (!res.ok) {
-		const msg = data?.session?.message ?? extractErrorMessage(data, res.status)
 		console.error(`[Pi-hole] POST /api/auth → ${res.status}`, JSON.stringify(data))
-		throw new ApiError(res.status, msg)
+		if (res.status === 401) {
+			throw new ApiError(401, 'Password incorrect', 'api.error.passwordIncorrect')
+		}
+		throw new ApiError(res.status, extractErrorMessage(data, res.status))
 	}
 
-	if (!data?.session?.valid || !data.session.sid) {
-		throw new ApiError(401, data?.session?.message ?? 'Wrong password')
-	}
-
-	return data.session.sid
+	return data!.session!.sid!
 }
 
 async function getSession(base: string, password: string): Promise<string> {

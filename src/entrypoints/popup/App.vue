@@ -228,7 +228,14 @@ import { browser } from 'wxt/browser'
 import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
-import { type BlockingStatus, getSummary, type PiholeSummary, setBlocking } from '../../helpers/api'
+import { getApiMessage } from '../../composables/useApiMessages'
+import {
+	ApiError,
+	type BlockingStatus,
+	getSummary,
+	type PiholeSummary,
+	setBlocking,
+} from '../../helpers/api'
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
@@ -470,7 +477,13 @@ async function fetchSummary(i: number): Promise<void> {
 		syncTimer(i, summary.blocking)
 	} catch (e) {
 		states.value[i].error =
-			e instanceof Error ? e.message : formatMessage(messages['popup.error.fetchFailed'])
+			e instanceof ApiError && e.messageId
+				? formatMessage(
+						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
+					)
+				: e instanceof Error
+					? e.message
+					: formatMessage(messages['popup.error.fetchFailed'])
 	}
 }
 
@@ -500,7 +513,13 @@ async function toggleBlocking(i: number): Promise<void> {
 		await fetchSummary(i)
 	} catch (e) {
 		state.error =
-			e instanceof Error ? e.message : formatMessage(messages['popup.error.actionFailed'])
+			e instanceof ApiError && e.messageId
+				? formatMessage(
+						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
+					)
+				: e instanceof Error
+					? e.message
+					: formatMessage(messages['popup.error.actionFailed'])
 	} finally {
 		state.toggling = false
 	}
@@ -520,7 +539,13 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 		await fetchSummary(i)
 	} catch (e) {
 		state.error =
-			e instanceof Error ? e.message : formatMessage(messages['popup.error.actionFailed'])
+			e instanceof ApiError && e.messageId
+				? formatMessage(
+						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
+					)
+				: e instanceof Error
+					? e.message
+					: formatMessage(messages['popup.error.actionFailed'])
 	} finally {
 		state.toggling = false
 	}
