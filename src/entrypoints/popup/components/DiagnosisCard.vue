@@ -52,7 +52,7 @@ const cells = computed(() => [
 		value:
 			props.diagnosis.temperature !== null
 				? `${Math.round(props.diagnosis.temperature)}°${props.diagnosis.tempUnit}`
-				: '—',
+				: '-',
 	},
 	{
 		icon: Clock,

@@ -25,7 +25,7 @@ export default defineConfig({
 	}),
 	publicDir: 'src/public',
 	modules: ['@wxt-dev/module-vue'],
-	manifest: {
+	manifest: ({ browser }) => ({
 		name: 'Pi-hole In One',
 		description:
 			'A browser extension to control your Pi-hole conveniently from within the browser.',
@@ -38,8 +38,8 @@ export default defineConfig({
 			128: 'icon-128.png',
 		},
 		optional_host_permissions: ['*://*/*'],
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Firefox requires this
-		optional_permissions: ['*://*/*' as any],
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Firefox requires optional_permissions instead of optional_host_permissions
+		...(browser === 'firefox' && { optional_permissions: ['*://*/*' as any] }),
 		permissions: ['storage', 'alarms', 'activeTab'],
 		options_ui: { open_in_tab: true },
 		browser_specific_settings: {
@@ -50,7 +50,7 @@ export default defineConfig({
 				},
 			},
 		},
-	},
+	}),
 	zip: {
 		artifactTemplate: 'pihole-in-one-{{version}}-{{browser}}.zip',
 		sourcesTemplate: 'pihole-in-one-{{version}}-sources.zip',
