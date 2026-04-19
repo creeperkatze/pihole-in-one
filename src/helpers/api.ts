@@ -137,13 +137,10 @@ async function apiFetch<T>(
 type AuthResponse = { session?: { valid: boolean; sid: string | null; message: string | null } }
 
 async function authenticate(base: string, password: string): Promise<string> {
-	// For passwordless installations: GET /api/auth returns a valid session
 	if (!password) {
 		const res = await fetch(`${base}/api/auth`)
 		const data = (await res.json().catch(() => null)) as AuthResponse | null
-		// Passwordless Pi-hole returns valid:true with sid:null, treat null as empty string
 		if (res.ok && data?.session?.valid) return data.session.sid ?? ''
-		// Server requires a password — don't fall through with an empty one
 		throw new ApiError(401, 'Password required')
 	}
 
@@ -152,17 +149,16 @@ async function authenticate(base: string, password: string): Promise<string> {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ password }),
 	})
-
 	const data = (await res.json().catch(() => null)) as AuthResponse | null
 
 	if (!res.ok) {
 		const msg = data?.session?.message ?? extractErrorMessage(data, res.status)
 		console.error(`[Pi-hole] POST /api/auth → ${res.status}`, JSON.stringify(data))
-		throw new ApiError(res.status, `Auth failed: ${msg}`)
+		throw new ApiError(res.status, msg)
 	}
 
 	if (!data?.session?.valid || !data.session.sid) {
-		throw new ApiError(401, 'Auth failed — wrong password?')
+		throw new ApiError(401, data?.session?.message ?? 'Wrong password')
 	}
 
 	return data.session.sid
@@ -196,8 +192,6 @@ async function withSession<T>(
 		throw e
 	}
 }
-
-// ---- Public API ----
 
 interface PaddResponse {
 	'%cpu'?: number
