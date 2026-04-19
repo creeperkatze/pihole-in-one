@@ -1,0 +1,59 @@
+{
+  "meta.summary": {
+    "defaultMessage": "A browser extension to control your Pi-hole conveniently from within the browser."
+  },
+  "meta.description.footer": {
+    "defaultMessage": "Pi-hole In One is <link>open source</link>."
+  },
+  "meta.description.disclaimer": {
+    "defaultMessage": "The extension is not associated with or endorsed by Pi-hole."
+  },
+  "meta.feature.blocking.title": {
+    "defaultMessage": "Blocking control"
+  },
+  "meta.feature.blocking.description": {
+    "defaultMessage": "Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables it automatically."
+  },
+  "meta.feature.domain.title": {
+    "defaultMessage": "Domain management"
+  },
+  "meta.feature.domain.description": {
+    "defaultMessage": "See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface."
+  },
+  "meta.feature.stats.title": {
+    "defaultMessage": "Stats"
+  },
+  "meta.feature.stats.description": {
+    "defaultMessage": "View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type."
+  },
+  "meta.feature.systemInfo.title": {
+    "defaultMessage": "System info"
+  },
+  "meta.feature.systemInfo.description": {
+    "defaultMessage": "See uptime, CPU load, memory usage, and temperature at a glance in the popup."
+  },
+  "meta.feature.groups.title": {
+    "defaultMessage": "Groups and lists"
+  },
+  "meta.feature.groups.description": {
+    "defaultMessage": "Enable or disable blocking groups and individual blocklists directly from the popup."
+  },
+  "meta.feature.multiInstance.title": {
+    "defaultMessage": "Multiple Pi-holes"
+  },
+  "meta.feature.multiInstance.description": {
+    "defaultMessage": "Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup."
+  },
+  "meta.feature.badge.title": {
+    "defaultMessage": "Toolbar badge"
+  },
+  "meta.feature.badge.description": {
+    "defaultMessage": "Shows blocked percentage, ON/OFF state, or active client count, updating every minute and after any change."
+  },
+  "meta.feature.customization.title": {
+    "defaultMessage": "Customization"
+  },
+  "meta.feature.customization.description": {
+    "defaultMessage": "Adjust the popup layout, badge behavior, language, and more from the extension options."
+  }
+}

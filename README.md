@@ -29,23 +29,35 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ### Blocking control
 
-Toggle Pi-hole blocking from the popup. Temporarily disable for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables blocking automatically.
+Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables it automatically.
 
 ### Domain management
 
-See if the current tab's domain is blocked or allow-listed and toggle it instantly, without opening the Pi-hole admin interface.
+See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface.
 
-### Stats at a glance
+### Stats
 
-See today's query count, blocked count, block percentage, and cached count, each with a sparkline graph showing activity over the last 24 hours. Optionally show query-status and query-type donut charts for a breakdown at a glance.
+View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type.
 
-### Multiple Pi-hole instances
+### System info
 
-Connect to multiple Pi-holes and control them all from one extension, with per-instance tabs in the popup.
+See uptime, CPU load, memory usage, and temperature at a glance in the popup.
 
-### Extension badge
+### Groups and lists
 
-Configurable toolbar badge: blocked percentage, ON/OFF state, or the active client count Updates every minute, on browser startup, and after any change.
+Enable or disable blocking groups and individual blocklists directly from the popup.
+
+### Multiple Pi-holes
+
+Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup.
+
+### Toolbar badge
+
+Shows blocked percentage, ON/OFF state, or active client count, updating every minute and after any change.
+
+### Customization
+
+Adjust the popup layout, badge behavior, language, and more from the extension options.
 
 ## ⚙️ Setup
 
