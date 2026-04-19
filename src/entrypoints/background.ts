@@ -19,7 +19,7 @@ async function updateBadge(): Promise<void> {
 			),
 		)
 		const valid = summaries.filter((s) => s !== null)
-		if (valid.length === 0) return // keep last known badge
+		if (valid.length === 0) return // Keep last known badge
 
 		const allEnabled = valid.every((s) => s.blocking.blocking === 'enabled')
 		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
@@ -39,7 +39,6 @@ async function updateBadge(): Promise<void> {
 			const totalClients = valid.reduce((sum, s) => sum + s.clients.active, 0)
 			text = String(totalClients)
 		} else {
-			// percentage (default)
 			const totalQueries = valid.reduce((sum, s) => sum + s.queries.total, 0)
 			const totalBlocked = valid.reduce((sum, s) => sum + s.queries.blocked, 0)
 			const pct = totalQueries > 0 ? Math.round((totalBlocked / totalQueries) * 100) : 0
@@ -53,18 +52,32 @@ async function updateBadge(): Promise<void> {
 	}
 }
 
+async function scheduleAlarm(): Promise<void> {
+	const settings = await getSettings()
+
+	// Chrome MV3 minimum alarm interval is 1 minute
+	const periodInMinutes = Math.max(1, settings.refreshInterval / 60)
+	browser.alarms.create(ALARM, { periodInMinutes })
+}
+
 export default defineBackground(() => {
 	void updateBadge()
 
-	// Chrome MV3 minimum alarm interval is 1 minute
-	browser.alarms.create(ALARM, { periodInMinutes: 1 })
+	void scheduleAlarm()
 	browser.alarms.onAlarm.addListener((alarm) => {
 		if (alarm.name === ALARM) void updateBadge()
 	})
 
 	// Re-check immediately when settings change
 	browser.storage.onChanged.addListener((changes, area) => {
-		if (area === 'local' && 'settings' in changes) void updateBadge()
+		if (area === 'local' && 'settings' in changes) {
+			void updateBadge()
+			const prev = changes.settings.oldValue as { refreshInterval?: number } | undefined
+			const next = changes.settings.newValue as { refreshInterval?: number } | undefined
+			if (prev?.refreshInterval !== next?.refreshInterval) {
+				void browser.alarms.clear(ALARM).then(() => scheduleAlarm())
+			}
+		}
 	})
 
 	// Allow popup to trigger a refresh
