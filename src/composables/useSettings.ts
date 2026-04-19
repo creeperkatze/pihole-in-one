@@ -15,16 +15,20 @@ const initialized = ref(false)
 
 let saveTimer: ReturnType<typeof setTimeout> | null = null
 
-async function flushSave(): Promise<void> {
-	if (!initialized.value || !saveTimer) return
-	clearTimeout(saveTimer)
-	saveTimer = null
+async function persist(): Promise<void> {
 	try {
 		await saveSettings(JSON.parse(JSON.stringify(form)))
 		saveError.value = ''
 	} catch (e) {
 		saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
 	}
+}
+
+async function flushSave(): Promise<void> {
+	if (!initialized.value || !saveTimer) return
+	clearTimeout(saveTimer)
+	saveTimer = null
+	await persist()
 }
 
 document.addEventListener('visibilitychange', () => {
@@ -36,14 +40,9 @@ watch(
 	() => {
 		if (!initialized.value) return
 		if (saveTimer) clearTimeout(saveTimer)
-		saveTimer = setTimeout(async () => {
+		saveTimer = setTimeout(() => {
 			saveTimer = null
-			try {
-				await saveSettings(JSON.parse(JSON.stringify(form)))
-				saveError.value = ''
-			} catch (e) {
-				saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
-			}
+			void persist()
 		}, 600)
 	},
 	{ deep: true },
@@ -76,16 +75,11 @@ export function useSettings() {
 	onMounted(async () => {
 		if (initialized.value) return
 		const settings = await getSettings()
-		form.instances = settings.instances.map((inst) => ({ ...inst }))
-		form.refreshInterval = settings.refreshInterval
-		form.badgeMode = settings.badgeMode
-		form.colorScheme = settings.colorScheme
-		form.locale = settings.locale || detectBrowserLocale()
-		form.popupStats = settings.popupStats
-		form.popupGroups = settings.popupGroups
-		form.popupLists = settings.popupLists
-		form.popupDiagnosis = settings.popupDiagnosis
-		applyColorScheme(settings.colorScheme)
+		Object.assign(form, settings, {
+			instances: settings.instances.map((inst) => ({ ...inst })),
+			locale: settings.locale || detectBrowserLocale(),
+		})
+		applyColorScheme(form.colorScheme)
 		i18n.global.locale.value = form.locale
 		initialized.value = true
 	})
