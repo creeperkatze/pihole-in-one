@@ -2,6 +2,24 @@
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
   },
+  "popup.currentDomain": {
+    "defaultMessage": "Aktuelle Domain"
+  },
+  "popup.diagnosis": {
+    "defaultMessage": "Diagnose"
+  },
+  "popup.diagnosis.cpu": {
+    "defaultMessage": "CPU"
+  },
+  "popup.diagnosis.memory": {
+    "defaultMessage": "Arbeitsspeicher"
+  },
+  "popup.diagnosis.temperature": {
+    "defaultMessage": "Temp"
+  },
+  "popup.diagnosis.uptime": {
+    "defaultMessage": "Laufzeit"
+  },
   "popup.disableFor": {
     "defaultMessage": "Deaktivieren für"
   },
@@ -53,6 +71,12 @@
   "popup.footer.updateAvailable": {
     "defaultMessage": "Aktualisierung verfügbar"
   },
+  "popup.groups.title": {
+    "defaultMessage": "Gruppen"
+  },
+  "popup.lists.title": {
+    "defaultMessage": "Listen"
+  },
   "popup.notConfigured.message": {
     "defaultMessage": "Konfiguriere dein Pi-hole, um loszulegen."
   },
@@ -68,17 +92,20 @@
   "popup.settings": {
     "defaultMessage": "Einstellungen"
   },
+  "popup.statistics": {
+    "defaultMessage": "Statistiken"
+  },
   "popup.stats.blocked": {
     "defaultMessage": "Blockiert"
   },
   "popup.stats.blockedToday": {
     "defaultMessage": "Heute blockiert"
   },
+  "popup.stats.cached": {
+    "defaultMessage": "Gecacht"
+  },
   "popup.stats.queriesToday": {
     "defaultMessage": "Abfragen heute"
-  },
-  "popup.stats.uniqueDomains": {
-    "defaultMessage": "Einzigartige Domains"
   },
   "popup.status.blockingDisabled": {
     "defaultMessage": "Blockieren deaktiviert"

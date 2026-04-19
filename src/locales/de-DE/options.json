@@ -1,4 +1,10 @@
 {
+  "api.error.passwordIncorrect": {
+    "defaultMessage": "Passwort falsch"
+  },
+  "api.error.passwordRequired": {
+    "defaultMessage": "Passwort benötigt"
+  },
   "options.colorScheme.auto": {
     "defaultMessage": "Systemstandard"
   },
@@ -110,6 +116,45 @@
   "options.piholeselector.title": {
     "defaultMessage": "Pi-holes"
   },
+  "options.popup.description": {
+    "defaultMessage": "Passe das Layout und die Abschnitte des Popups an."
+  },
+  "options.popup.diagnosis.description": {
+    "defaultMessage": "Zeige CPU, Arbeitsspeicher, Temperatur und Laufzeit im Popup an."
+  },
+  "options.popup.diagnosis.label": {
+    "defaultMessage": "Diagnose"
+  },
+  "options.popup.groups.description": {
+    "defaultMessage": "Zeige Gruppen-Schaltflächen im Popup an, um sie schnell zu aktivieren oder zu deaktivieren."
+  },
+  "options.popup.groups.label": {
+    "defaultMessage": "Gruppen"
+  },
+  "options.popup.lists.description": {
+    "defaultMessage": "Zeige Listen-Schaltflächen im Popup an, um Funktionen schnell zu aktivieren oder zu deaktivieren."
+  },
+  "options.popup.lists.label": {
+    "defaultMessage": "Listen"
+  },
+  "options.popup.stats.all": {
+    "defaultMessage": "Alle"
+  },
+  "options.popup.stats.description": {
+    "defaultMessage": "Welche Statistiken im Popup angezeigt werden sollen."
+  },
+  "options.popup.stats.graphs": {
+    "defaultMessage": "Graphen"
+  },
+  "options.popup.stats.label": {
+    "defaultMessage": "Statistiken"
+  },
+  "options.popup.stats.none": {
+    "defaultMessage": "Keine"
+  },
+  "options.popup.title": {
+    "defaultMessage": "Popup"
+  },
   "options.search.description": {
     "defaultMessage": "Zeige Einstellungen mit \"{query}\""
   },
@@ -145,6 +190,9 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Anpassung"
+  },
+  "options.tabs.popup": {
+    "defaultMessage": "Popup"
   }
 }
 
