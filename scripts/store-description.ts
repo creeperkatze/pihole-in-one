@@ -41,7 +41,16 @@ function t(key: string): string {
 
 const REPO_URL = 'https://github.com/creeperkatze/pihole-in-one'
 
-const features = ['blocking', 'domain', 'stats', 'systemInfo', 'groups', 'multiInstance', 'badge', 'customization']
+const features = [
+	'blocking',
+	'domain',
+	'stats',
+	'systemInfo',
+	'groups',
+	'multiInstance',
+	'badge',
+	'customization',
+]
 
 function featureLines(): string {
 	return features
@@ -57,8 +66,6 @@ const footer = t('meta.description.footer').replace(
 const description = [
 	summary ? t('meta.summary') : null,
 	summary ? '' : null,
-	t('meta.description.intro'),
-	'',
 	t('meta.description.featuresTitle'),
 	featureLines(),
 	'',
