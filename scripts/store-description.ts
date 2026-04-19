@@ -59,6 +59,7 @@ const description = [
 	summary ? '' : null,
 	t('meta.description.intro'),
 	'',
+	t('meta.description.featuresTitle'),
 	featureLines(),
 	'',
 	footer,

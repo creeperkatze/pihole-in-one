@@ -8,6 +8,9 @@
   "meta.description.disclaimer": {
     "defaultMessage": "The extension is not associated with or endorsed by Pi-hole."
   },
+  "meta.description.featuresTitle": {
+    "defaultMessage": "Features:"
+  },
   "meta.feature.blocking.title": {
     "defaultMessage": "Blocking control"
   },
