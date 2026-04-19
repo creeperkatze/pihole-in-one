@@ -53,7 +53,7 @@ Connect to multiple Pi-holes and switch between them with per-instance tabs in t
 
 ### Toolbar badge
 
-Shows blocked percentage, ON/OFF state, or active client count, updating every minute and after any change.
+Shows blocked percentage, ON/OFF state, or active client count.
 
 ### Customization
 

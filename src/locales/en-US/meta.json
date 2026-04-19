@@ -51,7 +51,7 @@
     "defaultMessage": "Toolbar badge"
   },
   "meta.feature.badge.description": {
-    "defaultMessage": "Shows blocked percentage, ON/OFF state, or active client count, updating every minute and after any change."
+    "defaultMessage": "Shows blocked percentage, ON/OFF state, or active client count."
   },
   "meta.feature.customization.title": {
     "defaultMessage": "Customization"
