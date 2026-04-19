@@ -1,0 +1,63 @@
+{
+  "meta.summary": {
+    "defaultMessage": "Eine Browser-Erweiterung, mit der du dein Pi-hole bequem direkt im Browser steuern kannst."
+  },
+  "meta.description.footer": {
+    "defaultMessage": "Pi-hole In One ist <link>Open Source</link>."
+  },
+  "meta.description.disclaimer": {
+    "defaultMessage": "Die Erweiterung ist nicht mit Pi-hole assoziiert oder von Pi-hole empfohlen."
+  },
+  "meta.description.featuresTitle": {
+    "defaultMessage": "Funktionen:"
+  },
+  "meta.feature.blocking.title": {
+    "defaultMessage": "Blockierungssteuerung"
+  },
+  "meta.feature.blocking.description": {
+    "defaultMessage": "Schalte die Blockierung des Pi-holes über das Popup-Fenster ein oder aus oder deaktiviere sie vorübergehend für einen voreingestellten Zeitraum (10s, 30s, 5m, 30m, 1h) mit einem Live-Countdown, der die Blockierung automatisch wieder aktiviert."
+  },
+  "meta.feature.domain.title": {
+    "defaultMessage": "Domainverwaltung"
+  },
+  "meta.feature.domain.description": {
+    "defaultMessage": "Prüfe, ob die Domain des aktuellen Tabs blockiert oder auf der Whitelist steht, und schalte sie sofort um, ohne das Admin-Interface des Pi-holes zu öffnen."
+  },
+  "meta.feature.stats.title": {
+    "defaultMessage": "Statistiken"
+  },
+  "meta.feature.stats.description": {
+    "defaultMessage": "Sieh dir die Anzahl der heutigen Anfragen, die Anzahl der blockierten Anfragen, den Blockierungsanteil und die Cache-Treffer an, jeweils mit einer Sparkline für die letzten 24 Stunden. Optionale Ringdiagramme zeigen die Aufteilung der Anfragen nach Status und Typ."
+  },
+  "meta.feature.systemInfo.title": {
+    "defaultMessage": "Systeminfo"
+  },
+  "meta.feature.systemInfo.description": {
+    "defaultMessage": "Sieh dir im Popup auf einen Blick die Laufzeit, CPU-Auslastung, Speicherauslastung und Temperatur an."
+  },
+  "meta.feature.groups.title": {
+    "defaultMessage": "Gruppen und Listen"
+  },
+  "meta.feature.groups.description": {
+    "defaultMessage": "Aktiviere oder deaktiviere Blockierungsgruppen und einzelne Blocklisten direkt im Popup-Fenster."
+  },
+  "meta.feature.multiInstance.title": {
+    "defaultMessage": "Mehrere Pi-holes"
+  },
+  "meta.feature.multiInstance.description": {
+    "defaultMessage": "Verbinde mehrere Pi-Holes und wechsle im Popup-Fenster mithilfe von Registerkarten zwischen ihnen hin und her."
+  },
+  "meta.feature.badge.title": {
+    "defaultMessage": "Abzeichen in der Symbolleiste"
+  },
+  "meta.feature.badge.description": {
+    "defaultMessage": "Zeigt den blockierten Anteil, den Ein-/Aus-Status oder die Anzahl der aktiven Clients an."
+  },
+  "meta.feature.customization.title": {
+    "defaultMessage": "Anpassung"
+  },
+  "meta.feature.customization.description": {
+    "defaultMessage": "Passe das Layout des Popups, das Verhalten des Abzeichens, die Sprache und vieles mehr in den Erweiterungsoptionen an."
+  }
+}
+
