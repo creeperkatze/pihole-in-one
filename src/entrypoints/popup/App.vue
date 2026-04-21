@@ -1,5 +1,5 @@
 <template>
-	<div class="w-96 flex flex-col">
+	<div class="w-96 flex flex-col max-h-max">
 		<header class="flex items-center justify-between px-3.5 py-3">
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
@@ -44,7 +44,7 @@
 
 		<div class="h-px bg-border shrink-0"></div>
 
-		<div class="overflow-y-auto max-h-max">
+		<div class="overflow-y-auto max-h-[450px]">
 			<div
 				v-if="loading"
 				class="flex flex-col items-center justify-center gap-3 py-8 px-5 min-h-40"
