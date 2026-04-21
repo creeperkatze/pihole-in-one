@@ -2,6 +2,12 @@
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
   },
+  "popup.badge.off": {
+    "defaultMessage": "AUS"
+  },
+  "popup.badge.on": {
+    "defaultMessage": "AN"
+  },
   "popup.currentDomain": {
     "defaultMessage": "Aktuelle Domain"
   },
@@ -74,8 +80,14 @@
   "popup.groups.title": {
     "defaultMessage": "Gruppen"
   },
+  "popup.groups.updateError": {
+    "defaultMessage": "Gruppe konnte nicht aktualisiert werden"
+  },
   "popup.lists.title": {
     "defaultMessage": "Listen"
+  },
+  "popup.lists.updateError": {
+    "defaultMessage": "Liste konnte nicht aktualisiert werden"
   },
   "popup.notConfigured.message": {
     "defaultMessage": "Konfiguriere dein Pi-hole, um loszulegen."
@@ -109,6 +121,12 @@
   },
   "popup.stats.cached": {
     "defaultMessage": "Gecacht"
+  },
+  "popup.stats.forwarded": {
+    "defaultMessage": "Weitergeleitet"
+  },
+  "popup.stats.other": {
+    "defaultMessage": "Andere"
   },
   "popup.stats.queriesToday": {
     "defaultMessage": "Anfragen heute"

@@ -15,7 +15,7 @@
     "defaultMessage": "Blockierungssteuerung"
   },
   "meta.feature.blocking.description": {
-    "defaultMessage": "Schalte die Blockierung des Pi-holes über das Popup-Fenster ein oder aus oder deaktiviere sie vorübergehend für einen voreingestellten Zeitraum (10s, 30s, 5m, 30m, 1h) mit einem Live-Countdown, der die Blockierung automatisch wieder aktiviert."
+    "defaultMessage": "Schalte die Blockierung des Pi-holes über das Popup-Fenster ein oder aus oder deaktiviere sie vorübergehend für einen voreingestellten Zeitraum (10s, 30s, 5m, 30m, 1h) damit sie sich automatisch wieder aktiviert."
   },
   "meta.feature.domain.title": {
     "defaultMessage": "Domainverwaltung"
