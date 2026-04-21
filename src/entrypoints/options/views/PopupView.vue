@@ -28,11 +28,11 @@
 				@update:model-value="form.popupLists = $event"
 			/>
 			<OptionToggle
-				:icon="popupDiagnosisOption.icon"
-				:label="popupDiagnosisOption.label"
-				:description="popupDiagnosisOption.description"
-				:model-value="form.popupDiagnosis"
-				@update:model-value="form.popupDiagnosis = $event"
+				:icon="popupStatusOption.icon"
+				:label="popupStatusOption.label"
+				:description="popupStatusOption.description"
+				:model-value="form.popupStatus"
+				@update:model-value="form.popupStatus = $event"
 			/>
 			<div
 				v-if="saveError"
@@ -96,12 +96,12 @@ export const messages = defineMessages({
 		id: 'options.popup.lists.description',
 		defaultMessage: 'Display list toggles in the popup for quick enable/disable.',
 	},
-	'options.popup.diagnosis.label': {
-		id: 'options.popup.diagnosis.label',
-		defaultMessage: 'Diagnosis',
+	'options.popup.status.label': {
+		id: 'options.popup.status.label',
+		defaultMessage: 'Status',
 	},
-	'options.popup.diagnosis.description': {
-		id: 'options.popup.diagnosis.description',
+	'options.popup.status.description': {
+		id: 'options.popup.status.description',
 		defaultMessage: 'Show CPU, memory, temperature, and uptime in the popup.',
 	},
 })
@@ -141,16 +141,16 @@ export function usePopupOptions() {
 		description: formatMessage(messages['options.popup.lists.description']),
 	}))
 
-	const popupDiagnosisOption = computed(() => ({
-		id: 'popupDiagnosis',
+	const popupStatusOption = computed(() => ({
+		id: 'popupStatus',
 		type: 'toggle' as const,
-		formKey: 'popupDiagnosis' as const,
+		formKey: 'popupStatus' as const,
 		icon: Activity,
-		label: formatMessage(messages['options.popup.diagnosis.label']),
-		description: formatMessage(messages['options.popup.diagnosis.description']),
+		label: formatMessage(messages['options.popup.status.label']),
+		description: formatMessage(messages['options.popup.status.description']),
 	}))
 
-	return { popupStats, popupGroupsOption, popupListsOption, popupDiagnosisOption }
+	return { popupStats, popupGroupsOption, popupListsOption, popupStatusOption }
 }
 </script>
 
@@ -162,6 +162,6 @@ import { useSettings } from '../../../composables/useSettings'
 import type { PopupStats } from '../../../helpers/settings'
 
 const { form, saveError, initialized } = useSettings()
-const { popupStats, popupGroupsOption, popupListsOption, popupDiagnosisOption } = usePopupOptions()
+const { popupStats, popupGroupsOption, popupListsOption, popupStatusOption } = usePopupOptions()
 const { formatMessage } = useVIntl()
 </script>

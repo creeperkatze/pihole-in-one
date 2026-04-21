@@ -119,12 +119,6 @@
   "options.popup.description": {
     "defaultMessage": "Adjust the popup's layout and sections."
   },
-  "options.popup.diagnosis.description": {
-    "defaultMessage": "Show CPU, memory, temperature, and uptime in the popup."
-  },
-  "options.popup.diagnosis.label": {
-    "defaultMessage": "Diagnosis"
-  },
   "options.popup.groups.description": {
     "defaultMessage": "Display group toggles in the popup for quick enable/disable."
   },
@@ -151,6 +145,12 @@
   },
   "options.popup.stats.none": {
     "defaultMessage": "None"
+  },
+  "options.popup.status.description": {
+    "defaultMessage": "Show CPU, memory, temperature, and uptime in the popup."
+  },
+  "options.popup.status.label": {
+    "defaultMessage": "Status"
   },
   "options.popup.title": {
     "defaultMessage": "Popup"

@@ -112,9 +112,9 @@
 						@select="disableFor(activeInstance, $event)"
 					/>
 
-					<DiagnosisCards
-						v-if="settings?.popupDiagnosis && states[activeInstance]?.summary?.diagnosis"
-						:diagnosis="states[activeInstance].summary!.diagnosis!"
+					<StatusCards
+						v-if="settings?.popupStatus && states[activeInstance]?.summary?.diagnosis"
+						:status="states[activeInstance].summary!.diagnosis!"
 					/>
 
 					<GroupsCard
@@ -225,13 +225,13 @@ import {
 import { formatDuration } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
-import DiagnosisCards from './components/DiagnosisCards.vue'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import GroupsCard from './components/GroupsCard.vue'
 import ListsCard from './components/ListsCard.vue'
 import StatsCard from './components/StatsCard.vue'
 import StatusCard from './components/StatusCard.vue'
+import StatusCards from './components/StatusCards.vue'
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({

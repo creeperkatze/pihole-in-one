@@ -11,21 +11,6 @@
   "popup.currentDomain": {
     "defaultMessage": "Current domain"
   },
-  "popup.diagnosis": {
-    "defaultMessage": "Diagnosis"
-  },
-  "popup.diagnosis.cpu": {
-    "defaultMessage": "CPU"
-  },
-  "popup.diagnosis.memory": {
-    "defaultMessage": "Memory"
-  },
-  "popup.diagnosis.temperature": {
-    "defaultMessage": "Temp"
-  },
-  "popup.diagnosis.uptime": {
-    "defaultMessage": "Uptime"
-  },
   "popup.disableFor": {
     "defaultMessage": "Disable for"
   },
@@ -131,17 +116,32 @@
   "popup.stats.queriesToday": {
     "defaultMessage": "Queries Today"
   },
+  "popup.status": {
+    "defaultMessage": "Status"
+  },
   "popup.status.blockingDisabled": {
     "defaultMessage": "Blocking Disabled"
   },
   "popup.status.blockingEnabled": {
     "defaultMessage": "Blocking Enabled"
   },
+  "popup.status.cpu": {
+    "defaultMessage": "CPU"
+  },
   "popup.status.disable": {
     "defaultMessage": "Disable"
   },
   "popup.status.enable": {
     "defaultMessage": "Enable"
+  },
+  "popup.status.memory": {
+    "defaultMessage": "Memory"
+  },
+  "popup.status.temperature": {
+    "defaultMessage": "Temp"
+  },
+  "popup.status.uptime": {
+    "defaultMessage": "Uptime"
   },
   "popup.statusSub.clients": {
     "defaultMessage": "{count} client(s) active"

@@ -1,6 +1,6 @@
 <template>
 	<div v-if="groups.length > 0" class="flex flex-col gap-1.5">
-		<div class="text-[11px] font-semibold text-secondary uppercase">
+		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
 			{{ formatMessage(messages['popup.groups.title']) }}
 		</div>
 

@@ -24,7 +24,7 @@ export interface ExtensionSettings {
 	popupStats: PopupStats
 	popupGroups: boolean
 	popupLists: boolean
-	popupDiagnosis: boolean
+	popupStatus: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -36,7 +36,7 @@ export const DEFAULTS: ExtensionSettings = {
 	popupStats: 'graphs',
 	popupGroups: false,
 	popupLists: false,
-	popupDiagnosis: false,
+	popupStatus: false,
 }
 
 export function generateInstanceId(): string {
