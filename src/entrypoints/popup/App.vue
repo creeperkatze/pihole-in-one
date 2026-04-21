@@ -107,7 +107,7 @@
 							{{ formatMessage(messages['popup.diagnosis']) }}
 						</div>
 
-						<DiagnosisCard :diagnosis="states[activeInstance].summary!.diagnosis!" />
+						<DiagnosisCards :diagnosis="states[activeInstance].summary!.diagnosis!" />
 					</template>
 
 					<GroupsCard
@@ -239,7 +239,7 @@ import {
 import { formatDuration, formatNumber } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
-import DiagnosisCard from './components/DiagnosisCard.vue'
+import DiagnosisCards from './components/DiagnosisCards.vue'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import DonutCard from './components/DonutCard.vue'

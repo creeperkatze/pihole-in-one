@@ -5,7 +5,7 @@
 			:key="cell.label"
 			class="flex flex-col items-center gap-1 px-2 py-2 rounded-lg border border-border bg-surface-3"
 		>
-			<component :is="cell.icon" class="size-4 shrink-0 text-muted" />
+			<component :is="cell.icon" class="size-6 shrink-0" :class="cell.color" />
 			<div class="text-sm font-semibold text-primary">{{ cell.value }}</div>
 			<div class="text-xs text-secondary">
 				{{ cell.label }}
@@ -40,11 +40,13 @@ const cells = computed(() => [
 		icon: Cpu,
 		label: formatMessage(messages['popup.diagnosis.cpu']),
 		value: `${props.diagnosis.cpu.toFixed(1)}%`,
+		color: 'text-sky-500',
 	},
 	{
 		icon: MemoryStick,
 		label: formatMessage(messages['popup.diagnosis.memory']),
 		value: `${props.diagnosis.memory.toFixed(1)}%`,
+		color: 'text-fuchsia-500',
 	},
 	{
 		icon: Thermometer,
@@ -53,11 +55,13 @@ const cells = computed(() => [
 			props.diagnosis.temperature !== null
 				? `${Math.round(props.diagnosis.temperature)}°${props.diagnosis.tempUnit}`
 				: '-',
+		color: 'text-yellow-500',
 	},
 	{
 		icon: Clock,
 		label: formatMessage(messages['popup.diagnosis.uptime']),
 		value: formatDuration(props.diagnosis.uptime),
+		color: 'text-green-500',
 	},
 ])
 </script>
