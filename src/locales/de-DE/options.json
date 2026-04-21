@@ -146,6 +146,12 @@
   "options.popup.stats.none": {
     "defaultMessage": "Keine"
   },
+  "options.popup.status.description": {
+    "defaultMessage": "Zeige CPU, Arbeitsspeicher, Temperatur und Laufzeit im Popup an."
+  },
+  "options.popup.status.label": {
+    "defaultMessage": "Status"
+  },
   "options.popup.title": {
     "defaultMessage": "Popup"
   },

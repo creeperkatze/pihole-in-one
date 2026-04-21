@@ -116,17 +116,32 @@
   "popup.stats.queriesToday": {
     "defaultMessage": "Anfragen heute"
   },
+  "popup.status": {
+    "defaultMessage": "Status"
+  },
   "popup.status.blockingDisabled": {
     "defaultMessage": "Blockieren deaktiviert"
   },
   "popup.status.blockingEnabled": {
     "defaultMessage": "Blockieren aktiviert"
   },
+  "popup.status.cpu": {
+    "defaultMessage": "CPU"
+  },
   "popup.status.disable": {
     "defaultMessage": "Deaktivieren"
   },
   "popup.status.enable": {
     "defaultMessage": "Aktivieren"
+  },
+  "popup.status.memory": {
+    "defaultMessage": "RAM"
+  },
+  "popup.status.temperature": {
+    "defaultMessage": "Temp"
+  },
+  "popup.status.uptime": {
+    "defaultMessage": "Laufzeit"
   },
   "popup.statusSub.clients": {
     "defaultMessage": "{count} Client(s) aktiv"
