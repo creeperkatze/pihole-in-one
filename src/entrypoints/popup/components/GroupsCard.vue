@@ -47,6 +47,10 @@ const props = defineProps<{
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
 	'popup.groups.title': { id: 'popup.groups.title', defaultMessage: 'Groups' },
+	'popup.groups.updateError': {
+		id: 'popup.groups.updateError',
+		defaultMessage: 'Failed to update group',
+	},
 })
 
 const toggleError = ref('')
@@ -59,7 +63,8 @@ async function toggle(group: PiholeGroup): Promise<void> {
 		await setGroupEnabled(props.baseUrl, props.apiPassword, group, !group.enabled)
 		group.enabled = !group.enabled
 	} catch (e) {
-		toggleError.value = e instanceof Error ? e.message : 'Failed to update group'
+		toggleError.value =
+			e instanceof Error ? e.message : formatMessage(messages['popup.groups.updateError'])
 	} finally {
 		toggling.value = null
 	}

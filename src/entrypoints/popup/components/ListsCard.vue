@@ -47,6 +47,10 @@ const props = defineProps<{
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
 	'popup.lists.title': { id: 'popup.lists.title', defaultMessage: 'Lists' },
+	'popup.lists.updateError': {
+		id: 'popup.lists.updateError',
+		defaultMessage: 'Failed to update list',
+	},
 })
 
 const toggleError = ref('')
@@ -69,7 +73,8 @@ async function toggle(list: PiholeList): Promise<void> {
 		await setListEnabled(props.baseUrl, props.apiPassword, list, !list.enabled)
 		list.enabled = !list.enabled
 	} catch (e) {
-		toggleError.value = e instanceof Error ? e.message : 'Failed to update list'
+		toggleError.value =
+			e instanceof Error ? e.message : formatMessage(messages['popup.lists.updateError'])
 	} finally {
 		toggling.value = null
 	}

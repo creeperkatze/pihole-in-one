@@ -74,8 +74,14 @@
   "popup.groups.title": {
     "defaultMessage": "Groups"
   },
+  "popup.groups.updateError": {
+    "defaultMessage": "Failed to update group"
+  },
   "popup.lists.title": {
     "defaultMessage": "Lists"
+  },
+  "popup.lists.updateError": {
+    "defaultMessage": "Failed to update list"
   },
   "popup.notConfigured.message": {
     "defaultMessage": "Configure your Pi-hole to get started."
@@ -109,6 +115,12 @@
   },
   "popup.stats.cached": {
     "defaultMessage": "Cached"
+  },
+  "popup.stats.forwarded": {
+    "defaultMessage": "Forwarded"
+  },
+  "popup.stats.other": {
+    "defaultMessage": "Other"
   },
   "popup.stats.queriesToday": {
     "defaultMessage": "Queries Today"

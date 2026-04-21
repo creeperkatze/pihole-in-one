@@ -50,6 +50,8 @@ const messages = defineMessages({
 	'popup.stats.blockedToday': { id: 'popup.stats.blockedToday', defaultMessage: 'Blocked Today' },
 	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
 	'popup.stats.cached': { id: 'popup.stats.cached', defaultMessage: 'Cached' },
+	'popup.stats.forwarded': { id: 'popup.stats.forwarded', defaultMessage: 'Forwarded' },
+	'popup.stats.other': { id: 'popup.stats.other', defaultMessage: 'Other' },
 })
 
 const TYPE_COLORS: Record<string, string> = {
@@ -105,10 +107,16 @@ const statusSegments = computed(() => {
 	const q = props.summary.queries
 	const other = Math.max(0, q.total - q.blocked - q.cached - q.forwarded)
 	return [
-		{ label: 'Blocked', value: q.blocked, color: '#ef4444' },
-		{ label: 'Cached', value: q.cached, color: '#8b5cf6' },
-		{ label: 'Forwarded', value: q.forwarded, color: '#14b8a6' },
-		...(other > 0 ? [{ label: 'Other', value: other, color: '#6b7280' }] : []),
+		{ label: formatMessage(messages['popup.stats.blocked']), value: q.blocked, color: '#ef4444' },
+		{ label: formatMessage(messages['popup.stats.cached']), value: q.cached, color: '#8b5cf6' },
+		{
+			label: formatMessage(messages['popup.stats.forwarded']),
+			value: q.forwarded,
+			color: '#14b8a6',
+		},
+		...(other > 0
+			? [{ label: formatMessage(messages['popup.stats.other']), value: other, color: '#6b7280' }]
+			: []),
 	]
 })
 
@@ -121,7 +129,9 @@ const typesSegments = computed(() => {
 	const otherVal = entries.slice(4).reduce((s, [, v]) => s + v, 0)
 	return [
 		...top.map(([name, value]) => ({ label: name, value, color: TYPE_COLORS[name] ?? '#6b7280' })),
-		...(otherVal > 0 ? [{ label: 'Other', value: otherVal, color: '#6b7280' }] : []),
+		...(otherVal > 0
+			? [{ label: formatMessage(messages['popup.stats.other']), value: otherVal, color: '#6b7280' }]
+			: []),
 	]
 })
 </script>
