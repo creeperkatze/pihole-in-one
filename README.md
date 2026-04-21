@@ -29,7 +29,7 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 ### Blocking control
 
-Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) with a live countdown that re-enables it automatically.
+Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.
 
 ### Domain management
 
