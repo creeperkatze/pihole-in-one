@@ -119,12 +119,6 @@
   "options.popup.description": {
     "defaultMessage": "Passe das Layout und die Abschnitte des Popups an."
   },
-  "options.popup.diagnosis.description": {
-    "defaultMessage": "Zeige CPU, Arbeitsspeicher, Temperatur und Laufzeit im Popup an."
-  },
-  "options.popup.diagnosis.label": {
-    "defaultMessage": "Diagnose"
-  },
   "options.popup.groups.description": {
     "defaultMessage": "Zeige Gruppen-Schaltflächen im Popup an, um sie schnell zu aktivieren oder zu deaktivieren."
   },

@@ -11,21 +11,6 @@
   "popup.currentDomain": {
     "defaultMessage": "Aktuelle Domain"
   },
-  "popup.diagnosis": {
-    "defaultMessage": "Diagnose"
-  },
-  "popup.diagnosis.cpu": {
-    "defaultMessage": "CPU"
-  },
-  "popup.diagnosis.memory": {
-    "defaultMessage": "RAM"
-  },
-  "popup.diagnosis.temperature": {
-    "defaultMessage": "Temp"
-  },
-  "popup.diagnosis.uptime": {
-    "defaultMessage": "Laufzeit"
-  },
   "popup.disableFor": {
     "defaultMessage": "Deaktivieren für"
   },
