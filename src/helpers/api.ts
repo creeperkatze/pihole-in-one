@@ -62,7 +62,7 @@ export interface PiholeSummary {
 	diagnosis: PiholeDiagnosis | null
 }
 
-const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30)
+const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30 min)
 const SESSION_STORAGE_KEY = 'sessionCache'
 
 type SessionStore = Record<string, { sid: string; expires: number }>
@@ -127,7 +127,7 @@ async function apiFetch<T>(
 
 	if (!res.ok) {
 		const body = await res.json().catch(() => null)
-		console.error(`[Pi-hole] ${init.method ?? 'GET'} /api/${path} → ${res.status}`, body)
+		console.error(`[Pi-hole] ${init.method ?? 'GET'} /api/${path}: ${res.status}`, body)
 		throw new ApiError(res.status, extractErrorMessage(body, res.status))
 	}
 
@@ -153,7 +153,7 @@ async function authenticate(base: string, password: string): Promise<string> {
 	const data = (await res.json().catch(() => null)) as AuthResponse | null
 
 	if (!res.ok) {
-		console.error(`[Pi-hole] POST /api/auth → ${res.status}`, JSON.stringify(data))
+		console.error(`[Pi-hole] POST /api/auth: ${res.status}`, JSON.stringify(data))
 		if (res.status === 401) {
 			throw new ApiError(401, 'Password incorrect', 'api.error.passwordIncorrect')
 		}
