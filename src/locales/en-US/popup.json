@@ -95,6 +95,12 @@
   "popup.statistics": {
     "defaultMessage": "Statistics"
   },
+  "popup.statistics.queryStatus": {
+    "defaultMessage": "Query Status"
+  },
+  "popup.statistics.queryTypes": {
+    "defaultMessage": "Query Types"
+  },
   "popup.stats.blocked": {
     "defaultMessage": "Blocked"
   },

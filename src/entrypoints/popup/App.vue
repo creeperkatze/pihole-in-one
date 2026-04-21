@@ -88,6 +88,16 @@
 				</div>
 
 				<div class="flex flex-col gap-2 p-3">
+					<div
+						v-if="states[activeInstance]?.error"
+						class="flex items-center justify-between gap-2 p-3 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
+					>
+						<span>{{ states[activeInstance].error }}</span>
+						<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
+							{{ formatMessage(messages['popup.error.fix']) }}
+						</Button>
+					</div>
+
 					<StatusCard
 						v-if="states[activeInstance]?.summary"
 						:status="isEnabled(activeInstance) ? 'enabled' : 'disabled'"
@@ -102,13 +112,10 @@
 						@select="disableFor(activeInstance, $event)"
 					/>
 
-					<template v-if="settings?.popupDiagnosis && states[activeInstance]?.summary?.diagnosis">
-						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-							{{ formatMessage(messages['popup.diagnosis']) }}
-						</div>
-
-						<DiagnosisCards :diagnosis="states[activeInstance].summary!.diagnosis!" />
-					</template>
+					<DiagnosisCards
+						v-if="settings?.popupDiagnosis && states[activeInstance]?.summary?.diagnosis"
+						:diagnosis="states[activeInstance].summary!.diagnosis!"
+					/>
 
 					<GroupsCard
 						v-if="settings?.popupGroups && states[activeInstance]?.summary?.groups?.length"
@@ -124,43 +131,22 @@
 						:api-password="settings!.instances[activeInstance].apiPassword"
 					/>
 
-					<div
-						v-if="states[activeInstance]?.error"
-						class="flex items-center justify-between gap-2 p-3 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
-					>
-						<span>{{ states[activeInstance].error }}</span>
-						<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
-							{{ formatMessage(messages['popup.error.fix']) }}
-						</Button>
-					</div>
+					<StatsCard
+						v-if="states[activeInstance]?.summary && settings?.popupStats !== 'none'"
+						:summary="states[activeInstance].summary!"
+						:mode="settings!.popupStats"
+					/>
 
-					<template v-if="states[activeInstance]?.summary && settings?.popupStats !== 'none'">
-						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-							{{ formatMessage(messages['popup.statistics']) }}
-						</div>
-
-						<StatsGrid :stats="formattedStats(activeInstance)" />
-
-						<div v-if="settings?.popupStats === 'all'" class="grid grid-cols-2 gap-2">
-							<DonutCard title="Query Status" :segments="statusSegments(activeInstance)" />
-							<DonutCard title="Query Types" :segments="typesSegments(activeInstance)" />
-						</div>
-					</template>
-
-					<template
+					<DomainCard
 						v-if="
 							currentDomain &&
 							settings &&
 							settings.instances.length > 0 &&
 							!states[activeInstance]?.error
 						"
-					>
-						<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-							{{ formatMessage(messages['popup.currentDomain']) }}
-						</div>
-
-						<DomainCard :domain="currentDomain" :instances="settings.instances" />
-					</template>
+						:domain="currentDomain"
+						:instances="settings.instances"
+					/>
 				</div>
 			</template>
 		</div>
@@ -236,16 +222,15 @@ import {
 	type PiholeSummary,
 	setBlocking,
 } from '../../helpers/api'
-import { formatDuration, formatNumber } from '../../helpers/format'
+import { formatDuration } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
 import DiagnosisCards from './components/DiagnosisCards.vue'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
-import DonutCard from './components/DonutCard.vue'
 import GroupsCard from './components/GroupsCard.vue'
 import ListsCard from './components/ListsCard.vue'
-import StatsGrid from './components/StatsGrid.vue'
+import StatsCard from './components/StatsCard.vue'
 import StatusCard from './components/StatusCard.vue'
 
 const { formatMessage } = useVIntl()
@@ -268,13 +253,6 @@ const messages = defineMessages({
 		id: 'popup.statusSub.clients',
 		defaultMessage: '{count} client(s) active',
 	},
-	'popup.stats.queriesToday': { id: 'popup.stats.queriesToday', defaultMessage: 'Queries Today' },
-	'popup.stats.blockedToday': { id: 'popup.stats.blockedToday', defaultMessage: 'Blocked Today' },
-	'popup.stats.blocked': { id: 'popup.stats.blocked', defaultMessage: 'Blocked' },
-	'popup.stats.cached': { id: 'popup.stats.cached', defaultMessage: 'Cached' },
-	'popup.statistics': { id: 'popup.statistics', defaultMessage: 'Statistics' },
-	'popup.diagnosis': { id: 'popup.diagnosis', defaultMessage: 'Diagnosis' },
-	'popup.currentDomain': { id: 'popup.currentDomain', defaultMessage: 'Current domain' },
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
 	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
@@ -346,88 +324,6 @@ function statusSub(i: number): string | undefined {
 		})
 	}
 	return undefined
-}
-
-function formattedStats(
-	i: number,
-): Array<{ label: string; value: string; sparkline?: number[]; sparklineColor?: string }> {
-	const summary = states.value[i]?.summary
-	if (!summary) return []
-	const q = summary.queries
-	const history = summary.history ?? []
-	const totalSparkline = history.map((h) => h.total)
-	const blockedSparkline = history.map((h) => h.blocked)
-	const percentSparkline = history.map((h) => (h.total > 0 ? (h.blocked / h.total) * 100 : 0))
-	return [
-		{
-			label: formatMessage(messages['popup.stats.queriesToday']),
-			value: formatNumber(q.total),
-			sparkline: totalSparkline,
-			sparklineColor: '#3b82f6',
-		},
-		{
-			label: formatMessage(messages['popup.stats.blockedToday']),
-			value: formatNumber(q.blocked),
-			sparkline: blockedSparkline,
-			sparklineColor: '#ef4444',
-		},
-		{
-			label: formatMessage(messages['popup.stats.blocked']),
-			value: `${q.percent_blocked.toFixed(1)}%`,
-			sparkline: percentSparkline,
-			sparklineColor: '#f97316',
-		},
-		{
-			label: formatMessage(messages['popup.stats.cached']),
-			value: formatNumber(q.cached),
-			sparkline: history.map((h) => h.cached),
-			sparklineColor: '#8b5cf6',
-		},
-	]
-}
-
-const TYPE_COLORS: Record<string, string> = {
-	A: '#3b82f6',
-	AAAA: '#6366f1',
-	PTR: '#8b5cf6',
-	HTTPS: '#f97316',
-	TXT: '#10b981',
-	MX: '#f59e0b',
-	SRV: '#ec4899',
-	DS: '#14b8a6',
-	SOA: '#84cc16',
-	NS: '#06b6d4',
-	RRSIG: '#f43f5e',
-	DNSKEY: '#a78bfa',
-	NAPTR: '#fb923c',
-	SVCB: '#34d399',
-	ANY: '#94a3b8',
-}
-
-function statusSegments(i: number): Array<{ label: string; value: number; color: string }> {
-	const q = states.value[i]?.summary?.queries
-	if (!q) return []
-	const other = Math.max(0, q.total - q.blocked - q.cached - q.forwarded)
-	return [
-		{ label: 'Blocked', value: q.blocked, color: '#ef4444' },
-		{ label: 'Cached', value: q.cached, color: '#8b5cf6' },
-		{ label: 'Forwarded', value: q.forwarded, color: '#14b8a6' },
-		...(other > 0 ? [{ label: 'Other', value: other, color: '#6b7280' }] : []),
-	]
-}
-
-function typesSegments(i: number): Array<{ label: string; value: number; color: string }> {
-	const types = states.value[i]?.summary?.queries?.types
-	if (!types) return []
-	const entries = Object.entries(types)
-		.filter(([, v]) => v > 0)
-		.sort((a, b) => b[1] - a[1])
-	const top = entries.slice(0, 4)
-	const otherVal = entries.slice(4).reduce((s, [, v]) => s + v, 0)
-	return [
-		...top.map(([name, value]) => ({ label: name, value, color: TYPE_COLORS[name] ?? '#6b7280' })),
-		...(otherVal > 0 ? [{ label: 'Other', value: otherVal, color: '#6b7280' }] : []),
-	]
 }
 
 function syncTimer(i: number, blocking: BlockingStatus): void {
