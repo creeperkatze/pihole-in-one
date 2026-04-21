@@ -12,7 +12,7 @@
         "zip:firefox": "wxt zip -b firefox",
         "postinstall": "wxt prepare",
         "scripts": "node scripts/run.mjs",
-        "intl:extract": "formatjs extract \"src/entrypoints/popup/**/*.{vue,ts}\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/popup.json --preserve-whitespace && formatjs extract \"src/entrypoints/options/**/*.{vue,ts}\" \"src/components/**/*.vue\" \"src/composables/**/*.ts\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/options.json --preserve-whitespace",
+        "intl:extract": "formatjs extract \"src/entrypoints/popup/**/*.{vue,ts}\" \"src/entrypoints/background.ts\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/popup.json --preserve-whitespace && formatjs extract \"src/entrypoints/options/**/*.{vue,ts}\" \"src/components/**/*.vue\" \"src/composables/**/*.ts\" --ignore \"src/**/*.d.ts\" --out-file src/locales/en-US/options.json --preserve-whitespace",
         "lint": "eslint src/",
         "lint:fix": "eslint src/ --fix",
         "release:patch": "pnpm version patch && git push && git push --tags",

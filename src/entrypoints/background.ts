@@ -1,13 +1,21 @@
+import { defineMessages } from '@formatjs/intl'
 import { browser } from 'wxt/browser'
 
 import { getSummary } from '../helpers/api'
+import { i18n } from '../helpers/i18n'
 import { getSettings } from '../helpers/settings'
+
+const messages = defineMessages({
+	'popup.badge.on': { id: 'popup.badge.on', defaultMessage: 'ON' },
+	'popup.badge.off': { id: 'popup.badge.off', defaultMessage: 'OFF' },
+})
 
 const ALARM = 'pihole-refresh'
 
 async function updateBadge(): Promise<void> {
 	const action = browser.action ?? browser.browserAction
 	const settings = await getSettings()
+	i18n.global.locale.value = settings.locale
 	if (settings.badgeMode === 'off' || settings.instances.length === 0) {
 		await action.setBadgeText({ text: '' })
 		return
@@ -25,7 +33,7 @@ async function updateBadge(): Promise<void> {
 		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
 
 		if (!anyEnabled) {
-			await action.setBadgeText({ text: 'OFF' })
+			await action.setBadgeText({ text: i18n.global.t(messages['popup.badge.off'].id) })
 			await action.setBadgeBackgroundColor({ color: '#ef4444' })
 			return
 		}
@@ -34,7 +42,7 @@ async function updateBadge(): Promise<void> {
 		let text: string
 
 		if (settings.badgeMode === 'state') {
-			text = 'ON'
+			text = i18n.global.t(messages['popup.badge.on'].id)
 		} else if (settings.badgeMode === 'clients') {
 			const totalClients = valid.reduce((sum, s) => sum + s.clients.active, 0)
 			text = String(totalClients)

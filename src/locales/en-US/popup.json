@@ -2,6 +2,12 @@
   "options.piholeselector.instance.fallbackName": {
     "defaultMessage": "Pi-hole"
   },
+  "popup.badge.off": {
+    "defaultMessage": "OFF"
+  },
+  "popup.badge.on": {
+    "defaultMessage": "ON"
+  },
   "popup.currentDomain": {
     "defaultMessage": "Current domain"
   },
