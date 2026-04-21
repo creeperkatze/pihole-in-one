@@ -12,7 +12,7 @@
     "defaultMessage": "CPU"
   },
   "popup.diagnosis.memory": {
-    "defaultMessage": "Arbeitsspeicher"
+    "defaultMessage": "RAM"
   },
   "popup.diagnosis.temperature": {
     "defaultMessage": "Temp"
