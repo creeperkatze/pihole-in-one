@@ -27,7 +27,10 @@ async function updateBadge(): Promise<void> {
 			),
 		)
 		const valid = summaries.filter((s) => s !== null)
-		if (valid.length === 0) return // Keep last known badge
+		if (valid.length === 0) {
+			await action.setBadgeText({ text: '' })
+			return
+		}
 
 		const allEnabled = valid.every((s) => s.blocking.blocking === 'enabled')
 		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
