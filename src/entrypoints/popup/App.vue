@@ -448,8 +448,12 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 }
 
 function openPihole(): void {
-	const url = settings.value?.instances[activeInstance.value]?.baseUrl
-	if (url) void browser.tabs.create({ url })
+	const baseUrl = settings.value?.instances[activeInstance.value]?.baseUrl
+	if (!baseUrl) return
+
+	const adminUrl = new URL(baseUrl)
+	adminUrl.pathname = `${adminUrl.pathname.replace(/\/$/, '')}/admin/`
+	void browser.tabs.create({ url: adminUrl.toString() })
 }
 
 function openOptions(): void {
