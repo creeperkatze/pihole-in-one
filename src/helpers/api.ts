@@ -62,23 +62,23 @@ export interface PiholeSummary {
 	diagnosis: PiholeDiagnosis | null
 }
 
-const SESSION_TTL = 25 * 60 * 1000 // 25 min (server default is 30 min)
 const SESSION_STORAGE_KEY = 'sessionCache'
 
-type SessionStore = Record<string, { sid: string; expires: number }>
+// expires omitted when server returns validity <= 0 (no-auth installs never expire)
+type SessionStore = Record<string, { sid: string; expires?: number }>
 
-async function getCachedSession(base: string): Promise<string | null> {
+async function getCachedSession(base: string): Promise<{ sid: string; fresh: boolean } | null> {
 	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
 	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
 	const entry = store[base]
-	if (entry && entry.expires > Date.now()) return entry.sid
-	return null
+	if (!entry) return null
+	return { sid: entry.sid, fresh: !entry.expires || entry.expires > Date.now() }
 }
 
-async function setCachedSession(base: string, sid: string): Promise<void> {
+async function setCachedSession(base: string, sid: string, validity?: number): Promise<void> {
 	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
 	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
-	store[base] = { sid, expires: Date.now() + SESSION_TTL }
+	store[base] = validity && validity > 0 ? { sid, expires: Date.now() + validity * 1000 } : { sid }
 	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
 }
 
@@ -135,13 +135,20 @@ async function apiFetch<T>(
 	return res.json() as Promise<T>
 }
 
-type AuthResponse = { session?: { valid: boolean; sid: string | null; message: string | null } }
+type AuthResponse = {
+	session?: { valid: boolean; sid: string | null; message: string | null; validity: number }
+}
 
-async function authenticate(base: string, password: string): Promise<string> {
+async function authenticate(
+	base: string,
+	password: string,
+): Promise<{ sid: string; validity: number }> {
 	if (!password) {
 		const res = await fetch(`${base}/api/auth`)
 		const data = (await res.json().catch(() => null)) as AuthResponse | null
-		if (res.ok && data?.session?.valid) return data.session.sid ?? ''
+		if (res.ok && data?.session?.valid) {
+			return { sid: data.session.sid ?? '', validity: data.session.validity }
+		}
 		throw new ApiError(401, 'Password required', 'api.error.passwordRequired')
 	}
 
@@ -160,15 +167,25 @@ async function authenticate(base: string, password: string): Promise<string> {
 		throw new ApiError(res.status, extractErrorMessage(data, res.status))
 	}
 
-	return data!.session!.sid!
+	return { sid: data!.session!.sid!, validity: data!.session!.validity }
 }
 
 async function getSession(base: string, password: string): Promise<string> {
 	const cached = await getCachedSession(base)
-	if (cached) return cached
+	if (cached?.fresh) return cached.sid
 
-	const sid = await authenticate(base, password)
-	await setCachedSession(base, sid)
+	// Client TTL expired but SID still stored
+	if (cached?.sid) {
+		const res = await fetch(`${base}/api/auth`, { headers: { sid: cached.sid } })
+		const data = (await res.json().catch(() => null)) as AuthResponse | null
+		if (res.ok && data?.session?.valid) {
+			await setCachedSession(base, cached.sid, data.session?.validity)
+			return cached.sid
+		}
+	}
+
+	const { sid, validity } = await authenticate(base, password)
+	await setCachedSession(base, sid, validity)
 	return sid
 }
 
@@ -184,8 +201,8 @@ async function withSession<T>(
 		// Re-auth once on 401
 		if (e instanceof ApiError && e.status === 401) {
 			await deleteCachedSession(base)
-			const freshSid = await authenticate(base, password)
-			await setCachedSession(base, freshSid)
+			const { sid: freshSid, validity } = await authenticate(base, password)
+			await setCachedSession(base, freshSid, validity)
 			return fn(freshSid)
 		}
 		throw e
