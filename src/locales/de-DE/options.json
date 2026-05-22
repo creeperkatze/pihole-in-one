@@ -56,6 +56,72 @@
   "options.customization.title": {
     "defaultMessage": "Anpassung"
   },
+  "options.data.description": {
+    "defaultMessage": "Exportiere und importiere deine Erweiterungseinstellungen."
+  },
+  "options.data.export.button": {
+    "defaultMessage": "Exportieren"
+  },
+  "options.data.export.description": {
+    "defaultMessage": "Lade deine aktuellen Einstellungen als JSON-Datei herunter."
+  },
+  "options.data.export.label": {
+    "defaultMessage": "Einstellungen exportieren"
+  },
+  "options.data.export.warning.cancel": {
+    "defaultMessage": "Abbrechen"
+  },
+  "options.data.export.warning.confirm": {
+    "defaultMessage": "Exportieren"
+  },
+  "options.data.export.warning.description": {
+    "defaultMessage": "Die exportierte Datei enthält die Passwörter für die API deines Pi-holes als Klartext. Bewahre sie sicher auf und gib sie nicht weiter."
+  },
+  "options.data.export.warning.title": {
+    "defaultMessage": "Einstellungen exportieren?"
+  },
+  "options.data.import.button": {
+    "defaultMessage": "Importieren"
+  },
+  "options.data.import.description": {
+    "defaultMessage": "Einstellungen aus einer zuvor exportierten JSON-Datei wiederherstellen."
+  },
+  "options.data.import.error.invalid": {
+    "defaultMessage": "Ungültige Einstellungsdatei"
+  },
+  "options.data.import.error.read": {
+    "defaultMessage": "Datei konnte nicht gelesen werden"
+  },
+  "options.data.import.label": {
+    "defaultMessage": "Einstellungen importieren"
+  },
+  "options.data.import.success": {
+    "defaultMessage": "Einstellungen erfolgreich importiert"
+  },
+  "options.data.reset.button": {
+    "defaultMessage": "Zurücksetzen"
+  },
+  "options.data.reset.confirm.cancel": {
+    "defaultMessage": "Abbrechen"
+  },
+  "options.data.reset.confirm.confirm": {
+    "defaultMessage": "Zurücksetzen"
+  },
+  "options.data.reset.confirm.description": {
+    "defaultMessage": "Dadurch werden alle Einstellungen auf die Standardwerte zurückgesetzt und alle konfigurierten Pi-hole-Instanzen entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden."
+  },
+  "options.data.reset.confirm.title": {
+    "defaultMessage": "Einstellungen zurücksetzen?"
+  },
+  "options.data.reset.description": {
+    "defaultMessage": "Alle Einstellungen auf ihre Standardwerte zurücksetzen."
+  },
+  "options.data.reset.label": {
+    "defaultMessage": "Einstellungen zurücksetzen"
+  },
+  "options.data.title": {
+    "defaultMessage": "Daten"
+  },
   "options.footer.checking": {
     "defaultMessage": "Wird überprüft"
   },
@@ -190,6 +256,9 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Anpassung"
+  },
+  "options.tabs.data": {
+    "defaultMessage": "Daten"
   },
   "options.tabs.popup": {
     "defaultMessage": "Popup"
