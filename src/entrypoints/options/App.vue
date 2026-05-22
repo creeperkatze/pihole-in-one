@@ -127,7 +127,6 @@
 			<RouterView />
 		</main>
 	</div>
-
 </template>
 
 <script setup lang="ts">
