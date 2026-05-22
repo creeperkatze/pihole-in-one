@@ -17,6 +17,7 @@
 				:min="refreshInterval.min"
 				:max="refreshInterval.max"
 				:step="refreshInterval.step"
+				:suffix="refreshInterval.suffix"
 				:format="refreshInterval.format"
 				@update:model-value="form.refreshInterval = $event"
 			/>
@@ -82,6 +83,7 @@ export function useConnectionOptions() {
 		min: 60,
 		max: 3600,
 		step: 30,
+		suffix: 's',
 		format: formatSeconds,
 	}))
 

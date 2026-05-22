@@ -51,6 +51,7 @@ export type SliderOption = {
 	min: number
 	max: number
 	step: number
+	suffix?: string
 	format?: (v: number) => string
 }
 </script>

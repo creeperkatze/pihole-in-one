@@ -19,6 +19,7 @@
 						:min="opt.min"
 						:max="opt.max"
 						:step="opt.step"
+						:suffix="opt.suffix"
 						:format="opt.format"
 						@update:model-value="setOption(opt.formKey, $event)"
 					/>
