@@ -64,7 +64,7 @@ export function parseSettingsExport(json: string): ExtensionSettings {
 		data === null ||
 		!(Object.keys(DEFAULTS) as (keyof ExtensionSettings)[]).some((k) => k in (data as object))
 	) {
-		throw new Error('Invalid settings file.')
+		throw new Error('Invalid settings file')
 	}
 	const parsed = data as Partial<ExtensionSettings>
 	return {

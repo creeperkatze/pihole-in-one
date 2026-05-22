@@ -8,15 +8,15 @@ import { useSettings } from './useSettings'
 const messages = defineMessages({
 	'options.data.import.success': {
 		id: 'options.data.import.success',
-		defaultMessage: 'Settings imported successfully.',
+		defaultMessage: 'Settings imported successfully',
 	},
 	'options.data.import.error.invalid': {
 		id: 'options.data.import.error.invalid',
-		defaultMessage: 'Invalid settings file.',
+		defaultMessage: 'Invalid settings file',
 	},
 	'options.data.import.error.read': {
 		id: 'options.data.import.error.read',
-		defaultMessage: 'Failed to read the file.',
+		defaultMessage: 'Failed to read the file',
 	},
 })
 
