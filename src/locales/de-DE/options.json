@@ -84,7 +84,7 @@
     "defaultMessage": "Importieren"
   },
   "options.data.import.description": {
-    "defaultMessage": "Einstellungen aus einer zuvor exportierten JSON-Datei wiederherstellen."
+    "defaultMessage": "Stell die Einstellungen aus einer zuvor exportierten JSON-Datei wieder her."
   },
   "options.data.import.error.invalid": {
     "defaultMessage": "Ungültige Einstellungsdatei"
@@ -114,7 +114,7 @@
     "defaultMessage": "Einstellungen zurücksetzen?"
   },
   "options.data.reset.description": {
-    "defaultMessage": "Alle Einstellungen auf ihre Standardwerte zurücksetzen."
+    "defaultMessage": "Setze alle Einstellungen auf ihre Standardwerte zurück."
   },
   "options.data.reset.label": {
     "defaultMessage": "Einstellungen zurücksetzen"
