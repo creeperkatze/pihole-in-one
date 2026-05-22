@@ -56,3 +56,22 @@ export async function saveSettings(settings: ExtensionSettings): Promise<void> {
 export function isConfigured(settings: ExtensionSettings): boolean {
 	return settings.instances.length > 0 && Boolean(settings.instances[0].baseUrl)
 }
+
+export function parseSettingsExport(json: string): ExtensionSettings {
+	const data = JSON.parse(json) as unknown
+	if (
+		typeof data !== 'object' ||
+		data === null ||
+		!(Object.keys(DEFAULTS) as (keyof ExtensionSettings)[]).some((k) => k in (data as object))
+	) {
+		throw new Error('Invalid settings file.')
+	}
+	const parsed = data as Partial<ExtensionSettings>
+	return {
+		...DEFAULTS,
+		...parsed,
+		instances: Array.isArray(parsed.instances)
+			? parsed.instances.map((inst) => ({ ...inst }))
+			: DEFAULTS.instances,
+	}
+}

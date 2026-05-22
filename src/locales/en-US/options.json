@@ -56,6 +56,51 @@
   "options.customization.title": {
     "defaultMessage": "Customization"
   },
+  "options.data.description": {
+    "defaultMessage": "Export and import your extension settings."
+  },
+  "options.data.export.button": {
+    "defaultMessage": "Export"
+  },
+  "options.data.export.description": {
+    "defaultMessage": "Download your current settings as a JSON file."
+  },
+  "options.data.export.label": {
+    "defaultMessage": "Export settings"
+  },
+  "options.data.export.warning.cancel": {
+    "defaultMessage": "Cancel"
+  },
+  "options.data.export.warning.confirm": {
+    "defaultMessage": "Export"
+  },
+  "options.data.export.warning.description": {
+    "defaultMessage": "The exported file will contain your Pi-hole API passwords in plain text. Keep it secure and avoid sharing it."
+  },
+  "options.data.export.warning.title": {
+    "defaultMessage": "Export settings?"
+  },
+  "options.data.import.button": {
+    "defaultMessage": "Import"
+  },
+  "options.data.import.description": {
+    "defaultMessage": "Restore settings from a previously exported JSON file."
+  },
+  "options.data.import.error.invalid": {
+    "defaultMessage": "Invalid settings file."
+  },
+  "options.data.import.error.read": {
+    "defaultMessage": "Failed to read the file."
+  },
+  "options.data.import.label": {
+    "defaultMessage": "Import settings"
+  },
+  "options.data.import.success": {
+    "defaultMessage": "Settings imported successfully."
+  },
+  "options.data.title": {
+    "defaultMessage": "Data"
+  },
   "options.footer.checking": {
     "defaultMessage": "Checking"
   },
@@ -190,6 +235,9 @@
   },
   "options.tabs.customization": {
     "defaultMessage": "Customization"
+  },
+  "options.tabs.data": {
+    "defaultMessage": "Data"
   },
   "options.tabs.popup": {
     "defaultMessage": "Popup"
