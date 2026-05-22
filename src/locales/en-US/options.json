@@ -98,6 +98,27 @@
   "options.data.import.success": {
     "defaultMessage": "Settings imported successfully."
   },
+  "options.data.reset.button": {
+    "defaultMessage": "Reset"
+  },
+  "options.data.reset.confirm.cancel": {
+    "defaultMessage": "Cancel"
+  },
+  "options.data.reset.confirm.confirm": {
+    "defaultMessage": "Reset"
+  },
+  "options.data.reset.confirm.description": {
+    "defaultMessage": "This will restore all settings to their defaults and remove all configured Pi-hole instances. This cannot be undone."
+  },
+  "options.data.reset.confirm.title": {
+    "defaultMessage": "Reset settings?"
+  },
+  "options.data.reset.description": {
+    "defaultMessage": "Restore all settings to their default values."
+  },
+  "options.data.reset.label": {
+    "defaultMessage": "Reset settings"
+  },
   "options.data.title": {
     "defaultMessage": "Data"
   },

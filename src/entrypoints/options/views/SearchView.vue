@@ -89,7 +89,7 @@ const { form, setOption, initialized } = useSettings()
 const { pihole, refreshInterval } = useConnectionOptions()
 const { locale, colorScheme, badgeMode } = useCustomizationOptions()
 const { popupStats, popupGroupsOption, popupListsOption, popupStatusOption } = usePopupOptions()
-const { exportOption, importOption } = useDataOptions()
+const { exportOption, importOption, resetOption } = useDataOptions()
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
@@ -116,6 +116,7 @@ const allOptions = computed<SearchableOption[]>(() => [
 	popupStatusOption.value,
 	exportOption.value,
 	importOption.value,
+	resetOption.value,
 ])
 
 const query = computed(() => String(route.query.q ?? ''))

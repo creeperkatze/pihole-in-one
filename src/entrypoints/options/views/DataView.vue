@@ -19,6 +19,13 @@
 				:button-label="formatMessage(messages['options.data.import.button'])"
 				@action="triggerImport"
 			/>
+			<OptionButton
+				:icon="RotateCcw"
+				:label="formatMessage(messages['options.data.reset.label'])"
+				:description="formatMessage(messages['options.data.reset.description'])"
+				:button-label="formatMessage(messages['options.data.reset.button'])"
+				@action="triggerReset"
+			/>
 			<div
 				v-if="importFeedback"
 				:class="[
@@ -32,11 +39,59 @@
 			</div>
 		</div>
 	</section>
+
+	<Modal v-model="showExportWarning">
+		<div class="flex items-start gap-3 mb-5">
+			<AlertTriangle class="size-5 shrink-0 text-yellow-500 mt-0.5" />
+			<div>
+				<h2 class="text-sm font-semibold mb-1.5">
+					{{ formatMessage(messages['options.data.export.warning.title']) }}
+				</h2>
+				<p class="text-xs text-secondary">
+					{{ formatMessage(messages['options.data.export.warning.description']) }}
+				</p>
+			</div>
+		</div>
+		<div class="flex justify-end gap-2">
+			<Button @click="showExportWarning = false">
+				{{ formatMessage(messages['options.data.export.warning.cancel']) }}
+			</Button>
+			<Button variant="danger" @click="confirmExport">
+				{{ formatMessage(messages['options.data.export.warning.confirm']) }}
+			</Button>
+		</div>
+	</Modal>
+
+	<Modal v-model="showResetConfirm">
+		<div class="flex items-start gap-3 mb-5">
+			<AlertTriangle class="size-5 shrink-0 text-yellow-500 mt-0.5" />
+			<div>
+				<h2 class="text-sm font-semibold mb-1.5">
+					{{ formatMessage(messages['options.data.reset.confirm.title']) }}
+				</h2>
+				<p class="text-xs text-secondary">
+					{{ formatMessage(messages['options.data.reset.confirm.description']) }}
+				</p>
+			</div>
+		</div>
+		<div class="flex justify-end gap-2">
+			<Button @click="showResetConfirm = false">
+				{{ formatMessage(messages['options.data.reset.confirm.cancel']) }}
+			</Button>
+			<Button variant="danger" @click="confirmReset">
+				{{ formatMessage(messages['options.data.reset.confirm.confirm']) }}
+			</Button>
+		</div>
+	</Modal>
 </template>
 
 <script lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Download as DownloadIcon, Upload as UploadIcon } from '@lucide/vue'
+import {
+	Download as DownloadIcon,
+	RotateCcw as RotateCcwIcon,
+	Upload as UploadIcon,
+} from '@lucide/vue'
 import { computed } from 'vue'
 
 import { useDataActions } from '../../../composables/useDataActions'
@@ -72,11 +127,57 @@ export const messages = defineMessages({
 		id: 'options.data.import.button',
 		defaultMessage: 'Import',
 	},
+	'options.data.reset.label': {
+		id: 'options.data.reset.label',
+		defaultMessage: 'Reset settings',
+	},
+	'options.data.reset.description': {
+		id: 'options.data.reset.description',
+		defaultMessage: 'Restore all settings to their default values.',
+	},
+	'options.data.reset.button': {
+		id: 'options.data.reset.button',
+		defaultMessage: 'Reset',
+	},
+	'options.data.export.warning.title': {
+		id: 'options.data.export.warning.title',
+		defaultMessage: 'Export settings?',
+	},
+	'options.data.export.warning.description': {
+		id: 'options.data.export.warning.description',
+		defaultMessage:
+			'The exported file will contain your Pi-hole API passwords in plain text. Keep it secure and avoid sharing it.',
+	},
+	'options.data.export.warning.cancel': {
+		id: 'options.data.export.warning.cancel',
+		defaultMessage: 'Cancel',
+	},
+	'options.data.export.warning.confirm': {
+		id: 'options.data.export.warning.confirm',
+		defaultMessage: 'Export',
+	},
+	'options.data.reset.confirm.title': {
+		id: 'options.data.reset.confirm.title',
+		defaultMessage: 'Reset settings?',
+	},
+	'options.data.reset.confirm.description': {
+		id: 'options.data.reset.confirm.description',
+		defaultMessage:
+			'This will restore all settings to their defaults and remove all configured Pi-hole instances. This cannot be undone.',
+	},
+	'options.data.reset.confirm.cancel': {
+		id: 'options.data.reset.confirm.cancel',
+		defaultMessage: 'Cancel',
+	},
+	'options.data.reset.confirm.confirm': {
+		id: 'options.data.reset.confirm.confirm',
+		defaultMessage: 'Reset',
+	},
 })
 
 export function useDataOptions() {
 	const { formatMessage } = useVIntl()
-	const { triggerExport, triggerImport } = useDataActions()
+	const { triggerExport, triggerImport, triggerReset } = useDataActions()
 
 	const exportOption = computed(() => ({
 		id: 'export',
@@ -98,19 +199,35 @@ export function useDataOptions() {
 		onClick: triggerImport,
 	}))
 
-	return { exportOption, importOption }
+	const resetOption = computed(() => ({
+		id: 'reset',
+		type: 'button' as const,
+		icon: RotateCcwIcon,
+		label: formatMessage(messages['options.data.reset.label']),
+		description: formatMessage(messages['options.data.reset.description']),
+		buttonLabel: formatMessage(messages['options.data.reset.button']),
+		onClick: triggerReset,
+	}))
+
+	return { exportOption, importOption, resetOption }
 }
 </script>
 
 <script setup lang="ts">
-import { Download, Upload } from '@lucide/vue'
+import { AlertTriangle, Download, RotateCcw, Upload } from '@lucide/vue'
 
+import Button from '../../../components/Button.vue'
+import Modal from '../../../components/Modal.vue'
 import OptionButton from '../../../components/options/OptionButton.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
-import { importFeedback } from '../../../composables/useDataActions'
+import {
+	importFeedback,
+	showExportWarning,
+	showResetConfirm,
+} from '../../../composables/useDataActions'
 import { useSettings } from '../../../composables/useSettings'
 
 const { initialized } = useSettings()
-const { triggerExport, triggerImport } = useDataActions()
+const { triggerExport, confirmExport, triggerImport, triggerReset, confirmReset } = useDataActions()
 const { formatMessage } = useVIntl()
 </script>

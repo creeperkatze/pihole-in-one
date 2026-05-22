@@ -128,33 +128,11 @@
 		</main>
 	</div>
 
-	<Modal v-model="showExportWarning">
-		<div class="flex items-start gap-3 mb-5">
-			<AlertTriangle class="size-5 shrink-0 text-yellow-500 mt-0.5" />
-			<div>
-				<h2 class="text-sm font-semibold mb-1.5">
-					{{ formatMessage(messages['options.data.export.warning.title']) }}
-				</h2>
-				<p class="text-xs text-secondary">
-					{{ formatMessage(messages['options.data.export.warning.description']) }}
-				</p>
-			</div>
-		</div>
-		<div class="flex justify-end gap-2">
-			<Button @click="showExportWarning = false">
-				{{ formatMessage(messages['options.data.export.warning.cancel']) }}
-			</Button>
-			<Button variant="danger" @click="confirmExport">
-				{{ formatMessage(messages['options.data.export.warning.confirm']) }}
-			</Button>
-		</div>
-	</Modal>
 </template>
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import {
-	AlertTriangle,
 	AppWindow,
 	CheckCircle2,
 	Clock,
@@ -173,17 +151,13 @@ import CrowdinLogo from '../../assets/icons/crowdin.svg?component'
 import GitHubLogo from '../../assets/icons/github.svg?component'
 import KofiLogo from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
-import Button from '../../components/Button.vue'
 import Card from '../../components/Card.vue'
 import Input from '../../components/Input.vue'
-import Modal from '../../components/Modal.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
-import { showExportWarning, useDataActions } from '../../composables/useDataActions'
 import { useSettings } from '../../composables/useSettings'
 import { useVIntl } from '../../helpers/i18n'
 
 useSettings()
-const { confirmExport } = useDataActions()
 
 const router = useRouter()
 const route = useRoute()
@@ -234,23 +208,6 @@ const messages = defineMessages({
 	},
 	'options.tabs.popup': { id: 'options.tabs.popup', defaultMessage: 'Popup' },
 	'options.tabs.data': { id: 'options.tabs.data', defaultMessage: 'Data' },
-	'options.data.export.warning.title': {
-		id: 'options.data.export.warning.title',
-		defaultMessage: 'Export settings?',
-	},
-	'options.data.export.warning.description': {
-		id: 'options.data.export.warning.description',
-		defaultMessage:
-			'The exported file will contain your Pi-hole API passwords in plain text. Keep it secure and avoid sharing it.',
-	},
-	'options.data.export.warning.cancel': {
-		id: 'options.data.export.warning.cancel',
-		defaultMessage: 'Cancel',
-	},
-	'options.data.export.warning.confirm': {
-		id: 'options.data.export.warning.confirm',
-		defaultMessage: 'Export',
-	},
 })
 
 const tabs = computed(() => [

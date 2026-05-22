@@ -2,7 +2,7 @@ import { defineMessages } from '@formatjs/intl'
 import { ref } from 'vue'
 
 import { useVIntl } from '../helpers/i18n'
-import { parseSettingsExport } from '../helpers/settings'
+import { DEFAULTS, parseSettingsExport } from '../helpers/settings'
 import { useSettings } from './useSettings'
 
 const messages = defineMessages({
@@ -21,6 +21,7 @@ const messages = defineMessages({
 })
 
 export const showExportWarning = ref(false)
+export const showResetConfirm = ref(false)
 export const importFeedback = ref<{ type: 'success' | 'error'; message: string } | null>(null)
 
 export function useDataActions() {
@@ -79,5 +80,15 @@ export function useDataActions() {
 		input.click()
 	}
 
-	return { triggerExport, confirmExport, triggerImport }
+	function triggerReset() {
+		showResetConfirm.value = true
+	}
+
+	function confirmReset() {
+		showResetConfirm.value = false
+		importFeedback.value = null
+		Object.assign(form, { ...DEFAULTS, instances: [] })
+	}
+
+	return { triggerExport, confirmExport, triggerImport, triggerReset, confirmReset }
 }
