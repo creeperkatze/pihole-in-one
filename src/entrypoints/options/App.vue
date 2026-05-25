@@ -142,7 +142,7 @@ import {
 	SlidersHorizontal,
 	X as XIcon,
 } from '@lucide/vue'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
@@ -207,6 +207,7 @@ const messages = defineMessages({
 	},
 	'options.tabs.popup': { id: 'options.tabs.popup', defaultMessage: 'Popup' },
 	'options.tabs.data': { id: 'options.tabs.data', defaultMessage: 'Data' },
+	'options.search.title': { id: 'options.search.title', defaultMessage: 'Search results' },
 })
 
 const tabs = computed(() => [
@@ -219,6 +220,15 @@ const tabs = computed(() => [
 	{ id: 'popup', label: formatMessage(messages['options.tabs.popup']), icon: AppWindow },
 	{ id: 'data', label: formatMessage(messages['options.tabs.data']), icon: Database },
 ])
+
+const currentTabTitle = computed(() => {
+	if (route.path === '/search') return formatMessage(messages['options.search.title'])
+	return tabs.value.find((t) => '/' + t.id === route.path)?.label ?? 'Settings'
+})
+
+watchEffect(() => {
+	document.title = `Pi-hole In One | ${currentTabTitle.value}`
+})
 
 const searchQuery = ref('')
 const lastTabPath = ref('/connection')
