@@ -19,7 +19,7 @@ on:
         type: boolean
         default: true
       upload-only:
-        description: 'Upload only)'
+        description: 'Upload only'
         type: boolean
         default: false
 
