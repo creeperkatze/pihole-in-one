@@ -4,3 +4,6 @@ packages:
 allowBuilds:
   esbuild: true
   spawn-sync: false
+
+patchedDependencies:
+  wxt@0.20.26: patches/wxt@0.20.26.patch

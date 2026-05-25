@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@fontsource-variable/inter": "^5.2.8",
-        "@formatjs/intl": "^4.1.11",
+        "@formatjs/intl": "^4.1.12",
         "@lucide/vue": "latest",
         "vue": "^3.5.34",
         "vue-i18n": "^11.4.4",
@@ -29,9 +29,9 @@
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
-        "@formatjs/cli": "^6.16.0",
+        "@formatjs/cli": "^6.16.3",
         "@tailwindcss/vite": "^4.3.0",
-        "@types/node": "^25.9.0",
+        "@types/node": "^25.9.1",
         "@wxt-dev/module-vue": "^1.0.3",
         "eslint": "^10.4.0",
         "eslint-config-prettier": "^10.1.8",
@@ -41,15 +41,11 @@
         "prettier": "^3.8.3",
         "tailwindcss": "^4.3.0",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.59.3",
+        "typescript-eslint": "^8.59.4",
         "vite-svg-loader": "^5.1.1",
         "vue-eslint-parser": "^10.4.0",
-        "vue-tsc": "^3.3.0",
-        "wxt": "^0.20.22"
+        "vue-tsc": "^3.3.1",
+        "wxt": "^0.20.26"
     },
-    "pnpm": {
-        "patchedDependencies": {
-            "wxt@0.20.22": "patches/wxt@0.20.22.patch"
-        }
-    }
+    "packageManager": "pnpm@11.3.0+sha512.2c403d6594527287672b1f7056343a1f7c3634036a67ffabfcc2b3d7595d843768f8787148d1b57cf7956c90606bbd192857c363af19e96d2d0ec9ec5741d215"
 }
