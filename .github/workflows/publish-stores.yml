@@ -89,7 +89,7 @@ jobs:
           firefox-extension-id: ${{ inputs.firefox && 'pihole-in-one@creeperkatze.dev' || '' }}
           firefox-xpi-path:     ${{ inputs.firefox && steps.zips.outputs.firefox || '' }}
           firefox-license:      AGPL-3.0-only
-          firefox-compatibility-android-min: '113.0'
+          firefox-compatibility-android-min: '120.0'
 
           edge-api-key:         ${{ inputs.edge && secrets.EDGE_API_KEY || '' }}
           edge-client-id:       ${{ inputs.edge && secrets.EDGE_CLIENT_ID || '' }}
