@@ -50,14 +50,14 @@
   "popup.footer.checking": {
     "defaultMessage": "Wird überprüft"
   },
+  "popup.footer.donate": {
+    "defaultMessage": "Spenden"
+  },
   "popup.footer.latestVersion": {
     "defaultMessage": "Neueste Version"
   },
   "popup.footer.starOnGitHub": {
     "defaultMessage": "Auf GitHub"
-  },
-  "popup.footer.support": {
-    "defaultMessage": "Unterstützen"
   },
   "popup.footer.updateAvailable": {
     "defaultMessage": "Aktualisierung verfügbar"
