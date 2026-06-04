@@ -190,7 +190,7 @@
 				class="flex shrink-0 items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
 			>
 				<KofiIcon class="size-3.5" aria-hidden="true" />
-				<span>{{ formatMessage(messages['popup.footer.support']) }}</span>
+				<span>{{ formatMessage(messages['popup.footer.donate']) }}</span>
 			</a>
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
@@ -254,7 +254,7 @@ const messages = defineMessages({
 		defaultMessage: '{count} client(s) active',
 	},
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
-	'popup.footer.support': { id: 'popup.footer.support', defaultMessage: 'Support' },
+	'popup.footer.donate': { id: 'popup.footer.donate', defaultMessage: 'Donate' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
 	'popup.footer.latestVersion': {
 		id: 'popup.footer.latestVersion',

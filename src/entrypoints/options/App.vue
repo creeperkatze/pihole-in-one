@@ -169,7 +169,7 @@ const messages = defineMessages({
 	},
 	'options.sidebar.kofi.title': {
 		id: 'options.sidebar.kofi.title',
-		defaultMessage: 'Support on Ko-fi',
+		defaultMessage: 'Donate on Ko-fi',
 	},
 	'options.sidebar.kofi.description': {
 		id: 'options.sidebar.kofi.description',
