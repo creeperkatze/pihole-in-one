@@ -264,7 +264,7 @@ const messages = defineMessages({
 	},
 })
 
-// Local working copy — only committed to parent on explicit Save
+// Local working copy, only committed to parent on explicit Save
 const localValue = ref<PiholeInstance[]>(props.modelValue.map((i) => ({ ...i })))
 const isDirty = ref(false)
 const permissionError = ref('')

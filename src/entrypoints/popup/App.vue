@@ -67,7 +67,7 @@
 			</div>
 
 			<template v-else>
-				<!-- Instance tabs — only shown when there are multiple instances -->
+				<!-- Instance tabs -->
 				<div v-if="settings!.instances.length > 1" class="flex border-b border-border px-1">
 					<button
 						v-for="(inst, i) in settings!.instances"
@@ -88,6 +88,27 @@
 				</div>
 
 				<div class="flex flex-col gap-2 p-3">
+					<Card
+						v-if="donateVisible"
+						as="a"
+						href="https://ko-fi.com/creeperkatze"
+						target="_blank"
+						rel="noopener"
+						color="#FF5E5B"
+						:title="formatMessage(messages['popup.donatePrompt.title'])"
+						:description="formatMessage(messages['popup.donatePrompt.message'])"
+						class="no-underline"
+						icon-position="left"
+						dismissible
+						:dismiss-label="formatMessage(messages['popup.donatePrompt.dismiss'])"
+						@click="dismissDonate"
+						@dismiss="dismissDonate"
+					>
+						<template #icon>
+							<KofiIcon class="size-5 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
+						</template>
+					</Card>
+
 					<div
 						v-if="states[activeInstance]?.error"
 						class="flex items-center justify-between gap-2 p-3 rounded-[5px] bg-danger-bg border border-danger-border text-pihole-red text-xs"
@@ -214,6 +235,7 @@ import { browser } from 'wxt/browser'
 import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
+import Card from '../../components/Card.vue'
 import { getApiMessage } from '../../composables/useApiMessages'
 import {
 	ApiError,
@@ -254,6 +276,19 @@ const messages = defineMessages({
 		defaultMessage: '{count} client(s) active',
 	},
 	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
+	'popup.donatePrompt.title': {
+		id: 'popup.donatePrompt.title',
+		defaultMessage: 'Support the extension',
+	},
+	'popup.donatePrompt.message': {
+		id: 'popup.donatePrompt.message',
+		defaultMessage:
+			'Pi-hole In One will always be free, open source, and ad-free. If you find it useful, consider supporting its development with a small donation.',
+	},
+	'popup.donatePrompt.dismiss': {
+		id: 'popup.donatePrompt.dismiss',
+		defaultMessage: 'Dismiss',
+	},
 	'popup.footer.donate': { id: 'popup.footer.donate', defaultMessage: 'Donate' },
 	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
 	'popup.footer.latestVersion': {
@@ -305,10 +340,36 @@ const states = ref<InstanceState[]>([])
 const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)
 
+const DONATE_OPEN_THRESHOLD = 10
+const DONATE_STORAGE_KEY = 'donatePrompt'
+const donateVisible = ref(false)
+
 let intervals: (ReturnType<typeof setInterval> | null)[] = []
 
 function isEnabled(i: number): boolean {
 	return states.value[i]?.summary?.blocking.blocking === 'enabled'
+}
+
+async function conditionallyShowDonate(): Promise<void> {
+	const stored = await browser.storage.local.get(DONATE_STORAGE_KEY)
+	const state = stored[DONATE_STORAGE_KEY] as { opens?: number; dismissed?: boolean } | undefined
+	if (state?.dismissed) return
+
+	const opens = (state?.opens ?? 0) + 1
+	await browser.storage.local.set({ [DONATE_STORAGE_KEY]: { opens, dismissed: false } })
+
+	if (opens >= DONATE_OPEN_THRESHOLD) {
+		donateVisible.value = true
+	}
+}
+
+async function dismissDonate(): Promise<void> {
+	donateVisible.value = false
+	const stored = await browser.storage.local.get(DONATE_STORAGE_KEY)
+	const state = stored[DONATE_STORAGE_KEY] as { opens?: number } | undefined
+	await browser.storage.local.set({
+		[DONATE_STORAGE_KEY]: { opens: state?.opens ?? 0, dismissed: true },
+	})
 }
 
 function statusSub(i: number): string | undefined {
@@ -482,6 +543,7 @@ onMounted(async () => {
 		states.value = s.instances.map(() => makeState())
 		intervals = s.instances.map(() => null)
 		await fetchAll()
+		void conditionallyShowDonate()
 	}
 	loading.value = false
 
