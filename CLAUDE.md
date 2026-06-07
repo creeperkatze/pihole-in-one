@@ -1,6 +1,6 @@
 # Pi-hole In One
 
-A browser extension (WXT + Vue 3 + TypeScript) to control Pi-hole from the browser.
+A browser extension to control Pi-holes from the browser. Built with WXT, Vue 3, TypeScript, and Tailwind CSS.
 
 ## Commands
 
