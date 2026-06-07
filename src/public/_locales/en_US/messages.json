@@ -1,0 +1,8 @@
+{
+	"extName": {
+		"message": "Pi-hole In One"
+	},
+	"extDescription": {
+		"message": "A browser extension to control your Pi-hole conveniently from within the browser."
+	}
+}
