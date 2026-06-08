@@ -38,6 +38,15 @@
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Vom Benutzer auf die Whitelist gesetzt"
   },
+  "popup.donatePrompt.dismiss": {
+    "defaultMessage": "Schließen"
+  },
+  "popup.donatePrompt.message": {
+    "defaultMessage": "Pi-hole In One wird immer kostenlos, Open Source und werbefrei bleiben. Wenn du es nützlich findest, unterstütze die Entwicklung mit einer kleinen Spende."
+  },
+  "popup.donatePrompt.title": {
+    "defaultMessage": "Unterstütze die Erweiterung"
+  },
   "popup.error.actionFailed": {
     "defaultMessage": "Aktion fehlgeschlagen"
   },
