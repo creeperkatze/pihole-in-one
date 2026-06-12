@@ -10,8 +10,72 @@ type MessageFile = Record<string, { defaultMessage?: string }>
 
 const EXT_NAME = 'Pi-hole In One'
 
-function toChromeLocale(locale: string): string {
-	return locale.replace('-', '_')
+// Exhaustive list of locale codes Chrome recognises in _locales.
+// https://developer.chrome.com/docs/extensions/reference/api/i18n#locales
+const CHROME_LOCALES = new Set([
+	'ar',
+	'am',
+	'bg',
+	'bn',
+	'ca',
+	'cs',
+	'da',
+	'de',
+	'el',
+	'en',
+	'en_AU',
+	'en_GB',
+	'en_US',
+	'es',
+	'es_419',
+	'et',
+	'fa',
+	'fi',
+	'fil',
+	'fr',
+	'gu',
+	'he',
+	'hi',
+	'hr',
+	'hu',
+	'id',
+	'it',
+	'ja',
+	'kn',
+	'ko',
+	'lt',
+	'lv',
+	'ml',
+	'mr',
+	'ms',
+	'nl',
+	'no',
+	'pl',
+	'pt_BR',
+	'pt_PT',
+	'ro',
+	'ru',
+	'sk',
+	'sl',
+	'sr',
+	'sv',
+	'sw',
+	'ta',
+	'te',
+	'th',
+	'tr',
+	'uk',
+	'vi',
+	'zh_CN',
+	'zh_TW',
+])
+
+function toChromeLocale(locale: string): string | undefined {
+	const { language, region } = new Intl.Locale(locale)
+	const withRegion = region ? `${language}_${region}` : language
+	if (CHROME_LOCALES.has(withRegion)) return withRegion
+	if (CHROME_LOCALES.has(language)) return language
+	return undefined
 }
 
 function loadSummary(locale: string): string | undefined {
@@ -38,6 +102,10 @@ for (const locale of localeDirs) {
 	}
 
 	const chromeLocale = toChromeLocale(locale)
+	if (!chromeLocale) {
+		console.warn(`No Chrome locale mapping for "${locale}", skipping.`)
+		continue
+	}
 	const outDir = resolve(publicDirectory, '_locales', chromeLocale)
 	mkdirSync(outDir, { recursive: true })
 
