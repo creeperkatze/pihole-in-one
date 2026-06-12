@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<select
-			class="px-3 py-1.5 border border-border rounded-[5px] bg-surface-3 text-primary text-sm transition-colors duration-150 outline-none w-auto shrink-0 focus:border-pihole-red"
+			class="px-3 py-1.5 border border-border rounded-[5px] bg-surface-3 text-primary font-medium transition-colors duration-150 outline-none w-auto shrink-0 focus:border-pihole-red"
 			:value="modelValue"
 			@change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
 		>
