@@ -3,7 +3,7 @@ import { browser } from 'wxt/browser'
 
 import { getSummary } from '../helpers/api'
 import { i18n } from '../helpers/i18n'
-import { getSettings } from '../helpers/settings'
+import { getSettings, watchSettings } from '../helpers/settings'
 
 const messages = defineMessages({
 	'popup.badge.on': { id: 'popup.badge.on', defaultMessage: 'ON' },
@@ -80,14 +80,10 @@ export default defineBackground(() => {
 	})
 
 	// Re-check immediately when settings change
-	browser.storage.onChanged.addListener((changes, area) => {
-		if (area === 'local' && 'settings' in changes) {
-			void updateBadge()
-			const prev = changes.settings.oldValue as { refreshInterval?: number } | undefined
-			const next = changes.settings.newValue as { refreshInterval?: number } | undefined
-			if (prev?.refreshInterval !== next?.refreshInterval) {
-				void browser.alarms.clear(ALARM).then(() => scheduleAlarm())
-			}
+	watchSettings((next, prev) => {
+		void updateBadge()
+		if (prev?.refreshInterval !== next.refreshInterval) {
+			void browser.alarms.clear(ALARM).then(() => scheduleAlarm())
 		}
 	})
 

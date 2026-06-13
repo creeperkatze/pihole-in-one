@@ -155,6 +155,7 @@ import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
 import { useVIntl } from '../../helpers/i18n'
+import { getLatestVersionTag } from '../../helpers/updateCheck'
 
 useSettings()
 
@@ -261,24 +262,7 @@ watch(searchQuery, (q) => {
 
 onMounted(async () => {
 	try {
-		const CACHE_KEY = 'updateCheckCache'
-		const CACHE_TTL = 10 * 60 * 1000
-
-		const cached = await browser.storage.local.get(CACHE_KEY)
-		const entry = cached[CACHE_KEY] as { tag: string; ts: number } | undefined
-		let tag: string
-
-		if (entry && Date.now() - entry.ts < CACHE_TTL) {
-			tag = entry.tag
-		} else {
-			const res = await fetch(
-				'https://api.github.com/repos/creeperkatze/pihole-in-one/releases/latest',
-			)
-			if (!res.ok) throw new Error(`HTTP ${res.status}`)
-			const data = await res.json()
-			tag = data.tag_name?.replace(/^v/, '') ?? ''
-			await browser.storage.local.set({ [CACHE_KEY]: { tag, ts: Date.now() } })
-		}
+		const tag = await getLatestVersionTag()
 
 		if (tag && tag !== version) latestVersion.value = tag
 		else if (tag) isLatest.value = true

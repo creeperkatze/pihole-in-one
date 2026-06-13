@@ -1,4 +1,4 @@
-import { browser } from 'wxt/browser'
+import { storage } from '@wxt-dev/storage'
 
 export interface BlockingStatus {
 	blocking: 'enabled' | 'disabled'
@@ -62,31 +62,30 @@ export interface PiholeSummary {
 	diagnosis: PiholeDiagnosis | null
 }
 
-const SESSION_STORAGE_KEY = 'sessionCache'
-
 // expires omitted when server returns validity <= 0 (no-auth installs never expire)
 type SessionStore = Record<string, { sid: string; expires?: number }>
 
+const sessionCacheItem = storage.defineItem<SessionStore>('local:sessionCache', {
+	fallback: {},
+})
+
 async function getCachedSession(base: string): Promise<{ sid: string; fresh: boolean } | null> {
-	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
-	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	const store = await sessionCacheItem.getValue()
 	const entry = store[base]
 	if (!entry) return null
 	return { sid: entry.sid, fresh: !entry.expires || entry.expires > Date.now() }
 }
 
 async function setCachedSession(base: string, sid: string, validity?: number): Promise<void> {
-	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
-	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	const store = await sessionCacheItem.getValue()
 	store[base] = validity && validity > 0 ? { sid, expires: Date.now() + validity * 1000 } : { sid }
-	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
+	await sessionCacheItem.setValue(store)
 }
 
 async function deleteCachedSession(base: string): Promise<void> {
-	const result = await browser.storage.local.get(SESSION_STORAGE_KEY)
-	const store = (result[SESSION_STORAGE_KEY] ?? {}) as SessionStore
+	const store = await sessionCacheItem.getValue()
 	delete store[base]
-	await browser.storage.local.set({ [SESSION_STORAGE_KEY]: store })
+	await sessionCacheItem.setValue(store)
 }
 
 export class ApiError extends Error {

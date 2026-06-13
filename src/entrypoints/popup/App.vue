@@ -229,6 +229,7 @@
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings, Star } from '@lucide/vue'
+import { storage } from '@wxt-dev/storage'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
@@ -247,6 +248,7 @@ import {
 import { formatDuration } from '../../helpers/format'
 import { useVIntl } from '../../helpers/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
+import { getLatestVersionTag } from '../../helpers/updateCheck'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import GroupsCard from './components/GroupsCard.vue'
@@ -341,7 +343,15 @@ const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)
 
 const DONATE_OPEN_THRESHOLD = 10
-const DONATE_STORAGE_KEY = 'donatePrompt'
+interface DonatePromptState {
+	opens: number
+	dismissed: boolean
+}
+
+const donatePromptItem = storage.defineItem<DonatePromptState>('local:donatePrompt', {
+	fallback: { opens: 0, dismissed: false },
+})
+
 const donateVisible = ref(false)
 
 let intervals: (ReturnType<typeof setInterval> | null)[] = []
@@ -351,12 +361,11 @@ function isEnabled(i: number): boolean {
 }
 
 async function conditionallyShowDonate(): Promise<void> {
-	const stored = await browser.storage.local.get(DONATE_STORAGE_KEY)
-	const state = stored[DONATE_STORAGE_KEY] as { opens?: number; dismissed?: boolean } | undefined
-	if (state?.dismissed) return
+	const state = await donatePromptItem.getValue()
+	if (state.dismissed) return
 
-	const opens = (state?.opens ?? 0) + 1
-	await browser.storage.local.set({ [DONATE_STORAGE_KEY]: { opens, dismissed: false } })
+	const opens = state.opens + 1
+	await donatePromptItem.setValue({ opens, dismissed: false })
 
 	if (opens >= DONATE_OPEN_THRESHOLD) {
 		donateVisible.value = true
@@ -365,11 +374,8 @@ async function conditionallyShowDonate(): Promise<void> {
 
 async function dismissDonate(): Promise<void> {
 	donateVisible.value = false
-	const stored = await browser.storage.local.get(DONATE_STORAGE_KEY)
-	const state = stored[DONATE_STORAGE_KEY] as { opens?: number } | undefined
-	await browser.storage.local.set({
-		[DONATE_STORAGE_KEY]: { opens: state?.opens ?? 0, dismissed: true },
-	})
+	const state = await donatePromptItem.getValue()
+	await donatePromptItem.setValue({ opens: state.opens, dismissed: true })
 }
 
 function statusSub(i: number): string | undefined {
@@ -548,22 +554,7 @@ onMounted(async () => {
 	loading.value = false
 
 	try {
-		const CACHE_KEY = 'updateCheckCache'
-		const CACHE_TTL = 10 * 60 * 1000
-		const cached = await browser.storage.local.get(CACHE_KEY)
-		const entry = cached[CACHE_KEY] as { tag: string; ts: number } | undefined
-		let tag: string
-		if (entry && Date.now() - entry.ts < CACHE_TTL) {
-			tag = entry.tag
-		} else {
-			const res = await fetch(
-				'https://api.github.com/repos/creeperkatze/pihole-in-one/releases/latest',
-			)
-			if (!res.ok) throw new Error(`HTTP ${res.status}`)
-			const data = await res.json()
-			tag = data.tag_name?.replace(/^v/, '') ?? ''
-			await browser.storage.local.set({ [CACHE_KEY]: { tag, ts: Date.now() } })
-		}
+		const tag = await getLatestVersionTag()
 		if (tag && tag !== version) latestVersion.value = tag
 		else if (tag) isLatest.value = true
 	} catch (err) {

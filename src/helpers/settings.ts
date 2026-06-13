@@ -1,4 +1,4 @@
-import { browser } from 'wxt/browser'
+import { storage } from '@wxt-dev/storage'
 
 export interface PiholeInstance {
 	id: string
@@ -39,18 +39,27 @@ export const DEFAULTS: ExtensionSettings = {
 	popupStatus: false,
 }
 
+const settingsItem = storage.defineItem<ExtensionSettings>('local:settings', {
+	fallback: DEFAULTS,
+})
+
 export function generateInstanceId(): string {
 	return Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
 }
 
 export async function getSettings(): Promise<ExtensionSettings> {
-	const result = await browser.storage.local.get('settings')
-	if (!result.settings) return { ...DEFAULTS }
-	return { ...DEFAULTS, ...(result.settings as Partial<ExtensionSettings>) }
+	const settings = await settingsItem.getValue()
+	return { ...DEFAULTS, ...settings }
 }
 
 export async function saveSettings(settings: ExtensionSettings): Promise<void> {
-	await browser.storage.local.set({ settings })
+	await settingsItem.setValue(settings)
+}
+
+export function watchSettings(
+	callback: (newValue: ExtensionSettings, oldValue: ExtensionSettings | null) => void,
+): () => void {
+	return settingsItem.watch(callback)
 }
 
 export function isConfigured(settings: ExtensionSettings): boolean {
