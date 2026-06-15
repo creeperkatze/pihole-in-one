@@ -155,7 +155,7 @@ import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
 import { useVIntl } from '../../utils/i18n'
-import { getLatestVersionTag } from '../../utils/updateCheck'
+import { getLatestVersionTag } from '../../utils/update-check'
 
 useSettings()
 

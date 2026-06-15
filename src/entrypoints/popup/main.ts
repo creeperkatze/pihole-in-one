@@ -2,7 +2,7 @@ import '../../assets/main.css'
 
 import { createApp } from 'vue'
 
-import { applyColorScheme } from '../../utils/colorScheme'
+import { applyColorScheme } from '../../utils/color-scheme'
 import { detectBrowserLocale, i18n } from '../../utils/i18n'
 import { getSettings } from '../../utils/settings'
 import App from './App.vue'

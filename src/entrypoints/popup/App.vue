@@ -248,7 +248,7 @@ import {
 import { formatDuration } from '../../utils/format'
 import { useVIntl } from '../../utils/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
-import { getLatestVersionTag } from '../../utils/updateCheck'
+import { getLatestVersionTag } from '../../utils/update-check'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import GroupsCard from './components/GroupsCard.vue'

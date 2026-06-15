@@ -1,6 +1,6 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
-import { applyColorScheme } from '../utils/colorScheme'
+import { applyColorScheme } from '../utils/color-scheme'
 import { detectBrowserLocale, i18n } from '../utils/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../utils/settings'
 
