@@ -47,7 +47,7 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       - run: pnpm zip && pnpm zip:firefox
 
