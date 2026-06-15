@@ -32,7 +32,7 @@ This writes `src/locales/en-US/popup.json` and `src/locales/en-US/options.json`.
 - `src/entrypoints/background.ts`: service worker (badge updates, refresh)
 - `src/components/`: shared Vue components used by both entrypoints
 - `src/composables/`: shared Vue composables
-- `src/helpers/`: pure helpers (API client, formatting, i18n setup, settings)
+- `src/utils/`: shared utilities (API client, formatting, i18n setup, settings)
 - `src/locales/`: i18n message files (en-US is the source; others via Crowdin)
 
 ## Key conventions
