@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import type { SettingsKeyOfType } from '../../helpers/settings'
+import type { SettingsKeyOfType } from '../../utils/settings'
 
 export type SelectOption = {
 	id: string

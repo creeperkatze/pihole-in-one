@@ -186,9 +186,9 @@ import { ref, watch } from 'vue'
 import { browser } from 'wxt/browser'
 
 import { getApiMessage } from '../../composables/useApiMessages'
-import { ApiError, getSummary } from '../../helpers/api'
-import { useVIntl } from '../../helpers/i18n'
-import { generateInstanceId, type PiholeInstance } from '../../helpers/settings'
+import { ApiError, getSummary } from '../../utils/api'
+import { useVIntl } from '../../utils/i18n'
+import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
 import Button from '../Button.vue'
 import Input from '../Input.vue'
 

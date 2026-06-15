@@ -58,8 +58,8 @@ import { defineMessages } from '@formatjs/intl'
 import { Languages, Monitor, Tag } from '@lucide/vue'
 import { computed } from 'vue'
 
-import { useVIntl } from '../../../helpers/i18n'
-import { LOCALES } from '../../../helpers/locales'
+import { useVIntl } from '../../../utils/i18n'
+import { LOCALES } from '../../../utils/locales'
 
 export const messages = defineMessages({
 	'options.customization.title': {
@@ -163,7 +163,7 @@ export function useCustomizationOptions() {
 import OptionSelect from '../../../components/options/OptionSelect.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import type { BadgeMode, ColorScheme } from '../../../helpers/settings'
+import type { BadgeMode, ColorScheme } from '../../../utils/settings'
 
 const { form, saveError, initialized } = useSettings()
 const { locale, colorScheme, badgeMode } = useCustomizationOptions()

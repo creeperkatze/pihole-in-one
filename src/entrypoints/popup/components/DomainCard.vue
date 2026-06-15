@@ -66,9 +66,9 @@ import {
 	type DomainEntry,
 	domainRegex,
 	searchDomain,
-} from '../../../helpers/api'
-import { useVIntl } from '../../../helpers/i18n'
-import type { PiholeInstance } from '../../../helpers/settings'
+} from '../../../utils/api'
+import { useVIntl } from '../../../utils/i18n'
+import type { PiholeInstance } from '../../../utils/settings'
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({

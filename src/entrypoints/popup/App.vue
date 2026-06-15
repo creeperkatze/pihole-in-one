@@ -244,11 +244,11 @@ import {
 	getSummary,
 	type PiholeSummary,
 	setBlocking,
-} from '../../helpers/api'
-import { formatDuration } from '../../helpers/format'
-import { useVIntl } from '../../helpers/i18n'
-import { type ExtensionSettings, getSettings, isConfigured } from '../../helpers/settings'
-import { getLatestVersionTag } from '../../helpers/updateCheck'
+} from '../../utils/api'
+import { formatDuration } from '../../utils/format'
+import { useVIntl } from '../../utils/i18n'
+import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
+import { getLatestVersionTag } from '../../utils/updateCheck'
 import DisablePresets from './components/DisablePresets.vue'
 import DomainCard from './components/DomainCard.vue'
 import GroupsCard from './components/GroupsCard.vue'

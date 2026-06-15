@@ -2,9 +2,9 @@ import '../../assets/main.css'
 
 import { createApp } from 'vue'
 
-import { applyColorScheme } from '../../helpers/colorScheme'
-import { detectBrowserLocale, i18n } from '../../helpers/i18n'
-import { getSettings } from '../../helpers/settings'
+import { applyColorScheme } from '../../utils/colorScheme'
+import { detectBrowserLocale, i18n } from '../../utils/i18n'
+import { getSettings } from '../../utils/settings'
 import App from './App.vue'
 import { router } from './router'
 

@@ -1,6 +1,6 @@
 import { defineMessages } from '@formatjs/intl'
 
-import type { MessageDescriptor } from '../helpers/i18n'
+import type { MessageDescriptor } from '../utils/i18n'
 
 const apiMessages = defineMessages({
 	'api.error.passwordIncorrect': {

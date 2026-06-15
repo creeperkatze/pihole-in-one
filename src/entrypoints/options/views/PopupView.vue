@@ -49,7 +49,7 @@ import { defineMessages } from '@formatjs/intl'
 import { Activity, BarChart2, Layers, List } from '@lucide/vue'
 import { computed } from 'vue'
 
-import { useVIntl } from '../../../helpers/i18n'
+import { useVIntl } from '../../../utils/i18n'
 
 export const messages = defineMessages({
 	'options.popup.title': {
@@ -159,7 +159,7 @@ import OptionSelect from '../../../components/options/OptionSelect.vue'
 import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import type { PopupStats } from '../../../helpers/settings'
+import type { PopupStats } from '../../../utils/settings'
 
 const { form, saveError, initialized } = useSettings()
 const { popupStats, popupGroupsOption, popupListsOption, popupStatusOption } = usePopupOptions()

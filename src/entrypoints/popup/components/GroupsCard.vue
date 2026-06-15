@@ -35,8 +35,8 @@ import { defineMessages } from '@formatjs/intl'
 import { ref } from 'vue'
 
 import Toggle from '../../../components/Toggle.vue'
-import { type PiholeGroup, setGroupEnabled } from '../../../helpers/api'
-import { useVIntl } from '../../../helpers/i18n'
+import { type PiholeGroup, setGroupEnabled } from '../../../utils/api'
+import { useVIntl } from '../../../utils/i18n'
 
 const props = defineProps<{
 	groups: PiholeGroup[]

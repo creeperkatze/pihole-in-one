@@ -1,9 +1,9 @@
 import { defineMessages } from '@formatjs/intl'
 import { browser } from 'wxt/browser'
 
-import { getSummary } from '../helpers/api'
-import { i18n } from '../helpers/i18n'
-import { getSettings, watchSettings } from '../helpers/settings'
+import { getSummary } from '../utils/api'
+import { i18n } from '../utils/i18n'
+import { getSettings, watchSettings } from '../utils/settings'
 
 const messages = defineMessages({
 	'popup.badge.on': { id: 'popup.badge.on', defaultMessage: 'ON' },

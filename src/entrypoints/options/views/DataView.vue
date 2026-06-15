@@ -95,7 +95,7 @@ import {
 import { computed } from 'vue'
 
 import { useDataActions } from '../../../composables/useDataActions'
-import { useVIntl } from '../../../helpers/i18n'
+import { useVIntl } from '../../../utils/i18n'
 
 export const messages = defineMessages({
 	'options.data.title': { id: 'options.data.title', defaultMessage: 'Data' },

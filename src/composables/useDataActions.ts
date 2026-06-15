@@ -1,8 +1,8 @@
 import { defineMessages } from '@formatjs/intl'
 import { ref } from 'vue'
 
-import { useVIntl } from '../helpers/i18n'
-import { DEFAULTS, parseSettingsExport } from '../helpers/settings'
+import { useVIntl } from '../utils/i18n'
+import { DEFAULTS, parseSettingsExport } from '../utils/settings'
 import { useSettings } from './useSettings'
 
 const messages = defineMessages({

@@ -154,8 +154,8 @@ import Card from '../../components/Card.vue'
 import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
-import { useVIntl } from '../../helpers/i18n'
-import { getLatestVersionTag } from '../../helpers/updateCheck'
+import { useVIntl } from '../../utils/i18n'
+import { getLatestVersionTag } from '../../utils/updateCheck'
 
 useSettings()
 

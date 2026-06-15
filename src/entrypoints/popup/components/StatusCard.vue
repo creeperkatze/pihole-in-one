@@ -41,7 +41,7 @@
 import { defineMessages } from '@formatjs/intl'
 
 import Button from '../../../components/Button.vue'
-import { useVIntl } from '../../../helpers/i18n'
+import { useVIntl } from '../../../utils/i18n'
 
 defineProps<{
 	status: 'enabled' | 'disabled'

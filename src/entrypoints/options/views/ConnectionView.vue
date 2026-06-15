@@ -36,8 +36,8 @@ import { defineMessages } from '@formatjs/intl'
 import { Timer } from '@lucide/vue'
 import { computed } from 'vue'
 
-import { formatSeconds } from '../../../helpers/format'
-import { useVIntl } from '../../../helpers/i18n'
+import { formatSeconds } from '../../../utils/format'
+import { useVIntl } from '../../../utils/i18n'
 
 export const messages = defineMessages({
 	'options.connection.title': { id: 'options.connection.title', defaultMessage: 'Connection' },

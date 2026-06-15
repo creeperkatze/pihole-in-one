@@ -23,10 +23,10 @@
 import { defineMessages } from '@formatjs/intl'
 import { computed } from 'vue'
 
-import type { PiholeSummary } from '../../../helpers/api'
-import { formatNumber } from '../../../helpers/format'
-import { useVIntl } from '../../../helpers/i18n'
-import type { PopupStats } from '../../../helpers/settings'
+import type { PiholeSummary } from '../../../utils/api'
+import { formatNumber } from '../../../utils/format'
+import { useVIntl } from '../../../utils/i18n'
+import type { PopupStats } from '../../../utils/settings'
 import DonutCard from './DonutCard.vue'
 import StatsGrid from './StatsGrid.vue'
 

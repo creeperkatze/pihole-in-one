@@ -1,8 +1,8 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
-import { applyColorScheme } from '../helpers/colorScheme'
-import { detectBrowserLocale, i18n } from '../helpers/i18n'
-import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../helpers/settings'
+import { applyColorScheme } from '../utils/colorScheme'
+import { detectBrowserLocale, i18n } from '../utils/i18n'
+import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../utils/settings'
 
 // Module-level singleton so all views share the same state
 const form = reactive<ExtensionSettings>({
