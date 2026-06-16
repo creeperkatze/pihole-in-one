@@ -230,6 +230,7 @@
 import { defineMessages } from '@formatjs/intl'
 import { CheckCircle2, Clock, ExternalLink, Loader2, RefreshCw, Settings, Star } from '@lucide/vue'
 import { storage } from '@wxt-dev/storage'
+import { type BlockingStatus, PiHoleError, type PiholeSummary } from 'pihole-js'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { browser } from 'wxt/browser'
 
@@ -237,14 +238,8 @@ import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
 import Card from '../../components/Card.vue'
-import { getApiMessage } from '../../composables/useApiMessages'
-import {
-	ApiError,
-	type BlockingStatus,
-	getSummary,
-	type PiholeSummary,
-	setBlocking,
-} from '../../utils/api'
+import { getApiMessageForError } from '../../composables/useApiMessages'
+import { getPiHoleClient } from '../../utils/api'
 import { formatDuration } from '../../utils/format'
 import { useVIntl } from '../../utils/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
@@ -435,15 +430,15 @@ async function fetchSummary(i: number): Promise<void> {
 	if (!inst) return
 	states.value[i].error = ''
 	try {
-		const summary = await getSummary(inst.baseUrl, inst.apiPassword)
+		const summary = await getPiHoleClient(inst).getSummary()
 		states.value[i].summary = summary
 		syncTimer(i, summary.blocking)
 	} catch (e) {
-		states.value[i].error =
-			e instanceof ApiError && e.messageId
-				? formatMessage(
-						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
-					)
+		const apiMessage = getApiMessageForError(e)
+		states.value[i].error = apiMessage
+			? formatMessage(apiMessage)
+			: e instanceof PiHoleError
+				? e.message
 				: e instanceof Error
 					? e.message
 					: formatMessage(messages['popup.error.fetchFailed'])
@@ -469,17 +464,17 @@ async function toggleBlocking(i: number): Promise<void> {
 	state.error = ''
 	try {
 		const enable = state.summary.blocking.blocking !== 'enabled'
-		const newBlocking = await setBlocking(inst.baseUrl, inst.apiPassword, enable)
+		const newBlocking = await getPiHoleClient(inst).setBlocking(enable)
 		state.summary = { ...state.summary, blocking: newBlocking }
 		syncTimer(i, newBlocking)
 		void browser.runtime.sendMessage({ type: 'refresh' })
 		await fetchSummary(i)
 	} catch (e) {
-		state.error =
-			e instanceof ApiError && e.messageId
-				? formatMessage(
-						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
-					)
+		const apiMessage = getApiMessageForError(e)
+		state.error = apiMessage
+			? formatMessage(apiMessage)
+			: e instanceof PiHoleError
+				? e.message
 				: e instanceof Error
 					? e.message
 					: formatMessage(messages['popup.error.actionFailed'])
@@ -495,17 +490,17 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 	state.toggling = true
 	state.error = ''
 	try {
-		const newBlocking = await setBlocking(inst.baseUrl, inst.apiPassword, false, seconds)
+		const newBlocking = await getPiHoleClient(inst).setBlocking(false, seconds)
 		state.summary = { ...state.summary, blocking: newBlocking }
 		syncTimer(i, newBlocking)
 		void browser.runtime.sendMessage({ type: 'refresh' })
 		await fetchSummary(i)
 	} catch (e) {
-		state.error =
-			e instanceof ApiError && e.messageId
-				? formatMessage(
-						getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
-					)
+		const apiMessage = getApiMessageForError(e)
+		state.error = apiMessage
+			? formatMessage(apiMessage)
+			: e instanceof PiHoleError
+				? e.message
 				: e instanceof Error
 					? e.message
 					: formatMessage(messages['popup.error.actionFailed'])

@@ -182,11 +182,12 @@ import {
 	Trash2,
 	XCircle,
 } from '@lucide/vue'
+import { PiHoleError } from 'pihole-js'
 import { ref, watch } from 'vue'
 import { browser } from 'wxt/browser'
 
-import { getApiMessage } from '../../composables/useApiMessages'
-import { ApiError, getSummary } from '../../utils/api'
+import { getApiMessageForError } from '../../composables/useApiMessages'
+import { getPiHoleClient } from '../../utils/api'
 import { useVIntl } from '../../utils/i18n'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
 import Button from '../Button.vue'
@@ -360,19 +361,19 @@ async function runTest(id: string): Promise<void> {
 	}
 	testStates.value[id] = { status: 'testing' }
 	try {
-		await getSummary(inst.baseUrl, inst.apiPassword)
+		await getPiHoleClient(inst).getSummary()
 		testStates.value[id] = {
 			status: 'ok',
 			message: formatMessage(messages['options.piholeselector.instance.connected']),
 		}
 	} catch (e) {
+		const apiMessage = getApiMessageForError(e)
 		testStates.value[id] = {
 			status: 'error',
-			message:
-				e instanceof ApiError && e.messageId
-					? formatMessage(
-							getApiMessage(e.messageId) ?? { id: e.messageId, defaultMessage: e.message },
-						)
+			message: apiMessage
+				? formatMessage(apiMessage)
+				: e instanceof PiHoleError
+					? e.message
 					: e instanceof Error
 						? e.message
 						: formatMessage(messages['options.piholeselector.instance.connectionFailed']),

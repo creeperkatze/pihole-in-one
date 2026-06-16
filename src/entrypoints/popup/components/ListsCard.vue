@@ -32,10 +32,11 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
+import type { PiholeList } from 'pihole-js'
 import { ref } from 'vue'
 
 import Toggle from '../../../components/Toggle.vue'
-import { type PiholeList, setListEnabled } from '../../../utils/api'
+import { getPiHoleClient } from '../../../utils/api'
 import { useVIntl } from '../../../utils/i18n'
 
 const props = defineProps<{
@@ -70,7 +71,7 @@ async function toggle(list: PiholeList): Promise<void> {
 	toggling.value = list.address
 	toggleError.value = ''
 	try {
-		await setListEnabled(props.baseUrl, props.apiPassword, list, !list.enabled)
+		await getPiHoleClient(props).setListEnabled(list, !list.enabled)
 		list.enabled = !list.enabled
 	} catch (e) {
 		toggleError.value =

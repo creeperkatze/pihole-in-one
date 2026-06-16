@@ -18,6 +18,7 @@ export type SettingsKeyOfType<V> = {
 export interface ExtensionSettings {
 	instances: PiholeInstance[]
 	refreshInterval: number
+	connectionTimeout: number
 	badgeMode: BadgeMode
 	colorScheme: ColorScheme
 	locale: string
@@ -30,6 +31,7 @@ export interface ExtensionSettings {
 export const DEFAULTS: ExtensionSettings = {
 	instances: [],
 	refreshInterval: 60,
+	connectionTimeout: 10,
 	badgeMode: 'percentage',
 	colorScheme: 'auto',
 	locale: '',

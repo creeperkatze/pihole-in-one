@@ -1,7 +1,7 @@
 import { defineMessages } from '@formatjs/intl'
 import { browser } from 'wxt/browser'
 
-import { getSummary } from '../utils/api'
+import { getPiHoleClient } from '../utils/api'
 import { i18n } from '../utils/i18n'
 import { getSettings, watchSettings } from '../utils/settings'
 
@@ -23,7 +23,9 @@ async function updateBadge(): Promise<void> {
 	try {
 		const summaries = await Promise.all(
 			settings.instances.map((inst) =>
-				getSummary(inst.baseUrl, inst.apiPassword).catch(() => null),
+				getPiHoleClient(inst)
+					.getSummary()
+					.catch(() => null),
 			),
 		)
 		const valid = summaries.filter((s) => s !== null)

@@ -56,17 +56,11 @@
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { Check, X } from '@lucide/vue'
+import type { DomainEntry } from 'pihole-js'
 import { computed, onMounted, ref } from 'vue'
 
 import Button from '../../../components/Button.vue'
-import {
-	allowlistDomain,
-	blockDomain,
-	deleteDomainEntry,
-	type DomainEntry,
-	domainRegex,
-	searchDomain,
-} from '../../../utils/api'
+import { getPiHoleClient } from '../../../utils/api'
 import { useVIntl } from '../../../utils/i18n'
 import type { PiholeInstance } from '../../../utils/settings'
 
@@ -139,9 +133,14 @@ const statusText = computed(() => {
 
 const primary = computed(() => props.instances[0])
 
+function domainRegex(domain: string): string {
+	const escaped = domain.replace(/\./g, '\\.')
+	return `(^|\\.)(${escaped})$`
+}
+
 async function fetchStatus(): Promise<void> {
 	if (!primary.value) return
-	const result = await searchDomain(primary.value.baseUrl, primary.value.apiPassword, props.domain)
+	const result = await getPiHoleClient(primary.value).searchDomain(props.domain)
 	denyEntries.value = result.domains.filter((d) => d.type === 'deny' && d.enabled)
 	allowEntries.value = result.domains.filter((d) => d.type === 'allow' && d.enabled)
 	gravityListNames.value = result.gravity.map((g) => listName(g.address, g.comment))
@@ -149,7 +148,7 @@ async function fetchStatus(): Promise<void> {
 
 async function deleteEntries(inst: PiholeInstance, entries: DomainEntry[]): Promise<void> {
 	await Promise.all(
-		entries.map((e) => deleteDomainEntry(inst.baseUrl, inst.apiPassword, e.type, e.kind, e.domain)),
+		entries.map((e) => getPiHoleClient(inst).deleteDomainEntry(e.type, e.kind, e.domain)),
 	)
 }
 
@@ -163,7 +162,7 @@ async function toggleAllowlist(): Promise<void> {
 					await deleteEntries(inst, allowEntries.value)
 				} else {
 					await deleteEntries(inst, denyEntries.value)
-					await allowlistDomain(inst.baseUrl, inst.apiPassword, props.domain)
+					await getPiHoleClient(inst).allowlistDomain(props.domain)
 				}
 			}),
 		)
@@ -199,7 +198,7 @@ async function toggleBlock(): Promise<void> {
 					await deleteEntries(inst, denyEntries.value)
 				} else {
 					await deleteEntries(inst, allowEntries.value)
-					await blockDomain(inst.baseUrl, inst.apiPassword, props.domain)
+					await getPiHoleClient(inst).blockDomain(props.domain)
 				}
 			}),
 		)

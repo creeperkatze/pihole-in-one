@@ -10,6 +10,18 @@
 				@update:model-value="form.instances = $event"
 			/>
 			<OptionSlider
+				:icon="connectionTimeout.icon"
+				:label="connectionTimeout.label"
+				:description="connectionTimeout.description"
+				:model-value="form.connectionTimeout"
+				:min="connectionTimeout.min"
+				:max="connectionTimeout.max"
+				:step="connectionTimeout.step"
+				:suffix="connectionTimeout.suffix"
+				:format="connectionTimeout.format"
+				@update:model-value="form.connectionTimeout = $event"
+			/>
+			<OptionSlider
 				:icon="refreshInterval.icon"
 				:label="refreshInterval.label"
 				:description="refreshInterval.description"
@@ -33,7 +45,7 @@
 
 <script lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Timer } from '@lucide/vue'
+import { Timer, Wifi } from '@lucide/vue'
 import { computed } from 'vue'
 
 import { formatSeconds } from '../../../utils/format'
@@ -61,6 +73,14 @@ export const messages = defineMessages({
 		id: 'options.connection.refreshInterval.description',
 		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
 	},
+	'options.connection.connectionTimeout.label': {
+		id: 'options.connection.connectionTimeout.label',
+		defaultMessage: 'Connection Timeout',
+	},
+	'options.connection.connectionTimeout.description': {
+		id: 'options.connection.connectionTimeout.description',
+		defaultMessage: 'How long to wait before a rquest to a Pi-hole is treated as failed.',
+	},
 })
 
 export function useConnectionOptions() {
@@ -87,7 +107,21 @@ export function useConnectionOptions() {
 		format: formatSeconds,
 	}))
 
-	return { pihole, refreshInterval }
+	const connectionTimeout = computed(() => ({
+		id: 'connectionTimeout',
+		type: 'slider' as const,
+		formKey: 'connectionTimeout' as const,
+		icon: Wifi,
+		label: formatMessage(messages['options.connection.connectionTimeout.label']),
+		description: formatMessage(messages['options.connection.connectionTimeout.description']),
+		min: 3,
+		max: 60,
+		step: 1,
+		suffix: 's',
+		format: formatSeconds,
+	}))
+
+	return { pihole, refreshInterval, connectionTimeout }
 }
 </script>
 
@@ -98,6 +132,6 @@ import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 
 const { form, saveError } = useSettings()
-const { refreshInterval } = useConnectionOptions()
+const { connectionTimeout, refreshInterval } = useConnectionOptions()
 const { formatMessage } = useVIntl()
 </script>

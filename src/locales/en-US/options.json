@@ -5,6 +5,9 @@
   "api.error.passwordRequired": {
     "defaultMessage": "Password required"
   },
+  "api.error.timeout": {
+    "defaultMessage": "Connection timed out"
+  },
   "options.colorScheme.auto": {
     "defaultMessage": "System default"
   },
@@ -19,6 +22,12 @@
   },
   "options.colorScheme.light": {
     "defaultMessage": "Light"
+  },
+  "options.connection.connectionTimeout.description": {
+    "defaultMessage": "How long to wait before a Pi-hole request is treated as failed."
+  },
+  "options.connection.connectionTimeout.label": {
+    "defaultMessage": "Connection Timeout"
   },
   "options.connection.description": {
     "defaultMessage": "Manage your Pi-hole instances and badge refresh settings."
