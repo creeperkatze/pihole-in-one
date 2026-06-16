@@ -251,6 +251,12 @@
   "options.sidebar.kofi.title": {
     "defaultMessage": "Spende auf Ko-fi"
   },
+  "options.sidebar.toggle.close": {
+    "defaultMessage": "Seitenleiste ausblenden"
+  },
+  "options.sidebar.toggle.open": {
+    "defaultMessage": "Seitenleiste anzeigen"
+  },
   "options.tabs.connection": {
     "defaultMessage": "Verbindung"
   },
