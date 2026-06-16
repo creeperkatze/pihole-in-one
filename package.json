@@ -23,7 +23,7 @@
     "dependencies": {
         "@fontsource-variable/inter": "^5.2.8",
         "@formatjs/intl": "^4.1.13",
-        "@lucide/vue": "latest",
+        "@lucide/vue": "^1.18.0",
         "@wxt-dev/storage": "^1.2.8",
         "vue": "^3.5.38",
         "vue-i18n": "^11.4.5",
@@ -49,5 +49,5 @@
         "vue-tsc": "^3.3.5",
         "wxt": "^0.20.26"
     },
-    "packageManager": "pnpm@11.3.0+sha512.2c403d6594527287672b1f7056343a1f7c3634036a67ffabfcc2b3d7595d843768f8787148d1b57cf7956c90606bbd192857c363af19e96d2d0ec9ec5741d215"
+    "packageManager": "pnpm@11.7.0+sha512.19cc852c120c7125760f2443ee6be0ca5b40f9f50598de1a09a1f177503e010e57c23c77646e01e761de59bf874fb22a3398c33ab9691fc13eb946b6f0f4d620"
 }
