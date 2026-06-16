@@ -1,16 +1,9 @@
 <template>
-	<div class="flex min-h-screen flex-col bg-surface-1 md:h-screen md:flex-row md:overflow-hidden">
+	<div class="flex min-h-screen flex-col bg-surface-1 sm:h-screen sm:flex-row sm:overflow-hidden">
 		<div
-			class="flex items-center justify-between border-b border-border-subtle bg-surface-2 px-4 py-4 md:hidden"
+			class="flex items-center justify-between border-b border-border-subtle bg-surface-2 px-4 py-4 sm:hidden"
 		>
-			<a
-				href="https://github.com/creeperkatze/pihole-in-one"
-				target="_blank"
-				rel="noopener"
-				class="min-w-0"
-			>
-				<Logo class="text-primary" width="108" height="36" />
-			</a>
+			<Logo class="text-primary" width="108" height="36" />
 			<button
 				type="button"
 				class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-secondary transition-colors hover:bg-surface-3 hover:text-primary"
@@ -22,21 +15,20 @@
 				"
 				@click="sidebarOpen = !sidebarOpen"
 			>
-				<ChevronLeft v-if="sidebarOpen" class="size-4" />
-				<Menu v-else class="size-4" />
+				<Menu class="size-4" />
 			</button>
 		</div>
 
 		<div
 			v-if="sidebarOpen"
-			class="fixed inset-0 z-30 bg-black/50 md:hidden"
+			class="fixed inset-0 z-30 bg-black/50 sm:hidden"
 			@click="sidebarOpen = false"
 		/>
 
 		<!-- Sidebar -->
 		<aside
-			class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] flex-col border-r border-border-subtle bg-surface-2 transition-transform duration-200 ease-out md:static md:z-auto md:h-screen md:max-w-none md:translate-x-0"
-			:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'"
+			class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] flex-col border-r border-border-subtle bg-surface-2 transition-transform duration-200 ease-out sm:static sm:z-auto sm:h-screen sm:max-w-none sm:translate-x-0"
+			:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'"
 		>
 			<div class="flex items-center justify-between border-b border-border-subtle px-4 py-4">
 				<a
@@ -49,7 +41,7 @@
 				</a>
 				<button
 					type="button"
-					class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-secondary transition-colors hover:bg-surface-3 hover:text-primary md:hidden"
+					class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-secondary transition-colors hover:bg-surface-3 hover:text-primary sm:hidden"
 					:aria-label="formatMessage(messages['options.sidebar.toggle.close'])"
 					@click="sidebarOpen = false"
 				>
@@ -57,7 +49,7 @@
 				</button>
 			</div>
 			<div class="flex min-h-0 flex-1 flex-col">
-				<div class="border-b border-border-subtle px-3 py-3 md:px-2 md:py-2">
+				<div class="border-b border-border-subtle px-3 py-3 sm:px-2 sm:py-2">
 					<div class="relative">
 						<Search
 							class="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
@@ -79,7 +71,7 @@
 						</button>
 					</div>
 				</div>
-				<nav class="flex flex-1 flex-col gap-1.5 px-3 py-3 md:p-2">
+				<nav class="flex flex-1 flex-col gap-1.5 px-3 py-3 sm:p-2">
 					<template v-if="!searchQuery">
 						<SidebarTab
 							v-for="tab in tabs"
@@ -142,7 +134,7 @@
 
 				<!-- Footer -->
 				<div
-					class="flex shrink-0 items-center gap-2 border-t border-border-subtle px-3 py-2 md:py-1.5"
+					class="flex shrink-0 items-center gap-2 border-t border-border-subtle px-3 py-2 sm:py-1.5"
 				>
 					<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
 					<span v-if="checking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
