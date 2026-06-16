@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.customization.title'])"
 			:description="formatMessage(messages['options.customization.description'])"
 		/>
-		<div v-if="initialized" class="flex max-w-xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
+		<div v-if="initialized" class="flex max-w-xl flex-col gap-2 p-4">
 			<OptionSelect
 				:icon="locale.icon"
 				:label="locale.label"

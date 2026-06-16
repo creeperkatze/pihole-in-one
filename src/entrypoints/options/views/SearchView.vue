@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.search.title'])"
 			:description="formatMessage(messages['options.search.description'], { query })"
 		/>
-		<div v-if="initialized" class="max-w-xl px-4 py-4 sm:px-6 lg:px-8">
+		<div v-if="initialized" class="max-w-xl p-4">
 			<div v-if="results.length === 0" class="text-sm text-secondary">
 				{{ formatMessage(messages['options.search.noResults']) }}
 			</div>
