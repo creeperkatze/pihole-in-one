@@ -1,5 +1,5 @@
 <template>
-	<div class="px-8 pt-8 pb-6">
+	<div class="px-4 pt-6 pb-5 sm:px-6 sm:pt-8 sm:pb-6 lg:px-8">
 		<h1 class="text-lg font-semibold m-0">{{ title }}</h1>
 		<p v-if="description" class="text-sm text-secondary mt-1 mb-0">
 			{{ description }}

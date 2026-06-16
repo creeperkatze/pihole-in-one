@@ -1,7 +1,7 @@
 <template>
 	<button
 		type="button"
-		class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-left w-full transition-colors duration-150 cursor-pointer"
+		class="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium whitespace-nowrap transition-colors duration-150 cursor-pointer"
 		:class="
 			active
 				? 'bg-surface-raised text-primary shadow-xs border border-border'

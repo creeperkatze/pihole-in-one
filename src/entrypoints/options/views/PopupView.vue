@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.popup.title'])"
 			:description="formatMessage(messages['options.popup.description'])"
 		/>
-		<div v-if="initialized" class="px-8 py-4 max-w-xl flex flex-col gap-2">
+		<div v-if="initialized" class="flex max-w-xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
 			<OptionSelect
 				:icon="popupStats.icon"
 				:label="popupStats.label"

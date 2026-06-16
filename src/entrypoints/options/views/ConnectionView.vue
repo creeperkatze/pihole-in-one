@@ -4,7 +4,7 @@
 			:title="formatMessage(messages['options.connection.title'])"
 			:description="formatMessage(messages['options.connection.description'])"
 		/>
-		<div class="px-8 py-4 max-w-xl flex flex-col gap-2">
+		<div class="flex max-w-xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
 			<OptionPiHoleSelector
 				:model-value="form.instances"
 				@update:model-value="form.instances = $event"
