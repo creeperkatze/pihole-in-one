@@ -14,6 +14,7 @@ import {
 	type SessionEntry,
 	type SessionStore,
 } from 'pihole-js'
+import { browser } from 'wxt/browser'
 
 import { DEFAULTS, getSettings, type PiholeInstance, watchSettings } from './settings'
 
@@ -24,6 +25,8 @@ type SessionStoreShape = Record<string, SessionEntry>
 const sessionCacheItem = storage.defineItem<SessionStoreShape>('local:sessionCache', {
 	fallback: {},
 })
+
+const USER_AGENT = `creeperkatze/pihole-in-one/${browser.runtime.getManifest().version}`
 
 const clientCache = new Map<string, ExtensionPiHoleClient>()
 
@@ -179,6 +182,7 @@ export function getPiHoleClient(target: ApiTarget): ExtensionPiHoleClient {
 		baseUrl: target.baseUrl,
 		password: target.apiPassword,
 		timeoutMs: currentTimeoutMs,
+		userAgent: USER_AGENT,
 		sessionStore: browserSessionStore,
 	}
 	const client = new ExtensionPiHoleClient(options)
