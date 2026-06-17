@@ -24,8 +24,8 @@ importers:
         specifier: ^1.2.8
         version: 1.2.8
       pihole-js:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.2.0
+        version: 1.2.0
       vue:
         specifier: ^3.5.38
         version: 3.5.38(typescript@6.0.3)
@@ -2003,8 +2003,8 @@ packages:
     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
-  pihole-js@1.0.0:
-    resolution: {integrity: sha512-uCF1SGrvK5Qfwp62jfLXikEgZPWlIfkSSOYMKb7C6nNu3frkRJXngbRopb8zcNLTJNmVV/bBSSQZ97u7RmxKWQ==}
+  pihole-js@1.2.0:
+    resolution: {integrity: sha512-jYyW+DpiVbYVCsXLe9+Og04wteAOZ4K+3D5NZqLX/bhHhspiQfGOKgwlVQosTjM2xqbpTW+SIiVHkoMz1QlkAA==}
     engines: {node: '>=18'}
 
   pino-abstract-transport@2.0.0:
@@ -4303,7 +4303,7 @@ snapshots:
 
   picomatch@4.0.4: {}
 
-  pihole-js@1.0.0: {}
+  pihole-js@1.2.0: {}
 
   pino-abstract-transport@2.0.0:
     dependencies:
