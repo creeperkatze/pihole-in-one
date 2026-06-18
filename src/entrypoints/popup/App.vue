@@ -337,14 +337,15 @@ const states = ref<InstanceState[]>([])
 const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)
 
-const DONATE_OPEN_THRESHOLD = 10
+const DONATE_PROMPT_DELAY_MS = 5 * 24 * 60 * 60 * 1000 // 5 days
+
 interface DonatePromptState {
-	opens: number
+	installedAt: number
 	dismissed: boolean
 }
 
 const donatePromptItem = storage.defineItem<DonatePromptState>('local:donatePrompt', {
-	fallback: { opens: 0, dismissed: false },
+	fallback: { installedAt: Date.now(), dismissed: false },
 })
 
 const donateVisible = ref(false)
@@ -359,10 +360,7 @@ async function conditionallyShowDonate(): Promise<void> {
 	const state = await donatePromptItem.getValue()
 	if (state.dismissed) return
 
-	const opens = state.opens + 1
-	await donatePromptItem.setValue({ opens, dismissed: false })
-
-	if (opens >= DONATE_OPEN_THRESHOLD) {
+	if (Date.now() - state.installedAt >= DONATE_PROMPT_DELAY_MS) {
 		donateVisible.value = true
 	}
 }
@@ -370,7 +368,7 @@ async function conditionallyShowDonate(): Promise<void> {
 async function dismissDonate(): Promise<void> {
 	donateVisible.value = false
 	const state = await donatePromptItem.getValue()
-	await donatePromptItem.setValue({ opens: state.opens, dismissed: true })
+	await donatePromptItem.setValue({ installedAt: state.installedAt, dismissed: true })
 }
 
 function statusSub(i: number): string | undefined {
