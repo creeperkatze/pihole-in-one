@@ -344,9 +344,7 @@ interface DonatePromptState {
 	dismissed: boolean
 }
 
-const donatePromptItem = storage.defineItem<DonatePromptState>('local:donatePrompt', {
-	fallback: { installedAt: Date.now(), dismissed: false },
-})
+const donatePromptItem = storage.defineItem<DonatePromptState>('local:donatePrompt')
 
 const donateVisible = ref(false)
 
@@ -357,8 +355,13 @@ function isEnabled(i: number): boolean {
 }
 
 async function conditionallyShowDonate(): Promise<void> {
-	const state = await donatePromptItem.getValue()
-	if (state.dismissed) return
+	const existing = await donatePromptItem.getValue()
+	if (existing?.dismissed) return
+
+	const state: DonatePromptState = existing ?? { installedAt: Date.now(), dismissed: false }
+	if (!existing) {
+		await donatePromptItem.setValue(state)
+	}
 
 	if (Date.now() - state.installedAt >= DONATE_PROMPT_DELAY_MS) {
 		donateVisible.value = true
@@ -368,7 +371,10 @@ async function conditionallyShowDonate(): Promise<void> {
 async function dismissDonate(): Promise<void> {
 	donateVisible.value = false
 	const state = await donatePromptItem.getValue()
-	await donatePromptItem.setValue({ installedAt: state.installedAt, dismissed: true })
+	await donatePromptItem.setValue({
+		installedAt: state?.installedAt ?? Date.now(),
+		dismissed: true,
+	})
 }
 
 function statusSub(i: number): string | undefined {
