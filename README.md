@@ -2,12 +2,12 @@
 
 A browser extension to control your Pi-hole conveniently from within the browser.
 
-![GitHub Branch Check Runs](https://img.shields.io/github/check-runs/creeperkatze/pihole-in-one/main)
-![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/pihole-in-one)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/creeperkatze/pihole-in-one)
-![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat)
-[![pihole-js](https://img.shields.io/static/v1?label=api%20client&message=pihole-js&color=yellow)](https://github.com/creeperkatze/pihole-js)
-[![Crowdin](https://badges.crowdin.net/pihole-in-one/localized.svg)](https://crowdin.com/project/pihole-in-one)
+![GitHub Branch Check Runs](https://img.shields.io/github/check-runs/creeperkatze/pihole-in-one/main?style=for-the-badge)
+![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/pihole-in-one?style=for-the-badge)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/creeperkatze/pihole-in-one?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=for-the-badge)
+[![pihole-js](https://img.shields.io/static/v1?label=api%20client&message=pihole-js&color=yellow&style=for-the-badge)](https://github.com/creeperkatze/pihole-js)
+[![Crowdin](https://img.shields.io/crowdin/progress/pihole-in-one?style=for-the-badge&logo=crowdin)](https://crowdin.com/project/pihole-in-one)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
 
@@ -18,9 +18,9 @@ A browser extension to control your Pi-hole conveniently from within the browser
 
 Install from your browser's extension store:
 
-- **[Chrome Web Store](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)** ![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/gaaobidjebianpcngcfpkniaocibidhe?label=)![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/gaaobidjebianpcngcfpkniaocibidhe?style=flat)
-- **[Firefox Add-Ons](https://addons.mozilla.org/firefox/addon/pihole-in-one/)** ![Mozilla Add-on Version](https://img.shields.io/amo/v/pihole-in-one?label=)![Mozilla Add-on Users](https://img.shields.io/amo/users/pihole-in-one?style=flat)
-- **[Edge Add-Ons](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao)** ![Edge Addon Version](https://img.shields.io/badge/dynamic/json?label=&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao)![Edge Addon Users](https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao?style=flat)
+- **[Chrome Web Store](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)** ![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/gaaobidjebianpcngcfpkniaocibidhe?label=&style=for-the-badge)![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/gaaobidjebianpcngcfpkniaocibidhe?style=for-the-badge)
+- **[Firefox Add-Ons](https://addons.mozilla.org/firefox/addon/pihole-in-one/)** ![Mozilla Add-on Version](https://img.shields.io/amo/v/pihole-in-one?label=&style=for-the-badge)![Mozilla Add-on Users](https://img.shields.io/amo/users/pihole-in-one?style=for-the-badge)
+- **[Edge Add-Ons](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao)** ![Edge Addon Version](https://img.shields.io/badge/dynamic/json?label=&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao&style=for-the-badge)![Edge Addon Users](https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao&style=for-the-badge)
 
 Prefer to build from source? See [Building from source](#-building-from-source) below.
 
