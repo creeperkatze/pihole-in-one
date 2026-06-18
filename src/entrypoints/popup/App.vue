@@ -464,7 +464,9 @@ async function toggleBlocking(i: number): Promise<void> {
 	state.error = ''
 	try {
 		const enable = state.summary.blocking.blocking !== 'enabled'
-		const newBlocking = await getPiHoleClient(inst).setBlocking(enable)
+		const newBlocking = enable
+			? await getPiHoleClient(inst).dns.enable()
+			: await getPiHoleClient(inst).dns.disable()
 		state.summary = { ...state.summary, blocking: newBlocking }
 		syncTimer(i, newBlocking)
 		void browser.runtime.sendMessage({ type: 'refresh' })
@@ -490,7 +492,7 @@ async function disableFor(i: number, seconds: number): Promise<void> {
 	state.toggling = true
 	state.error = ''
 	try {
-		const newBlocking = await getPiHoleClient(inst).setBlocking(false, seconds)
+		const newBlocking = await getPiHoleClient(inst).dns.disable(seconds)
 		state.summary = { ...state.summary, blocking: newBlocking }
 		syncTimer(i, newBlocking)
 		void browser.runtime.sendMessage({ type: 'refresh' })

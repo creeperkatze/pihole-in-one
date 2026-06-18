@@ -140,15 +140,18 @@ function domainRegex(domain: string): string {
 
 async function fetchStatus(): Promise<void> {
 	if (!primary.value) return
-	const result = await getPiHoleClient(primary.value).searchDomain(props.domain)
-	denyEntries.value = result.domains.filter((d) => d.type === 'deny' && d.enabled)
-	allowEntries.value = result.domains.filter((d) => d.type === 'allow' && d.enabled)
-	gravityListNames.value = result.gravity.map((g) => listName(g.address, g.comment))
+	const result = await getPiHoleClient(primary.value).domains.search(props.domain, {
+		partial: false,
+	})
+	const search = result.search
+	denyEntries.value = search.domains.filter((d) => d.type === 'deny' && d.enabled)
+	allowEntries.value = search.domains.filter((d) => d.type === 'allow' && d.enabled)
+	gravityListNames.value = search.gravity.map((g) => listName(g.address, g.comment))
 }
 
 async function deleteEntries(inst: PiholeInstance, entries: DomainEntry[]): Promise<void> {
 	await Promise.all(
-		entries.map((e) => getPiHoleClient(inst).deleteDomainEntry(e.type, e.kind, e.domain)),
+		entries.map((e) => getPiHoleClient(inst).domains.delete(e.type, e.kind, e.domain)),
 	)
 }
 
@@ -162,7 +165,7 @@ async function toggleAllowlist(): Promise<void> {
 					await deleteEntries(inst, allowEntries.value)
 				} else {
 					await deleteEntries(inst, denyEntries.value)
-					await getPiHoleClient(inst).allowlistDomain(props.domain)
+					await getPiHoleClient(inst).domains.allowRegex(domainRegex(props.domain))
 				}
 			}),
 		)
@@ -200,7 +203,7 @@ async function toggleBlock(): Promise<void> {
 					await deleteEntries(inst, denyEntries.value)
 				} else {
 					await deleteEntries(inst, allowEntries.value)
-					await getPiHoleClient(inst).blockDomain(props.domain)
+					await getPiHoleClient(inst).domains.denyRegex(domainRegex(props.domain))
 				}
 			}),
 		)

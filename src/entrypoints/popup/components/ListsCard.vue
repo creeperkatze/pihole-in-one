@@ -71,7 +71,12 @@ async function toggle(list: PiholeList): Promise<void> {
 	toggling.value = list.address
 	toggleError.value = ''
 	try {
-		await getPiHoleClient(props).setListEnabled(list, !list.enabled)
+		await getPiHoleClient(props).lists.update(list.address, {
+			type: list.type,
+			comment: list.comment,
+			groups: list.groups,
+			enabled: !list.enabled,
+		})
 		list.enabled = !list.enabled
 	} catch (e) {
 		toggleError.value =

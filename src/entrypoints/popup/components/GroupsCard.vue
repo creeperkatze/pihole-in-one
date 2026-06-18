@@ -61,7 +61,11 @@ async function toggle(group: PiholeGroup): Promise<void> {
 	toggling.value = group.name
 	toggleError.value = ''
 	try {
-		await getPiHoleClient(props).setGroupEnabled(group, !group.enabled)
+		await getPiHoleClient(props).groups.update(group.name, {
+			name: group.name,
+			comment: group.comment,
+			enabled: !group.enabled,
+		})
 		group.enabled = !group.enabled
 	} catch (e) {
 		toggleError.value =
