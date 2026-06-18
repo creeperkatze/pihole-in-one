@@ -180,6 +180,8 @@ async function toggleAllowlist(): Promise<void> {
 					comment: null,
 					id: -1,
 					groups: [0],
+					date_added: 0,
+					date_modified: 0,
 				},
 			]
 		}
@@ -216,6 +218,8 @@ async function toggleBlock(): Promise<void> {
 					comment: null,
 					id: -1,
 					groups: [0],
+					date_added: 0,
+					date_modified: 0,
 				},
 			]
 		}

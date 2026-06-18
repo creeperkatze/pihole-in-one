@@ -21,9 +21,9 @@
 
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import type { PiholeSummary } from 'pihole-js'
 import { computed } from 'vue'
 
+import type { PiholeSummary } from '../../../utils/api'
 import { formatNumber } from '../../../utils/format'
 import { useVIntl } from '../../../utils/i18n'
 import type { PopupStats } from '../../../utils/settings'

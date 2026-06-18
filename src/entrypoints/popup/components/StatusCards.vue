@@ -22,9 +22,9 @@
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import { Clock, Cpu, MemoryStick, Thermometer } from '@lucide/vue'
-import type { PiholeDiagnosis } from 'pihole-js'
 import { computed } from 'vue'
 
+import type { PiholeDiagnosis } from '../../../utils/api'
 import { formatDuration } from '../../../utils/format'
 import { useVIntl } from '../../../utils/i18n'
 

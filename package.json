@@ -25,7 +25,7 @@
         "@formatjs/intl": "^4.1.13",
         "@lucide/vue": "^1.18.0",
         "@wxt-dev/storage": "^1.2.8",
-        "pihole-js": "^1.2.0",
+        "pihole-js": "^1.4.0",
         "vue": "^3.5.38",
         "vue-i18n": "^11.4.5",
         "vue-router": "^5.1.0"

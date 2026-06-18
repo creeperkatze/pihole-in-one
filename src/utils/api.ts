@@ -5,14 +5,15 @@ import {
 	type DomainKind,
 	type DomainSearchResult,
 	type DomainType,
+	type HistoryPoint,
 	type PaddResponse,
 	PiHoleClient,
 	type PiHoleClientOptions,
 	type PiholeGroup,
 	type PiholeList,
-	type PiholeSummary,
 	type SessionEntry,
 	type SessionStore,
+	type SummaryStatsResponse,
 } from 'pihole-js'
 import { browser } from 'wxt/browser'
 
@@ -21,6 +22,24 @@ import { DEFAULTS, getSettings, type PiholeInstance, watchSettings } from './set
 type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
 type SessionStoreShape = Record<string, SessionEntry>
+
+export interface PiholeDiagnosis {
+	cpu: number
+	memory: number
+	temperature: number | null
+	tempUnit: string
+	uptime: number
+}
+
+export interface PiholeSummary {
+	queries: SummaryStatsResponse['queries']
+	clients: SummaryStatsResponse['clients']
+	blocking: BlockingStatus
+	history: HistoryPoint[]
+	groups: PiholeGroup[]
+	lists: PiholeList[]
+	diagnosis: PiholeDiagnosis | null
+}
 
 const sessionCacheItem = storage.defineItem<SessionStoreShape>('local:sessionCache', {
 	fallback: {},
@@ -97,12 +116,12 @@ function normalizePadd(padd: PaddResponse | null): PiholeSummary['diagnosis'] {
 class ExtensionPiHoleClient extends PiHoleClient {
 	async getSummary(): Promise<PiholeSummary> {
 		const [stats, blocking, historyRes, groupsRes, listsRes, paddRes] = await Promise.all([
-			this.getStatsSummary(),
-			this.getBlocking(),
-			this.getHistory().catch(() => ({ history: emptyHistory() })),
-			this.getGroups().catch(() => ({ groups: emptyGroups() })),
-			this.getLists().catch(() => ({ lists: emptyLists() })),
-			this.getPadd().catch(() => null),
+			this.stats.getSummary(),
+			this.dns.getStatus(),
+			this.history.get().catch(() => ({ history: emptyHistory() })),
+			this.groups.list().catch(() => ({ groups: emptyGroups() })),
+			this.lists.list().catch(() => ({ lists: emptyLists() })),
+			this.padd.getSummary().catch(() => null),
 		])
 
 		return {
@@ -117,12 +136,12 @@ class ExtensionPiHoleClient extends PiHoleClient {
 	}
 
 	async searchDomain(domain: string): Promise<DomainSearchResult> {
-		const result = await this.getSearch(domain, { partial: false })
+		const result = await this.domains.search(domain, { partial: false })
 		return result.search
 	}
 
 	async blockDomain(domain: string): Promise<void> {
-		await this.createDomain('deny', 'regex', {
+		await this.domains.create('deny', 'regex', {
 			domain: domainRegex(domain),
 			comment: '',
 			groups: [0],
@@ -131,7 +150,7 @@ class ExtensionPiHoleClient extends PiHoleClient {
 	}
 
 	async allowlistDomain(domain: string): Promise<void> {
-		await this.createDomain('allow', 'regex', {
+		await this.domains.create('allow', 'regex', {
 			domain: domainRegex(domain),
 			comment: '',
 			groups: [0],
@@ -144,11 +163,11 @@ class ExtensionPiHoleClient extends PiHoleClient {
 		kind: DomainKind,
 		domain: DomainEntry['domain'],
 	): Promise<void> {
-		await this.deleteDomain(type, kind, domain)
+		await this.domains.delete(type, kind, domain)
 	}
 
 	async setGroupEnabled(group: PiholeGroup, enabled: boolean): Promise<void> {
-		await this.replaceGroup(group.name, {
+		await this.groups.update(group.name, {
 			name: group.name,
 			comment: group.comment,
 			enabled,
@@ -156,7 +175,7 @@ class ExtensionPiHoleClient extends PiHoleClient {
 	}
 
 	async setListEnabled(list: PiholeList, enabled: boolean): Promise<void> {
-		await this.replaceList(list.address, {
+		await this.lists.update(list.address, {
 			type: list.type,
 			comment: list.comment,
 			groups: list.groups,
@@ -165,7 +184,7 @@ class ExtensionPiHoleClient extends PiHoleClient {
 	}
 
 	async setBlocking(enabled: boolean, seconds?: number): Promise<BlockingStatus> {
-		return this.updateBlocking(enabled, seconds ? seconds : null)
+		return this.dns.setBlocking(enabled, seconds ? seconds : null)
 	}
 }
 
