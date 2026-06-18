@@ -358,21 +358,17 @@ async function conditionallyShowDonate(): Promise<void> {
 	const existing = await donatePromptItem.getValue()
 	if (existing?.dismissed) return
 
-	const state: DonatePromptState = existing ?? { installedAt: Date.now(), dismissed: false }
-	if (!existing) {
-		await donatePromptItem.setValue(state)
-	}
+	const state = existing ?? { installedAt: Date.now(), dismissed: false }
+	if (!existing) await donatePromptItem.setValue(state)
 
-	if (Date.now() - state.installedAt >= DONATE_PROMPT_DELAY_MS) {
-		donateVisible.value = true
-	}
+	if (Date.now() - state.installedAt >= DONATE_PROMPT_DELAY_MS) donateVisible.value = true
 }
 
 async function dismissDonate(): Promise<void> {
 	donateVisible.value = false
-	const state = await donatePromptItem.getValue()
+	const existing = await donatePromptItem.getValue()
 	await donatePromptItem.setValue({
-		installedAt: state?.installedAt ?? Date.now(),
+		installedAt: existing?.installedAt ?? Date.now(),
 		dismissed: true,
 	})
 }
