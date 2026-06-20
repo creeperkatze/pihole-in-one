@@ -2,12 +2,12 @@
 
 A browser extension to control your Pi-hole conveniently from within the browser.
 
+[![API Client](https://img.shields.io/static/v1?label=api%20client&message=pihole-js&color=yellow)](https://github.com/creeperkatze/pihole-js)
 ![GitHub Branch Check Runs](https://img.shields.io/github/check-runs/creeperkatze/pihole-in-one/main)
 ![GitHub Issues](https://img.shields.io/github/issues/creeperkatze/pihole-in-one)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/creeperkatze/pihole-in-one)
-![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat)
-[![pihole-js](https://img.shields.io/static/v1?label=api%20client&message=pihole-js&color=yellow)](https://github.com/creeperkatze/pihole-js)
 [![Crowdin](https://badges.crowdin.net/pihole-in-one/localized.svg)](https://crowdin.com/project/pihole-in-one)
+![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
 
