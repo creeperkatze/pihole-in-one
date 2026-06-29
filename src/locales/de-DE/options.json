@@ -5,6 +5,9 @@
   "api.error.passwordRequired": {
     "defaultMessage": "Passwort benötigt"
   },
+  "api.error.timeout": {
+    "defaultMessage": "Zeitüberschreitung bei der Verbindung"
+  },
   "options.colorScheme.auto": {
     "defaultMessage": "Systemstandard"
   },
@@ -19,6 +22,12 @@
   },
   "options.colorScheme.light": {
     "defaultMessage": "Hell"
+  },
+  "options.connection.connectionTimeout.description": {
+    "defaultMessage": "Wie lange gewartet werden muss, bis eine Pi-Hole-Anfrage als fehlgeschlagen gewertet wird."
+  },
+  "options.connection.connectionTimeout.label": {
+    "defaultMessage": "Zeitüberschreitung bei der Verbindung"
   },
   "options.connection.description": {
     "defaultMessage": "Verwalte deine Pi-hole-Instanzen und die Einstellungen für die Aktualisierung des Abzeichens."
