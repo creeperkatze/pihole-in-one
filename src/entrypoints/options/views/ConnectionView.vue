@@ -79,7 +79,7 @@ export const messages = defineMessages({
 	},
 	'options.connection.connectionTimeout.description': {
 		id: 'options.connection.connectionTimeout.description',
-		defaultMessage: 'How long to wait before a rquest to a Pi-hole is treated as failed.',
+		defaultMessage: 'How long to wait before a request to a Pi-hole is treated as failed.',
 	},
 })
 

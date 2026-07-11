@@ -24,7 +24,7 @@
     "defaultMessage": "Light"
   },
   "options.connection.connectionTimeout.description": {
-    "defaultMessage": "How long to wait before a Pi-hole request is treated as failed."
+    "defaultMessage": "How long to wait before a request to a Pi-hole is treated as failed."
   },
   "options.connection.connectionTimeout.label": {
     "defaultMessage": "Connection Timeout"
