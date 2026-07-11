@@ -24,7 +24,7 @@
     "defaultMessage": "Hell"
   },
   "options.connection.connectionTimeout.description": {
-    "defaultMessage": "Wie lange gewartet werden muss, bis eine Pi-Hole-Anfrage als fehlgeschlagen gewertet wird."
+    "defaultMessage": "Wie lange gewartet werden soll, bevor eine Anfrage an ein Pi-hole als fehlgeschlagen gewertet wird."
   },
   "options.connection.connectionTimeout.label": {
     "defaultMessage": "Zeitüberschreitung bei der Verbindung"
