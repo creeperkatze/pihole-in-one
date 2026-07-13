@@ -1,2 +1,27 @@
-{}
+{
+  "meta.description.featuresTitle": {
+    "defaultMessage": "Aspectos:"
+  },
+  "meta.feature.blocking.title": {
+    "defaultMessage": "Controle de bloqueamento"
+  },
+  "meta.feature.domain.title": {
+    "defaultMessage": "Gerenciamento dos domínios"
+  },
+  "meta.feature.stats.title": {
+    "defaultMessage": "Dados"
+  },
+  "meta.feature.systemInfo.title": {
+    "defaultMessage": "Informação do sistema"
+  },
+  "meta.feature.groups.title": {
+    "defaultMessage": "Listas e grupos"
+  },
+  "meta.feature.badge.title": {
+    "defaultMessage": "Barra de ferramentas de medalhas"
+  },
+  "meta.feature.customization.title": {
+    "defaultMessage": "Customização"
+  }
+}
 

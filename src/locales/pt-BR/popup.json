@@ -1,2 +1,162 @@
-{}
+{
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-buraco"
+  },
+  "popup.badge.off": {
+    "defaultMessage": "Desligado"
+  },
+  "popup.badge.on": {
+    "defaultMessage": "Ligado"
+  },
+  "popup.currentDomain": {
+    "defaultMessage": "Domínio atual"
+  },
+  "popup.disableFor": {
+    "defaultMessage": "Desabilitado para"
+  },
+  "popup.domain.block": {
+    "defaultMessage": "Bloqueado"
+  },
+  "popup.domain.blockedByListPlural": {
+    "defaultMessage": "Bloqueado por “{list}” +{count} mais"
+  },
+  "popup.domain.blockedByUser": {
+    "defaultMessage": "Bloqueado por usuário"
+  },
+  "popup.domain.notBlocked": {
+    "defaultMessage": "Não bloqueado"
+  },
+  "popup.domain.removeFromWhitelist": {
+    "defaultMessage": "Remover da lista de permitidos"
+  },
+  "popup.domain.unblock": {
+    "defaultMessage": "Desbloqueado"
+  },
+  "popup.domain.whitelist": {
+    "defaultMessage": "Lista de permissões"
+  },
+  "popup.domain.whitelistedByUser": {
+    "defaultMessage": "Adicionado à lista de permissões pelo usuário"
+  },
+  "popup.donatePrompt.dismiss": {
+    "defaultMessage": "Fechar"
+  },
+  "popup.donatePrompt.message": {
+    "defaultMessage": "O Pi-buraco em Um sempre será gratuito, de código aberto e sem anúncios. Se você acreditar que ele é útil, pense em apoiar o desenvolvimento dele com uma pequena doação."
+  },
+  "popup.donatePrompt.title": {
+    "defaultMessage": "Apoie a extensão"
+  },
+  "popup.error.actionFailed": {
+    "defaultMessage": "Ação falhou"
+  },
+  "popup.error.fetchFailed": {
+    "defaultMessage": "Não foi possível obter o modo atual"
+  },
+  "popup.error.fix": {
+    "defaultMessage": "Consertar"
+  },
+  "popup.footer.checking": {
+    "defaultMessage": "Verificando"
+  },
+  "popup.footer.donate": {
+    "defaultMessage": "Doe"
+  },
+  "popup.footer.latestVersion": {
+    "defaultMessage": "Versão mais recente"
+  },
+  "popup.footer.starOnGitHub": {
+    "defaultMessage": "No GitHub"
+  },
+  "popup.footer.updateAvailable": {
+    "defaultMessage": "Atualização disponível"
+  },
+  "popup.groups.title": {
+    "defaultMessage": "Grupos"
+  },
+  "popup.groups.updateError": {
+    "defaultMessage": "Falha ao atualizar o grupo"
+  },
+  "popup.lists.title": {
+    "defaultMessage": "Listas"
+  },
+  "popup.lists.updateError": {
+    "defaultMessage": "Falha ao atualizar a lista"
+  },
+  "popup.notConfigured.message": {
+    "defaultMessage": "Configure seu Pi-buraco para começar."
+  },
+  "popup.notConfigured.openSettings": {
+    "defaultMessage": "Abra configurações"
+  },
+  "popup.openInstance": {
+    "defaultMessage": "Abrir {name}"
+  },
+  "popup.refresh": {
+    "defaultMessage": "Atualizar"
+  },
+  "popup.settings": {
+    "defaultMessage": "Configurações"
+  },
+  "popup.statistics": {
+    "defaultMessage": "Estatísticas"
+  },
+  "popup.statistics.queryStatus": {
+    "defaultMessage": "Status da consulta"
+  },
+  "popup.statistics.queryTypes": {
+    "defaultMessage": "Categoria de consulta"
+  },
+  "popup.stats.blocked": {
+    "defaultMessage": "Bloqueado"
+  },
+  "popup.stats.blockedToday": {
+    "defaultMessage": "Bloqueado hoje"
+  },
+  "popup.stats.cached": {
+    "defaultMessage": "Em memória transitória"
+  },
+  "popup.stats.forwarded": {
+    "defaultMessage": "Encaminhado"
+  },
+  "popup.stats.other": {
+    "defaultMessage": "Outro"
+  },
+  "popup.stats.queriesToday": {
+    "defaultMessage": "Consultas de hoje"
+  },
+  "popup.status": {
+    "defaultMessage": "Estado"
+  },
+  "popup.status.blockingDisabled": {
+    "defaultMessage": "Bloqueio desativado"
+  },
+  "popup.status.blockingEnabled": {
+    "defaultMessage": "Bloqueio ativado"
+  },
+  "popup.status.cpu": {
+    "defaultMessage": "Processador"
+  },
+  "popup.status.disable": {
+    "defaultMessage": "Desativar"
+  },
+  "popup.status.enable": {
+    "defaultMessage": "Ativar"
+  },
+  "popup.status.memory": {
+    "defaultMessage": "Memória"
+  },
+  "popup.status.temperature": {
+    "defaultMessage": "Temporário"
+  },
+  "popup.status.uptime": {
+    "defaultMessage": "Tempo de atividade"
+  },
+  "popup.statusSub.clients": {
+    "defaultMessage": "{count} Cliente ativos"
+  },
+  "popup.statusSub.reenables": {
+    "defaultMessage": "Reativa em {duration}"
+  }
+}
 

@@ -1,2 +1,165 @@
-{}
+{
+  "api.error.passwordIncorrect": {
+    "defaultMessage": "Senha incorreta"
+  },
+  "api.error.passwordRequired": {
+    "defaultMessage": "Senha solicitada"
+  },
+  "api.error.timeout": {
+    "defaultMessage": "Conexão encerrada"
+  },
+  "options.colorScheme.auto": {
+    "defaultMessage": "Padrão do sistema"
+  },
+  "options.colorScheme.dark": {
+    "defaultMessage": "Escuro"
+  },
+  "options.colorScheme.description": {
+    "defaultMessage": "Escolha entre claro, escuro ou padrão do sistema."
+  },
+  "options.connection.refreshInterval.description": {
+    "defaultMessage": "Com qual frequência o emblema é atualizado. Escolha entre um minuto e uma hora."
+  },
+  "options.connection.refreshInterval.label": {
+    "defaultMessage": "Intervalo de atualização do emblema"
+  },
+  "options.customization.badge.clients": {
+    "defaultMessage": "Clientes ativos"
+  },
+  "options.customization.badge.label": {
+    "defaultMessage": "Aparência do emblema"
+  },
+  "options.customization.badge.off": {
+    "defaultMessage": "Desligado"
+  },
+  "options.customization.badge.percentage": {
+    "defaultMessage": "Porcentagem bloqueada"
+  },
+  "options.customization.badge.state": {
+    "defaultMessage": "Estado"
+  },
+  "options.customization.description": {
+    "defaultMessage": "Ajustar a aparência e comportamento da extensão."
+  },
+  "options.customization.title": {
+    "defaultMessage": "Customização"
+  },
+  "options.data.description": {
+    "defaultMessage": "Exportar e importar suas configurações da extensão."
+  },
+  "options.data.export.button": {
+    "defaultMessage": "Exportar"
+  },
+  "options.data.export.label": {
+    "defaultMessage": "Opções de exportação"
+  },
+  "options.data.export.warning.cancel": {
+    "defaultMessage": "Cancelar"
+  },
+  "options.data.export.warning.confirm": {
+    "defaultMessage": "Exportar"
+  },
+  "options.data.import.button": {
+    "defaultMessage": "Importar"
+  },
+  "options.data.import.error.invalid": {
+    "defaultMessage": "Arquivo de configurações inválido"
+  },
+  "options.data.reset.confirm.cancel": {
+    "defaultMessage": "Cancelar"
+  },
+  "options.data.reset.confirm.confirm": {
+    "defaultMessage": "Reiniciar"
+  },
+  "options.data.reset.description": {
+    "defaultMessage": "Mudar para todas as configurações padrões."
+  },
+  "options.data.reset.label": {
+    "defaultMessage": "Opções de reiniciar"
+  },
+  "options.footer.checking": {
+    "defaultMessage": "Verificando"
+  },
+  "options.footer.latestVersion": {
+    "defaultMessage": "Versão recente"
+  },
+  "options.footer.updateAvailable": {
+    "defaultMessage": "Atualização disponível"
+  },
+  "options.language.label": {
+    "defaultMessage": "Idioma"
+  },
+  "options.piholeselector.instance.apiPassword.label": {
+    "defaultMessage": "Senha API"
+  },
+  "options.piholeselector.instance.connected": {
+    "defaultMessage": "Conectado!"
+  },
+  "options.piholeselector.instance.connectionFailed": {
+    "defaultMessage": "Conexão falhada"
+  },
+  "options.piholeselector.instance.name.label": {
+    "defaultMessage": "Nome"
+  },
+  "options.piholeselector.instance.testing": {
+    "defaultMessage": "Testando conexão..."
+  },
+  "options.piholeselector.instance.url.label": {
+    "defaultMessage": "URL"
+  },
+  "options.popup.lists.label": {
+    "defaultMessage": "Listas"
+  },
+  "options.popup.stats.all": {
+    "defaultMessage": "Todos"
+  },
+  "options.popup.stats.description": {
+    "defaultMessage": "Quais estatísticas mostrar na janela."
+  },
+  "options.popup.stats.graphs": {
+    "defaultMessage": "Gráficos"
+  },
+  "options.popup.stats.label": {
+    "defaultMessage": "Estatísticas"
+  },
+  "options.popup.stats.none": {
+    "defaultMessage": "Nenhum"
+  },
+  "options.popup.status.label": {
+    "defaultMessage": "Modo"
+  },
+  "options.popup.title": {
+    "defaultMessage": "Janela"
+  },
+  "options.search.noResults": {
+    "defaultMessage": "Sem opções encontradas"
+  },
+  "options.search.placeholder": {
+    "defaultMessage": "Procurando opções..."
+  },
+  "options.search.title": {
+    "defaultMessage": "Resultados da busca"
+  },
+  "options.sidebar.crowdin.description": {
+    "defaultMessage": "Ajuda para traduzir"
+  },
+  "options.sidebar.github.description": {
+    "defaultMessage": "Deixe uma estrela"
+  },
+  "options.sidebar.kofi.description": {
+    "defaultMessage": "Me compre um café"
+  },
+  "options.sidebar.toggle.close": {
+    "defaultMessage": "Oculte a barra lateral"
+  },
+  "options.sidebar.toggle.open": {
+    "defaultMessage": "Mostre a barra lateral"
+  },
+  "options.tabs.connection": {
+    "defaultMessage": "Conexão"
+  },
+  "options.tabs.customization": {
+    "defaultMessage": "Customização"
+  }
+}
 
