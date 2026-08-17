@@ -1,2 +1,63 @@
-{}
+{
+  "meta.summary": {
+    "defaultMessage": "Una extensión de navegador para controlar tu Pi-hole cómodamente desde tu navegador."
+  },
+  "meta.description.footer": {
+    "defaultMessage": "Pi-hole In One es <link>de código abierto</link>."
+  },
+  "meta.description.disclaimer": {
+    "defaultMessage": "Esta extensión no está asociada ni respaldada por Pi-hole."
+  },
+  "meta.description.featuresTitle": {
+    "defaultMessage": "Características:"
+  },
+  "meta.feature.blocking.title": {
+    "defaultMessage": "Control del bloqueo"
+  },
+  "meta.feature.blocking.description": {
+    "defaultMessage": "Activa o desactiva el bloqueo de Pi-hole desde la ventana emergente, o desactívalo temporalmente durante un tiempo preestablecido (10s, 30s, 5m, 30m, 1h) para que se vuelva a activar automáticamente."
+  },
+  "meta.feature.domain.title": {
+    "defaultMessage": "Gestión de dominios"
+  },
+  "meta.feature.domain.description": {
+    "defaultMessage": "Comprueba si el dominio de la pestaña actual está bloqueado o permitido y cámbialo intstantáneamente, sin abrir la interfaz de administración de Pi-hole."
+  },
+  "meta.feature.stats.title": {
+    "defaultMessage": "Estadísticas"
+  },
+  "meta.feature.stats.description": {
+    "defaultMessage": "Consulta el recuento de consultas de hoy, el número de consultas bloqueadas, el porcentaje de bloqueos y resultados en la caché, cada uno con una gráfica de tendencia de 24 horas. Los gráficos de anillo opcionales desglosan las consultas por estado y tipo."
+  },
+  "meta.feature.systemInfo.title": {
+    "defaultMessage": "Información del sistema"
+  },
+  "meta.feature.systemInfo.description": {
+    "defaultMessage": "Consulta el tiempo en funcionamiento, la carga de la CPU y la temperatura de un vistazo en la ventana emergente."
+  },
+  "meta.feature.groups.title": {
+    "defaultMessage": "Grupos y listas"
+  },
+  "meta.feature.groups.description": {
+    "defaultMessage": "Activa o desactiva grupos de bloqueo y listas de bloqueo individuales directamente desde la ventana emergente."
+  },
+  "meta.feature.multiInstance.title": {
+    "defaultMessage": "Múltiples Pi-hole"
+  },
+  "meta.feature.multiInstance.description": {
+    "defaultMessage": "Conéctate a varios Pi-holes y cambia entre ellos con una pestaña por instancia en la ventana emergente."
+  },
+  "meta.feature.badge.title": {
+    "defaultMessage": "Icono en la barra de herramientas"
+  },
+  "meta.feature.badge.description": {
+    "defaultMessage": "Muestra el porcentaje de bloqueos, si está encendido o el número de clientes activos."
+  },
+  "meta.feature.customization.title": {
+    "defaultMessage": "Personalización"
+  },
+  "meta.feature.customization.description": {
+    "defaultMessage": "Ajusta la disposición de la ventana emergente, el comportamiento del icono, el idioma y más desde las opciones de la extensión."
+  }
+}
 

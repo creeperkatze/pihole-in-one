@@ -1,2 +1,282 @@
-{}
+{
+  "api.error.passwordIncorrect": {
+    "defaultMessage": "Contraseña incorrecta"
+  },
+  "api.error.passwordRequired": {
+    "defaultMessage": "Se necesita contraseña"
+  },
+  "api.error.timeout": {
+    "defaultMessage": "Se ha agotado el tiempo de espera de la conexión"
+  },
+  "options.colorScheme.auto": {
+    "defaultMessage": "Predeterminado del sistema"
+  },
+  "options.colorScheme.dark": {
+    "defaultMessage": "Oscuro"
+  },
+  "options.colorScheme.description": {
+    "defaultMessage": "Elige entre claro, oscuro o el valor predeterminado del sistema."
+  },
+  "options.colorScheme.label": {
+    "defaultMessage": "Esquema de color"
+  },
+  "options.colorScheme.light": {
+    "defaultMessage": "Claro"
+  },
+  "options.connection.connectionTimeout.description": {
+    "defaultMessage": "Cuánto tiempo esperar antes de que una solicitud a un Pi-hole sea tratada como fallida."
+  },
+  "options.connection.connectionTimeout.label": {
+    "defaultMessage": "Tiempo de espera"
+  },
+  "options.connection.description": {
+    "defaultMessage": "Gestiona tus instancias de Pi-hole y la configuración del refresco del icono."
+  },
+  "options.connection.refreshInterval.description": {
+    "defaultMessage": "Cada cuánto tiempo se actualiza la insignia. Elige entre un minuto y una hora."
+  },
+  "options.connection.refreshInterval.label": {
+    "defaultMessage": "Intervalo de actualización del icono"
+  },
+  "options.connection.title": {
+    "defaultMessage": "Conexión"
+  },
+  "options.customization.badge.clients": {
+    "defaultMessage": "Clientes activos"
+  },
+  "options.customization.badge.description": {
+    "defaultMessage": "Qué mostrar en el icono de la extensión."
+  },
+  "options.customization.badge.label": {
+    "defaultMessage": "Apariencia del icono"
+  },
+  "options.customization.badge.off": {
+    "defaultMessage": "Nada"
+  },
+  "options.customization.badge.percentage": {
+    "defaultMessage": "Porcentaje bloqueado"
+  },
+  "options.customization.badge.state": {
+    "defaultMessage": "Estado"
+  },
+  "options.customization.description": {
+    "defaultMessage": "Ajusta la apariencia y el comportamiento de la extensión."
+  },
+  "options.customization.title": {
+    "defaultMessage": "Personalización"
+  },
+  "options.data.description": {
+    "defaultMessage": "Exporta e importa tu configuración de la extensión."
+  },
+  "options.data.export.button": {
+    "defaultMessage": "Exportar"
+  },
+  "options.data.export.description": {
+    "defaultMessage": "Descarga tu configuración actual como un archivo JSON."
+  },
+  "options.data.export.label": {
+    "defaultMessage": "Exportar configuración"
+  },
+  "options.data.export.warning.cancel": {
+    "defaultMessage": "Cancelar"
+  },
+  "options.data.export.warning.confirm": {
+    "defaultMessage": "Exportar"
+  },
+  "options.data.export.warning.description": {
+    "defaultMessage": "El archivo exportado contendrá tus contraseñas de la API de Pi-hole en texto plano. Mantenlo seguro y no lo compartas."
+  },
+  "options.data.export.warning.title": {
+    "defaultMessage": "¿Exportar configuración?"
+  },
+  "options.data.import.button": {
+    "defaultMessage": "Importar"
+  },
+  "options.data.import.description": {
+    "defaultMessage": "Restaura la configuración desde un archivo JSON exportado previamente."
+  },
+  "options.data.import.error.invalid": {
+    "defaultMessage": "Archivo de configuración inválido"
+  },
+  "options.data.import.error.read": {
+    "defaultMessage": "No se ha podido leer el archivo"
+  },
+  "options.data.import.label": {
+    "defaultMessage": "Importar configuración"
+  },
+  "options.data.import.success": {
+    "defaultMessage": "Configuración importada correctamente"
+  },
+  "options.data.reset.button": {
+    "defaultMessage": "Restablecer"
+  },
+  "options.data.reset.confirm.cancel": {
+    "defaultMessage": "Cancelar"
+  },
+  "options.data.reset.confirm.confirm": {
+    "defaultMessage": "Restablecer"
+  },
+  "options.data.reset.confirm.description": {
+    "defaultMessage": "Esto restablecerá todos los ajustes a sus valores predeterminados y se borrarán todas las instancias de Pi-hole configuradas. Esto no se puede deshacer."
+  },
+  "options.data.reset.confirm.title": {
+    "defaultMessage": "¿Restablecer ajustes?"
+  },
+  "options.data.reset.description": {
+    "defaultMessage": "Restablece todos los ajustes a sus valores predeterminados."
+  },
+  "options.data.reset.label": {
+    "defaultMessage": "Restablecer ajustes"
+  },
+  "options.data.title": {
+    "defaultMessage": "Datos"
+  },
+  "options.footer.checking": {
+    "defaultMessage": "Comprobando"
+  },
+  "options.footer.latestVersion": {
+    "defaultMessage": "Última versión"
+  },
+  "options.footer.updateAvailable": {
+    "defaultMessage": "Actualización disponible"
+  },
+  "options.language.description": {
+    "defaultMessage": "Elige el idioma de la interfaz de la extensión. Ayuda a traducirla en {crowdin}. Algunos idiomas pueden estar incompletos."
+  },
+  "options.language.label": {
+    "defaultMessage": "Idioma"
+  },
+  "options.piholeselector.addButton": {
+    "defaultMessage": "Añadir Pi-hole"
+  },
+  "options.piholeselector.description": {
+    "defaultMessage": "Configura una o más instancias de Pi-hole."
+  },
+  "options.piholeselector.empty": {
+    "defaultMessage": "No hay Pi-holes configuradas. Añade una para empezar."
+  },
+  "options.piholeselector.instance.apiPassword.hint": {
+    "defaultMessage": "Se encuentra en \"Settings > API\"."
+  },
+  "options.piholeselector.instance.apiPassword.label": {
+    "defaultMessage": "Contraseña de API"
+  },
+  "options.piholeselector.instance.apiPassword.placeholder": {
+    "defaultMessage": "Déjalo en blanco si no hay"
+  },
+  "options.piholeselector.instance.connected": {
+    "defaultMessage": "¡Conectado!"
+  },
+  "options.piholeselector.instance.connectionFailed": {
+    "defaultMessage": "Conexión fallida"
+  },
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.name.label": {
+    "defaultMessage": "Nombre"
+  },
+  "options.piholeselector.instance.name.placeholder": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.noUrl": {
+    "defaultMessage": "No hay URL establecida"
+  },
+  "options.piholeselector.instance.testing": {
+    "defaultMessage": "Comprobando conexión..."
+  },
+  "options.piholeselector.instance.url.label": {
+    "defaultMessage": "URL"
+  },
+  "options.piholeselector.title": {
+    "defaultMessage": "Pi-holes"
+  },
+  "options.popup.description": {
+    "defaultMessage": "Ajusta el diseño y las secciones de la ventana emergente."
+  },
+  "options.popup.groups.description": {
+    "defaultMessage": "Muestra los interruptores de los grupos en la ventana emergente para activarlos/desactivarlos rápidamente."
+  },
+  "options.popup.groups.label": {
+    "defaultMessage": "Grupos"
+  },
+  "options.popup.lists.description": {
+    "defaultMessage": "Muestra los interruptores de las listas en la ventana emergente para activarlos/desactivarlos rápidamente."
+  },
+  "options.popup.lists.label": {
+    "defaultMessage": "Listas"
+  },
+  "options.popup.stats.all": {
+    "defaultMessage": "Todo"
+  },
+  "options.popup.stats.description": {
+    "defaultMessage": "Qué estadísticas mostrar en la ventana emergente."
+  },
+  "options.popup.stats.graphs": {
+    "defaultMessage": "Gráficos"
+  },
+  "options.popup.stats.label": {
+    "defaultMessage": "Estadísticas"
+  },
+  "options.popup.stats.none": {
+    "defaultMessage": "Ninguno"
+  },
+  "options.popup.status.description": {
+    "defaultMessage": "Muestra la CPU, la memoria, la temperatura y el tiempo de actividad en la ventana emergente."
+  },
+  "options.popup.status.label": {
+    "defaultMessage": "Estado"
+  },
+  "options.popup.title": {
+    "defaultMessage": "Ventana emergente"
+  },
+  "options.search.description": {
+    "defaultMessage": "Mostrando opciones que coinciden con \"{query}\""
+  },
+  "options.search.noResults": {
+    "defaultMessage": "No se han encontrado opciones"
+  },
+  "options.search.placeholder": {
+    "defaultMessage": "Buscar opciones..."
+  },
+  "options.search.title": {
+    "defaultMessage": "Resultados de la búsqueda"
+  },
+  "options.sidebar.crowdin.description": {
+    "defaultMessage": "Ayuda a traducir"
+  },
+  "options.sidebar.crowdin.title": {
+    "defaultMessage": "Ver en Crowdin"
+  },
+  "options.sidebar.github.description": {
+    "defaultMessage": "Deja una estrella"
+  },
+  "options.sidebar.github.title": {
+    "defaultMessage": "Ver en GitHub"
+  },
+  "options.sidebar.kofi.description": {
+    "defaultMessage": "Cómprame un café"
+  },
+  "options.sidebar.kofi.title": {
+    "defaultMessage": "Dona en Ko-fi"
+  },
+  "options.sidebar.toggle.close": {
+    "defaultMessage": "Ocultar barra lateral"
+  },
+  "options.sidebar.toggle.open": {
+    "defaultMessage": "Mostrar barra lateral"
+  },
+  "options.tabs.connection": {
+    "defaultMessage": "Conexión"
+  },
+  "options.tabs.customization": {
+    "defaultMessage": "Personalización"
+  },
+  "options.tabs.data": {
+    "defaultMessage": "Datos"
+  },
+  "options.tabs.popup": {
+    "defaultMessage": "Ventana emergente"
+  }
+}
 
