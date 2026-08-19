@@ -13,7 +13,7 @@ export const LOCALES: LocaleDefinition[] = [
 	// { code: 'da-DK', name: 'Dansk' },
 	{ code: 'de-DE', name: 'Deutsch' },
 	// { code: 'el-GR', name: 'Ελληνικά' },
-	// { code: 'es-ES', name: 'Español' },
+	{ code: 'es-ES', name: 'Español' },
 	// { code: 'fi-FI', name: 'Suomi' },
 	// { code: 'fr-FR', name: 'Français' },
 	// { code: 'he-IL', name: 'עברית', dir: 'rtl' },
