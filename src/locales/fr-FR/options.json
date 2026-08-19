@@ -1,2 +1,282 @@
-{}
+{
+  "api.error.passwordIncorrect": {
+    "defaultMessage": "Mot de passe incorrect"
+  },
+  "api.error.passwordRequired": {
+    "defaultMessage": "Mot de passe requis"
+  },
+  "api.error.timeout": {
+    "defaultMessage": "Délai de connexion dépassé"
+  },
+  "options.colorScheme.auto": {
+    "defaultMessage": "Par défaut du système"
+  },
+  "options.colorScheme.dark": {
+    "defaultMessage": "Sombre"
+  },
+  "options.colorScheme.description": {
+    "defaultMessage": "Choisis entre « clair », « foncé » ou « par défaut du système »."
+  },
+  "options.colorScheme.label": {
+    "defaultMessage": "Thème"
+  },
+  "options.colorScheme.light": {
+    "defaultMessage": "Clair"
+  },
+  "options.connection.connectionTimeout.description": {
+    "defaultMessage": "Combien de temps faut-il attendre avant qu'une requête adressée à un Pi-hole soit considérée comme ayant échoué."
+  },
+  "options.connection.connectionTimeout.label": {
+    "defaultMessage": "Délai de connexion dépassé"
+  },
+  "options.connection.description": {
+    "defaultMessage": "Gérez vos instances Pi-hole et les paramètres de rafraîchissement des badges."
+  },
+  "options.connection.refreshInterval.description": {
+    "defaultMessage": "À quelle fréquence le badge est rafraîchi. Choisissez entre une minute et une heure."
+  },
+  "options.connection.refreshInterval.label": {
+    "defaultMessage": "Intervalle d'actualisation du badge"
+  },
+  "options.connection.title": {
+    "defaultMessage": "Connexion"
+  },
+  "options.customization.badge.clients": {
+    "defaultMessage": "Clients actifs"
+  },
+  "options.customization.badge.description": {
+    "defaultMessage": "Ce qu'il faut afficher sur le badge de l'icône de l'extension."
+  },
+  "options.customization.badge.label": {
+    "defaultMessage": "Apparence du badge"
+  },
+  "options.customization.badge.off": {
+    "defaultMessage": "Désactivé"
+  },
+  "options.customization.badge.percentage": {
+    "defaultMessage": "Pourcentage de blocage"
+  },
+  "options.customization.badge.state": {
+    "defaultMessage": "État"
+  },
+  "options.customization.description": {
+    "defaultMessage": "Personnalise l'apparence et le fonctionnement de l'extension."
+  },
+  "options.customization.title": {
+    "defaultMessage": "Personnalisation"
+  },
+  "options.data.description": {
+    "defaultMessage": "Exporter et importer vos paramètres d'extension."
+  },
+  "options.data.export.button": {
+    "defaultMessage": "Exporter"
+  },
+  "options.data.export.description": {
+    "defaultMessage": "Télécharge tes paramètres actuels sous forme de fichier JSON."
+  },
+  "options.data.export.label": {
+    "defaultMessage": "Exporter les paramètres"
+  },
+  "options.data.export.warning.cancel": {
+    "defaultMessage": "Annuler"
+  },
+  "options.data.export.warning.confirm": {
+    "defaultMessage": "Exporter"
+  },
+  "options.data.export.warning.description": {
+    "defaultMessage": "Le fichier exporté contiendra tes mots de passe API Pi-hole en texte clair. Garde-le dans un espace sécurisé et évite de le partager."
+  },
+  "options.data.export.warning.title": {
+    "defaultMessage": "Exporter les paramètres ?"
+  },
+  "options.data.import.button": {
+    "defaultMessage": "Importer"
+  },
+  "options.data.import.description": {
+    "defaultMessage": "Restaurer les paramètres à partir d'un fichier JSON précédemment exporté."
+  },
+  "options.data.import.error.invalid": {
+    "defaultMessage": "Fichier de paramètres non valide"
+  },
+  "options.data.import.error.read": {
+    "defaultMessage": "Échec lors de la lecture du fichier."
+  },
+  "options.data.import.label": {
+    "defaultMessage": "Importer les paramètres"
+  },
+  "options.data.import.success": {
+    "defaultMessage": "Paramètres importés avec succès"
+  },
+  "options.data.reset.button": {
+    "defaultMessage": "Réinitialiser"
+  },
+  "options.data.reset.confirm.cancel": {
+    "defaultMessage": "Annuler"
+  },
+  "options.data.reset.confirm.confirm": {
+    "defaultMessage": "Réinitialiser"
+  },
+  "options.data.reset.confirm.description": {
+    "defaultMessage": "Cela restaurera tous les paramètres par défaut et supprimera toutes les instances de Pi-hole configurées. La tache ne peut pas être annulée."
+  },
+  "options.data.reset.confirm.title": {
+    "defaultMessage": "Réinitialiser les paramètres ?"
+  },
+  "options.data.reset.description": {
+    "defaultMessage": "Rétablis tous les paramètres à leurs valeurs par défaut."
+  },
+  "options.data.reset.label": {
+    "defaultMessage": "Réinitialiser les paramètres"
+  },
+  "options.data.title": {
+    "defaultMessage": "Données"
+  },
+  "options.footer.checking": {
+    "defaultMessage": "Vérification"
+  },
+  "options.footer.latestVersion": {
+    "defaultMessage": "Dernière version"
+  },
+  "options.footer.updateAvailable": {
+    "defaultMessage": "Mise à jour disponible"
+  },
+  "options.language.description": {
+    "defaultMessage": "Choisis la langue de l'interface de l'extension. Aide-nous à traduire via {crowdin}. Certaines langues peuvent être incomplètes."
+  },
+  "options.language.label": {
+    "defaultMessage": "Langue"
+  },
+  "options.piholeselector.addButton": {
+    "defaultMessage": "Ajouter Pi-hole"
+  },
+  "options.piholeselector.description": {
+    "defaultMessage": "Configure une ou plusieurs instances de Pi-hole."
+  },
+  "options.piholeselector.empty": {
+    "defaultMessage": "Aucun Pi-hole configuré. Ajoutez-en un pour commencer."
+  },
+  "options.piholeselector.instance.apiPassword.hint": {
+    "defaultMessage": "Trouvé sous Paramètres > API."
+  },
+  "options.piholeselector.instance.apiPassword.label": {
+    "defaultMessage": "Mot de passe de l'API"
+  },
+  "options.piholeselector.instance.apiPassword.placeholder": {
+    "defaultMessage": "Laisser vide si aucun n'est défini"
+  },
+  "options.piholeselector.instance.connected": {
+    "defaultMessage": "Connecté !"
+  },
+  "options.piholeselector.instance.connectionFailed": {
+    "defaultMessage": "Connexion échouée"
+  },
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.name.label": {
+    "defaultMessage": "Nom"
+  },
+  "options.piholeselector.instance.name.placeholder": {
+    "defaultMessage": "Pi-hole"
+  },
+  "options.piholeselector.instance.noUrl": {
+    "defaultMessage": "Aucune URL définie"
+  },
+  "options.piholeselector.instance.testing": {
+    "defaultMessage": "Test de connexion en cours..."
+  },
+  "options.piholeselector.instance.url.label": {
+    "defaultMessage": "URL"
+  },
+  "options.piholeselector.title": {
+    "defaultMessage": "Pi-holes"
+  },
+  "options.popup.description": {
+    "defaultMessage": "Ajustez la disposition et les sections de la fenêtre contextuelle."
+  },
+  "options.popup.groups.description": {
+    "defaultMessage": "Affiche les boutons d'activation/désactivation des groupes dans la fenêtre contextuelle pour les activer ou les désactiver rapidement."
+  },
+  "options.popup.groups.label": {
+    "defaultMessage": "Groupes"
+  },
+  "options.popup.lists.description": {
+    "defaultMessage": "Boutons d'activation/désactivation de la liste d'affichage dans la fenêtre contextuelle pour une activation/désactivation rapide."
+  },
+  "options.popup.lists.label": {
+    "defaultMessage": "Listes"
+  },
+  "options.popup.stats.all": {
+    "defaultMessage": "Sélectionner Tout"
+  },
+  "options.popup.stats.description": {
+    "defaultMessage": "Quelles statistiques afficher dans la fenêtre contextuelle."
+  },
+  "options.popup.stats.graphs": {
+    "defaultMessage": "Graphiques"
+  },
+  "options.popup.stats.label": {
+    "defaultMessage": "Statistiques"
+  },
+  "options.popup.stats.none": {
+    "defaultMessage": "Aucun"
+  },
+  "options.popup.status.description": {
+    "defaultMessage": "Affiche le CPU, la mémoire, la température et la durée de fonctionnement dans la fenêtre contextuelle."
+  },
+  "options.popup.status.label": {
+    "defaultMessage": "Statut"
+  },
+  "options.popup.title": {
+    "defaultMessage": "Popup"
+  },
+  "options.search.description": {
+    "defaultMessage": "Affichage des résultats correspondant à «{query}»"
+  },
+  "options.search.noResults": {
+    "defaultMessage": "Aucunes options trouvées"
+  },
+  "options.search.placeholder": {
+    "defaultMessage": "Rechercher des options..."
+  },
+  "options.search.title": {
+    "defaultMessage": "Résultats de recherche"
+  },
+  "options.sidebar.crowdin.description": {
+    "defaultMessage": "Contribuer à la traduction"
+  },
+  "options.sidebar.crowdin.title": {
+    "defaultMessage": "Afficher sur Crowdin"
+  },
+  "options.sidebar.github.description": {
+    "defaultMessage": "Laisser une étoile"
+  },
+  "options.sidebar.github.title": {
+    "defaultMessage": "Afficher sur GitHub"
+  },
+  "options.sidebar.kofi.description": {
+    "defaultMessage": "Achetez-moi un café"
+  },
+  "options.sidebar.kofi.title": {
+    "defaultMessage": "Faire un don sur Ko-fi"
+  },
+  "options.sidebar.toggle.close": {
+    "defaultMessage": "Masquer la barre latérale"
+  },
+  "options.sidebar.toggle.open": {
+    "defaultMessage": "Afficher la barre latérale"
+  },
+  "options.tabs.connection": {
+    "defaultMessage": "Connexion"
+  },
+  "options.tabs.customization": {
+    "defaultMessage": "Personnalisation"
+  },
+  "options.tabs.data": {
+    "defaultMessage": "Données"
+  },
+  "options.tabs.popup": {
+    "defaultMessage": "Popup"
+  }
+}
 

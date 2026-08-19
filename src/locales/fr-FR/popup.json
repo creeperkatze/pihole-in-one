@@ -1,2 +1,162 @@
-{}
+{
+  "options.piholeselector.instance.fallbackName": {
+    "defaultMessage": "Pi-hole"
+  },
+  "popup.badge.off": {
+    "defaultMessage": "Désactivé"
+  },
+  "popup.badge.on": {
+    "defaultMessage": "Actif"
+  },
+  "popup.currentDomain": {
+    "defaultMessage": "Domaine actuel"
+  },
+  "popup.disableFor": {
+    "defaultMessage": "Désactiver pour"
+  },
+  "popup.domain.block": {
+    "defaultMessage": "Bloquer"
+  },
+  "popup.domain.blockedByListPlural": {
+    "defaultMessage": "Bloqué par «{list}» +{count} plus"
+  },
+  "popup.domain.blockedByUser": {
+    "defaultMessage": "Bloqué par l'utilisateur"
+  },
+  "popup.domain.notBlocked": {
+    "defaultMessage": "Non bloqué"
+  },
+  "popup.domain.removeFromWhitelist": {
+    "defaultMessage": "Retirer de la liste blanche"
+  },
+  "popup.domain.unblock": {
+    "defaultMessage": "Débloquer"
+  },
+  "popup.domain.whitelist": {
+    "defaultMessage": "Liste blanche"
+  },
+  "popup.domain.whitelistedByUser": {
+    "defaultMessage": "Ajouté à la liste blanche par l'utilisateur"
+  },
+  "popup.donatePrompt.dismiss": {
+    "defaultMessage": "Rejeter"
+  },
+  "popup.donatePrompt.message": {
+    "defaultMessage": "Pi-hole in One sera toujours gratuit, open source et sans publicité. Si vous le trouvez utile, envisagez de soutenir son développement par un petit don."
+  },
+  "popup.donatePrompt.title": {
+    "defaultMessage": "Soutenir l'extension"
+  },
+  "popup.error.actionFailed": {
+    "defaultMessage": "L'action a échoué"
+  },
+  "popup.error.fetchFailed": {
+    "defaultMessage": "Impossible de récupérer le statut"
+  },
+  "popup.error.fix": {
+    "defaultMessage": "Corriger"
+  },
+  "popup.footer.checking": {
+    "defaultMessage": "En cours de vérification"
+  },
+  "popup.footer.donate": {
+    "defaultMessage": "Faire un don"
+  },
+  "popup.footer.latestVersion": {
+    "defaultMessage": "Dernière version"
+  },
+  "popup.footer.starOnGitHub": {
+    "defaultMessage": "Sur GitHub"
+  },
+  "popup.footer.updateAvailable": {
+    "defaultMessage": "Mise à jour disponible"
+  },
+  "popup.groups.title": {
+    "defaultMessage": "Groupes"
+  },
+  "popup.groups.updateError": {
+    "defaultMessage": "Échec de la mise à jour du groupe"
+  },
+  "popup.lists.title": {
+    "defaultMessage": "Listes"
+  },
+  "popup.lists.updateError": {
+    "defaultMessage": "Impossible de mettre à jour la liste"
+  },
+  "popup.notConfigured.message": {
+    "defaultMessage": "Configurez votre Pi-hole pour commencer."
+  },
+  "popup.notConfigured.openSettings": {
+    "defaultMessage": "Ouvrir les paramètres"
+  },
+  "popup.openInstance": {
+    "defaultMessage": "Ouvrir {name}"
+  },
+  "popup.refresh": {
+    "defaultMessage": "Actualiser"
+  },
+  "popup.settings": {
+    "defaultMessage": "Paramètres"
+  },
+  "popup.statistics": {
+    "defaultMessage": "Statistiques"
+  },
+  "popup.statistics.queryStatus": {
+    "defaultMessage": "Statut des requêtes"
+  },
+  "popup.statistics.queryTypes": {
+    "defaultMessage": "Types de requêtes"
+  },
+  "popup.stats.blocked": {
+    "defaultMessage": "Bloqué"
+  },
+  "popup.stats.blockedToday": {
+    "defaultMessage": "Bloqué aujourd'hui"
+  },
+  "popup.stats.cached": {
+    "defaultMessage": "En cache"
+  },
+  "popup.stats.forwarded": {
+    "defaultMessage": "Transféré"
+  },
+  "popup.stats.other": {
+    "defaultMessage": "Autres"
+  },
+  "popup.stats.queriesToday": {
+    "defaultMessage": "Requêtes d'aujourd'hui"
+  },
+  "popup.status": {
+    "defaultMessage": "Statut"
+  },
+  "popup.status.blockingDisabled": {
+    "defaultMessage": "Blocage désactivé"
+  },
+  "popup.status.blockingEnabled": {
+    "defaultMessage": "Blocage activé"
+  },
+  "popup.status.cpu": {
+    "defaultMessage": "CPU"
+  },
+  "popup.status.disable": {
+    "defaultMessage": "Désactiver"
+  },
+  "popup.status.enable": {
+    "defaultMessage": "Activé"
+  },
+  "popup.status.memory": {
+    "defaultMessage": "Mémoire"
+  },
+  "popup.status.temperature": {
+    "defaultMessage": "Temp"
+  },
+  "popup.status.uptime": {
+    "defaultMessage": "Uptime"
+  },
+  "popup.statusSub.clients": {
+    "defaultMessage": "{count} client(s) actif(s)"
+  },
+  "popup.statusSub.reenables": {
+    "defaultMessage": "Réactivation dans {duration}"
+  }
+}
 

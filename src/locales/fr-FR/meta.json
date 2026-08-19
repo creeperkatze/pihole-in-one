@@ -1,2 +1,63 @@
-{}
+{
+  "meta.summary": {
+    "defaultMessage": "Une extension de navigateur pour contrôler votre Pi-hole facilement à partir du navigateur."
+  },
+  "meta.description.footer": {
+    "defaultMessage": "Pi-hole In One est <link>un logiciel libre</link>."
+  },
+  "meta.description.disclaimer": {
+    "defaultMessage": "L’extension n’est ni associée ni approuvée par Pi-hole."
+  },
+  "meta.description.featuresTitle": {
+    "defaultMessage": "Fonctionnalités :"
+  },
+  "meta.feature.blocking.title": {
+    "defaultMessage": "Contrôle du blocage"
+  },
+  "meta.feature.blocking.description": {
+    "defaultMessage": "Active ou désactive le blocage Pi-hole depuis la fenêtre contextuelle, ou désactive-le temporairement pour une durée prédéfinie (10 s, 30 s, 5 min, 30 min, 1 h) pour qu'il se réactive automatiquement."
+  },
+  "meta.feature.domain.title": {
+    "defaultMessage": "Gestion de domaines"
+  },
+  "meta.feature.domain.description": {
+    "defaultMessage": "Vérifie si le domaine de l'onglet actuel est bloqué ou autorisé, et modifie ce paramètre en un clin d'œil, sans avoir à ouvrir l'interface d'administration de Pi-hole."
+  },
+  "meta.feature.stats.title": {
+    "defaultMessage": "Statistiques"
+  },
+  "meta.feature.stats.description": {
+    "defaultMessage": "Consulte le nombre de requêtes du jour, le nombre de requêtes bloquées, le pourcentage de blocage et le nombre d'accès au cache, chacun avec un graphique sur 24 heures. Des graphiques optionnels permettent de ventiler les requêtes par statut et par type."
+  },
+  "meta.feature.systemInfo.title": {
+    "defaultMessage": "Info système"
+  },
+  "meta.feature.systemInfo.description": {
+    "defaultMessage": "Consulte d'un seul coup d'œil la disponibilité, la charge du processeur, l'utilisation de la mémoire et la température dans la fenêtre contextuelle."
+  },
+  "meta.feature.groups.title": {
+    "defaultMessage": "Groupes et listes"
+  },
+  "meta.feature.groups.description": {
+    "defaultMessage": "Active ou désactive les groupes de blocage et les listes de blocage individuelles directement depuis la fenêtre contextuelle."
+  },
+  "meta.feature.multiInstance.title": {
+    "defaultMessage": "Plusieurs Pi-holes"
+  },
+  "meta.feature.multiInstance.description": {
+    "defaultMessage": "Connecte-toi à plusieurs Pi-holes et passe de l'un à l'autre grâce aux onglets dédiés à chaque instance dans la fenêtre contextuelle."
+  },
+  "meta.feature.badge.title": {
+    "defaultMessage": "Badge de la barre d'outils"
+  },
+  "meta.feature.badge.description": {
+    "defaultMessage": "Affiche le pourcentage de blocages, l'état activé/désactivé ou le nombre de clients actifs."
+  },
+  "meta.feature.customization.title": {
+    "defaultMessage": "Personnalisation"
+  },
+  "meta.feature.customization.description": {
+    "defaultMessage": "Ajustez la mise en page des popups, le comportement des badges, la langue, et plus encore à partir des options d'extension."
+  }
+}
 
