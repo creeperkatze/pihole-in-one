@@ -2,6 +2,7 @@ import eslint from '@eslint/js'
 import prettierPlugin from 'eslint-plugin-prettier/recommended'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
@@ -12,25 +13,8 @@ export default tseslint.config(
 	{
 		languageOptions: {
 			globals: {
-				window: 'readonly',
-				document: 'readonly',
-				navigator: 'readonly',
-				console: 'readonly',
-				URL: 'readonly',
-				URLSearchParams: 'readonly',
-				fetch: 'readonly',
-				setTimeout: 'readonly',
-				clearTimeout: 'readonly',
-				setInterval: 'readonly',
-				clearInterval: 'readonly',
-				Blob: 'readonly',
-				Event: 'readonly',
-				HTMLElement: 'readonly',
-				HTMLInputElement: 'readonly',
-				KeyboardEvent: 'readonly',
-				browser: 'readonly',
-				chrome: 'readonly',
-				localStorage: 'readonly',
+				...globals.browser,
+				...globals.webextensions,
 			},
 		},
 		plugins: {
