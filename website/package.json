@@ -1,0 +1,18 @@
+{
+    "name": "pihole-in-one-website",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vitepress dev",
+        "build": "vitepress build",
+        "preview": "vitepress preview"
+    },
+    "dependencies": {
+        "vue": "^3.5.40"
+    },
+    "devDependencies": {
+        "vite-svg-loader": "^5.1.1",
+        "vitepress": "^1.6.4"
+    }
+}

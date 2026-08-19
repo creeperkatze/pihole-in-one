@@ -3,3 +3,5 @@
 node_modules
 test-results
 spec
+website/.vitepress/cache
+website/.vitepress/dist

@@ -1,0 +1,53 @@
+:root {
+	--vp-c-brand-1: #db4d4d;
+	--vp-c-brand-2: #ee4d4d;
+	--vp-c-brand-3: #ff4d4d;
+	--vp-c-brand-soft: #ff4d4d24;
+	--vp-c-brand-bg: var(--vp-c-brand-3);
+	--vp-nav-logo-height: 32px;
+}
+
+.dark {
+	--vp-c-brand-1: #db4d4d;
+	--vp-c-brand-2: #ee4d4d;
+	--vp-c-brand-3: #ff4d4d;
+	--vp-c-brand-soft: #ff4d4d2e;
+	--vp-c-brand-bg: var(--vp-c-brand-3);
+}
+
+.VPHero .actions a[href*="github.com"],
+.VPHero .actions a[href*="chromewebstore.google.com"],
+.VPHero .actions a[href*="addons.mozilla.org"],
+.VPHero .actions a[href*="microsoftedge.microsoft.com"] {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.VPHero .actions a[href*="github.com"]::before,
+.VPHero .actions a[href*="chromewebstore.google.com"]::before,
+.VPHero .actions a[href*="addons.mozilla.org"]::before,
+.VPHero .actions a[href*="microsoftedge.microsoft.com"]::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+}
+
+.VPHero .actions a[href*="github.com"]::before {
+	background-color: currentColor;
+	-webkit-mask: url("./icons/github.svg") no-repeat center / contain;
+	mask: url("./icons/github.svg") no-repeat center / contain;
+}
+
+.VPHero .actions a[href*="chromewebstore.google.com"]::before {
+	background: url("/chrome.svg") no-repeat center / contain;
+}
+
+.VPHero .actions a[href*="addons.mozilla.org"]::before {
+	background: url("/firefox.svg") no-repeat center / contain;
+}
+
+.VPHero .actions a[href*="microsoftedge.microsoft.com"]::before {
+	background: url("/edge.svg") no-repeat center / contain;
+}
