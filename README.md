@@ -49,7 +49,7 @@ See uptime, CPU load, memory usage, and temperature at a glance in the popup.
 
 ### Groups and lists
 
-Enable or disable blocking groups and individual blocklists directly from the popup.
+Enable or disable blocking groups and individual blocklists, and trigger a gravity update to apply list changes, directly from the popup.
 
 ### Multiple Pi-holes
 

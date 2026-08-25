@@ -80,6 +80,18 @@
   "popup.lists.title": {
     "defaultMessage": "Lists"
   },
+  "popup.lists.update.done": {
+    "defaultMessage": "Updated"
+  },
+  "popup.lists.update.error": {
+    "defaultMessage": "Failed to update lists"
+  },
+  "popup.lists.update.label": {
+    "defaultMessage": "Update"
+  },
+  "popup.lists.update.title": {
+    "defaultMessage": "Update lists (run gravity)"
+  },
   "popup.lists.updateError": {
     "defaultMessage": "Failed to update list"
   },
