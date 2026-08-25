@@ -146,7 +146,7 @@ export const messages = defineMessages({
 	'options.data.export.warning.description': {
 		id: 'options.data.export.warning.description',
 		defaultMessage:
-			'The exported file will contain your Pi-hole API passwords in plain text. Keep it secure and avoid sharing it.',
+			'The exported file will contain your Pi-hole passwords in plain text. Keep it secure and avoid sharing it.',
 	},
 	'options.data.export.warning.cancel': {
 		id: 'options.data.export.warning.cancel',

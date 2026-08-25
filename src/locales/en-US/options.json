@@ -84,7 +84,7 @@
     "defaultMessage": "Export"
   },
   "options.data.export.warning.description": {
-    "defaultMessage": "The exported file will contain your Pi-hole API passwords in plain text. Keep it secure and avoid sharing it."
+    "defaultMessage": "The exported file will contain your Pi-hole passwords in plain text. Keep it secure and avoid sharing it."
   },
   "options.data.export.warning.title": {
     "defaultMessage": "Export settings?"
@@ -156,10 +156,10 @@
     "defaultMessage": "No Pi-holes configured. Add one to get started."
   },
   "options.piholeselector.instance.apiPassword.hint": {
-    "defaultMessage": "Found under Settings > API."
+    "defaultMessage": "Your admin password, or an app password from Settings > API."
   },
   "options.piholeselector.instance.apiPassword.label": {
-    "defaultMessage": "API Password"
+    "defaultMessage": "Password"
   },
   "options.piholeselector.instance.apiPassword.placeholder": {
     "defaultMessage": "Leave empty if none is set"

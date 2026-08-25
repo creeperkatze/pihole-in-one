@@ -237,7 +237,7 @@ const messages = defineMessages({
 	},
 	'options.piholeselector.instance.apiPassword.label': {
 		id: 'options.piholeselector.instance.apiPassword.label',
-		defaultMessage: 'API Password',
+		defaultMessage: 'Password',
 	},
 	'options.piholeselector.instance.apiPassword.placeholder': {
 		id: 'options.piholeselector.instance.apiPassword.placeholder',
@@ -245,7 +245,7 @@ const messages = defineMessages({
 	},
 	'options.piholeselector.instance.apiPassword.hint': {
 		id: 'options.piholeselector.instance.apiPassword.hint',
-		defaultMessage: 'Found under Settings > API.',
+		defaultMessage: 'Your admin password, or an app password from Settings > API.',
 	},
 	'options.piholeselector.instance.testing': {
 		id: 'options.piholeselector.instance.testing',
