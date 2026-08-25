@@ -9,10 +9,10 @@ A browser extension to control your Pi-hole conveniently from within the browser
 [![Crowdin](https://badges.crowdin.net/pihole-in-one/localized.svg)](https://crowdin.com/project/pihole-in-one)
 ![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
-
 [❓ FAQ](https://pihole-in-one.creeperkatze.dev/faq) •
 [📝 Changelog](https://github.com/creeperkatze/pihole-in-one/releases)
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
 
 > [!NOTE]
 > The extension is not associated with or endorsed by Pi-hole.
