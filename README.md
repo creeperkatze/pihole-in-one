@@ -11,6 +11,9 @@ A browser extension to control your Pi-hole conveniently from within the browser
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
 
+[❓ FAQ](https://pihole-in-one.creeperkatze.dev/faq) •
+[📝 Changelog](https://github.com/creeperkatze/pihole-in-one/releases)
+
 > [!NOTE]
 > The extension is not associated with or endorsed by Pi-hole.
 
