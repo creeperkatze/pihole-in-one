@@ -31,6 +31,7 @@ export default defineConfig({
 		logo: '/icon.svg',
 		siteTitle: false,
 		nav: [
+			{ text: 'FAQ', link: '/faq' },
 			{ text: 'Translate', link: 'https://crowdin.com/project/pihole-in-one', target: '_blank' },
 			...(version
 				? [
