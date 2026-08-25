@@ -5,13 +5,12 @@
 			:description="formatMessage(messages['options.popup.description'])"
 		/>
 		<div v-if="initialized" class="flex max-w-xl flex-col gap-2 p-4">
-			<OptionSelect
-				:icon="popupStats.icon"
-				:label="popupStats.label"
-				:description="popupStats.description"
-				:model-value="form.popupStats"
-				:options="popupStats.options"
-				@update:model-value="form.popupStats = $event as PopupStats"
+			<OptionToggle
+				:icon="popupStatusOption.icon"
+				:label="popupStatusOption.label"
+				:description="popupStatusOption.description"
+				:model-value="form.popupStatus"
+				@update:model-value="form.popupStatus = $event"
 			/>
 			<OptionToggle
 				:icon="popupGroupsOption.icon"
@@ -27,12 +26,13 @@
 				:model-value="form.popupLists"
 				@update:model-value="form.popupLists = $event"
 			/>
-			<OptionToggle
-				:icon="popupStatusOption.icon"
-				:label="popupStatusOption.label"
-				:description="popupStatusOption.description"
-				:model-value="form.popupStatus"
-				@update:model-value="form.popupStatus = $event"
+			<OptionSelect
+				:icon="popupStats.icon"
+				:label="popupStats.label"
+				:description="popupStats.description"
+				:model-value="form.popupStats"
+				:options="popupStats.options"
+				@update:model-value="form.popupStats = $event as PopupStats"
 			/>
 			<div
 				v-if="saveError"
