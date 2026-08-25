@@ -89,9 +89,6 @@
   "options.language.label": {
     "defaultMessage": "Idioma"
   },
-  "options.piholeselector.instance.apiPassword.label": {
-    "defaultMessage": "Senha API"
-  },
   "options.piholeselector.instance.connected": {
     "defaultMessage": "Conectado!"
   },

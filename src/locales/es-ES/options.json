@@ -83,9 +83,6 @@
   "options.data.export.warning.confirm": {
     "defaultMessage": "Exportar"
   },
-  "options.data.export.warning.description": {
-    "defaultMessage": "El archivo exportado contendrá tus contraseñas de la API de Pi-hole en texto plano. Mantenlo seguro y no lo compartas."
-  },
   "options.data.export.warning.title": {
     "defaultMessage": "¿Exportar configuración?"
   },
@@ -154,12 +151,6 @@
   },
   "options.piholeselector.empty": {
     "defaultMessage": "No hay Pi-holes configuradas. Añade una para empezar."
-  },
-  "options.piholeselector.instance.apiPassword.hint": {
-    "defaultMessage": "Se encuentra en \"Settings > API\"."
-  },
-  "options.piholeselector.instance.apiPassword.label": {
-    "defaultMessage": "Contraseña de API"
   },
   "options.piholeselector.instance.apiPassword.placeholder": {
     "defaultMessage": "Déjalo en blanco si no hay"
