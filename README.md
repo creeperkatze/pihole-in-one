@@ -1,4 +1,4 @@
-# <img src=".github/assets/logo.png" alt="Pi-hole In One" height="100">
+# <img src=".github/assets/logo.svg" alt="Pi-hole In One" height="100">
 
 A browser extension to control your Pi-hole conveniently from within the browser.
 
