@@ -18,6 +18,7 @@ jobs:
       cancel-in-progress: true
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -53,7 +54,14 @@ jobs:
       - name: Generate extension locales
         run: pnpm intl:generate
 
-      - name: Commit translations
-        uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          commit_message: 'New translations from Crowdin'
+          title: 'New translations from Crowdin'
+          commit-message: 'New translations from Crowdin'
+          branch: crowdin/new-translations
+          body: |
+            Automated by [`i18n-pull.yml`](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/.github/workflows/i18n-pull.yml).
+
+            - 🌐 [Contribute to translations on Crowdin](https://crowdin.com/project/pihole-in-one)
+            - 🔄 [Re-run the workflow to update this PR](${{ github.server_url }}/${{ github.repository }}/actions/workflows/i18n-pull.yml)
