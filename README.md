@@ -27,41 +27,43 @@ Install from your browser's extension store:
 
 Prefer to build from source? See [Building from source](#-building-from-source) below.
 
+## 📸 Screenshots
+
+<table>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/extension.png" width="100%"><br><i>Popup</i></td>
+<td width="50%"><img src=".github/assets/screenshots/blocked.png" width="100%"><br><i>Blocked domain</i></td>
+</tr>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/whitelisted.png" width="100%"><br><i>Allowlisted domain</i></td>
+<td width="50%"><img src=".github/assets/screenshots/connection.png" width="100%"><br><i>Connection options</i></td>
+</tr>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/customization.png" width="100%"><br><i>Customization options</i></td>
+<td width="50%"><img src=".github/assets/screenshots/popup.png" width="100%"><br><i>Popup options</i></td>
+</tr>
+</table>
+
 ## ✨ Features
 
-<img src=".github/assets/screenshots/extension.png" width="100%">
-
-### Blocking control
-
-Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.
-
-### Domain management
-
-See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface.
-
-### Stats
-
-View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type.
-
-### System info
-
-See uptime, CPU load, memory usage, and temperature at a glance in the popup.
-
-### Groups and lists
-
-Enable or disable blocking groups and individual blocklists, and trigger a gravity update to apply list changes, directly from the popup.
-
-### Multiple Pi-holes
-
-Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup.
-
-### Toolbar badge
-
-Shows blocked percentage, ON/OFF state, or active client count.
-
-### Customization
-
-Adjust the popup layout, badge behavior, language, and more from the extension options.
+<table>
+<tr>
+<td width="50%"><b>Blocking control</b><br>Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.</td>
+<td width="50%"><b>Domain management</b><br>See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface.</td>
+</tr>
+<tr>
+<td width="50%"><b>Stats</b><br>View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type.</td>
+<td width="50%"><b>System info</b><br>See uptime, CPU load, memory usage, and temperature at a glance in the popup.</td>
+</tr>
+<tr>
+<td width="50%"><b>Groups and lists</b><br>Enable or disable blocking groups and individual blocklists, and trigger a gravity update to apply list changes, directly from the popup.</td>
+<td width="50%"><b>Multiple Pi-holes</b><br>Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup.</td>
+</tr>
+<tr>
+<td width="50%"><b>Toolbar badge</b><br>Shows blocked percentage, ON/OFF state, or active client count.</td>
+<td width="50%"><b>Customization</b><br>Adjust the popup layout, badge behavior, language, and more from the extension options.</td>
+</tr>
+</table>
 
 ## ⚙️ Setup
 
