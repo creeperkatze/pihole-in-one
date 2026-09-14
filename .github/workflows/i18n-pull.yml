@@ -57,8 +57,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          title: 'New translations from Crowdin'
-          commit-message: 'New translations from Crowdin'
+          title: 'chore: sync translations from Crowdin'
+          commit-message: 'chore: sync translations from Crowdin'
           branch: sync/translations
           body: |
             Automated by [`i18n-pull.yml`](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/.github/workflows/i18n-pull.yml).
