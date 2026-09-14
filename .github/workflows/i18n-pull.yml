@@ -59,7 +59,7 @@ jobs:
         with:
           title: 'New translations from Crowdin'
           commit-message: 'New translations from Crowdin'
-          branch: crowdin/new-translations
+          branch: sync/translations
           body: |
             Automated by [`i18n-pull.yml`](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/.github/workflows/i18n-pull.yml).
 
