@@ -1,4 +1,4 @@
-# AGENTS.md
+# Pi-hole In One
 
 Pi-hole In One is a browser extension to control Pi-holes from the browser, built with WXT, Vue 3, TypeScript, and Tailwind CSS.
 
