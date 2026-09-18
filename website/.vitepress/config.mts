@@ -37,7 +37,12 @@ export default defineConfig({
 				? [
 						{
 							text: `v${version}`,
-							link: 'https://github.com/creeperkatze/pihole-in-one/releases',
+							items: [
+								{
+									text: 'Changelog',
+									link: 'https://github.com/creeperkatze/pihole-in-one/releases',
+								},
+							],
 						},
 					]
 				: []),
