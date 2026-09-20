@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 
 import DonateButton from './DonateButton.vue'
 import HeroLogo from './HeroLogo.vue'
+import Showcase from './Showcase.vue'
 import SiteFooter from './SiteFooter.vue'
 import StatsBar from './StatsBar.vue'
 import './custom.css'
@@ -16,6 +17,7 @@ export default {
 			'nav-bar-content-after': () => h(DonateButton),
 			'home-hero-info-before': () => h(HeroLogo),
 			'home-features-before': () => h(StatsBar),
+			'home-features-after': () => h(Showcase),
 			'layout-bottom': () => h(SiteFooter),
 		})
 	},
