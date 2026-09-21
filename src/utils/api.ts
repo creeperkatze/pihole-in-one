@@ -35,6 +35,7 @@ export interface PiholeSummary {
 	groups: PiholeGroup[]
 	lists: PiholeList[]
 	diagnosis: PiholeDiagnosis | null
+	messageCount: number
 }
 
 const sessionCacheItem = storage.defineItem<SessionStoreShape>('local:sessionCache', {
@@ -94,14 +95,16 @@ function normalizePadd(padd: PaddResponse | null): PiholeSummary['diagnosis'] {
 
 class ExtensionPiHoleClient extends PiHoleClient {
 	async getSummary(): Promise<PiholeSummary> {
-		const [stats, blocking, historyRes, groupsRes, listsRes, paddRes] = await Promise.all([
-			this.stats.getSummary(),
-			this.dns.getStatus(),
-			this.history.get().catch(() => ({ history: [] })),
-			this.groups.list().catch(() => ({ groups: [] })),
-			this.lists.list().catch(() => ({ lists: [] })),
-			this.padd.getSummary().catch(() => null),
-		])
+		const [stats, blocking, historyRes, groupsRes, listsRes, paddRes, messagesRes] =
+			await Promise.all([
+				this.stats.getSummary(),
+				this.dns.getStatus(),
+				this.history.get().catch(() => ({ history: [] })),
+				this.groups.list().catch(() => ({ groups: [] })),
+				this.lists.list().catch(() => ({ lists: [] })),
+				this.padd.getSummary().catch(() => null),
+				this.info.getMessagesCount().catch(() => ({ count: 0 })),
+			])
 
 		return {
 			queries: stats.queries,
@@ -111,6 +114,7 @@ class ExtensionPiHoleClient extends PiHoleClient {
 			groups: groupsRes.groups,
 			lists: listsRes.lists,
 			diagnosis: normalizePadd(paddRes),
+			messageCount: messagesRes.count,
 		}
 	}
 }

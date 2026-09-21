@@ -20,7 +20,7 @@
 				</button>
 				<button
 					v-if="configured && settings"
-					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
+					class="relative flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
 					:title="
 						formatMessage(messages['popup.openInstance'], {
 							name:
@@ -31,6 +31,12 @@
 					@click="openPihole(activeInstance)"
 				>
 					<ExternalLink class="size-4" />
+					<span
+						v-if="messageCount > 0"
+						class="absolute -top-0.5 -right-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
+					>
+						{{ messageCount > 99 ? '99+' : messageCount }}
+					</span>
 				</button>
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
@@ -277,6 +283,8 @@ const currentTab = computed(() => {
 	const name = route.name
 	return name && name !== 'root' ? String(name) : 'home'
 })
+
+const messageCount = computed(() => states.value[activeInstance.value]?.summary?.messageCount ?? 0)
 
 const tabs = computed<PopupTab[]>(() => [
 	{ id: 'home', label: formatMessage(messages['popup.tabs.home']), icon: House },
