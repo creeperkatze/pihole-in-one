@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@fontsource-variable/inter": "^5.3.0",
-        "@formatjs/intl": "^4.2.0",
+        "@formatjs/intl": "^6.1.1",
         "@lucide/vue": "^1.47.0",
         "@wxt-dev/storage": "^1.2.9",
         "pihole-js": "^1.4.6",
