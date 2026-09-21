@@ -68,9 +68,6 @@
   "popup.domains.list.title": {
     "defaultMessage": "Managed domains"
   },
-  "popup.domains.noCurrentSite": {
-    "defaultMessage": "Couldn't detect a site on this tab."
-  },
   "popup.domains.whitelisted": {
     "defaultMessage": "Whitelisted"
   },

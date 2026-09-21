@@ -1,9 +1,5 @@
 <template>
 	<div class="flex flex-col gap-1.5">
-		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ formatMessage(messages['popup.domains.list.title']) }}
-		</div>
-
 		<div class="flex items-center gap-1.5">
 			<input
 				v-model="newDomain"
@@ -118,7 +114,6 @@ const props = defineProps<{
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
-	'popup.domains.list.title': { id: 'popup.domains.list.title', defaultMessage: 'Managed domains' },
 	'popup.domains.list.placeholder': {
 		id: 'popup.domains.list.placeholder',
 		defaultMessage: 'example.com',

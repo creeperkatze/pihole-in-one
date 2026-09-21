@@ -23,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import DomainCard from '../components/DomainCard.vue'
 import DisablePresets from '../components/DisablePresets.vue'
+import DomainCard from '../components/DomainCard.vue'
 import StatsCard from '../components/StatsCard.vue'
 import StatusCard from '../components/StatusCard.vue'
 import { usePopupInstances } from '../usePopupInstances'
