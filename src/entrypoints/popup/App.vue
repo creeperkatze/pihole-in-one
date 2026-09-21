@@ -337,10 +337,7 @@ const states = ref<InstanceState[]>([])
 const activeInstance = ref(0)
 const currentDomain = ref<string | null>(null)
 
-const DONATE_PROMPT_DELAY_MS = 5 * 24 * 60 * 60 * 1000 // 5 days
-
 interface DonatePromptState {
-	installedAt: number
 	dismissed: boolean
 }
 
@@ -358,19 +355,12 @@ async function conditionallyShowDonate(): Promise<void> {
 	const existing = await donatePromptItem.getValue()
 	if (existing?.dismissed) return
 
-	const state = existing ?? { installedAt: Date.now(), dismissed: false }
-	if (!existing) await donatePromptItem.setValue(state)
-
-	if (Date.now() - state.installedAt >= DONATE_PROMPT_DELAY_MS) donateVisible.value = true
+	donateVisible.value = true
 }
 
 async function dismissDonate(): Promise<void> {
 	donateVisible.value = false
-	const existing = await donatePromptItem.getValue()
-	await donatePromptItem.setValue({
-		installedAt: existing?.installedAt ?? Date.now(),
-		dismissed: true,
-	})
+	await donatePromptItem.setValue({ dismissed: true })
 }
 
 function statusSub(i: number): string | undefined {
