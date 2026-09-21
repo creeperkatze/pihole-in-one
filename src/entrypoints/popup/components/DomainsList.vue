@@ -38,7 +38,7 @@
 						v-if="entry.kind === 'regex'"
 						:title="formatMessage(messages['popup.domains.regex'])"
 					>
-						<Regex class="size-3.5 text-muted" aria-hidden="true" />
+						<Regex class="size-3.5 text-secondary" aria-hidden="true" />
 					</span>
 					<span
 						class="text-xs font-medium text-primary truncate"
