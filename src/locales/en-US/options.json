@@ -191,45 +191,6 @@
   "options.piholeselector.title": {
     "defaultMessage": "Pi-holes"
   },
-  "options.popup.description": {
-    "defaultMessage": "Adjust the popup's layout and sections."
-  },
-  "options.popup.groups.description": {
-    "defaultMessage": "Display group toggles in the popup for quick enable/disable."
-  },
-  "options.popup.groups.label": {
-    "defaultMessage": "Groups"
-  },
-  "options.popup.lists.description": {
-    "defaultMessage": "Display list toggles in the popup for quick enable/disable."
-  },
-  "options.popup.lists.label": {
-    "defaultMessage": "Lists"
-  },
-  "options.popup.stats.all": {
-    "defaultMessage": "All"
-  },
-  "options.popup.stats.description": {
-    "defaultMessage": "What statistics to show in the popup."
-  },
-  "options.popup.stats.graphs": {
-    "defaultMessage": "Graphs"
-  },
-  "options.popup.stats.label": {
-    "defaultMessage": "Statistics"
-  },
-  "options.popup.stats.none": {
-    "defaultMessage": "None"
-  },
-  "options.popup.status.description": {
-    "defaultMessage": "Show CPU, memory, temperature, and uptime in the popup."
-  },
-  "options.popup.status.label": {
-    "defaultMessage": "Status"
-  },
-  "options.popup.title": {
-    "defaultMessage": "Popup"
-  },
   "options.search.description": {
     "defaultMessage": "Showing options matching \"{query}\""
   },
@@ -274,8 +235,5 @@
   },
   "options.tabs.data": {
     "defaultMessage": "Data"
-  },
-  "options.tabs.popup": {
-    "defaultMessage": "Popup"
   }
 }

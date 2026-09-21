@@ -179,7 +179,6 @@
 <script setup lang="ts">
 import { defineMessages } from '@formatjs/intl'
 import {
-	AppWindow,
 	CheckCircle2,
 	ChevronLeft,
 	Clock,
@@ -263,7 +262,6 @@ const messages = defineMessages({
 		id: 'options.tabs.customization',
 		defaultMessage: 'Customization',
 	},
-	'options.tabs.popup': { id: 'options.tabs.popup', defaultMessage: 'Popup' },
 	'options.tabs.data': { id: 'options.tabs.data', defaultMessage: 'Data' },
 	'options.search.title': { id: 'options.search.title', defaultMessage: 'Search results' },
 })
@@ -275,7 +273,6 @@ const tabs = computed(() => [
 		label: formatMessage(messages['options.tabs.customization']),
 		icon: SlidersHorizontal,
 	},
-	{ id: 'popup', label: formatMessage(messages['options.tabs.popup']), icon: AppWindow },
 	{ id: 'data', label: formatMessage(messages['options.tabs.data']), icon: Database },
 ])
 

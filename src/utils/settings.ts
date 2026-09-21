@@ -9,7 +9,6 @@ export interface PiholeInstance {
 
 export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
 export type ColorScheme = 'auto' | 'dark' | 'light'
-export type PopupStats = 'none' | 'graphs' | 'all'
 
 export type SettingsKeyOfType<V> = {
 	[K in keyof ExtensionSettings]: ExtensionSettings[K] extends V ? K : never
@@ -22,10 +21,6 @@ export interface ExtensionSettings {
 	badgeMode: BadgeMode
 	colorScheme: ColorScheme
 	locale: string
-	popupStats: PopupStats
-	popupGroups: boolean
-	popupLists: boolean
-	popupStatus: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -35,10 +30,6 @@ export const DEFAULTS: ExtensionSettings = {
 	badgeMode: 'percentage',
 	colorScheme: 'auto',
 	locale: '',
-	popupStats: 'graphs',
-	popupGroups: false,
-	popupLists: false,
-	popupStatus: false,
 }
 
 const settingsItem = storage.defineItem<ExtensionSettings>('local:settings', {

@@ -80,7 +80,6 @@ import { useVIntl } from '../../../utils/i18n'
 import { useConnectionOptions } from './ConnectionView.vue'
 import { useCustomizationOptions } from './CustomizationView.vue'
 import { useDataOptions } from './DataView.vue'
-import { usePopupOptions } from './PopupView.vue'
 
 type SearchableOption = SliderOption | SelectOption | PiHoleOption | ToggleOption | ButtonOption
 
@@ -88,7 +87,6 @@ const route = useRoute()
 const { form, setOption, initialized } = useSettings()
 const { pihole, refreshInterval } = useConnectionOptions()
 const { locale, colorScheme, badgeMode } = useCustomizationOptions()
-const { popupStats, popupGroupsOption, popupListsOption, popupStatusOption } = usePopupOptions()
 const { exportOption, importOption, resetOption } = useDataOptions()
 
 const { formatMessage } = useVIntl()
@@ -110,10 +108,6 @@ const allOptions = computed<SearchableOption[]>(() => [
 	locale.value,
 	colorScheme.value,
 	badgeMode.value,
-	popupStats.value,
-	popupGroupsOption.value,
-	popupListsOption.value,
-	popupStatusOption.value,
 	exportOption.value,
 	importOption.value,
 	resetOption.value,

@@ -1,54 +1,49 @@
 <template>
-	<div class="flex flex-col gap-2">
-		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ formatMessage(messages['popup.currentDomain']) }}
+	<div
+		class="flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border transition-colors duration-150"
+		:class="
+			allowlistedByUser
+				? 'bg-success-bg border-success-border'
+				: isEffectivelyBlocked
+					? 'bg-danger-bg border-danger-border'
+					: 'bg-surface-3 border-border'
+		"
+	>
+		<div class="min-w-0">
+			<div class="text-[13px] font-semibold truncate max-w-45" :title="domain">
+				{{ domain }}
+			</div>
+			<div class="text-[11px] text-secondary mt-px">{{ statusText }}</div>
 		</div>
 		<div
-			class="flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border transition-colors duration-150"
-			:class="
-				allowlistedByUser
-					? 'bg-success-bg border-success-border'
-					: isEffectivelyBlocked
-						? 'bg-danger-bg border-danger-border'
-						: 'bg-surface-3 border-border'
-			"
-		>
-			<div class="min-w-0">
-				<div class="text-[13px] font-semibold truncate max-w-45" :title="domain">
-					{{ domain }}
-				</div>
-				<div class="text-[11px] text-secondary mt-px">{{ statusText }}</div>
-			</div>
-			<div
-				v-if="loading"
-				class="w-4 h-4 border-2 border-border border-t-pihole-red rounded-full animate-spin shrink-0"
-			></div>
-			<div v-else class="flex gap-1.5 shrink-0">
-				<Button
-					:variant="allowlistedByUser ? 'success' : 'outline'"
-					:disabled="acting"
-					:title="
-						allowlistedByUser
-							? formatMessage(messages['popup.domain.removeFromWhitelist'])
-							: formatMessage(messages['popup.domain.whitelist'])
-					"
-					@click="toggleAllowlist"
-				>
-					<Check class="size-4" />
-				</Button>
-				<Button
-					:variant="blockedByUser ? 'danger' : 'outline'"
-					:disabled="acting"
-					:title="
-						blockedByUser
-							? formatMessage(messages['popup.domain.unblock'])
-							: formatMessage(messages['popup.domain.block'])
-					"
-					@click="toggleBlock"
-				>
-					<X class="size-4" />
-				</Button>
-			</div>
+			v-if="loading"
+			class="w-4 h-4 border-2 border-border border-t-pihole-red rounded-full animate-spin shrink-0"
+		></div>
+		<div v-else class="flex gap-1.5 shrink-0">
+			<Button
+				:variant="allowlistedByUser ? 'success' : 'outline'"
+				:disabled="acting"
+				:title="
+					allowlistedByUser
+						? formatMessage(messages['popup.domain.removeFromWhitelist'])
+						: formatMessage(messages['popup.domain.whitelist'])
+				"
+				@click="toggleAllowlist"
+			>
+				<Check class="size-4" />
+			</Button>
+			<Button
+				:variant="blockedByUser ? 'danger' : 'outline'"
+				:disabled="acting"
+				:title="
+					blockedByUser
+						? formatMessage(messages['popup.domain.unblock'])
+						: formatMessage(messages['popup.domain.block'])
+				"
+				@click="toggleBlock"
+			>
+				<X class="size-4" />
+			</Button>
 		</div>
 	</div>
 </template>
@@ -66,7 +61,6 @@ import type { PiholeInstance } from '../../../utils/settings'
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
-	'popup.currentDomain': { id: 'popup.currentDomain', defaultMessage: 'Current domain' },
 	'popup.domain.whitelistedByUser': {
 		id: 'popup.domain.whitelistedByUser',
 		defaultMessage: 'Whitelisted by user',

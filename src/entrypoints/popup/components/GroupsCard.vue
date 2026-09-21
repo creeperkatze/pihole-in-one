@@ -1,9 +1,5 @@
 <template>
 	<div v-if="groups.length > 0" class="flex flex-col gap-1.5">
-		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ formatMessage(messages['popup.groups.title']) }}
-		</div>
-
 		<div v-if="toggleError" class="text-xs text-pihole-red py-1">
 			{{ toggleError }}
 		</div>
@@ -47,7 +43,6 @@ const props = defineProps<{
 
 const { formatMessage } = useVIntl()
 const messages = defineMessages({
-	'popup.groups.title': { id: 'popup.groups.title', defaultMessage: 'Groups' },
 	'popup.groups.updateError': {
 		id: 'popup.groups.updateError',
 		defaultMessage: 'Failed to update group',

@@ -135,7 +135,3 @@ export function getPiHoleClient(target: ApiTarget): ExtensionPiHoleClient {
 	clientCache.set(cacheKey, client)
 	return client
 }
-
-export function updateGravity(target: ApiTarget): Promise<string> {
-	return getPiHoleClient(target).actions.updateGravity()
-}

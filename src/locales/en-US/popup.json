@@ -8,9 +8,6 @@
   "popup.badge.on": {
     "defaultMessage": "ON"
   },
-  "popup.currentDomain": {
-    "defaultMessage": "Current domain"
-  },
   "popup.disableFor": {
     "defaultMessage": "Disable for"
   },
@@ -37,6 +34,45 @@
   },
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Whitelisted by user"
+  },
+  "popup.domains.action.block": {
+    "defaultMessage": "Block"
+  },
+  "popup.domains.action.whitelist": {
+    "defaultMessage": "Whitelist"
+  },
+  "popup.domains.blocked": {
+    "defaultMessage": "Blocked"
+  },
+  "popup.domains.list.add": {
+    "defaultMessage": "Add"
+  },
+  "popup.domains.list.addError": {
+    "defaultMessage": "Failed to add domain"
+  },
+  "popup.domains.list.empty": {
+    "defaultMessage": "No domains added yet."
+  },
+  "popup.domains.list.loadError": {
+    "defaultMessage": "Failed to load domains"
+  },
+  "popup.domains.list.placeholder": {
+    "defaultMessage": "example.com"
+  },
+  "popup.domains.list.remove": {
+    "defaultMessage": "Remove"
+  },
+  "popup.domains.list.removeError": {
+    "defaultMessage": "Failed to remove domain"
+  },
+  "popup.domains.list.title": {
+    "defaultMessage": "Managed domains"
+  },
+  "popup.domains.noCurrentSite": {
+    "defaultMessage": "Couldn't detect a site on this tab."
+  },
+  "popup.domains.whitelisted": {
+    "defaultMessage": "Whitelisted"
   },
   "popup.donatePrompt.dismiss": {
     "defaultMessage": "Dismiss"
@@ -71,26 +107,14 @@
   "popup.footer.updateAvailable": {
     "defaultMessage": "Update available"
   },
-  "popup.groups.title": {
-    "defaultMessage": "Groups"
+  "popup.groups.empty": {
+    "defaultMessage": "No groups found."
   },
   "popup.groups.updateError": {
     "defaultMessage": "Failed to update group"
   },
-  "popup.lists.title": {
-    "defaultMessage": "Lists"
-  },
-  "popup.lists.update.done": {
-    "defaultMessage": "Updated"
-  },
-  "popup.lists.update.error": {
-    "defaultMessage": "Failed to update lists"
-  },
-  "popup.lists.update.label": {
-    "defaultMessage": "Update"
-  },
-  "popup.lists.update.title": {
-    "defaultMessage": "Update lists (run gravity)"
+  "popup.lists.empty": {
+    "defaultMessage": "No lists found."
   },
   "popup.lists.updateError": {
     "defaultMessage": "Failed to update list"
@@ -113,26 +137,14 @@
   "popup.statistics": {
     "defaultMessage": "Statistics"
   },
-  "popup.statistics.queryStatus": {
-    "defaultMessage": "Query Status"
-  },
-  "popup.statistics.queryTypes": {
-    "defaultMessage": "Query Types"
-  },
-  "popup.stats.blocked": {
-    "defaultMessage": "Blocked"
+  "popup.stats.blockedPercent": {
+    "defaultMessage": "Blocked %"
   },
   "popup.stats.blockedToday": {
     "defaultMessage": "Blocked Today"
   },
   "popup.stats.cached": {
     "defaultMessage": "Cached"
-  },
-  "popup.stats.forwarded": {
-    "defaultMessage": "Forwarded"
-  },
-  "popup.stats.other": {
-    "defaultMessage": "Other"
   },
   "popup.stats.queriesToday": {
     "defaultMessage": "Queries Today"
@@ -169,5 +181,20 @@
   },
   "popup.statusSub.reenables": {
     "defaultMessage": "Re-enables in {duration}"
+  },
+  "popup.system.empty": {
+    "defaultMessage": "No system data available."
+  },
+  "popup.tabs.domains": {
+    "defaultMessage": "Domains"
+  },
+  "popup.tabs.groups": {
+    "defaultMessage": "Groups"
+  },
+  "popup.tabs.home": {
+    "defaultMessage": "Home"
+  },
+  "popup.tabs.lists": {
+    "defaultMessage": "Lists"
   }
 }
