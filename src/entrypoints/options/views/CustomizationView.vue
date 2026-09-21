@@ -43,6 +43,13 @@
 				:options="badgeMode.options"
 				@update:model-value="form.badgeMode = $event as BadgeMode"
 			/>
+			<OptionToggle
+				:icon="showDiagnosisBadge.icon"
+				:label="showDiagnosisBadge.label"
+				:description="showDiagnosisBadge.description"
+				:model-value="form.showDiagnosisBadge"
+				@update:model-value="form.showDiagnosisBadge = $event"
+			/>
 			<div
 				v-if="saveError"
 				class="mt-3 px-3.5 py-2.5 rounded-lg text-[13px] border bg-danger-bg border-danger-border text-pihole-red"
@@ -55,7 +62,7 @@
 
 <script lang="ts">
 import { defineMessages } from '@formatjs/intl'
-import { Languages, Monitor, Tag } from '@lucide/vue'
+import { Bell, Languages, Monitor, Tag } from '@lucide/vue'
 import { computed } from 'vue'
 
 import { useVIntl } from '../../../utils/i18n'
@@ -108,6 +115,15 @@ export const messages = defineMessages({
 		id: 'options.customization.badge.clients',
 		defaultMessage: 'Active clients',
 	},
+	'options.customization.diagnosisBadge.label': {
+		id: 'options.customization.diagnosisBadge.label',
+		defaultMessage: 'Diagnosis notice badge',
+	},
+	'options.customization.diagnosisBadge.description': {
+		id: 'options.customization.diagnosisBadge.description',
+		defaultMessage:
+			'Show a badge on the popup’s "Open Pi-hole" button when there are unread diagnosis messages.',
+	},
 })
 
 export function useCustomizationOptions() {
@@ -155,17 +171,27 @@ export function useCustomizationOptions() {
 		],
 	}))
 
-	return { locale, colorScheme, badgeMode }
+	const showDiagnosisBadge = computed(() => ({
+		id: 'showDiagnosisBadge',
+		type: 'toggle' as const,
+		formKey: 'showDiagnosisBadge' as const,
+		icon: Bell,
+		label: formatMessage(messages['options.customization.diagnosisBadge.label']),
+		description: formatMessage(messages['options.customization.diagnosisBadge.description']),
+	}))
+
+	return { locale, colorScheme, badgeMode, showDiagnosisBadge }
 }
 </script>
 
 <script setup lang="ts">
 import OptionSelect from '../../../components/options/OptionSelect.vue'
+import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import type { BadgeMode, ColorScheme } from '../../../utils/settings'
 
 const { form, saveError, initialized } = useSettings()
-const { locale, colorScheme, badgeMode } = useCustomizationOptions()
+const { locale, colorScheme, badgeMode, showDiagnosisBadge } = useCustomizationOptions()
 const { formatMessage } = useVIntl()
 </script>

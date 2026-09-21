@@ -62,6 +62,12 @@
   "options.customization.description": {
     "defaultMessage": "Adjust the appearance and behavior of the extension."
   },
+  "options.customization.diagnosisBadge.description": {
+    "defaultMessage": "Show a badge on the popup’s \"Open Pi-hole\" button when there are unread diagnosis messages."
+  },
+  "options.customization.diagnosisBadge.label": {
+    "defaultMessage": "Diagnosis notice badge"
+  },
   "options.customization.title": {
     "defaultMessage": "Customization"
   },
