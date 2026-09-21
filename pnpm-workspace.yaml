@@ -9,4 +9,4 @@ minimumReleaseAgeExclude:
   - pihole-js
 
 patchedDependencies:
-  wxt@0.20.26: patches/wxt@0.20.26.patch
+  wxt@0.21.4: patches/wxt@0.21.4.patch

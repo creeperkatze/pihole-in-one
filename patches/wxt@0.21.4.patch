@@ -1,0 +1,37 @@
+diff --git a/dist/core/zip.mjs b/dist/core/zip.mjs
+index c66952573f6f87f7cb1503c2732d467a0ebb4188..94c782321897ebe50969f58e121dfeb4addc7535 100644
+--- a/dist/core/zip.mjs
++++ b/dist/core/zip.mjs	
+@@ -67,12 +67,26 @@ async function zip(config) {
+ }
+ async function zipDir(directory, outputPath, options) {
+ 	const archive = createZip({ level: wxt.config.zip.compressionLevel });
+-	const filesToZip = [...await glob(options?.include ?? ["**/*"], {
+-		cwd: directory,
+-		ignore: options?.exclude ?? [],
+-		onlyFiles: true,
+-		dot: options?.dot
+-	}), ...(options?.additionalFiles ?? []).map((file) => path.relative(directory, file))].sort();
++	let allFiles;
++	try {
++		const { execSync } = await import("node:child_process");
++		const { existsSync } = await import("node:fs");
++		allFiles = execSync("git ls-files --recurse-submodules", {
++			cwd: directory,
++			encoding: "utf-8"
++		}).split("\n").filter((f) => f && existsSync(path.resolve(directory, f)));
++	} catch {
++		allFiles = [];
++	}
++	if (allFiles.length === 0) {
++		allFiles = await glob(options?.include ?? ["**/*"], {
++			cwd: directory,
++			ignore: options?.exclude ?? [],
++			onlyFiles: true,
++			dot: options?.dot
++		});
++	}
++	const filesToZip = [...allFiles, ...(options?.additionalFiles ?? []).map((file) => path.relative(directory, file))].sort();
+ 	for (const file of filesToZip) {
+ 		const absolutePath = path.resolve(directory, file);
+ 		if (file.endsWith(".json")) {
