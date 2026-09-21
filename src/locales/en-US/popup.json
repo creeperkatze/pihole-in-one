@@ -65,9 +65,6 @@
   "popup.domains.list.removeError": {
     "defaultMessage": "Failed to remove domain"
   },
-  "popup.domains.list.title": {
-    "defaultMessage": "Managed domains"
-  },
   "popup.domains.whitelisted": {
     "defaultMessage": "Whitelisted"
   },
