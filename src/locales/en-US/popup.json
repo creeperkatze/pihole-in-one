@@ -35,20 +35,8 @@
   "popup.domain.whitelistedByUser": {
     "defaultMessage": "Whitelisted by user"
   },
-  "popup.domains.action.block": {
-    "defaultMessage": "Block"
-  },
-  "popup.domains.action.whitelist": {
-    "defaultMessage": "Whitelist"
-  },
   "popup.domains.blocked": {
     "defaultMessage": "Blocked"
-  },
-  "popup.domains.list.add": {
-    "defaultMessage": "Add"
-  },
-  "popup.domains.list.addError": {
-    "defaultMessage": "Failed to add domain"
   },
   "popup.domains.list.empty": {
     "defaultMessage": "No domains added yet."
@@ -56,14 +44,14 @@
   "popup.domains.list.loadError": {
     "defaultMessage": "Failed to load domains"
   },
-  "popup.domains.list.placeholder": {
-    "defaultMessage": "example.com"
-  },
   "popup.domains.list.remove": {
     "defaultMessage": "Remove"
   },
   "popup.domains.list.removeError": {
     "defaultMessage": "Failed to remove domain"
+  },
+  "popup.domains.regex": {
+    "defaultMessage": "Regex pattern"
   },
   "popup.domains.whitelisted": {
     "defaultMessage": "Whitelisted"
