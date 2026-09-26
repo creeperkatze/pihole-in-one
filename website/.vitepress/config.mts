@@ -47,6 +47,9 @@ export default defineConfig({
 					]
 				: []),
 		],
-		socialLinks: [{ icon: 'github', link: 'https://github.com/creeperkatze/pihole-in-one' }],
+		socialLinks: [
+			{ icon: 'github', link: 'https://github.com/creeperkatze/pihole-in-one' },
+			{ icon: 'discord', link: 'https://link.creeperkatze.dev/discord' },
+		],
 	},
 })
