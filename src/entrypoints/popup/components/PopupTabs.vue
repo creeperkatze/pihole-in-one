@@ -4,11 +4,11 @@
 			v-for="tab in tabs"
 			:key="tab.id"
 			type="button"
-			class="flex flex-1 items-center justify-center gap-1.5 rounded-lg border px-2 py-1.5 text-xs font-medium transition-colors duration-150 cursor-pointer"
+			class="flex min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-md border px-2 py-1.5 text-xs font-medium transition-colors"
 			:class="
 				modelValue === tab.id
-					? 'bg-surface-raised text-primary shadow-xs border-border'
-					: 'text-secondary hover:bg-surface-3 hover:text-primary border-transparent'
+					? 'border-pihole-red bg-pihole-red/10 text-primary'
+					: 'border-transparent text-secondary hover:border-border hover:bg-surface-hover hover:text-primary'
 			"
 			@click="$emit('update:modelValue', tab.id)"
 		>
