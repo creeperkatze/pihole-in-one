@@ -18,7 +18,7 @@ const { t } = useI18n()
 		/>
 		<div v-if="initialized" class="flex max-w-xl flex-col gap-5 p-4">
 			<div class="flex flex-col gap-2">
-				<h2 class="text-sm text-primary">
+				<h2 class="text-sm text-secondary">
 					{{ t('options.popup.general') }}
 				</h2>
 				<OptionToggle
@@ -29,7 +29,7 @@ const { t } = useI18n()
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
-				<h2 class="text-sm text-primary">
+				<h2 class="text-sm text-secondary">
 					{{ t('popup.tabs.home') }}
 				</h2>
 				<OptionToggle
@@ -52,7 +52,7 @@ const { t } = useI18n()
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
-				<h2 class="text-sm text-primary">
+				<h2 class="text-sm text-secondary">
 					{{ t('popup.tabs.lists') }}
 				</h2>
 				<OptionToggle
@@ -63,7 +63,7 @@ const { t } = useI18n()
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
-				<h2 class="text-sm text-primary">
+				<h2 class="text-sm text-secondary">
 					{{ t('popup.tabs.domains') }}
 				</h2>
 				<OptionToggle
