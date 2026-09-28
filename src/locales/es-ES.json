@@ -19,7 +19,6 @@
 					"label": "Nombre",
 					"placeholder": "Pi-hole"
 				},
-				"noUrl": "No hay URL establecida",
 				"testing": "Comprobando conexión...",
 				"url": {
 					"label": "URL"
@@ -105,12 +104,6 @@
 			"description": "Elige el idioma de la interfaz de la extensión. Ayuda a traducirla en {crowdin}. Algunos idiomas pueden estar incompletos.",
 			"label": "Idioma"
 		},
-		"search": {
-			"description": "Mostrando opciones que coinciden con \"{query}\"",
-			"noResults": "No se han encontrado opciones",
-			"placeholder": "Buscar opciones...",
-			"title": "Resultados de la búsqueda"
-		},
 		"sidebar": {
 			"crowdin": {
 				"description": "Ayuda a traducir",
@@ -181,7 +174,6 @@
 		"openInstance": "Abrir {name}",
 		"refresh": "Actualizar",
 		"settings": "Configuración",
-		"statistics": "Estadísticas",
 		"stats": {
 			"blockedToday": "Bloqueadas hoy",
 			"cached": "Guardado en Caché",

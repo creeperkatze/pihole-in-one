@@ -1,4 +1,7 @@
 {
+	"common": {
+		"select": "Auswählen…"
+	},
 	"api": {
 		"error": {
 			"passwordIncorrect": "Passwort falsch",
@@ -7,13 +10,17 @@
 		}
 	},
 	"options": {
+		"title": "Einstellungen",
+		"saveFailed": "Einstellungen konnten nicht gespeichert werden.",
 		"piholeselector": {
 			"instance": {
 				"fallbackName": "Pi-hole",
 				"apiPassword": {
 					"hint": "Dein Admin-Passwort oder ein App-Passwort aus „Einstellungen > API“.",
 					"label": "Passwort",
-					"placeholder": "Leer lassen, wenn keins festgelegt ist"
+					"placeholder": "Leer lassen, wenn keins festgelegt ist",
+					"show": "Passwort anzeigen",
+					"hide": "Passwort verbergen"
 				},
 				"connected": "Verbunden!",
 				"connectionFailed": "Verbindung fehlgeschlagen",
@@ -21,16 +28,28 @@
 					"label": "Name",
 					"placeholder": "Pi-hole"
 				},
-				"noUrl": "Keine URL festgelegt",
 				"testing": "Verbindung wird getestet...",
 				"url": {
-					"label": "URL"
-				}
+					"label": "URL",
+					"invalid": "Gib eine gültige Adresse ein, z. B. http://pi.hole"
+				},
+				"save": "Speichern",
+				"edit": "Bearbeiten",
+				"retest": "Verbindung erneut testen",
+				"cancel": "Abbrechen"
 			},
 			"addButton": "Pi-hole hinzufügen",
 			"description": "Konfiguriere eine oder mehrere Pi-Hole-Instanzen.",
 			"empty": "Keine Pi-holes konfiguriert. Füge eins hinzu, um loszulegen.",
-			"title": "Pi-holes"
+			"title": "Pi-holes",
+			"permissionDenied": "Berechtigung verweigert. Erlaube den Zugriff auf deinen Pi-hole-Host, um fortzufahren.",
+			"remove": {
+				"button": "Entfernen",
+				"title": "{name} entfernen?",
+				"description": "Adresse und Passwort werden aus der Erweiterung gelöscht. Du kannst es jederzeit wieder hinzufügen.",
+				"cancel": "Abbrechen",
+				"confirm": "Entfernen"
+			}
 		},
 		"colorScheme": {
 			"auto": "Systemstandard",
@@ -61,6 +80,10 @@
 				"state": "Status"
 			},
 			"description": "Passe das Aussehen und Verhalten der Erweiterung an.",
+			"diagnosisBadge": {
+				"description": "Zeige ein Abzeichen auf der Schaltfläche „Pi-hole öffnen“ im Popup, wenn es ungelesene Diagnosemeldungen gibt.",
+				"label": "Abzeichen für Diagnosemeldungen"
+			},
 			"title": "Anpassung"
 		},
 		"data": {
@@ -108,12 +131,6 @@
 			"description": "Wähle die Sprache für die Benutzeroberfläche der Erweiterung. Hilf bei der Übersetzung auf {crowdin}. Einige Sprachen sind eventuell unvollständig.",
 			"label": "Sprache"
 		},
-		"search": {
-			"description": "Zeige Einstellungen mit \"{query}\"",
-			"noResults": "Keine Optionen gefunden",
-			"placeholder": "Einstellungen durchsuchen...",
-			"title": "Suchergebnisse"
-		},
 		"sidebar": {
 			"crowdin": {
 				"description": "Hilf beim Übersetzen",
@@ -146,6 +163,7 @@
 		"disableFor": "Deaktivieren für",
 		"domain": {
 			"block": "Blockieren",
+			"blockedByList": "Blockiert von Liste „{list}“",
 			"blockedByListPlural": "Blockiert von „{list}“ +{count} mehr",
 			"blockedByUser": "Blockiert durch Benutzer",
 			"notBlocked": "Nicht blockiert",
@@ -153,6 +171,18 @@
 			"unblock": "Entblockieren",
 			"whitelist": "Whitelist",
 			"whitelistedByUser": "Vom Benutzer auf die Whitelist gesetzt"
+		},
+		"domains": {
+			"blocked": "Blockiert",
+			"list": {
+				"empty": "Noch keine Domains hinzugefügt.",
+				"loadError": "Domains konnten nicht geladen werden",
+				"remove": "Entfernen",
+				"removeError": "Domain konnte nicht entfernt werden",
+				"addError": "Domain konnte nicht hinzugefügt werden"
+			},
+			"regex": "Regex-Muster",
+			"whitelisted": "Auf der Whitelist"
 		},
 		"donatePrompt": {
 			"dismiss": "Schließen",
@@ -172,9 +202,11 @@
 			"updateAvailable": "Aktualisierung verfügbar"
 		},
 		"groups": {
+			"empty": "Keine Gruppen gefunden.",
 			"updateError": "Gruppe konnte nicht aktualisiert werden"
 		},
 		"lists": {
+			"empty": "Keine Listen gefunden.",
 			"updateError": "Liste konnte nicht aktualisiert werden"
 		},
 		"notConfigured": {
@@ -184,8 +216,8 @@
 		"openInstance": "{name} öffnen",
 		"refresh": "Aktualisieren",
 		"settings": "Einstellungen",
-		"statistics": "Statistiken",
 		"stats": {
+			"blockedPercent": "Blockiert %",
 			"blockedToday": "Heute blockiert",
 			"cached": "Gecacht",
 			"queriesToday": "Anfragen heute"
@@ -204,6 +236,15 @@
 		"statusSub": {
 			"clients": "{count} Client(s) aktiv",
 			"reenables": "Re-aktiviert in {duration}"
+		},
+		"system": {
+			"empty": "Keine Systemdaten verfügbar."
+		},
+		"tabs": {
+			"domains": "Domains",
+			"groups": "Gruppen",
+			"home": "Start",
+			"lists": "Listen"
 		}
 	},
 	"meta": {

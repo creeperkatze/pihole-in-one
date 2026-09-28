@@ -76,11 +76,6 @@
 		"language": {
 			"label": "Idioma"
 		},
-		"search": {
-			"noResults": "Sem opções encontradas",
-			"placeholder": "Procurando opções...",
-			"title": "Resultados da busca"
-		},
 		"sidebar": {
 			"crowdin": {
 				"description": "Ajuda para traduzir"
@@ -147,7 +142,6 @@
 		"openInstance": "Abrir {name}",
 		"refresh": "Atualizar",
 		"settings": "Configurações",
-		"statistics": "Estatísticas",
 		"stats": {
 			"blockedToday": "Bloqueado hoje",
 			"cached": "Em memória transitória",
