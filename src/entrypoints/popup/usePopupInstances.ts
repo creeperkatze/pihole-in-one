@@ -1,31 +1,14 @@
-import { defineMessages } from '@formatjs/intl'
 import { storage } from '@wxt-dev/storage'
 import { type BlockingStatus, PiHoleError } from 'pihole-js'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
 import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient, type PiholeSummary } from '../../utils/api'
 import { formatDuration } from '../../utils/format'
-import { useVIntl } from '../../utils/i18n'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
-
-const messages = defineMessages({
-	'popup.statusSub.reenables': {
-		id: 'popup.statusSub.reenables',
-		defaultMessage: 'Re-enables in {duration}',
-	},
-	'popup.statusSub.clients': {
-		id: 'popup.statusSub.clients',
-		defaultMessage: '{count} client(s) active',
-	},
-	'popup.error.fetchFailed': {
-		id: 'popup.error.fetchFailed',
-		defaultMessage: 'Failed to fetch status',
-	},
-	'popup.error.actionFailed': { id: 'popup.error.actionFailed', defaultMessage: 'Action failed' },
-})
 
 export interface InstanceState {
 	summary: PiholeSummary | null
@@ -71,7 +54,7 @@ async function conditionallyShowDonate(): Promise<void> {
 }
 
 export function usePopupInstances() {
-	const { formatMessage } = useVIntl()
+	const { t } = useI18n()
 	const route = useRoute()
 	const router = useRouter()
 
@@ -86,12 +69,12 @@ export function usePopupInstances() {
 		const state = states.value[i]
 		if (!state) return undefined
 		if (state.timerRemaining !== null && state.timerRemaining > 0) {
-			return formatMessage(messages['popup.statusSub.reenables'], {
+			return t('popup.statusSub.reenables', {
 				duration: formatDuration(state.timerRemaining),
 			})
 		}
 		if (state.summary) {
-			return formatMessage(messages['popup.statusSub.clients'], {
+			return t('popup.statusSub.clients', {
 				count: state.summary.clients.active,
 			})
 		}
@@ -149,12 +132,12 @@ export function usePopupInstances() {
 		} catch (e) {
 			const apiMessage = getApiMessageForError(e)
 			state.error = apiMessage
-				? formatMessage(apiMessage)
+				? t(apiMessage)
 				: e instanceof PiHoleError
 					? e.message
 					: e instanceof Error
 						? e.message
-						: formatMessage(messages['popup.error.fetchFailed'])
+						: t('popup.error.fetchFailed')
 		}
 	}
 
@@ -187,12 +170,12 @@ export function usePopupInstances() {
 		} catch (e) {
 			const apiMessage = getApiMessageForError(e)
 			state.error = apiMessage
-				? formatMessage(apiMessage)
+				? t(apiMessage)
 				: e instanceof PiHoleError
 					? e.message
 					: e instanceof Error
 						? e.message
-						: formatMessage(messages['popup.error.actionFailed'])
+						: t('popup.error.actionFailed')
 		} finally {
 			state.toggling = false
 		}
@@ -213,12 +196,12 @@ export function usePopupInstances() {
 		} catch (e) {
 			const apiMessage = getApiMessageForError(e)
 			state.error = apiMessage
-				? formatMessage(apiMessage)
+				? t(apiMessage)
 				: e instanceof PiHoleError
 					? e.message
 					: e instanceof Error
 						? e.message
-						: formatMessage(messages['popup.error.actionFailed'])
+						: t('popup.error.actionFailed')
 		} finally {
 			state.toggling = false
 		}

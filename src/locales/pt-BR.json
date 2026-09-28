@@ -1,0 +1,200 @@
+{
+	"api": {
+		"error": {
+			"passwordIncorrect": "Senha incorreta",
+			"passwordRequired": "Senha solicitada",
+			"timeout": "Conexão encerrada"
+		}
+	},
+	"options": {
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-buraco",
+				"connected": "Conectado!",
+				"connectionFailed": "Conexão falhada",
+				"name": {
+					"label": "Nome"
+				},
+				"testing": "Testando conexão...",
+				"url": {
+					"label": "URL"
+				}
+			}
+		},
+		"colorScheme": {
+			"auto": "Padrão do sistema",
+			"dark": "Escuro",
+			"description": "Escolha entre claro, escuro ou padrão do sistema."
+		},
+		"connection": {
+			"refreshInterval": {
+				"description": "Com qual frequência o emblema é atualizado. Escolha entre um minuto e uma hora.",
+				"label": "Intervalo de atualização do emblema"
+			}
+		},
+		"customization": {
+			"badge": {
+				"clients": "Clientes ativos",
+				"label": "Aparência do emblema",
+				"off": "Desligado",
+				"percentage": "Porcentagem bloqueada",
+				"state": "Estado"
+			},
+			"description": "Ajustar a aparência e comportamento da extensão.",
+			"title": "Customização"
+		},
+		"data": {
+			"description": "Exportar e importar suas configurações da extensão.",
+			"export": {
+				"button": "Exportar",
+				"label": "Opções de exportação",
+				"warning": {
+					"cancel": "Cancelar",
+					"confirm": "Exportar"
+				}
+			},
+			"import": {
+				"button": "Importar",
+				"error": {
+					"invalid": "Arquivo de configurações inválido"
+				}
+			},
+			"reset": {
+				"confirm": {
+					"cancel": "Cancelar",
+					"confirm": "Reiniciar"
+				},
+				"description": "Mudar para todas as configurações padrões.",
+				"label": "Opções de reiniciar"
+			}
+		},
+		"footer": {
+			"checking": "Verificando",
+			"latestVersion": "Versão recente",
+			"updateAvailable": "Atualização disponível"
+		},
+		"language": {
+			"label": "Idioma"
+		},
+		"search": {
+			"noResults": "Sem opções encontradas",
+			"placeholder": "Procurando opções...",
+			"title": "Resultados da busca"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Ajuda para traduzir"
+			},
+			"github": {
+				"description": "Deixe uma estrela"
+			},
+			"kofi": {
+				"description": "Me compre um café"
+			},
+			"toggle": {
+				"close": "Oculte a barra lateral",
+				"open": "Mostre a barra lateral"
+			}
+		},
+		"tabs": {
+			"connection": "Conexão",
+			"customization": "Customização"
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "Desligado",
+			"on": "Ligado"
+		},
+		"disableFor": "Desabilitado para",
+		"domain": {
+			"block": "Bloqueado",
+			"blockedByListPlural": "Bloqueado por “{list}” +{count} mais",
+			"blockedByUser": "Bloqueado por usuário",
+			"notBlocked": "Não bloqueado",
+			"removeFromWhitelist": "Remover da lista de permitidos",
+			"unblock": "Desbloqueado",
+			"whitelist": "Lista de permissões",
+			"whitelistedByUser": "Adicionado à lista de permissões pelo usuário"
+		},
+		"donatePrompt": {
+			"dismiss": "Fechar",
+			"message": "O Pi-buraco em Um sempre será gratuito, de código aberto e sem anúncios. Se você acreditar que ele é útil, pense em apoiar o desenvolvimento dele com uma pequena doação.",
+			"title": "Apoie a extensão"
+		},
+		"error": {
+			"actionFailed": "Ação falhou",
+			"fetchFailed": "Não foi possível obter o modo atual",
+			"fix": "Consertar"
+		},
+		"footer": {
+			"checking": "Verificando",
+			"donate": "Doe",
+			"latestVersion": "Versão mais recente",
+			"starOnGitHub": "No GitHub",
+			"updateAvailable": "Atualização disponível"
+		},
+		"groups": {
+			"updateError": "Falha ao atualizar o grupo"
+		},
+		"lists": {
+			"updateError": "Falha ao atualizar a lista"
+		},
+		"notConfigured": {
+			"message": "Configure seu Pi-buraco para começar.",
+			"openSettings": "Abra configurações"
+		},
+		"openInstance": "Abrir {name}",
+		"refresh": "Atualizar",
+		"settings": "Configurações",
+		"statistics": "Estatísticas",
+		"stats": {
+			"blockedToday": "Bloqueado hoje",
+			"cached": "Em memória transitória",
+			"queriesToday": "Consultas de hoje"
+		},
+		"status": {
+			"title": "Estado",
+			"blockingDisabled": "Bloqueio desativado",
+			"blockingEnabled": "Bloqueio ativado",
+			"cpu": "Processador",
+			"disable": "Desativar",
+			"enable": "Ativar",
+			"memory": "Memória",
+			"temperature": "Temporário",
+			"uptime": "Tempo de atividade"
+		},
+		"statusSub": {
+			"clients": "{count} Cliente ativos",
+			"reenables": "Reativa em {duration}"
+		}
+	},
+	"meta": {
+		"description": {
+			"featuresTitle": "Aspectos:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Controle de bloqueamento"
+			},
+			"domain": {
+				"title": "Gerenciamento dos domínios"
+			},
+			"stats": {
+				"title": "Dados"
+			},
+			"systemInfo": {
+				"title": "Informação do sistema"
+			},
+			"groups": {
+				"title": "Listas e grupos"
+			},
+			"badge": {
+				"title": "Barra de ferramentas de medalhas"
+			},
+			"customization": {
+				"title": "Customização"
+			}
+		}
+	}
+}

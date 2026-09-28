@@ -1,7 +1,7 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
 import { applyColorScheme } from '../utils/color-scheme'
-import { detectBrowserLocale, i18n } from '../utils/i18n'
+import { applyLocale, detectBrowserLocale } from '../utils/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../utils/settings'
 
 // Module-level singleton so all views share the same state
@@ -52,7 +52,7 @@ watch(
 	() => form.locale,
 	(locale) => {
 		if (!initialized.value) return
-		i18n.global.locale.value = locale || detectBrowserLocale()
+		applyLocale(locale)
 	},
 )
 
@@ -80,7 +80,7 @@ export function useSettings() {
 			locale: settings.locale || detectBrowserLocale(),
 		})
 		applyColorScheme(form.colorScheme)
-		i18n.global.locale.value = form.locale
+		applyLocale(form.locale)
 		initialized.value = true
 	})
 

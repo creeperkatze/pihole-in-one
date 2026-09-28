@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col gap-2">
 		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ formatMessage(messages['popup.disableFor']) }}
+			{{ t('popup.disableFor') }}
 		</div>
 		<div class="flex gap-1.5 flex-wrap">
 			<Button
@@ -18,10 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
+import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/Button.vue'
-import { useVIntl } from '../../../utils/i18n'
 
 defineProps<{
 	disabled?: boolean
@@ -31,10 +30,7 @@ defineEmits<{
 	select: [seconds: number]
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.disableFor': { id: 'popup.disableFor', defaultMessage: 'Disable for' },
-})
+const { t } = useI18n()
 
 const presets = [
 	{ label: '10s', seconds: 10 },

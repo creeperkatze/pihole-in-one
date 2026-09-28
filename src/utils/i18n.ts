@@ -1,72 +1,86 @@
-import type { App } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 
-import { LOCALES } from './locales'
+import deDE from '../locales/de-DE.json'
+import enUS from '../locales/en-US.json'
+import esES from '../locales/es-ES.json'
+import frFR from '../locales/fr-FR.json'
 
-type CrowdinMessages = Record<string, { defaultMessage: string }>
+const messages = { 'en-US': enUS, 'de-DE': deDE, 'es-ES': esES, 'fr-FR': frFR }
+
+export interface LocaleDefinition {
+	code: keyof typeof messages
+	name: string
+	dir?: 'ltr' | 'rtl'
+}
+
+export const LOCALES: LocaleDefinition[] = [
+	{ code: 'en-US', name: 'English' },
+	// { code: 'af-ZA', name: 'Afrikaans' },
+	// { code: 'ar-SA', name: 'العربية', dir: 'rtl' },
+	// { code: 'ca-ES', name: 'Català' },
+	// { code: 'cs-CZ', name: 'Čeština' },
+	// { code: 'da-DK', name: 'Dansk' },
+	{ code: 'de-DE', name: 'Deutsch' },
+	// { code: 'el-GR', name: 'Ελληνικά' },
+	{ code: 'es-ES', name: 'Español' },
+	// { code: 'fi-FI', name: 'Suomi' },
+	{ code: 'fr-FR', name: 'Français' },
+	// { code: 'he-IL', name: 'עברית', dir: 'rtl' },
+	// { code: 'hu-HU', name: 'Magyar' },
+	// { code: 'it-IT', name: 'Italiano' },
+	// { code: 'ja-JP', name: '日本語' },
+	// { code: 'ko-KR', name: '한국어' },
+	// { code: 'nl-NL', name: 'Nederlands' },
+	// { code: 'no-NO', name: 'Norsk' },
+	// { code: 'pl-PL', name: 'Polski' },
+	// { code: 'pt-BR', name: 'Português (Brasil)' },
+	// { code: 'pt-PT', name: 'Português' },
+	// { code: 'ro-RO', name: 'Română' },
+	// { code: 'ru-RU', name: 'Русский' },
+	// { code: 'sr-CS', name: 'Српски' },
+	// { code: 'sv-SE', name: 'Svenska' },
+	// { code: 'tr-TR', name: 'Türkçe' },
+	// { code: 'uk-UA', name: 'Українська' },
+	// { code: 'vi-VN', name: 'Tiếng Việt' },
+	// { code: 'zh-CN', name: '简体中文' },
+	// { code: 'zh-TW', name: '繁體中文' },
+]
+
+export type SupportedLocale = LocaleDefinition['code']
 
 const LOCALE_CODES = new Set(LOCALES.map((l) => l.code))
 
-const localeModules = import.meta.glob<{ default: CrowdinMessages }>('../locales/*/*.json', {
-	eager: true,
-})
-
-function transformCrowdinMessages(messages: CrowdinMessages): Record<string, string> {
-	return Object.fromEntries(
-		Object.entries(messages).map(([key, value]) => [key, value.defaultMessage]),
-	)
+function isSupportedLocale(value: string): value is SupportedLocale {
+	return LOCALE_CODES.has(value as SupportedLocale)
 }
 
-function buildMessages(): Record<string, Record<string, string>> {
-	const messages: Record<string, Record<string, string>> = {}
-	for (const [path, module] of Object.entries(localeModules)) {
-		const match = path.match(/\/([^/]+)\/[^/]+\.json$/)
-		if (match && LOCALE_CODES.has(match[1])) {
-			const locale = match[1]
-			if (!messages[locale]) messages[locale] = {}
-			Object.assign(messages[locale], transformCrowdinMessages(module.default))
-		}
-	}
-	return messages
-}
-
-export const i18n = createI18n({
-	legacy: false,
-	locale: 'en-US',
-	fallbackLocale: 'en-US',
-	missingWarn: false,
-	fallbackWarn: false,
-	messages: buildMessages(),
-})
-
-export function detectBrowserLocale(): string {
+export function detectBrowserLocale(): SupportedLocale {
 	const langs = navigator.languages?.length ? navigator.languages : [navigator.language]
 	for (const lang of langs) {
-		const exact = LOCALES.find((l) => l.code.toLowerCase() === lang.toLowerCase())
-		if (exact) return exact.code
-		const prefix = lang.split('-')[0].toLowerCase()
-		const match = LOCALES.find((l) => l.code.split('-')[0].toLowerCase() === prefix)
+		if (isSupportedLocale(lang)) return lang
+	}
+	for (const lang of langs) {
+		const prefix = lang.split('-')[0]?.toLowerCase()
+		const match = LOCALES.find((l) => l.code.split('-')[0] === prefix)
 		if (match) return match.code
 	}
 	return 'en-US'
 }
 
-export function installI18n(app: App): void {
-	app.use(i18n)
-	i18n.global.locale.value = detectBrowserLocale()
+export const i18n = createI18n({
+	legacy: false,
+	locale: detectBrowserLocale(),
+	fallbackLocale: 'en-US',
+	messages,
+})
+
+export function resolveLocale(locale: string): SupportedLocale {
+	return isSupportedLocale(locale) ? locale : detectBrowserLocale()
 }
 
-export interface MessageDescriptor {
-	id: string
-	defaultMessage: string
-}
-
-export function useVIntl() {
-	const { t } = useI18n()
-	return {
-		formatMessage(msg: MessageDescriptor, values?: Record<string, string | number>): string {
-			return t(msg.id, values ?? {})
-		},
-	}
+export function applyLocale(locale: string) {
+	const code = resolveLocale(locale)
+	i18n.global.locale.value = code
+	document.documentElement.lang = code
+	document.documentElement.dir = LOCALES.find((l) => l.code === code)?.dir ?? 'ltr'
 }

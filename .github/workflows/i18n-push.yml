@@ -5,7 +5,7 @@ on:
     branches: ['main']
     paths:
       - '.github/workflows/i18n-push.yml'
-      - 'src/locales/en-US/**'
+      - 'src/locales/en-US.json'
       - 'crowdin.yml'
   workflow_dispatch:
 

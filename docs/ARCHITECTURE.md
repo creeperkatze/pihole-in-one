@@ -6,4 +6,4 @@
 - `src/components/`: shared Vue components used by both entrypoints
 - `src/composables/`: shared Vue composables
 - `src/utils/`: shared utilities (API client, formatting, i18n setup, settings)
-- `src/locales/`: i18n message files (en-US is the source; others via Crowdin)
+- `src/locales/`: one message file per locale (`en-US.json` is the source, others via Crowdin)

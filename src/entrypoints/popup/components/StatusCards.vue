@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col gap-2">
 		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ formatMessage(messages['popup.status']) }}
+			{{ t('popup.status.title') }}
 		</div>
 		<div class="grid grid-cols-4 gap-1.5">
 			<div
@@ -20,43 +20,35 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Clock, Cpu, MemoryStick, Thermometer } from '@lucide/vue'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { PiholeDiagnosis } from '../../../utils/api'
 import { formatDuration } from '../../../utils/format'
-import { useVIntl } from '../../../utils/i18n'
 
 const props = defineProps<{
 	status: PiholeDiagnosis
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.status': { id: 'popup.status', defaultMessage: 'Status' },
-	'popup.status.cpu': { id: 'popup.status.cpu', defaultMessage: 'CPU' },
-	'popup.status.memory': { id: 'popup.status.memory', defaultMessage: 'Memory' },
-	'popup.status.temperature': { id: 'popup.status.temperature', defaultMessage: 'Temp' },
-	'popup.status.uptime': { id: 'popup.status.uptime', defaultMessage: 'Uptime' },
-})
+const { t } = useI18n()
 
 const cells = computed(() => [
 	{
 		icon: Cpu,
-		label: formatMessage(messages['popup.status.cpu']),
+		label: t('popup.status.cpu'),
 		value: `${props.status.cpu.toFixed(1)}%`,
 		color: 'text-sky-500',
 	},
 	{
 		icon: MemoryStick,
-		label: formatMessage(messages['popup.status.memory']),
+		label: t('popup.status.memory'),
 		value: `${props.status.memory.toFixed(1)}%`,
 		color: 'text-fuchsia-500',
 	},
 	{
 		icon: Thermometer,
-		label: formatMessage(messages['popup.status.temperature']),
+		label: t('popup.status.temperature'),
 		value:
 			props.status.temperature !== null
 				? `${Math.round(props.status.temperature)}°${props.status.tempUnit}`
@@ -65,7 +57,7 @@ const cells = computed(() => [
 	},
 	{
 		icon: Clock,
-		label: formatMessage(messages['popup.status.uptime']),
+		label: t('popup.status.uptime'),
 		value: formatDuration(props.status.uptime),
 		color: 'text-green-500',
 	},

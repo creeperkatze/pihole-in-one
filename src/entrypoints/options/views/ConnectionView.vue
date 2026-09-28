@@ -1,8 +1,8 @@
 <template>
 	<section class="flex flex-col">
 		<SectionHeader
-			:title="formatMessage(messages['options.connection.title'])"
-			:description="formatMessage(messages['options.connection.description'])"
+			:title="t('options.connection.title')"
+			:description="t('options.connection.description')"
 		/>
 		<div class="flex max-w-xl flex-col gap-2 p-4">
 			<OptionPiHoleSelector
@@ -44,53 +44,20 @@
 </template>
 
 <script lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Timer, Wifi } from '@lucide/vue'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { formatSeconds } from '../../../utils/format'
-import { useVIntl } from '../../../utils/i18n'
-
-export const messages = defineMessages({
-	'options.connection.title': { id: 'options.connection.title', defaultMessage: 'Connection' },
-	'options.connection.description': {
-		id: 'options.connection.description',
-		defaultMessage: 'Manage your Pi-hole instances and badge refresh settings.',
-	},
-	'options.piholeselector.title': {
-		id: 'options.piholeselector.title',
-		defaultMessage: 'Pi-holes',
-	},
-	'options.piholeselector.description': {
-		id: 'options.piholeselector.description',
-		defaultMessage: 'Configure one or more Pi-hole instances.',
-	},
-	'options.connection.refreshInterval.label': {
-		id: 'options.connection.refreshInterval.label',
-		defaultMessage: 'Badge Refresh Interval',
-	},
-	'options.connection.refreshInterval.description': {
-		id: 'options.connection.refreshInterval.description',
-		defaultMessage: 'How often the badge is refreshed. Choose between one minute and one hour.',
-	},
-	'options.connection.connectionTimeout.label': {
-		id: 'options.connection.connectionTimeout.label',
-		defaultMessage: 'Connection Timeout',
-	},
-	'options.connection.connectionTimeout.description': {
-		id: 'options.connection.connectionTimeout.description',
-		defaultMessage: 'How long to wait before a request to a Pi-hole is treated as failed.',
-	},
-})
 
 export function useConnectionOptions() {
-	const { formatMessage } = useVIntl()
+	const { t } = useI18n()
 
 	const pihole = computed(() => ({
 		id: 'pihole',
 		type: 'pihole' as const,
-		label: formatMessage(messages['options.piholeselector.title']),
-		description: formatMessage(messages['options.piholeselector.description']),
+		label: t('options.piholeselector.title'),
+		description: t('options.piholeselector.description'),
 	}))
 
 	const refreshInterval = computed(() => ({
@@ -98,8 +65,8 @@ export function useConnectionOptions() {
 		type: 'slider' as const,
 		formKey: 'refreshInterval' as const,
 		icon: Timer,
-		label: formatMessage(messages['options.connection.refreshInterval.label']),
-		description: formatMessage(messages['options.connection.refreshInterval.description']),
+		label: t('options.connection.refreshInterval.label'),
+		description: t('options.connection.refreshInterval.description'),
 		min: 60,
 		max: 3600,
 		step: 30,
@@ -112,8 +79,8 @@ export function useConnectionOptions() {
 		type: 'slider' as const,
 		formKey: 'connectionTimeout' as const,
 		icon: Wifi,
-		label: formatMessage(messages['options.connection.connectionTimeout.label']),
-		description: formatMessage(messages['options.connection.connectionTimeout.description']),
+		label: t('options.connection.connectionTimeout.label'),
+		description: t('options.connection.connectionTimeout.description'),
 		min: 3,
 		max: 60,
 		step: 1,
@@ -133,5 +100,5 @@ import { useSettings } from '../../../composables/useSettings'
 
 const { form, saveError } = useSettings()
 const { connectionTimeout, refreshInterval } = useConnectionOptions()
-const { formatMessage } = useVIntl()
+const { t } = useI18n()
 </script>

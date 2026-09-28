@@ -27,13 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import type { PiholeGroup } from 'pihole-js'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import Toggle from '../../../components/Toggle.vue'
 import { getPiHoleClient } from '../../../utils/api'
-import { useVIntl } from '../../../utils/i18n'
 
 const props = defineProps<{
 	groups: PiholeGroup[]
@@ -41,13 +40,7 @@ const props = defineProps<{
 	apiPassword: string
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.groups.updateError': {
-		id: 'popup.groups.updateError',
-		defaultMessage: 'Failed to update group',
-	},
-})
+const { t } = useI18n()
 
 const toggleError = ref('')
 const toggling = ref<string | null>(null)
@@ -63,8 +56,7 @@ async function toggle(group: PiholeGroup): Promise<void> {
 		})
 		group.enabled = !group.enabled
 	} catch (e) {
-		toggleError.value =
-			e instanceof Error ? e.message : formatMessage(messages['popup.groups.updateError'])
+		toggleError.value = e instanceof Error ? e.message : t('popup.groups.updateError')
 	} finally {
 		toggling.value = null
 	}

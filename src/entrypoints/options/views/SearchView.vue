@@ -1,12 +1,12 @@
 <template>
 	<section class="flex flex-col">
 		<SectionHeader
-			:title="formatMessage(messages['options.search.title'])"
-			:description="formatMessage(messages['options.search.description'], { query })"
+			:title="t('options.search.title')"
+			:description="t('options.search.description', { query })"
 		/>
 		<div v-if="initialized" class="max-w-xl p-4">
 			<div v-if="results.length === 0" class="text-sm text-secondary">
-				{{ formatMessage(messages['options.search.noResults']) }}
+				{{ t('options.search.noResults') }}
 			</div>
 			<div v-else class="flex flex-col gap-2">
 				<template v-for="opt in results" :key="opt.id">
@@ -60,8 +60,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 import type { ButtonOption } from '../../../components/options/OptionButton.vue'
@@ -76,7 +76,6 @@ import type { ToggleOption } from '../../../components/options/OptionToggle.vue'
 import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import { useVIntl } from '../../../utils/i18n'
 import { useConnectionOptions } from './ConnectionView.vue'
 import { useCustomizationOptions } from './CustomizationView.vue'
 import { useDataOptions } from './DataView.vue'
@@ -89,18 +88,7 @@ const { pihole, refreshInterval } = useConnectionOptions()
 const { locale, colorScheme, badgeMode, showDiagnosisBadge } = useCustomizationOptions()
 const { exportOption, importOption, resetOption } = useDataOptions()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'options.search.title': { id: 'options.search.title', defaultMessage: 'Search results' },
-	'options.search.description': {
-		id: 'options.search.description',
-		defaultMessage: 'Showing options matching "{query}"',
-	},
-	'options.search.noResults': {
-		id: 'options.search.noResults',
-		defaultMessage: 'No options found',
-	},
-})
+const { t } = useI18n()
 
 const allOptions = computed<SearchableOption[]>(() => [
 	pihole.value,

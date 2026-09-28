@@ -9,7 +9,7 @@
 		<div v-else-if="loadError" class="text-xs text-pihole-red py-1">{{ loadError }}</div>
 
 		<div v-else-if="entries.length === 0" class="text-xs text-secondary py-1 text-center">
-			{{ formatMessage(messages['popup.domains.list.empty']) }}
+			{{ t('popup.domains.list.empty') }}
 		</div>
 
 		<div v-else class="flex flex-col gap-1.5">
@@ -22,9 +22,7 @@
 					<span
 						class="shrink-0"
 						:title="
-							entry.type === 'allow'
-								? formatMessage(messages['popup.domains.whitelisted'])
-								: formatMessage(messages['popup.domains.blocked'])
+							entry.type === 'allow' ? t('popup.domains.whitelisted') : t('popup.domains.blocked')
 						"
 					>
 						<component
@@ -34,10 +32,7 @@
 							aria-hidden="true"
 						/>
 					</span>
-					<span
-						v-if="entry.kind === 'regex'"
-						:title="formatMessage(messages['popup.domains.regex'])"
-					>
+					<span v-if="entry.kind === 'regex'" :title="t('popup.domains.regex')">
 						<Regex class="size-3.5 text-secondary" aria-hidden="true" />
 					</span>
 					<span
@@ -52,7 +47,7 @@
 					type="button"
 					class="flex shrink-0 items-center justify-center size-6 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
 					:disabled="removing === entry.domain"
-					:title="formatMessage(messages['popup.domains.list.remove'])"
+					:title="t('popup.domains.list.remove')"
 					@click="removeEntry(entry)"
 				>
 					<X class="size-3.5" />
@@ -63,38 +58,19 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Regex, ShieldBan, ShieldCheck, X } from '@lucide/vue'
 import type { DomainEntry } from 'pihole-js'
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { getPiHoleClient } from '../../../utils/api'
-import { useVIntl } from '../../../utils/i18n'
 import type { PiholeInstance } from '../../../utils/settings'
 
 const props = defineProps<{
 	instances: PiholeInstance[]
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.domains.list.remove': { id: 'popup.domains.list.remove', defaultMessage: 'Remove' },
-	'popup.domains.list.empty': {
-		id: 'popup.domains.list.empty',
-		defaultMessage: 'No domains added yet.',
-	},
-	'popup.domains.whitelisted': { id: 'popup.domains.whitelisted', defaultMessage: 'Whitelisted' },
-	'popup.domains.blocked': { id: 'popup.domains.blocked', defaultMessage: 'Blocked' },
-	'popup.domains.regex': { id: 'popup.domains.regex', defaultMessage: 'Regex pattern' },
-	'popup.domains.list.loadError': {
-		id: 'popup.domains.list.loadError',
-		defaultMessage: 'Failed to load domains',
-	},
-	'popup.domains.list.removeError': {
-		id: 'popup.domains.list.removeError',
-		defaultMessage: 'Failed to remove domain',
-	},
-})
+const { t } = useI18n()
 
 const entries = ref<DomainEntry[]>([])
 const loading = ref(true)
@@ -114,8 +90,7 @@ async function load(): Promise<void> {
 			.filter((d) => d.enabled)
 			.sort((a, b) => b.date_added - a.date_added)
 	} catch (e) {
-		loadError.value =
-			e instanceof Error ? e.message : formatMessage(messages['popup.domains.list.loadError'])
+		loadError.value = e instanceof Error ? e.message : t('popup.domains.list.loadError')
 	}
 }
 
@@ -134,8 +109,7 @@ async function removeEntry(entry: DomainEntry): Promise<void> {
 			(e) => !(e.type === entry.type && e.kind === entry.kind && e.domain === entry.domain),
 		)
 	} catch (e) {
-		loadError.value =
-			e instanceof Error ? e.message : formatMessage(messages['popup.domains.list.removeError'])
+		loadError.value = e instanceof Error ? e.message : t('popup.domains.list.removeError')
 	} finally {
 		removing.value = null
 	}

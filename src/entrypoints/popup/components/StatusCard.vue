@@ -20,28 +20,23 @@
 				<div class="font-semibold text-sm">
 					{{
 						status === 'enabled'
-							? formatMessage(messages['popup.status.blockingEnabled'])
-							: formatMessage(messages['popup.status.blockingDisabled'])
+							? t('popup.status.blockingEnabled')
+							: t('popup.status.blockingDisabled')
 					}}
 				</div>
 				<div class="text-xs text-secondary mt-px">{{ sub }}</div>
 			</div>
 		</div>
 		<Button :disabled="disabled" @click="$emit('toggle')">
-			{{
-				status === 'enabled'
-					? formatMessage(messages['popup.status.disable'])
-					: formatMessage(messages['popup.status.enable'])
-			}}
+			{{ status === 'enabled' ? t('popup.status.disable') : t('popup.status.enable') }}
 		</Button>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
+import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/Button.vue'
-import { useVIntl } from '../../../utils/i18n'
 
 defineProps<{
 	status: 'enabled' | 'disabled'
@@ -51,17 +46,5 @@ defineProps<{
 
 defineEmits<{ toggle: [] }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.status.blockingEnabled': {
-		id: 'popup.status.blockingEnabled',
-		defaultMessage: 'Blocking Enabled',
-	},
-	'popup.status.blockingDisabled': {
-		id: 'popup.status.blockingDisabled',
-		defaultMessage: 'Blocking Disabled',
-	},
-	'popup.status.disable': { id: 'popup.status.disable', defaultMessage: 'Disable' },
-	'popup.status.enable': { id: 'popup.status.enable', defaultMessage: 'Enable' },
-})
+const { t } = useI18n()
 </script>

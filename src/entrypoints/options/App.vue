@@ -9,9 +9,7 @@
 				class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-secondary transition-colors hover:bg-surface-3 hover:text-primary"
 				:aria-expanded="sidebarOpen"
 				:aria-label="
-					sidebarOpen
-						? formatMessage(messages['options.sidebar.toggle.close'])
-						: formatMessage(messages['options.sidebar.toggle.open'])
+					sidebarOpen ? t('options.sidebar.toggle.close') : t('options.sidebar.toggle.open')
 				"
 				@click="sidebarOpen = !sidebarOpen"
 			>
@@ -42,7 +40,7 @@
 				<button
 					type="button"
 					class="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-secondary transition-colors hover:bg-surface-3 hover:text-primary sm:hidden"
-					:aria-label="formatMessage(messages['options.sidebar.toggle.close'])"
+					:aria-label="t('options.sidebar.toggle.close')"
 					@click="sidebarOpen = false"
 				>
 					<ChevronLeft class="size-4" />
@@ -57,7 +55,7 @@
 						<Input
 							v-model="searchQuery"
 							type="text"
-							:placeholder="formatMessage(messages['options.search.placeholder'])"
+							:placeholder="t('options.search.placeholder')"
 							class="w-full rounded-lg pl-9 text-sm py-2"
 							:class="searchQuery ? 'pr-8' : 'pr-3'"
 						/>
@@ -92,8 +90,8 @@
 						target="_blank"
 						rel="noopener"
 						color="#FF5E5B"
-						:title="formatMessage(messages['options.sidebar.kofi.title'])"
-						:description="formatMessage(messages['options.sidebar.kofi.description'])"
+						:title="t('options.sidebar.kofi.title')"
+						:description="t('options.sidebar.kofi.description')"
 						class="no-underline"
 					>
 						<template #icon>
@@ -105,8 +103,8 @@
 						href="https://crowdin.com/project/pihole-in-one"
 						target="_blank"
 						rel="noopener"
-						:title="formatMessage(messages['options.sidebar.crowdin.title'])"
-						:description="formatMessage(messages['options.sidebar.crowdin.description'])"
+						:title="t('options.sidebar.crowdin.title')"
+						:description="t('options.sidebar.crowdin.description')"
 						class="no-underline"
 					>
 						<template #icon>
@@ -120,8 +118,8 @@
 						href="https://github.com/creeperkatze/pihole-in-one"
 						target="_blank"
 						rel="noopener"
-						:title="formatMessage(messages['options.sidebar.github.title'])"
-						:description="formatMessage(messages['options.sidebar.github.description'])"
+						:title="t('options.sidebar.github.title')"
+						:description="t('options.sidebar.github.description')"
 						class="no-underline"
 					>
 						<template #icon>
@@ -139,7 +137,7 @@
 					<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
 					<span v-if="checking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
 						<Loader2 class="size-3.5 shrink-0 animate-spin" aria-hidden="true" />
-						<span class="truncate">{{ formatMessage(messages['options.footer.checking']) }}</span>
+						<span class="truncate">{{ t('options.footer.checking') }}</span>
 					</span>
 					<a
 						v-else-if="isLatest"
@@ -149,9 +147,7 @@
 						class="flex min-w-0 items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 					>
 						<CheckCircle2 class="size-3.5 shrink-0" aria-hidden="true" />
-						<span class="truncate">{{
-							formatMessage(messages['options.footer.latestVersion'])
-						}}</span>
+						<span class="truncate">{{ t('options.footer.latestVersion') }}</span>
 					</a>
 					<a
 						v-else-if="latestVersion"
@@ -161,9 +157,7 @@
 						class="flex min-w-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 					>
 						<Clock class="size-3.5 shrink-0" aria-hidden="true" />
-						<span class="truncate">{{
-							formatMessage(messages['options.footer.updateAvailable'])
-						}}</span>
+						<span class="truncate">{{ t('options.footer.updateAvailable') }}</span>
 					</a>
 				</div>
 			</div>
@@ -177,7 +171,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import {
 	CheckCircle2,
 	ChevronLeft,
@@ -191,6 +184,7 @@ import {
 	X as XIcon,
 } from '@lucide/vue'
 import { computed, onMounted, ref, watch, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
@@ -202,7 +196,6 @@ import Card from '../../components/Card.vue'
 import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
-import { useVIntl } from '../../utils/i18n'
 import { getLatestVersionTag } from '../../utils/update-check'
 
 useSettings()
@@ -210,75 +203,21 @@ useSettings()
 const router = useRouter()
 const route = useRoute()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'options.search.placeholder': {
-		id: 'options.search.placeholder',
-		defaultMessage: 'Search options...',
-	},
-	'options.sidebar.kofi.title': {
-		id: 'options.sidebar.kofi.title',
-		defaultMessage: 'Donate on Ko-fi',
-	},
-	'options.sidebar.toggle.open': {
-		id: 'options.sidebar.toggle.open',
-		defaultMessage: 'Show sidebar',
-	},
-	'options.sidebar.toggle.close': {
-		id: 'options.sidebar.toggle.close',
-		defaultMessage: 'Hide sidebar',
-	},
-	'options.sidebar.kofi.description': {
-		id: 'options.sidebar.kofi.description',
-		defaultMessage: 'Buy me a coffee',
-	},
-	'options.sidebar.crowdin.title': {
-		id: 'options.sidebar.crowdin.title',
-		defaultMessage: 'View on Crowdin',
-	},
-	'options.sidebar.crowdin.description': {
-		id: 'options.sidebar.crowdin.description',
-		defaultMessage: 'Help translate',
-	},
-	'options.sidebar.github.title': {
-		id: 'options.sidebar.github.title',
-		defaultMessage: 'View on GitHub',
-	},
-	'options.sidebar.github.description': {
-		id: 'options.sidebar.github.description',
-		defaultMessage: 'Leave a star',
-	},
-	'options.footer.checking': { id: 'options.footer.checking', defaultMessage: 'Checking' },
-	'options.footer.latestVersion': {
-		id: 'options.footer.latestVersion',
-		defaultMessage: 'Latest version',
-	},
-	'options.footer.updateAvailable': {
-		id: 'options.footer.updateAvailable',
-		defaultMessage: 'Update available',
-	},
-	'options.tabs.connection': { id: 'options.tabs.connection', defaultMessage: 'Connection' },
-	'options.tabs.customization': {
-		id: 'options.tabs.customization',
-		defaultMessage: 'Customization',
-	},
-	'options.tabs.data': { id: 'options.tabs.data', defaultMessage: 'Data' },
-	'options.search.title': { id: 'options.search.title', defaultMessage: 'Search results' },
-})
+const { t } = useI18n()
 
 const tabs = computed(() => [
-	{ id: 'connection', label: formatMessage(messages['options.tabs.connection']), icon: Server },
+	{ id: 'connection', label: t('options.tabs.connection'), icon: Server },
 	{
 		id: 'customization',
-		label: formatMessage(messages['options.tabs.customization']),
+		label: t('options.tabs.customization'),
 		icon: SlidersHorizontal,
 	},
-	{ id: 'data', label: formatMessage(messages['options.tabs.data']), icon: Database },
+	{ id: 'data', label: t('options.tabs.data'), icon: Database },
 ])
 
 const currentTabTitle = computed(() => {
-	if (route.path === '/search') return formatMessage(messages['options.search.title'])
-	return tabs.value.find((t) => '/' + t.id === route.path)?.label ?? 'Settings'
+	if (route.path === '/search') return t('options.search.title')
+	return tabs.value.find((tab) => '/' + tab.id === route.path)?.label ?? 'Settings'
 })
 
 watchEffect(() => {

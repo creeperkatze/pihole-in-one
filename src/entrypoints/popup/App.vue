@@ -12,7 +12,7 @@
 			<div class="flex items-center gap-1">
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-					:title="formatMessage(messages['popup.refresh'])"
+					:title="t('popup.refresh')"
 					:disabled="refreshing"
 					@click="refresh"
 				>
@@ -22,10 +22,10 @@
 					v-if="configured && settings"
 					class="relative flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
 					:title="
-						formatMessage(messages['popup.openInstance'], {
+						t('popup.openInstance', {
 							name:
 								settings.instances[activeInstance]?.name ||
-								formatMessage(messages['options.piholeselector.instance.fallbackName']),
+								t('options.piholeselector.instance.fallbackName'),
 						})
 					"
 					@click="openPihole(activeInstance)"
@@ -40,7 +40,7 @@
 				</button>
 				<button
 					class="flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
-					:title="formatMessage(messages['popup.settings'])"
+					:title="t('popup.settings')"
 					@click="openOptions"
 				>
 					<Settings class="size-4" />
@@ -62,10 +62,10 @@
 				class="flex flex-1 flex-col items-center justify-center gap-3 py-8 px-5"
 			>
 				<p class="m-0 text-secondary text-center">
-					{{ formatMessage(messages['popup.notConfigured.message']) }}
+					{{ t('popup.notConfigured.message') }}
 				</p>
 				<Button variant="primary" @click="openOptions">
-					{{ formatMessage(messages['popup.notConfigured.openSettings']) }}
+					{{ t('popup.notConfigured.openSettings') }}
 				</Button>
 			</div>
 
@@ -77,12 +77,12 @@
 					target="_blank"
 					rel="noopener"
 					color="#FF5E5B"
-					:title="formatMessage(messages['popup.donatePrompt.title'])"
-					:description="formatMessage(messages['popup.donatePrompt.message'])"
+					:title="t('popup.donatePrompt.title')"
+					:description="t('popup.donatePrompt.message')"
 					class="mx-3 mt-3 shrink-0 no-underline"
 					icon-position="left"
 					dismissible
-					:dismiss-label="formatMessage(messages['popup.donatePrompt.dismiss'])"
+					:dismiss-label="t('popup.donatePrompt.dismiss')"
 					@click="dismissDonate"
 					@dismiss="dismissDonate"
 				>
@@ -97,7 +97,7 @@
 				>
 					<span>{{ states[activeInstance]?.error }}</span>
 					<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
-						{{ formatMessage(messages['popup.error.fix']) }}
+						{{ t('popup.error.fix') }}
 					</Button>
 				</div>
 
@@ -128,7 +128,7 @@
 				<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
 				<span v-if="updateChecking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
 					<Loader2 class="size-4 shrink-0 animate-spin" aria-hidden="true" />
-					<span class="truncate">{{ formatMessage(messages['popup.footer.checking']) }}</span>
+					<span class="truncate">{{ t('popup.footer.checking') }}</span>
 				</span>
 				<a
 					v-else-if="isLatest"
@@ -138,7 +138,7 @@
 					class="flex min-w-0 items-center gap-1 text-xs text-green-500 no-underline transition-colors hover:text-green-400"
 				>
 					<CheckCircle2 class="size-3.5 shrink-0" aria-hidden="true" />
-					<span class="truncate">{{ formatMessage(messages['popup.footer.latestVersion']) }}</span>
+					<span class="truncate">{{ t('popup.footer.latestVersion') }}</span>
 				</a>
 				<a
 					v-else-if="latestVersion"
@@ -148,9 +148,7 @@
 					class="flex min-w-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-400"
 				>
 					<Clock class="size-3.5 shrink-0" aria-hidden="true" />
-					<span class="truncate">{{
-						formatMessage(messages['popup.footer.updateAvailable'])
-					}}</span>
+					<span class="truncate">{{ t('popup.footer.updateAvailable') }}</span>
 				</a>
 			</div>
 			<a
@@ -160,7 +158,7 @@
 				class="flex shrink-0 items-center gap-1 text-xs text-[#FF5E5B] no-underline transition-colors hover:text-[#ff8e8c]"
 			>
 				<KofiIcon class="size-3.5" aria-hidden="true" />
-				<span>{{ formatMessage(messages['popup.footer.donate']) }}</span>
+				<span>{{ t('popup.footer.donate') }}</span>
 			</a>
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
@@ -169,14 +167,13 @@
 				class="flex shrink-0 items-center gap-1 text-xs text-yellow-500 no-underline transition-colors hover:text-yellow-300"
 			>
 				<Star class="size-3.5 shrink-0" aria-hidden="true" />
-				<span>{{ formatMessage(messages['popup.footer.starOnGitHub']) }}</span>
+				<span>{{ t('popup.footer.starOnGitHub') }}</span>
 			</a>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import {
 	CheckCircle2,
 	Clock,
@@ -191,6 +188,7 @@ import {
 	Users,
 } from '@lucide/vue'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { browser } from 'wxt/browser'
 
@@ -198,61 +196,11 @@ import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Button from '../../components/Button.vue'
 import Card from '../../components/Card.vue'
-import { useVIntl } from '../../utils/i18n'
 import { getLatestVersionTag } from '../../utils/update-check'
 import PopupTabs, { type PopupTab } from './components/PopupTabs.vue'
 import { usePopupInstances } from './usePopupInstances'
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.refresh': { id: 'popup.refresh', defaultMessage: 'Refresh' },
-	'popup.settings': { id: 'popup.settings', defaultMessage: 'Settings' },
-	'popup.notConfigured.message': {
-		id: 'popup.notConfigured.message',
-		defaultMessage: 'Configure your Pi-hole to get started.',
-	},
-	'popup.notConfigured.openSettings': {
-		id: 'popup.notConfigured.openSettings',
-		defaultMessage: 'Open Settings',
-	},
-	'popup.error.fix': { id: 'popup.error.fix', defaultMessage: 'Fix' },
-	'popup.donatePrompt.title': {
-		id: 'popup.donatePrompt.title',
-		defaultMessage: 'Support the extension',
-	},
-	'popup.donatePrompt.message': {
-		id: 'popup.donatePrompt.message',
-		defaultMessage:
-			'Pi-hole In One will always be free, open source, and ad-free. If you find it useful, consider supporting its development with a small donation.',
-	},
-	'popup.donatePrompt.dismiss': {
-		id: 'popup.donatePrompt.dismiss',
-		defaultMessage: 'Dismiss',
-	},
-	'popup.tabs.home': { id: 'popup.tabs.home', defaultMessage: 'Home' },
-	'popup.tabs.groups': { id: 'popup.tabs.groups', defaultMessage: 'Groups' },
-	'popup.tabs.lists': { id: 'popup.tabs.lists', defaultMessage: 'Lists' },
-	'popup.tabs.domains': { id: 'popup.tabs.domains', defaultMessage: 'Domains' },
-	'popup.footer.donate': { id: 'popup.footer.donate', defaultMessage: 'Donate' },
-	'popup.footer.checking': { id: 'popup.footer.checking', defaultMessage: 'Checking' },
-	'popup.footer.latestVersion': {
-		id: 'popup.footer.latestVersion',
-		defaultMessage: 'Latest version',
-	},
-	'popup.footer.updateAvailable': {
-		id: 'popup.footer.updateAvailable',
-		defaultMessage: 'Update available',
-	},
-	'popup.footer.starOnGitHub': {
-		id: 'popup.footer.starOnGitHub',
-		defaultMessage: 'On GitHub',
-	},
-	'options.piholeselector.instance.fallbackName': {
-		id: 'options.piholeselector.instance.fallbackName',
-		defaultMessage: 'Pi-hole',
-	},
-	'popup.openInstance': { id: 'popup.openInstance', defaultMessage: 'Open {name}' },
-})
+const { t } = useI18n()
 
 const route = useRoute()
 
@@ -287,19 +235,17 @@ const currentTab = computed(() => {
 const messageCount = computed(() => states.value[activeInstance.value]?.summary?.messageCount ?? 0)
 
 const tabs = computed<PopupTab[]>(() => [
-	{ id: 'home', label: formatMessage(messages['popup.tabs.home']), icon: House },
-	{ id: 'groups', label: formatMessage(messages['popup.tabs.groups']), icon: Users },
-	{ id: 'lists', label: formatMessage(messages['popup.tabs.lists']), icon: Shield },
-	{ id: 'domains', label: formatMessage(messages['popup.tabs.domains']), icon: List },
+	{ id: 'home', label: t('popup.tabs.home'), icon: House },
+	{ id: 'groups', label: t('popup.tabs.groups'), icon: Users },
+	{ id: 'lists', label: t('popup.tabs.lists'), icon: Shield },
+	{ id: 'domains', label: t('popup.tabs.domains'), icon: List },
 ])
 
 const instanceTabs = computed<PopupTab[]>(
 	() =>
 		settings.value?.instances.map((inst, i) => ({
 			id: inst.id,
-			label:
-				inst.name ||
-				`${formatMessage(messages['options.piholeselector.instance.fallbackName'])} ${i + 1}`,
+			label: inst.name || `${t('options.piholeselector.instance.fallbackName')} ${i + 1}`,
 			error: Boolean(states.value[i]?.error),
 		})) ?? [],
 )

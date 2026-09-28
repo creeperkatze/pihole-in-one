@@ -1,0 +1,251 @@
+{
+	"api": {
+		"error": {
+			"passwordIncorrect": "Passwort falsch",
+			"passwordRequired": "Passwort benötigt",
+			"timeout": "Zeitüberschreitung bei der Verbindung"
+		}
+	},
+	"options": {
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-hole",
+				"apiPassword": {
+					"hint": "Dein Admin-Passwort oder ein App-Passwort aus „Einstellungen > API“.",
+					"label": "Passwort",
+					"placeholder": "Leer lassen, wenn keins festgelegt ist"
+				},
+				"connected": "Verbunden!",
+				"connectionFailed": "Verbindung fehlgeschlagen",
+				"name": {
+					"label": "Name",
+					"placeholder": "Pi-hole"
+				},
+				"noUrl": "Keine URL festgelegt",
+				"testing": "Verbindung wird getestet...",
+				"url": {
+					"label": "URL"
+				}
+			},
+			"addButton": "Pi-hole hinzufügen",
+			"description": "Konfiguriere eine oder mehrere Pi-Hole-Instanzen.",
+			"empty": "Keine Pi-holes konfiguriert. Füge eins hinzu, um loszulegen.",
+			"title": "Pi-holes"
+		},
+		"colorScheme": {
+			"auto": "Systemstandard",
+			"dark": "Dunkel",
+			"description": "Wähle zwischen hell, dunkel oder Systemstandard.",
+			"label": "Farbschema",
+			"light": "Hell"
+		},
+		"connection": {
+			"connectionTimeout": {
+				"description": "Wie lange gewartet werden soll, bevor eine Anfrage an ein Pi-hole als fehlgeschlagen gewertet wird.",
+				"label": "Zeitüberschreitung bei der Verbindung"
+			},
+			"description": "Verwalte deine Pi-hole-Instanzen und die Einstellungen für die Aktualisierung des Abzeichens.",
+			"refreshInterval": {
+				"description": "Wie oft das Abzeichen aktualisiert wird. Wählen zwischen einer Minute und einer Stunde.",
+				"label": "Aktualisierungsintervall für Abzeichen"
+			},
+			"title": "Verbindung"
+		},
+		"customization": {
+			"badge": {
+				"clients": "Aktive Clients",
+				"description": "Was auf dem Abzeichens des Erweiterungssymbol angezeigt wird.",
+				"label": "Darstellung des Abzeichens",
+				"off": "Aus",
+				"percentage": "Blockierter Anteil",
+				"state": "Status"
+			},
+			"description": "Passe das Aussehen und Verhalten der Erweiterung an.",
+			"title": "Anpassung"
+		},
+		"data": {
+			"description": "Exportiere und importiere deine Erweiterungseinstellungen.",
+			"export": {
+				"button": "Exportieren",
+				"description": "Lade deine aktuellen Einstellungen als JSON-Datei herunter.",
+				"label": "Einstellungen exportieren",
+				"warning": {
+					"cancel": "Abbrechen",
+					"confirm": "Exportieren",
+					"description": "Die exportierte Datei enthält deine Pi-Hole-Passwörter im Klartext. Bewahre sie sicher auf und gib sie nicht weiter.",
+					"title": "Einstellungen exportieren?"
+				}
+			},
+			"import": {
+				"button": "Importieren",
+				"description": "Stell die Einstellungen aus einer zuvor exportierten JSON-Datei wieder her.",
+				"error": {
+					"invalid": "Ungültige Einstellungsdatei",
+					"read": "Datei konnte nicht gelesen werden"
+				},
+				"label": "Einstellungen importieren",
+				"success": "Einstellungen erfolgreich importiert"
+			},
+			"reset": {
+				"button": "Zurücksetzen",
+				"confirm": {
+					"cancel": "Abbrechen",
+					"confirm": "Zurücksetzen",
+					"description": "Dadurch werden alle Einstellungen auf die Standardwerte zurückgesetzt und alle konfigurierten Pi-hole-Instanzen entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+					"title": "Einstellungen zurücksetzen?"
+				},
+				"description": "Setze alle Einstellungen auf ihre Standardwerte zurück.",
+				"label": "Einstellungen zurücksetzen"
+			},
+			"title": "Daten"
+		},
+		"footer": {
+			"checking": "Wird überprüft",
+			"latestVersion": "Neueste Version",
+			"updateAvailable": "Aktualisierung verfügbar"
+		},
+		"language": {
+			"description": "Wähle die Sprache für die Benutzeroberfläche der Erweiterung. Hilf bei der Übersetzung auf {crowdin}. Einige Sprachen sind eventuell unvollständig.",
+			"label": "Sprache"
+		},
+		"search": {
+			"description": "Zeige Einstellungen mit \"{query}\"",
+			"noResults": "Keine Optionen gefunden",
+			"placeholder": "Einstellungen durchsuchen...",
+			"title": "Suchergebnisse"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Hilf beim Übersetzen",
+				"title": "Auf Crowdin anzeigen"
+			},
+			"github": {
+				"description": "Hinterlasse einen Stern",
+				"title": "Auf GitHub anzeigen"
+			},
+			"kofi": {
+				"description": "Kauf mir einen Kaffee",
+				"title": "Spende auf Ko-fi"
+			},
+			"toggle": {
+				"close": "Seitenleiste ausblenden",
+				"open": "Seitenleiste anzeigen"
+			}
+		},
+		"tabs": {
+			"connection": "Verbindung",
+			"customization": "Anpassung",
+			"data": "Daten"
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "AUS",
+			"on": "AN"
+		},
+		"disableFor": "Deaktivieren für",
+		"domain": {
+			"block": "Blockieren",
+			"blockedByListPlural": "Blockiert von „{list}“ +{count} mehr",
+			"blockedByUser": "Blockiert durch Benutzer",
+			"notBlocked": "Nicht blockiert",
+			"removeFromWhitelist": "Von Whitelist entfernen",
+			"unblock": "Entblockieren",
+			"whitelist": "Whitelist",
+			"whitelistedByUser": "Vom Benutzer auf die Whitelist gesetzt"
+		},
+		"donatePrompt": {
+			"dismiss": "Schließen",
+			"message": "Pi-hole In One wird immer kostenlos, Open Source und werbefrei bleiben. Wenn du es nützlich findest, unterstütze die Entwicklung mit einer kleinen Spende.",
+			"title": "Unterstütze die Erweiterung"
+		},
+		"error": {
+			"actionFailed": "Aktion fehlgeschlagen",
+			"fetchFailed": "Status konnte nicht abgerufen werden",
+			"fix": "Beheben"
+		},
+		"footer": {
+			"checking": "Wird überprüft",
+			"donate": "Spenden",
+			"latestVersion": "Neueste Version",
+			"starOnGitHub": "Auf GitHub",
+			"updateAvailable": "Aktualisierung verfügbar"
+		},
+		"groups": {
+			"updateError": "Gruppe konnte nicht aktualisiert werden"
+		},
+		"lists": {
+			"updateError": "Liste konnte nicht aktualisiert werden"
+		},
+		"notConfigured": {
+			"message": "Konfiguriere dein Pi-hole, um loszulegen.",
+			"openSettings": "Einstellungen öffnen"
+		},
+		"openInstance": "{name} öffnen",
+		"refresh": "Aktualisieren",
+		"settings": "Einstellungen",
+		"statistics": "Statistiken",
+		"stats": {
+			"blockedToday": "Heute blockiert",
+			"cached": "Gecacht",
+			"queriesToday": "Anfragen heute"
+		},
+		"status": {
+			"title": "Status",
+			"blockingDisabled": "Blockieren deaktiviert",
+			"blockingEnabled": "Blockieren aktiviert",
+			"cpu": "CPU",
+			"disable": "Deaktivieren",
+			"enable": "Aktivieren",
+			"memory": "RAM",
+			"temperature": "Temp",
+			"uptime": "Laufzeit"
+		},
+		"statusSub": {
+			"clients": "{count} Client(s) aktiv",
+			"reenables": "Re-aktiviert in {duration}"
+		}
+	},
+	"meta": {
+		"summary": "Eine Browser-Erweiterung, mit der du dein Pi-hole bequem direkt im Browser steuern kannst.",
+		"description": {
+			"footer": "Pi-hole In One ist <link>Open Source</link>.",
+			"disclaimer": "Die Erweiterung ist nicht mit Pi-hole assoziiert oder von Pi-hole empfohlen.",
+			"featuresTitle": "Funktionen:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Blockierungssteuerung",
+				"description": "Schalte die Blockierung des Pi-holes über das Popup-Fenster ein oder aus oder deaktiviere sie vorübergehend für einen voreingestellten Zeitraum (10s, 30s, 5m, 30m, 1h) damit sie sich automatisch wieder aktiviert."
+			},
+			"domain": {
+				"title": "Domainverwaltung",
+				"description": "Prüfe, ob die Domain des aktuellen Tabs blockiert oder auf der Whitelist steht, und schalte sie sofort um, ohne das Admin-Interface des Pi-holes zu öffnen."
+			},
+			"stats": {
+				"title": "Statistiken",
+				"description": "Sieh dir die Anzahl der heutigen Anfragen, die Anzahl der blockierten Anfragen, den Blockierungsanteil und die Cache-Treffer an, jeweils mit einer Sparkline für die letzten 24 Stunden. Optionale Ringdiagramme zeigen die Aufteilung der Anfragen nach Status und Typ."
+			},
+			"systemInfo": {
+				"title": "Systeminfo",
+				"description": "Sieh dir im Popup auf einen Blick die Laufzeit, CPU-Auslastung, Speicherauslastung und Temperatur an."
+			},
+			"groups": {
+				"title": "Gruppen und Listen",
+				"description": "Aktiviere oder deaktiviere Blockierungsgruppen und einzelne Blocklisten direkt im Popup-Fenster."
+			},
+			"multiInstance": {
+				"title": "Mehrere Pi-holes",
+				"description": "Verbinde mehrere Pi-Holes und wechsle im Popup-Fenster mithilfe von Registerkarten zwischen ihnen hin und her."
+			},
+			"badge": {
+				"title": "Abzeichen in der Symbolleiste",
+				"description": "Zeigt den blockierten Anteil, den Ein-/Aus-Status oder die Anzahl der aktiven Clients an."
+			},
+			"customization": {
+				"title": "Anpassung",
+				"description": "Passe das Layout des Popups, das Verhalten des Abzeichens, die Sprache und vieles mehr in den Erweiterungsoptionen an."
+			}
+		}
+	}
+}

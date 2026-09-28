@@ -27,13 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import type { PiholeList } from 'pihole-js'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import Toggle from '../../../components/Toggle.vue'
 import { getPiHoleClient } from '../../../utils/api'
-import { useVIntl } from '../../../utils/i18n'
 
 const props = defineProps<{
 	lists: PiholeList[]
@@ -41,13 +40,7 @@ const props = defineProps<{
 	apiPassword: string
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.lists.updateError': {
-		id: 'popup.lists.updateError',
-		defaultMessage: 'Failed to update list',
-	},
-})
+const { t } = useI18n()
 
 const error = ref('')
 const toggling = ref<string | null>(null)
@@ -74,8 +67,7 @@ async function toggle(list: PiholeList): Promise<void> {
 		})
 		list.enabled = !list.enabled
 	} catch (e) {
-		error.value =
-			e instanceof Error ? e.message : formatMessage(messages['popup.lists.updateError'])
+		error.value = e instanceof Error ? e.message : t('popup.lists.updateError')
 	} finally {
 		toggling.value = null
 	}

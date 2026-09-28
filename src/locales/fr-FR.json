@@ -1,0 +1,248 @@
+{
+	"api": {
+		"error": {
+			"passwordIncorrect": "Mot de passe incorrect",
+			"passwordRequired": "Mot de passe requis",
+			"timeout": "Délai de connexion dépassé"
+		}
+	},
+	"options": {
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-hole",
+				"apiPassword": {
+					"placeholder": "Laisser vide si aucun n'est défini"
+				},
+				"connected": "Connecté !",
+				"connectionFailed": "Connexion échouée",
+				"name": {
+					"label": "Nom",
+					"placeholder": "Pi-hole"
+				},
+				"noUrl": "Aucune URL définie",
+				"testing": "Test de connexion en cours...",
+				"url": {
+					"label": "URL"
+				}
+			},
+			"addButton": "Ajouter Pi-hole",
+			"description": "Configure une ou plusieurs instances de Pi-hole.",
+			"empty": "Aucun Pi-hole configuré. Ajoutez-en un pour commencer.",
+			"title": "Pi-holes"
+		},
+		"colorScheme": {
+			"auto": "Par défaut du système",
+			"dark": "Sombre",
+			"description": "Choisis entre « clair », « foncé » ou « par défaut du système ».",
+			"label": "Thème",
+			"light": "Clair"
+		},
+		"connection": {
+			"connectionTimeout": {
+				"description": "Combien de temps faut-il attendre avant qu'une requête adressée à un Pi-hole soit considérée comme ayant échoué.",
+				"label": "Délai de connexion dépassé"
+			},
+			"description": "Gérez vos instances Pi-hole et les paramètres de rafraîchissement des badges.",
+			"refreshInterval": {
+				"description": "À quelle fréquence le badge est rafraîchi. Choisissez entre une minute et une heure.",
+				"label": "Intervalle d'actualisation du badge"
+			},
+			"title": "Connexion"
+		},
+		"customization": {
+			"badge": {
+				"clients": "Clients actifs",
+				"description": "Ce qu'il faut afficher sur le badge de l'icône de l'extension.",
+				"label": "Apparence du badge",
+				"off": "Désactivé",
+				"percentage": "Pourcentage de blocage",
+				"state": "État"
+			},
+			"description": "Personnalise l'apparence et le fonctionnement de l'extension.",
+			"title": "Personnalisation"
+		},
+		"data": {
+			"description": "Exporter et importer vos paramètres d'extension.",
+			"export": {
+				"button": "Exporter",
+				"description": "Télécharge tes paramètres actuels sous forme de fichier JSON.",
+				"label": "Exporter les paramètres",
+				"warning": {
+					"cancel": "Annuler",
+					"confirm": "Exporter",
+					"title": "Exporter les paramètres ?"
+				}
+			},
+			"import": {
+				"button": "Importer",
+				"description": "Restaurer les paramètres à partir d'un fichier JSON précédemment exporté.",
+				"error": {
+					"invalid": "Fichier de paramètres non valide",
+					"read": "Échec lors de la lecture du fichier."
+				},
+				"label": "Importer les paramètres",
+				"success": "Paramètres importés avec succès"
+			},
+			"reset": {
+				"button": "Réinitialiser",
+				"confirm": {
+					"cancel": "Annuler",
+					"confirm": "Réinitialiser",
+					"description": "Cela restaurera tous les paramètres par défaut et supprimera toutes les instances de Pi-hole configurées. La tache ne peut pas être annulée.",
+					"title": "Réinitialiser les paramètres ?"
+				},
+				"description": "Rétablis tous les paramètres à leurs valeurs par défaut.",
+				"label": "Réinitialiser les paramètres"
+			},
+			"title": "Données"
+		},
+		"footer": {
+			"checking": "Vérification",
+			"latestVersion": "Dernière version",
+			"updateAvailable": "Mise à jour disponible"
+		},
+		"language": {
+			"description": "Choisis la langue de l'interface de l'extension. Aide-nous à traduire via {crowdin}. Certaines langues peuvent être incomplètes.",
+			"label": "Langue"
+		},
+		"search": {
+			"description": "Affichage des résultats correspondant à «{query}»",
+			"noResults": "Aucunes options trouvées",
+			"placeholder": "Rechercher des options...",
+			"title": "Résultats de recherche"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Contribuer à la traduction",
+				"title": "Afficher sur Crowdin"
+			},
+			"github": {
+				"description": "Laisser une étoile",
+				"title": "Afficher sur GitHub"
+			},
+			"kofi": {
+				"description": "Achetez-moi un café",
+				"title": "Faire un don sur Ko-fi"
+			},
+			"toggle": {
+				"close": "Masquer la barre latérale",
+				"open": "Afficher la barre latérale"
+			}
+		},
+		"tabs": {
+			"connection": "Connexion",
+			"customization": "Personnalisation",
+			"data": "Données"
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "Désactivé",
+			"on": "Actif"
+		},
+		"disableFor": "Désactiver pour",
+		"domain": {
+			"block": "Bloquer",
+			"blockedByListPlural": "Bloqué par «{list}» +{count} plus",
+			"blockedByUser": "Bloqué par l'utilisateur",
+			"notBlocked": "Non bloqué",
+			"removeFromWhitelist": "Retirer de la liste blanche",
+			"unblock": "Débloquer",
+			"whitelist": "Liste blanche",
+			"whitelistedByUser": "Ajouté à la liste blanche par l'utilisateur"
+		},
+		"donatePrompt": {
+			"dismiss": "Rejeter",
+			"message": "Pi-hole in One sera toujours gratuit, open source et sans publicité. Si vous le trouvez utile, envisagez de soutenir son développement par un petit don.",
+			"title": "Soutenir l'extension"
+		},
+		"error": {
+			"actionFailed": "L'action a échoué",
+			"fetchFailed": "Impossible de récupérer le statut",
+			"fix": "Corriger"
+		},
+		"footer": {
+			"checking": "En cours de vérification",
+			"donate": "Faire un don",
+			"latestVersion": "Dernière version",
+			"starOnGitHub": "Sur GitHub",
+			"updateAvailable": "Mise à jour disponible"
+		},
+		"groups": {
+			"updateError": "Échec de la mise à jour du groupe"
+		},
+		"lists": {
+			"updateError": "Impossible de mettre à jour la liste"
+		},
+		"notConfigured": {
+			"message": "Configurez votre Pi-hole pour commencer.",
+			"openSettings": "Ouvrir les paramètres"
+		},
+		"openInstance": "Ouvrir {name}",
+		"refresh": "Actualiser",
+		"settings": "Paramètres",
+		"statistics": "Statistiques",
+		"stats": {
+			"blockedToday": "Bloqué aujourd'hui",
+			"cached": "En cache",
+			"queriesToday": "Requêtes d'aujourd'hui"
+		},
+		"status": {
+			"title": "Statut",
+			"blockingDisabled": "Blocage désactivé",
+			"blockingEnabled": "Blocage activé",
+			"cpu": "CPU",
+			"disable": "Désactiver",
+			"enable": "Activé",
+			"memory": "Mémoire",
+			"temperature": "Temp",
+			"uptime": "Uptime"
+		},
+		"statusSub": {
+			"clients": "{count} client(s) actif(s)",
+			"reenables": "Réactivation dans {duration}"
+		}
+	},
+	"meta": {
+		"summary": "Une extension de navigateur pour contrôler votre Pi-hole facilement à partir du navigateur.",
+		"description": {
+			"footer": "Pi-hole In One est <link>un logiciel libre</link>.",
+			"disclaimer": "L’extension n’est ni associée ni approuvée par Pi-hole.",
+			"featuresTitle": "Fonctionnalités :"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Contrôle du blocage",
+				"description": "Active ou désactive le blocage Pi-hole depuis la fenêtre contextuelle, ou désactive-le temporairement pour une durée prédéfinie (10 s, 30 s, 5 min, 30 min, 1 h) pour qu'il se réactive automatiquement."
+			},
+			"domain": {
+				"title": "Gestion de domaines",
+				"description": "Vérifie si le domaine de l'onglet actuel est bloqué ou autorisé, et modifie ce paramètre en un clin d'œil, sans avoir à ouvrir l'interface d'administration de Pi-hole."
+			},
+			"stats": {
+				"title": "Statistiques",
+				"description": "Consulte le nombre de requêtes du jour, le nombre de requêtes bloquées, le pourcentage de blocage et le nombre d'accès au cache, chacun avec un graphique sur 24 heures. Des graphiques optionnels permettent de ventiler les requêtes par statut et par type."
+			},
+			"systemInfo": {
+				"title": "Info système",
+				"description": "Consulte d'un seul coup d'œil la disponibilité, la charge du processeur, l'utilisation de la mémoire et la température dans la fenêtre contextuelle."
+			},
+			"groups": {
+				"title": "Groupes et listes",
+				"description": "Active ou désactive les groupes de blocage et les listes de blocage individuelles directement depuis la fenêtre contextuelle."
+			},
+			"multiInstance": {
+				"title": "Plusieurs Pi-holes",
+				"description": "Connecte-toi à plusieurs Pi-holes et passe de l'un à l'autre grâce aux onglets dédiés à chaque instance dans la fenêtre contextuelle."
+			},
+			"badge": {
+				"title": "Badge de la barre d'outils",
+				"description": "Affiche le pourcentage de blocages, l'état activé/désactivé ou le nombre de clients actifs."
+			},
+			"customization": {
+				"title": "Personnalisation",
+				"description": "Ajustez la mise en page des popups, le comportement des badges, la langue, et plus encore à partir des options d'extension."
+			}
+		}
+	}
+}

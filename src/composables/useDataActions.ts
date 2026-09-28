@@ -1,24 +1,8 @@
-import { defineMessages } from '@formatjs/intl'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { useVIntl } from '../utils/i18n'
 import { DEFAULTS, parseSettingsExport } from '../utils/settings'
 import { useSettings } from './useSettings'
-
-const messages = defineMessages({
-	'options.data.import.success': {
-		id: 'options.data.import.success',
-		defaultMessage: 'Settings imported successfully',
-	},
-	'options.data.import.error.invalid': {
-		id: 'options.data.import.error.invalid',
-		defaultMessage: 'Invalid settings file',
-	},
-	'options.data.import.error.read': {
-		id: 'options.data.import.error.read',
-		defaultMessage: 'Failed to read the file',
-	},
-})
 
 export const showExportWarning = ref(false)
 export const showResetConfirm = ref(false)
@@ -26,7 +10,7 @@ export const importFeedback = ref<{ type: 'success' | 'error'; message: string }
 
 export function useDataActions() {
 	const { form } = useSettings()
-	const { formatMessage } = useVIntl()
+	const { t } = useI18n()
 
 	function triggerExport() {
 		showExportWarning.value = true
@@ -59,7 +43,7 @@ export function useDataActions() {
 			} catch {
 				importFeedback.value = {
 					type: 'error',
-					message: formatMessage(messages['options.data.import.error.read']),
+					message: t('options.data.import.error.read'),
 				}
 				return
 			}
@@ -68,12 +52,12 @@ export function useDataActions() {
 				Object.assign(form, imported)
 				importFeedback.value = {
 					type: 'success',
-					message: formatMessage(messages['options.data.import.success']),
+					message: t('options.data.import.success'),
 				}
 			} catch {
 				importFeedback.value = {
 					type: 'error',
-					message: formatMessage(messages['options.data.import.error.invalid']),
+					message: t('options.data.import.error.invalid'),
 				}
 			}
 		}

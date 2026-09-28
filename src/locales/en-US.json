@@ -1,0 +1,278 @@
+{
+	"api": {
+		"error": {
+			"passwordIncorrect": "Password incorrect",
+			"passwordRequired": "Password required",
+			"timeout": "Connection timed out"
+		}
+	},
+	"options": {
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-hole",
+				"apiPassword": {
+					"hint": "Your admin password, or an app password from Settings > API.",
+					"label": "Password",
+					"placeholder": "Leave empty if none is set"
+				},
+				"connected": "Connected!",
+				"connectionFailed": "Connection failed",
+				"name": {
+					"label": "Name",
+					"placeholder": "Pi-hole"
+				},
+				"noUrl": "No URL set",
+				"testing": "Testing connection...",
+				"url": {
+					"label": "URL"
+				}
+			},
+			"addButton": "Add Pi-hole",
+			"description": "Configure one or more Pi-hole instances.",
+			"empty": "No Pi-holes configured. Add one to get started.",
+			"title": "Pi-holes"
+		},
+		"colorScheme": {
+			"auto": "System default",
+			"dark": "Dark",
+			"description": "Choose between light, dark, or system default.",
+			"label": "Color scheme",
+			"light": "Light"
+		},
+		"connection": {
+			"connectionTimeout": {
+				"description": "How long to wait before a request to a Pi-hole is treated as failed.",
+				"label": "Connection Timeout"
+			},
+			"description": "Manage your Pi-hole instances and badge refresh settings.",
+			"refreshInterval": {
+				"description": "How often the badge is refreshed. Choose between one minute and one hour.",
+				"label": "Badge Refresh Interval"
+			},
+			"title": "Connection"
+		},
+		"customization": {
+			"badge": {
+				"clients": "Active clients",
+				"description": "What to display on the extension icon badge.",
+				"label": "Badge appearance",
+				"off": "Off",
+				"percentage": "Percentage blocked",
+				"state": "State"
+			},
+			"description": "Adjust the appearance and behavior of the extension.",
+			"diagnosisBadge": {
+				"description": "Show a badge on the popup’s \"Open Pi-hole\" button when there are unread diagnosis messages.",
+				"label": "Diagnosis notice badge"
+			},
+			"title": "Customization"
+		},
+		"data": {
+			"description": "Export and import your extension settings.",
+			"export": {
+				"button": "Export",
+				"description": "Download your current settings as a JSON file.",
+				"label": "Export settings",
+				"warning": {
+					"cancel": "Cancel",
+					"confirm": "Export",
+					"description": "The exported file will contain your Pi-hole passwords in plain text. Keep it secure and avoid sharing it.",
+					"title": "Export settings?"
+				}
+			},
+			"import": {
+				"button": "Import",
+				"description": "Restore settings from a previously exported JSON file.",
+				"error": {
+					"invalid": "Invalid settings file",
+					"read": "Failed to read the file"
+				},
+				"label": "Import settings",
+				"success": "Settings imported successfully"
+			},
+			"reset": {
+				"button": "Reset",
+				"confirm": {
+					"cancel": "Cancel",
+					"confirm": "Reset",
+					"description": "This will restore all settings to their defaults and remove all configured Pi-hole instances. This cannot be undone.",
+					"title": "Reset settings?"
+				},
+				"description": "Restore all settings to their default values.",
+				"label": "Reset settings"
+			},
+			"title": "Data"
+		},
+		"footer": {
+			"checking": "Checking",
+			"latestVersion": "Latest version",
+			"updateAvailable": "Update available"
+		},
+		"language": {
+			"description": "Choose the language for the extension interface. Help translate on {crowdin}. Some languages may be incomplete.",
+			"label": "Language"
+		},
+		"search": {
+			"description": "Showing options matching \"{query}\"",
+			"noResults": "No options found",
+			"placeholder": "Search options...",
+			"title": "Search results"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Help translate",
+				"title": "View on Crowdin"
+			},
+			"github": {
+				"description": "Leave a star",
+				"title": "View on GitHub"
+			},
+			"kofi": {
+				"description": "Buy me a coffee",
+				"title": "Donate on Ko-fi"
+			},
+			"toggle": {
+				"close": "Hide sidebar",
+				"open": "Show sidebar"
+			}
+		},
+		"tabs": {
+			"connection": "Connection",
+			"customization": "Customization",
+			"data": "Data"
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "OFF",
+			"on": "ON"
+		},
+		"disableFor": "Disable for",
+		"domain": {
+			"block": "Block",
+			"blockedByListPlural": "Blocked by \"{list}\" +{count} more",
+			"blockedByUser": "Blocked by user",
+			"notBlocked": "Not blocked",
+			"removeFromWhitelist": "Remove from whitelist",
+			"unblock": "Unblock",
+			"whitelist": "Whitelist",
+			"whitelistedByUser": "Whitelisted by user"
+		},
+		"domains": {
+			"blocked": "Blocked",
+			"list": {
+				"empty": "No domains added yet.",
+				"loadError": "Failed to load domains",
+				"remove": "Remove",
+				"removeError": "Failed to remove domain"
+			},
+			"regex": "Regex pattern",
+			"whitelisted": "Whitelisted"
+		},
+		"donatePrompt": {
+			"dismiss": "Dismiss",
+			"message": "Pi-hole In One will always be free, open source, and ad-free. If you find it useful, consider supporting its development with a small donation.",
+			"title": "Support the extension"
+		},
+		"error": {
+			"actionFailed": "Action failed",
+			"fetchFailed": "Failed to fetch status",
+			"fix": "Fix"
+		},
+		"footer": {
+			"checking": "Checking",
+			"donate": "Donate",
+			"latestVersion": "Latest version",
+			"starOnGitHub": "On GitHub",
+			"updateAvailable": "Update available"
+		},
+		"groups": {
+			"empty": "No groups found.",
+			"updateError": "Failed to update group"
+		},
+		"lists": {
+			"empty": "No lists found.",
+			"updateError": "Failed to update list"
+		},
+		"notConfigured": {
+			"message": "Configure your Pi-hole to get started.",
+			"openSettings": "Open Settings"
+		},
+		"openInstance": "Open {name}",
+		"refresh": "Refresh",
+		"settings": "Settings",
+		"statistics": "Statistics",
+		"stats": {
+			"blockedPercent": "Blocked %",
+			"blockedToday": "Blocked Today",
+			"cached": "Cached",
+			"queriesToday": "Queries Today"
+		},
+		"status": {
+			"title": "Status",
+			"blockingDisabled": "Blocking Disabled",
+			"blockingEnabled": "Blocking Enabled",
+			"cpu": "CPU",
+			"disable": "Disable",
+			"enable": "Enable",
+			"memory": "Memory",
+			"temperature": "Temp",
+			"uptime": "Uptime"
+		},
+		"statusSub": {
+			"clients": "{count} client(s) active",
+			"reenables": "Re-enables in {duration}"
+		},
+		"system": {
+			"empty": "No system data available."
+		},
+		"tabs": {
+			"domains": "Domains",
+			"groups": "Groups",
+			"home": "Home",
+			"lists": "Lists"
+		}
+	},
+	"meta": {
+		"summary": "A browser extension to control your Pi-hole conveniently from within the browser.",
+		"description": {
+			"footer": "Pi-hole In One is <link>open source</link>.",
+			"disclaimer": "The extension is not associated with or endorsed by Pi-hole.",
+			"featuresTitle": "Features:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Blocking control",
+				"description": "Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically."
+			},
+			"domain": {
+				"title": "Domain management",
+				"description": "See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface."
+			},
+			"stats": {
+				"title": "Stats",
+				"description": "View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type."
+			},
+			"systemInfo": {
+				"title": "System info",
+				"description": "See uptime, CPU load, memory usage, and temperature at a glance in the popup."
+			},
+			"groups": {
+				"title": "Groups and lists",
+				"description": "Enable or disable blocking groups and individual blocklists directly from the popup."
+			},
+			"multiInstance": {
+				"title": "Multiple Pi-holes",
+				"description": "Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup."
+			},
+			"badge": {
+				"title": "Toolbar badge",
+				"description": "Shows blocked percentage, ON/OFF state, or active client count."
+			},
+			"customization": {
+				"title": "Customization",
+				"description": "Adjust the popup layout, badge behavior, language, and more from the extension options."
+			}
+		}
+	}
+}

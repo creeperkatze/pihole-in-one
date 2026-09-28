@@ -7,22 +7,18 @@
 	/>
 	<div v-else class="flex flex-col items-center gap-2 py-8 px-4 text-center">
 		<Shield class="size-6 text-muted" />
-		<p class="m-0 text-xs text-secondary">{{ formatMessage(messages['popup.lists.empty']) }}</p>
+		<p class="m-0 text-xs text-secondary">{{ t('popup.lists.empty') }}</p>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Shield } from '@lucide/vue'
+import { useI18n } from 'vue-i18n'
 
-import { useVIntl } from '../../../utils/i18n'
 import ListsCard from '../components/ListsCard.vue'
 import { usePopupInstances } from '../usePopupInstances'
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.lists.empty': { id: 'popup.lists.empty', defaultMessage: 'No lists found.' },
-})
+const { t } = useI18n()
 
 const { settings, states, activeInstance } = usePopupInstances()
 </script>

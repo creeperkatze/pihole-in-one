@@ -1,8 +1,8 @@
 <template>
 	<section class="flex flex-col">
 		<SectionHeader
-			:title="formatMessage(messages['options.customization.title'])"
-			:description="formatMessage(messages['options.customization.description'])"
+			:title="t('options.customization.title')"
+			:description="t('options.customization.description')"
 		/>
 		<div v-if="initialized" class="flex max-w-xl flex-col gap-2 p-4">
 			<OptionSelect
@@ -61,81 +61,22 @@
 </template>
 
 <script lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Bell, Languages, Monitor, Tag } from '@lucide/vue'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { useVIntl } from '../../../utils/i18n'
-import { LOCALES } from '../../../utils/locales'
-
-export const messages = defineMessages({
-	'options.customization.title': {
-		id: 'options.customization.title',
-		defaultMessage: 'Customization',
-	},
-	'options.customization.description': {
-		id: 'options.customization.description',
-		defaultMessage: 'Adjust the appearance and behavior of the extension.',
-	},
-	'options.language.label': { id: 'options.language.label', defaultMessage: 'Language' },
-	'options.language.description': {
-		id: 'options.language.description',
-		defaultMessage:
-			'Choose the language for the extension interface. Help translate on {crowdin}. Some languages may be incomplete.',
-	},
-	'options.colorScheme.label': { id: 'options.colorScheme.label', defaultMessage: 'Color scheme' },
-	'options.colorScheme.description': {
-		id: 'options.colorScheme.description',
-		defaultMessage: 'Choose between light, dark, or system default.',
-	},
-	'options.colorScheme.auto': { id: 'options.colorScheme.auto', defaultMessage: 'System default' },
-	'options.colorScheme.dark': { id: 'options.colorScheme.dark', defaultMessage: 'Dark' },
-	'options.colorScheme.light': { id: 'options.colorScheme.light', defaultMessage: 'Light' },
-	'options.customization.badge.label': {
-		id: 'options.customization.badge.label',
-		defaultMessage: 'Badge appearance',
-	},
-	'options.customization.badge.description': {
-		id: 'options.customization.badge.description',
-		defaultMessage: 'What to display on the extension icon badge.',
-	},
-	'options.customization.badge.off': {
-		id: 'options.customization.badge.off',
-		defaultMessage: 'Off',
-	},
-	'options.customization.badge.state': {
-		id: 'options.customization.badge.state',
-		defaultMessage: 'State',
-	},
-	'options.customization.badge.percentage': {
-		id: 'options.customization.badge.percentage',
-		defaultMessage: 'Percentage blocked',
-	},
-	'options.customization.badge.clients': {
-		id: 'options.customization.badge.clients',
-		defaultMessage: 'Active clients',
-	},
-	'options.customization.diagnosisBadge.label': {
-		id: 'options.customization.diagnosisBadge.label',
-		defaultMessage: 'Diagnosis notice badge',
-	},
-	'options.customization.diagnosisBadge.description': {
-		id: 'options.customization.diagnosisBadge.description',
-		defaultMessage:
-			'Show a badge on the popup’s "Open Pi-hole" button when there are unread diagnosis messages.',
-	},
-})
+import { LOCALES } from '../../../utils/i18n'
 
 export function useCustomizationOptions() {
-	const { formatMessage } = useVIntl()
+	const { t } = useI18n()
 
 	const locale = computed(() => ({
 		id: 'locale',
 		type: 'select' as const,
 		formKey: 'locale' as const,
 		icon: Languages,
-		label: formatMessage(messages['options.language.label']),
-		description: formatMessage(messages['options.language.description'], { crowdin: 'Crowdin' }),
+		label: t('options.language.label'),
+		description: t('options.language.description', { crowdin: 'Crowdin' }),
 		options: LOCALES.map((l) => ({ value: l.code, label: l.name })),
 	}))
 
@@ -144,12 +85,12 @@ export function useCustomizationOptions() {
 		type: 'select' as const,
 		formKey: 'colorScheme' as const,
 		icon: Monitor,
-		label: formatMessage(messages['options.colorScheme.label']),
-		description: formatMessage(messages['options.colorScheme.description']),
+		label: t('options.colorScheme.label'),
+		description: t('options.colorScheme.description'),
 		options: [
-			{ value: 'auto', label: formatMessage(messages['options.colorScheme.auto']) },
-			{ value: 'dark', label: formatMessage(messages['options.colorScheme.dark']) },
-			{ value: 'light', label: formatMessage(messages['options.colorScheme.light']) },
+			{ value: 'auto', label: t('options.colorScheme.auto') },
+			{ value: 'dark', label: t('options.colorScheme.dark') },
+			{ value: 'light', label: t('options.colorScheme.light') },
 		],
 	}))
 
@@ -158,16 +99,16 @@ export function useCustomizationOptions() {
 		type: 'select' as const,
 		formKey: 'badgeMode' as const,
 		icon: Tag,
-		label: formatMessage(messages['options.customization.badge.label']),
-		description: formatMessage(messages['options.customization.badge.description']),
+		label: t('options.customization.badge.label'),
+		description: t('options.customization.badge.description'),
 		options: [
-			{ value: 'off', label: formatMessage(messages['options.customization.badge.off']) },
-			{ value: 'state', label: formatMessage(messages['options.customization.badge.state']) },
+			{ value: 'off', label: t('options.customization.badge.off') },
+			{ value: 'state', label: t('options.customization.badge.state') },
 			{
 				value: 'percentage',
-				label: formatMessage(messages['options.customization.badge.percentage']),
+				label: t('options.customization.badge.percentage'),
 			},
-			{ value: 'clients', label: formatMessage(messages['options.customization.badge.clients']) },
+			{ value: 'clients', label: t('options.customization.badge.clients') },
 		],
 	}))
 
@@ -176,8 +117,8 @@ export function useCustomizationOptions() {
 		type: 'toggle' as const,
 		formKey: 'showDiagnosisBadge' as const,
 		icon: Bell,
-		label: formatMessage(messages['options.customization.diagnosisBadge.label']),
-		description: formatMessage(messages['options.customization.diagnosisBadge.description']),
+		label: t('options.customization.diagnosisBadge.label'),
+		description: t('options.customization.diagnosisBadge.description'),
 	}))
 
 	return { locale, colorScheme, badgeMode, showDiagnosisBadge }
@@ -193,5 +134,5 @@ import type { BadgeMode, ColorScheme } from '../../../utils/settings'
 
 const { form, saveError, initialized } = useSettings()
 const { locale, colorScheme, badgeMode, showDiagnosisBadge } = useCustomizationOptions()
-const { formatMessage } = useVIntl()
+const { t } = useI18n()
 </script>

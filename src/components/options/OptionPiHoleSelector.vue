@@ -5,16 +5,16 @@
 				<Server class="size-5 shrink-0 text-muted" />
 				<div>
 					<div class="text-sm font-medium">
-						{{ formatMessage(messages['options.piholeselector.title']) }}
+						{{ t('options.piholeselector.title') }}
 					</div>
 					<div class="text-xs text-secondary mt-0.5">
-						{{ formatMessage(messages['options.piholeselector.description']) }}
+						{{ t('options.piholeselector.description') }}
 					</div>
 				</div>
 			</div>
 			<Button class="shrink-0" @click="addInstance">
 				<Plus class="size-4" />
-				{{ formatMessage(messages['options.piholeselector.addButton']) }}
+				{{ t('options.piholeselector.addButton') }}
 			</Button>
 		</div>
 
@@ -23,7 +23,7 @@
 				v-if="localValue.length === 0"
 				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
 			>
-				{{ formatMessage(messages['options.piholeselector.empty']) }}
+				{{ t('options.piholeselector.empty') }}
 			</div>
 
 			<div
@@ -35,12 +35,10 @@
 				<div class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised">
 					<div class="min-w-0 flex-1">
 						<div class="text-sm font-medium truncate">
-							{{
-								inst.name || formatMessage(messages['options.piholeselector.instance.fallbackName'])
-							}}
+							{{ inst.name || t('options.piholeselector.instance.fallbackName') }}
 						</div>
 						<div class="text-xs text-secondary truncate">
-							{{ inst.baseUrl || formatMessage(messages['options.piholeselector.instance.noUrl']) }}
+							{{ inst.baseUrl || t('options.piholeselector.instance.noUrl') }}
 						</div>
 					</div>
 					<div class="flex items-center gap-2">
@@ -75,22 +73,20 @@
 				>
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`name-${inst.id}`">
-							{{ formatMessage(messages['options.piholeselector.instance.name.label']) }}
+							{{ t('options.piholeselector.instance.name.label') }}
 						</label>
 						<Input
 							:id="`name-${inst.id}`"
 							v-model="inst.name"
 							type="text"
 							class="w-full"
-							:placeholder="
-								formatMessage(messages['options.piholeselector.instance.name.placeholder'])
-							"
+							:placeholder="t('options.piholeselector.instance.name.placeholder')"
 							@input="isDirty = true"
 						/>
 					</div>
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`url-${inst.id}`">
-							{{ formatMessage(messages['options.piholeselector.instance.url.label']) }}
+							{{ t('options.piholeselector.instance.url.label') }}
 						</label>
 						<Input
 							:id="`url-${inst.id}`"
@@ -106,21 +102,19 @@
 					</div>
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`pass-${inst.id}`">
-							{{ formatMessage(messages['options.piholeselector.instance.apiPassword.label']) }}
+							{{ t('options.piholeselector.instance.apiPassword.label') }}
 						</label>
 						<Input
 							:id="`pass-${inst.id}`"
 							v-model="inst.apiPassword"
 							type="password"
 							class="w-full"
-							:placeholder="
-								formatMessage(messages['options.piholeselector.instance.apiPassword.placeholder'])
-							"
+							:placeholder="t('options.piholeselector.instance.apiPassword.placeholder')"
 							autocomplete="off"
 							@input="isDirty = true"
 						/>
 						<p class="m-0 text-xs text-secondary">
-							{{ formatMessage(messages['options.piholeselector.instance.apiPassword.hint']) }}
+							{{ t('options.piholeselector.instance.apiPassword.hint') }}
 						</p>
 					</div>
 
@@ -129,7 +123,7 @@
 						class="flex items-center gap-1.5 text-xs text-zinc-400"
 					>
 						<Loader2 class="size-4 animate-spin" />
-						{{ formatMessage(messages['options.piholeselector.instance.testing']) }}
+						{{ t('options.piholeselector.instance.testing') }}
 					</div>
 					<div
 						v-else-if="testStates[inst.id]?.status === 'ok'"
@@ -171,7 +165,6 @@ export type PiHoleOption = {
 </script>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import {
 	CheckCircle2,
 	ChevronDown,
@@ -184,11 +177,11 @@ import {
 } from '@lucide/vue'
 import { PiHoleError } from 'pihole-js'
 import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { browser } from 'wxt/browser'
 
 import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient } from '../../utils/api'
-import { useVIntl } from '../../utils/i18n'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
 import Button from '../Button.vue'
 import Input from '../Input.vue'
@@ -201,69 +194,7 @@ const emit = defineEmits<{
 	'update:modelValue': [instances: PiholeInstance[]]
 }>()
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'options.piholeselector.title': {
-		id: 'options.piholeselector.title',
-		defaultMessage: 'Pi-holes',
-	},
-	'options.piholeselector.description': {
-		id: 'options.piholeselector.description',
-		defaultMessage: 'Configure one or more Pi-hole instances.',
-	},
-	'options.piholeselector.empty': {
-		id: 'options.piholeselector.empty',
-		defaultMessage: 'No Pi-holes configured. Add one to get started.',
-	},
-	'options.piholeselector.instance.fallbackName': {
-		id: 'options.piholeselector.instance.fallbackName',
-		defaultMessage: 'Pi-hole',
-	},
-	'options.piholeselector.instance.noUrl': {
-		id: 'options.piholeselector.instance.noUrl',
-		defaultMessage: 'No URL set',
-	},
-	'options.piholeselector.instance.name.label': {
-		id: 'options.piholeselector.instance.name.label',
-		defaultMessage: 'Name',
-	},
-	'options.piholeselector.instance.name.placeholder': {
-		id: 'options.piholeselector.instance.name.placeholder',
-		defaultMessage: 'Pi-hole',
-	},
-	'options.piholeselector.instance.url.label': {
-		id: 'options.piholeselector.instance.url.label',
-		defaultMessage: 'URL',
-	},
-	'options.piholeselector.instance.apiPassword.label': {
-		id: 'options.piholeselector.instance.apiPassword.label',
-		defaultMessage: 'Password',
-	},
-	'options.piholeselector.instance.apiPassword.placeholder': {
-		id: 'options.piholeselector.instance.apiPassword.placeholder',
-		defaultMessage: 'Leave empty if none is set',
-	},
-	'options.piholeselector.instance.apiPassword.hint': {
-		id: 'options.piholeselector.instance.apiPassword.hint',
-		defaultMessage: 'Your admin password, or an app password from Settings > API.',
-	},
-	'options.piholeselector.instance.testing': {
-		id: 'options.piholeselector.instance.testing',
-		defaultMessage: 'Testing connection...',
-	},
-	'options.piholeselector.instance.connected': {
-		id: 'options.piholeselector.instance.connected',
-		defaultMessage: 'Connected!',
-	},
-	'options.piholeselector.instance.connectionFailed': {
-		id: 'options.piholeselector.instance.connectionFailed',
-		defaultMessage: 'Connection failed',
-	},
-	'options.piholeselector.addButton': {
-		id: 'options.piholeselector.addButton',
-		defaultMessage: 'Add Pi-hole',
-	},
-})
+const { t } = useI18n()
 
 // Local working copy, only committed to parent on explicit Save
 const localValue = ref<PiholeInstance[]>(props.modelValue.map((i) => ({ ...i })))
@@ -364,19 +295,19 @@ async function runTest(id: string): Promise<void> {
 		await getPiHoleClient(inst).getSummary()
 		testStates.value[id] = {
 			status: 'ok',
-			message: formatMessage(messages['options.piholeselector.instance.connected']),
+			message: t('options.piholeselector.instance.connected'),
 		}
 	} catch (e) {
 		const apiMessage = getApiMessageForError(e)
 		testStates.value[id] = {
 			status: 'error',
 			message: apiMessage
-				? formatMessage(apiMessage)
+				? t(apiMessage)
 				: e instanceof PiHoleError
 					? e.message
 					: e instanceof Error
 						? e.message
-						: formatMessage(messages['options.piholeselector.instance.connectionFailed']),
+						: t('options.piholeselector.instance.connectionFailed'),
 		}
 	}
 }

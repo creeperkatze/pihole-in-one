@@ -24,9 +24,7 @@
 				:variant="allowlistedByUser ? 'success' : 'outline'"
 				:disabled="acting"
 				:title="
-					allowlistedByUser
-						? formatMessage(messages['popup.domain.removeFromWhitelist'])
-						: formatMessage(messages['popup.domain.whitelist'])
+					allowlistedByUser ? t('popup.domain.removeFromWhitelist') : t('popup.domain.whitelist')
 				"
 				@click="toggleAllowlist"
 			>
@@ -35,11 +33,7 @@
 			<Button
 				:variant="blockedByUser ? 'danger' : 'outline'"
 				:disabled="acting"
-				:title="
-					blockedByUser
-						? formatMessage(messages['popup.domain.unblock'])
-						: formatMessage(messages['popup.domain.block'])
-				"
+				:title="blockedByUser ? t('popup.domain.unblock') : t('popup.domain.block')"
 				@click="toggleBlock"
 			>
 				<X class="size-4" />
@@ -49,39 +43,16 @@
 </template>
 
 <script setup lang="ts">
-import { defineMessages } from '@formatjs/intl'
 import { Check, X } from '@lucide/vue'
 import type { DomainEntry } from 'pihole-js'
 import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/Button.vue'
 import { getPiHoleClient } from '../../../utils/api'
-import { useVIntl } from '../../../utils/i18n'
 import type { PiholeInstance } from '../../../utils/settings'
 
-const { formatMessage } = useVIntl()
-const messages = defineMessages({
-	'popup.domain.whitelistedByUser': {
-		id: 'popup.domain.whitelistedByUser',
-		defaultMessage: 'Whitelisted by user',
-	},
-	'popup.domain.blockedByUser': {
-		id: 'popup.domain.blockedByUser',
-		defaultMessage: 'Blocked by user',
-	},
-	'popup.domain.notBlocked': { id: 'popup.domain.notBlocked', defaultMessage: 'Not blocked' },
-	'popup.domain.blockedByListPlural': {
-		id: 'popup.domain.blockedByListPlural',
-		defaultMessage: 'Blocked by "{list}" +{count} more',
-	},
-	'popup.domain.whitelist': { id: 'popup.domain.whitelist', defaultMessage: 'Whitelist' },
-	'popup.domain.removeFromWhitelist': {
-		id: 'popup.domain.removeFromWhitelist',
-		defaultMessage: 'Remove from whitelist',
-	},
-	'popup.domain.block': { id: 'popup.domain.block', defaultMessage: 'Block' },
-	'popup.domain.unblock': { id: 'popup.domain.unblock', defaultMessage: 'Unblock' },
-})
+const { t } = useI18n()
 
 const props = defineProps<{
 	domain: string
@@ -114,15 +85,15 @@ function listName(address: string, comment: string | null): string {
 }
 
 const statusText = computed(() => {
-	if (allowlistedByUser.value) return formatMessage(messages['popup.domain.whitelistedByUser'])
-	if (blockedByUser.value) return formatMessage(messages['popup.domain.blockedByUser'])
+	if (allowlistedByUser.value) return t('popup.domain.whitelistedByUser')
+	if (blockedByUser.value) return t('popup.domain.blockedByUser')
 	if (gravityListNames.value.length === 1) return gravityListNames.value[0]
 	if (gravityListNames.value.length > 1)
-		return formatMessage(messages['popup.domain.blockedByListPlural'], {
+		return t('popup.domain.blockedByListPlural', {
 			list: gravityListNames.value[0],
 			count: gravityListNames.value.length - 1,
 		})
-	return formatMessage(messages['popup.domain.notBlocked'])
+	return t('popup.domain.notBlocked')
 })
 
 const primary = computed(() => props.instances[0])

@@ -1,0 +1,248 @@
+{
+	"api": {
+		"error": {
+			"passwordIncorrect": "Contraseña incorrecta",
+			"passwordRequired": "Se necesita contraseña",
+			"timeout": "Se ha agotado el tiempo de espera de la conexión"
+		}
+	},
+	"options": {
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-hole",
+				"apiPassword": {
+					"placeholder": "Déjalo en blanco si no hay"
+				},
+				"connected": "¡Conectado!",
+				"connectionFailed": "Conexión fallida",
+				"name": {
+					"label": "Nombre",
+					"placeholder": "Pi-hole"
+				},
+				"noUrl": "No hay URL establecida",
+				"testing": "Comprobando conexión...",
+				"url": {
+					"label": "URL"
+				}
+			},
+			"addButton": "Añadir Pi-hole",
+			"description": "Configura una o más instancias de Pi-hole.",
+			"empty": "No hay Pi-holes configuradas. Añade una para empezar.",
+			"title": "Pi-holes"
+		},
+		"colorScheme": {
+			"auto": "Predeterminado del sistema",
+			"dark": "Oscuro",
+			"description": "Elige entre claro, oscuro o el valor predeterminado del sistema.",
+			"label": "Esquema de color",
+			"light": "Claro"
+		},
+		"connection": {
+			"connectionTimeout": {
+				"description": "Cuánto tiempo esperar antes de que una solicitud a un Pi-hole sea tratada como fallida.",
+				"label": "Tiempo de espera"
+			},
+			"description": "Gestiona tus instancias de Pi-hole y la configuración del refresco del icono.",
+			"refreshInterval": {
+				"description": "Cada cuánto tiempo se actualiza la insignia. Elige entre un minuto y una hora.",
+				"label": "Intervalo de actualización del icono"
+			},
+			"title": "Conexión"
+		},
+		"customization": {
+			"badge": {
+				"clients": "Clientes activos",
+				"description": "Qué mostrar en el icono de la extensión.",
+				"label": "Apariencia del icono",
+				"off": "Nada",
+				"percentage": "Porcentaje bloqueado",
+				"state": "Estado"
+			},
+			"description": "Ajusta la apariencia y el comportamiento de la extensión.",
+			"title": "Personalización"
+		},
+		"data": {
+			"description": "Exporta e importa tu configuración de la extensión.",
+			"export": {
+				"button": "Exportar",
+				"description": "Descarga tu configuración actual como un archivo JSON.",
+				"label": "Exportar configuración",
+				"warning": {
+					"cancel": "Cancelar",
+					"confirm": "Exportar",
+					"title": "¿Exportar configuración?"
+				}
+			},
+			"import": {
+				"button": "Importar",
+				"description": "Restaura la configuración desde un archivo JSON exportado previamente.",
+				"error": {
+					"invalid": "Archivo de configuración inválido",
+					"read": "No se ha podido leer el archivo"
+				},
+				"label": "Importar configuración",
+				"success": "Configuración importada correctamente"
+			},
+			"reset": {
+				"button": "Restablecer",
+				"confirm": {
+					"cancel": "Cancelar",
+					"confirm": "Restablecer",
+					"description": "Esto restablecerá todos los ajustes a sus valores predeterminados y se borrarán todas las instancias de Pi-hole configuradas. Esto no se puede deshacer.",
+					"title": "¿Restablecer ajustes?"
+				},
+				"description": "Restablece todos los ajustes a sus valores predeterminados.",
+				"label": "Restablecer ajustes"
+			},
+			"title": "Datos"
+		},
+		"footer": {
+			"checking": "Comprobando",
+			"latestVersion": "Última versión",
+			"updateAvailable": "Actualización disponible"
+		},
+		"language": {
+			"description": "Elige el idioma de la interfaz de la extensión. Ayuda a traducirla en {crowdin}. Algunos idiomas pueden estar incompletos.",
+			"label": "Idioma"
+		},
+		"search": {
+			"description": "Mostrando opciones que coinciden con \"{query}\"",
+			"noResults": "No se han encontrado opciones",
+			"placeholder": "Buscar opciones...",
+			"title": "Resultados de la búsqueda"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Ayuda a traducir",
+				"title": "Ver en Crowdin"
+			},
+			"github": {
+				"description": "Deja una estrella",
+				"title": "Ver en GitHub"
+			},
+			"kofi": {
+				"description": "Cómprame un café",
+				"title": "Dona en Ko-fi"
+			},
+			"toggle": {
+				"close": "Ocultar barra lateral",
+				"open": "Mostrar barra lateral"
+			}
+		},
+		"tabs": {
+			"connection": "Conexión",
+			"customization": "Personalización",
+			"data": "Datos"
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "APAGADO",
+			"on": "ENCENDIDO"
+		},
+		"disableFor": "Desactivar durante",
+		"domain": {
+			"block": "Bloquear",
+			"blockedByListPlural": "Bloqueado por \"{list}\" y +{count} más",
+			"blockedByUser": "Bloqueado por el usuario",
+			"notBlocked": "No bloqueado",
+			"removeFromWhitelist": "Eliminar de la lista blanca",
+			"unblock": "Desbloquear",
+			"whitelist": "Lista blanca",
+			"whitelistedByUser": "Añadido a la lista blanca por el usuario"
+		},
+		"donatePrompt": {
+			"dismiss": "Descartar",
+			"message": "Pi-hole In One siempre será gratis, de código abierto, y sin anuncios. Si lo encontraste útil, puedes apoyar el desarrollo con una pequeña donación.",
+			"title": "Apoya la extensión"
+		},
+		"error": {
+			"actionFailed": "Acción fallida",
+			"fetchFailed": "No se ha podido obtener el estado",
+			"fix": "Reparar"
+		},
+		"footer": {
+			"checking": "Comprobando",
+			"donate": "Donar",
+			"latestVersion": "Última versión",
+			"starOnGitHub": "En GitHub",
+			"updateAvailable": "Actualización disponible"
+		},
+		"groups": {
+			"updateError": "No se ha podido actualizar el grupo"
+		},
+		"lists": {
+			"updateError": "No se pudo actualizar la lista"
+		},
+		"notConfigured": {
+			"message": "Configura tu Pi-hole para empezar.",
+			"openSettings": "Abrir configuración"
+		},
+		"openInstance": "Abrir {name}",
+		"refresh": "Actualizar",
+		"settings": "Configuración",
+		"statistics": "Estadísticas",
+		"stats": {
+			"blockedToday": "Bloqueadas hoy",
+			"cached": "Guardado en Caché",
+			"queriesToday": "Peticiones de hoy"
+		},
+		"status": {
+			"title": "Estado",
+			"blockingDisabled": "Bloqueo desactivado",
+			"blockingEnabled": "Bloqueo activado",
+			"cpu": "CPU",
+			"disable": "Deshabilitar",
+			"enable": "Habilitar",
+			"memory": "Memoria",
+			"temperature": "Temperatura",
+			"uptime": "Tiempo de funcionamiento"
+		},
+		"statusSub": {
+			"clients": "{count} cliente(s) activo(s)",
+			"reenables": "Se volverá a activar en {duration}"
+		}
+	},
+	"meta": {
+		"summary": "Una extensión de navegador para controlar tu Pi-hole cómodamente desde tu navegador.",
+		"description": {
+			"footer": "Pi-hole In One es <link>de código abierto</link>.",
+			"disclaimer": "Esta extensión no está asociada ni respaldada por Pi-hole.",
+			"featuresTitle": "Características:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Control del bloqueo",
+				"description": "Activa o desactiva el bloqueo de Pi-hole desde la ventana emergente, o desactívalo temporalmente durante un tiempo preestablecido (10s, 30s, 5m, 30m, 1h) para que se vuelva a activar automáticamente."
+			},
+			"domain": {
+				"title": "Gestión de dominios",
+				"description": "Comprueba si el dominio de la pestaña actual está bloqueado o permitido y cámbialo intstantáneamente, sin abrir la interfaz de administración de Pi-hole."
+			},
+			"stats": {
+				"title": "Estadísticas",
+				"description": "Consulta el recuento de consultas de hoy, el número de consultas bloqueadas, el porcentaje de bloqueos y resultados en la caché, cada uno con una gráfica de tendencia de 24 horas. Los gráficos de anillo opcionales desglosan las consultas por estado y tipo."
+			},
+			"systemInfo": {
+				"title": "Información del sistema",
+				"description": "Consulta el tiempo en funcionamiento, la carga de la CPU y la temperatura de un vistazo en la ventana emergente."
+			},
+			"groups": {
+				"title": "Grupos y listas",
+				"description": "Activa o desactiva grupos de bloqueo y listas de bloqueo individuales directamente desde la ventana emergente."
+			},
+			"multiInstance": {
+				"title": "Múltiples Pi-hole",
+				"description": "Conéctate a varios Pi-holes y cambia entre ellos con una pestaña por instancia en la ventana emergente."
+			},
+			"badge": {
+				"title": "Icono en la barra de herramientas",
+				"description": "Muestra el porcentaje de bloqueos, si está encendido o el número de clientes activos."
+			},
+			"customization": {
+				"title": "Personalización",
+				"description": "Ajusta la disposición de la ventana emergente, el comportamiento del icono, el idioma y más desde las opciones de la extensión."
+			}
+		}
+	}
+}

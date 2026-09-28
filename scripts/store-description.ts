@@ -13,30 +13,30 @@ const language =
 const markdown = process.argv.includes('--markdown')
 const summary = process.argv.includes('--summary')
 
-type MessageFile = Record<string, { defaultMessage?: string }>
-type Messages = Record<string, string>
+type Messages = { [key: string]: string | Messages }
 
-function loadMessages(locale: string, file: string): Messages {
-	const enPath = resolve(localesDirectory, 'en-US', `${file}.json`)
-	const localePath = resolve(localesDirectory, locale, `${file}.json`)
-	const en: MessageFile = JSON.parse(readFileSync(enPath, 'utf8'))
-	let local: MessageFile = {}
+function loadMessages(locale: string): Messages {
 	try {
-		local = JSON.parse(readFileSync(localePath, 'utf8'))
+		return JSON.parse(readFileSync(resolve(localesDirectory, `${locale}.json`), 'utf8'))
 	} catch {
 		console.warn(`Could not load messages for locale "${locale}", falling back to en-US.`)
+		return {}
 	}
-	const merged: Messages = {}
-	for (const key of Object.keys(en)) {
-		merged[key] = (local[key]?.defaultMessage || en[key]?.defaultMessage) ?? ''
-	}
-	return merged
 }
 
-const meta = loadMessages(language, 'meta')
+function lookup(messages: Messages, key: string): string | undefined {
+	let node: string | Messages | undefined = messages
+	for (const part of key.split('.')) {
+		node = typeof node === 'object' ? node[part] : undefined
+	}
+	return typeof node === 'string' && node ? node : undefined
+}
+
+const en = loadMessages('en-US')
+const local = loadMessages(language)
 
 function t(key: string): string {
-	return meta[key] ?? ''
+	return lookup(local, key) ?? lookup(en, key) ?? ''
 }
 
 const REPO_URL = 'https://github.com/creeperkatze/pihole-in-one'
