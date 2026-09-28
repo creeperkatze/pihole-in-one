@@ -189,7 +189,7 @@ const tabs = computed(() => [
 ])
 
 const currentTabTitle = computed(() => {
-	return tabs.value.find((tab) => '/' + tab.id === route.path)?.label ?? 'Settings'
+	return tabs.value.find((tab) => '/' + tab.id === route.path)?.label ?? t('options.title')
 })
 
 watchEffect(() => {

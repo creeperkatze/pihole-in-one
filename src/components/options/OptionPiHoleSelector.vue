@@ -92,9 +92,13 @@
 							placeholder=""
 							@input="isDirty = true"
 						/>
-						<p class="m-0 text-xs text-secondary">
-							No trailing slash or <code class="font-mono">/api</code>.
-						</p>
+						<i18n-t
+							keypath="options.piholeselector.instance.url.hint"
+							tag="p"
+							class="m-0 text-xs text-secondary"
+						>
+							<template #api><code class="font-mono">/api</code></template>
+						</i18n-t>
 					</div>
 					<div class="flex flex-col gap-1.5">
 						<label class="text-sm font-medium" :for="`pass-${inst.id}`">
@@ -142,7 +146,7 @@
 					<div class="flex justify-start">
 						<Button variant="primary" :disabled="!isDirty" @click="save">
 							<Save class="size-4" />
-							Save
+							{{ t('options.piholeselector.instance.save') }}
 						</Button>
 					</div>
 				</div>

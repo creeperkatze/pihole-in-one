@@ -10,6 +10,7 @@
 		}
 	},
 	"options": {
+		"title": "Settings",
 		"piholeselector": {
 			"instance": {
 				"fallbackName": "Pi-hole",
@@ -27,8 +28,10 @@
 				"noUrl": "No URL set",
 				"testing": "Testing connection...",
 				"url": {
-					"label": "URL"
-				}
+					"label": "URL",
+					"hint": "No trailing slash or {api}."
+				},
+				"save": "Save"
 			},
 			"addButton": "Add Pi-hole",
 			"description": "Configure one or more Pi-hole instances.",
