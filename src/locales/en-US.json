@@ -230,7 +230,7 @@
 			"gravity": {
 				"title": "Update gravity",
 				"button": "Update",
-				"running": "Updating…",
+				"running": "Updating",
 				"done": "Updated",
 				"error": "Failed to update gravity"
 			}
