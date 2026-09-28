@@ -6,9 +6,11 @@ import { browser } from 'wxt/browser'
 
 import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient } from '../../utils/api'
+import { INSTANCE_ICON_IDS, INSTANCE_ICONS, instanceIcon } from '../../utils/instance-icons'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
 import Modal from '../Modal.vue'
 import Button from '../ui/Button.vue'
+import InfoTip from '../ui/InfoTip.vue'
 import Input from '../ui/Input.vue'
 
 const props = defineProps<{
@@ -209,32 +211,40 @@ watch(
 			<li
 				v-for="inst in rows"
 				:key="inst.id"
-				class="overflow-hidden rounded-lg border border-border bg-surface-control"
+				class="rounded-lg border border-border bg-surface-control"
 			>
 				<div class="flex min-w-0 items-center gap-3 px-3 py-2">
 					<button
 						type="button"
-						class="flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full disabled:cursor-default"
+						class="relative flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-surface-3 text-secondary disabled:cursor-default"
 						:title="testStates[inst.id]?.message ?? t('options.piholeselector.instance.retest')"
 						:aria-label="t('options.piholeselector.instance.retest')"
 						:disabled="draft?.isNew && draft.id === inst.id"
 						@click="runTest(inst)"
 					>
-						<Loader2
-							v-if="testStates[inst.id]?.status === 'testing'"
-							class="size-4 animate-spin text-secondary"
+						<component
+							:is="instanceIcon(draft?.id === inst.id ? draft.icon : inst.icon)"
+							class="size-4.5"
 						/>
 						<span
-							v-else
-							class="size-2.5 rounded-full"
-							:class="
-								testStates[inst.id]?.status === 'ok'
-									? 'bg-pihole-green ring-[3px] ring-pihole-green/25'
-									: testStates[inst.id]?.status === 'error'
-										? 'bg-pihole-red ring-[3px] ring-pihole-red/25'
-										: 'bg-border'
-							"
-						/>
+							class="absolute -inset-e-1 -bottom-1 flex size-3.5 items-center justify-center rounded-full bg-surface-control"
+						>
+							<Loader2
+								v-if="testStates[inst.id]?.status === 'testing'"
+								class="size-3 animate-spin text-secondary"
+							/>
+							<span
+								v-else
+								class="size-2 rounded-full"
+								:class="
+									testStates[inst.id]?.status === 'ok'
+										? 'bg-pihole-green'
+										: testStates[inst.id]?.status === 'error'
+											? 'bg-pihole-red'
+											: 'bg-border'
+								"
+							/>
+						</span>
 					</button>
 
 					<div class="min-w-0 flex-1">
@@ -306,9 +316,12 @@ watch(
 							/>
 						</div>
 						<div class="flex flex-col gap-1.5">
-							<label class="text-xs font-medium text-secondary" :for="`pass-${inst.id}`">
-								{{ t('options.piholeselector.instance.apiPassword.label') }}
-							</label>
+							<div class="flex items-center gap-1.5">
+								<label class="text-xs font-medium text-secondary" :for="`pass-${inst.id}`">
+									{{ t('options.piholeselector.instance.apiPassword.label') }}
+								</label>
+								<InfoTip :text="t('options.piholeselector.instance.apiPassword.hint')" />
+							</div>
 							<div class="relative">
 								<Input
 									:id="`pass-${inst.id}`"
@@ -332,9 +345,31 @@ watch(
 									<Eye v-else class="size-4" />
 								</button>
 							</div>
-							<p class="text-xs text-secondary">
-								{{ t('options.piholeselector.instance.apiPassword.hint') }}
-							</p>
+						</div>
+					</div>
+
+					<div class="flex flex-col gap-1.5">
+						<span :id="`icon-${inst.id}`" class="text-xs font-medium text-secondary">
+							{{ t('options.piholeselector.instance.icon.label') }}
+						</span>
+						<div
+							class="flex flex-wrap gap-1.5"
+							role="radiogroup"
+							:aria-labelledby="`icon-${inst.id}`"
+						>
+							<Button
+								v-for="id in INSTANCE_ICON_IDS"
+								:key="id"
+								size="icon"
+								role="radio"
+								:active="(draft.icon ?? 'server') === id"
+								:aria-checked="(draft.icon ?? 'server') === id"
+								:title="t(`options.piholeselector.instance.icon.options.${id}`)"
+								:aria-label="t(`options.piholeselector.instance.icon.options.${id}`)"
+								@click="draft.icon = id"
+							>
+								<component :is="INSTANCE_ICONS[id]" class="size-4" />
+							</Button>
 						</div>
 					</div>
 

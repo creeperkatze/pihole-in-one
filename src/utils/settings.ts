@@ -5,6 +5,7 @@ export interface PiholeInstance {
 	name: string
 	baseUrl: string
 	apiPassword: string
+	icon?: string
 }
 
 export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'

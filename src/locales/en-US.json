@@ -36,7 +36,23 @@
 				"save": "Save",
 				"edit": "Edit",
 				"retest": "Test connection again",
-				"cancel": "Cancel"
+				"cancel": "Cancel",
+				"icon": {
+					"label": "Icon",
+					"options": {
+						"server": "Server",
+						"house": "Home",
+						"building": "Office",
+						"briefcase": "Work",
+						"laptop": "Laptop",
+						"monitor": "Computer",
+						"router": "Router",
+						"wifi": "Wi-Fi",
+						"cloud": "Cloud",
+						"hardDrive": "Storage",
+						"cpu": "Raspberry Pi"
+					}
+				}
 			},
 			"addButton": "Add Pi-hole",
 			"description": "Configure one or more Pi-hole instances.",

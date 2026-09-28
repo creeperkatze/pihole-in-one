@@ -198,6 +198,7 @@ import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
 import Button from '../../components/ui/Button.vue'
+import { instanceIcon } from '../../utils/instance-icons'
 import { getLatestVersionTag } from '../../utils/update-check'
 import PopupTabs, { type PopupTab } from './components/PopupTabs.vue'
 import { usePopupInstances } from './usePopupInstances'
@@ -256,6 +257,7 @@ const instanceTabs = computed<PopupTab[]>(
 		settings.value?.instances.map((inst, i) => ({
 			id: inst.id,
 			label: inst.name || `${t('options.piholeselector.instance.fallbackName')} ${i + 1}`,
+			icon: instanceIcon(inst.icon),
 			error: Boolean(states.value[i]?.error),
 		})) ?? [],
 )
