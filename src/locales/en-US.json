@@ -18,7 +18,9 @@
 				"apiPassword": {
 					"hint": "Your admin password, or an app password from Settings > API.",
 					"label": "Password",
-					"placeholder": "Leave empty if none is set"
+					"placeholder": "Leave empty if none is set",
+					"show": "Show password",
+					"hide": "Hide password"
 				},
 				"connected": "Connected!",
 				"connectionFailed": "Connection failed",
@@ -26,19 +28,28 @@
 					"label": "Name",
 					"placeholder": "Pi-hole"
 				},
-				"noUrl": "No URL set",
 				"testing": "Testing connection...",
 				"url": {
 					"label": "URL",
-					"hint": "No trailing slash or {api}."
+					"invalid": "Enter a valid address, like http://pi.hole"
 				},
-				"save": "Save"
+				"save": "Save",
+				"edit": "Edit",
+				"retest": "Test connection again",
+				"cancel": "Cancel"
 			},
 			"addButton": "Add Pi-hole",
 			"description": "Configure one or more Pi-hole instances.",
 			"empty": "No Pi-holes configured. Add one to get started.",
 			"title": "Pi-holes",
-			"permissionDenied": "Permission denied. Grant access to your Pi-hole host to continue."
+			"permissionDenied": "Permission denied. Grant access to your Pi-hole host to continue.",
+			"remove": {
+				"button": "Remove",
+				"title": "Remove {name}?",
+				"description": "Its address and password are deleted from the extension. You can add it again at any time.",
+				"cancel": "Cancel",
+				"confirm": "Remove"
+			}
 		},
 		"colorScheme": {
 			"auto": "System default",

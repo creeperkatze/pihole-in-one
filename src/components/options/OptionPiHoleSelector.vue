@@ -1,179 +1,13 @@
-<template>
-	<div class="flex flex-col gap-2 rounded-lg border border-border bg-surface-3 px-3 py-2">
-		<div class="flex min-w-0 items-center gap-3">
-			<Server :size="18" class="shrink-0 text-secondary" />
-			<div class="min-w-0 flex-1">
-				<p class="text-sm font-medium">{{ t('options.piholeselector.title') }}</p>
-				<p class="mt-0.5 text-xs text-secondary">
-					{{ t('options.piholeselector.description') }}
-				</p>
-			</div>
-			<Button @click="addInstance">
-				<Plus class="size-4" />
-				{{ t('options.piholeselector.addButton') }}
-			</Button>
-		</div>
-
-		<div class="flex flex-col gap-2 ps-7.5">
-			<div
-				v-if="localValue.length === 0"
-				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
-			>
-				{{ t('options.piholeselector.empty') }}
-			</div>
-
-			<div
-				v-for="inst in localValue"
-				:key="inst.id"
-				class="rounded-lg border border-border overflow-hidden"
-			>
-				<!-- Header row (always visible) -->
-				<div class="flex items-center gap-3 px-3.5 py-2.5 bg-surface-raised">
-					<div class="min-w-0 flex-1">
-						<div class="text-sm font-medium truncate">
-							{{ inst.name || t('options.piholeselector.instance.fallbackName') }}
-						</div>
-						<div class="text-xs text-secondary truncate">
-							{{ inst.baseUrl || t('options.piholeselector.instance.noUrl') }}
-						</div>
-					</div>
-					<div class="flex items-center gap-2">
-						<Loader2
-							v-if="testStates[inst.id]?.status === 'testing'"
-							class="size-4 animate-spin text-zinc-400"
-						/>
-						<CheckCircle2
-							v-else-if="testStates[inst.id]?.status === 'ok'"
-							class="size-4 text-green-500"
-						/>
-						<XCircle
-							v-else-if="testStates[inst.id]?.status === 'error'"
-							class="size-4 text-pihole-red"
-						/>
-						<Button size="sm" @click="void removeInstance(inst.id)">
-							<Trash2 class="size-4" />
-						</Button>
-						<Button size="sm" @click="toggleEdit(inst.id)">
-							<ChevronDown
-								class="size-4 transition-transform duration-200"
-								:class="editingId === inst.id ? 'rotate-180' : ''"
-							/>
-						</Button>
-					</div>
-				</div>
-
-				<!-- Expanded form -->
-				<div
-					v-if="editingId === inst.id"
-					class="flex flex-col gap-4 p-4 border-t border-border bg-surface-raised"
-				>
-					<div class="flex flex-col gap-1.5">
-						<label class="text-sm font-medium" :for="`name-${inst.id}`">
-							{{ t('options.piholeselector.instance.name.label') }}
-						</label>
-						<Input
-							:id="`name-${inst.id}`"
-							v-model="inst.name"
-							type="text"
-							class="w-full"
-							:placeholder="t('options.piholeselector.instance.name.placeholder')"
-							@input="isDirty = true"
-						/>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label class="text-sm font-medium" :for="`url-${inst.id}`">
-							{{ t('options.piholeselector.instance.url.label') }}
-						</label>
-						<Input
-							:id="`url-${inst.id}`"
-							v-model="inst.baseUrl"
-							type="url"
-							class="w-full"
-							placeholder=""
-							@input="isDirty = true"
-						/>
-						<i18n-t
-							keypath="options.piholeselector.instance.url.hint"
-							tag="p"
-							class="m-0 text-xs text-secondary"
-						>
-							<template #api><code class="font-mono">/api</code></template>
-						</i18n-t>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<label class="text-sm font-medium" :for="`pass-${inst.id}`">
-							{{ t('options.piholeselector.instance.apiPassword.label') }}
-						</label>
-						<Input
-							:id="`pass-${inst.id}`"
-							v-model="inst.apiPassword"
-							type="password"
-							class="w-full"
-							:placeholder="t('options.piholeselector.instance.apiPassword.placeholder')"
-							autocomplete="off"
-							@input="isDirty = true"
-						/>
-						<p class="m-0 text-xs text-secondary">
-							{{ t('options.piholeselector.instance.apiPassword.hint') }}
-						</p>
-					</div>
-
-					<div
-						v-if="testStates[inst.id]?.status === 'testing'"
-						class="flex items-center gap-1.5 text-xs text-zinc-400"
-					>
-						<Loader2 class="size-4 animate-spin" />
-						{{ t('options.piholeselector.instance.testing') }}
-					</div>
-					<div
-						v-else-if="testStates[inst.id]?.status === 'ok'"
-						class="px-3 py-2 rounded-[5px] text-xs border bg-success-bg border-success-border text-pihole-green"
-					>
-						{{ testStates[inst.id]?.message }}
-					</div>
-					<div
-						v-else-if="testStates[inst.id]?.status === 'error'"
-						class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
-					>
-						{{ testStates[inst.id]?.message }}
-					</div>
-					<div
-						v-if="permissionError"
-						class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
-					>
-						{{ permissionError }}
-					</div>
-					<div class="flex justify-start">
-						<Button variant="primary" :disabled="!isDirty" @click="save">
-							<Save class="size-4" />
-							{{ t('options.piholeselector.instance.save') }}
-						</Button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</template>
-
 <script setup lang="ts">
-import {
-	CheckCircle2,
-	ChevronDown,
-	Loader2,
-	Plus,
-	Save,
-	Server,
-	Trash2,
-	XCircle,
-} from '@lucide/vue'
-import { PiHoleError } from 'pihole-js'
-import { ref, watch } from 'vue'
+import { AlertTriangle, Eye, EyeOff, Loader2, Pencil, Plus, Server, Trash2 } from '@lucide/vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { browser } from 'wxt/browser'
 
 import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient } from '../../utils/api'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
+import Modal from '../Modal.vue'
 import Button from '../ui/Button.vue'
 import Input from '../ui/Input.vue'
 
@@ -187,18 +21,29 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-// Local working copy, only committed to parent on explicit Save
-const localValue = ref<PiholeInstance[]>(props.modelValue.map((i) => ({ ...i })))
-const isDirty = ref(false)
-const permissionError = ref('')
-
-const editingId = ref<string | null>(null)
+interface Draft extends PiholeInstance {
+	isNew: boolean
+}
 
 interface TestState {
 	status: 'testing' | 'ok' | 'error'
-	message?: string
+	message: string
 }
+
+const draft = ref<Draft | null>(null)
+const urlError = ref('')
+const permissionError = ref('')
+const showPassword = ref(false)
+const removing = ref<PiholeInstance | null>(null)
 const testStates = ref<Record<string, TestState>>({})
+
+const rows = computed(() =>
+	draft.value?.isNew ? [...props.modelValue, draft.value] : props.modelValue,
+)
+
+function displayName(inst: PiholeInstance): string {
+	return inst.name || t('options.piholeselector.instance.fallbackName')
+}
 
 function toOrigin(baseUrl: string): string | null {
 	try {
@@ -209,96 +54,119 @@ function toOrigin(baseUrl: string): string | null {
 	}
 }
 
-async function save(): Promise<void> {
-	const newOrigins = localValue.value
-		.map((i) => toOrigin(i.baseUrl))
-		.filter((o): o is string => o !== null)
-	const oldOrigins = props.modelValue
-		.map((i) => toOrigin(i.baseUrl))
-		.filter((o): o is string => o !== null)
-	const removedOrigins = oldOrigins.filter((o) => !newOrigins.includes(o))
-
-	if (newOrigins.length > 0) {
-		const granted = await browser.permissions.request({ origins: newOrigins })
-		if (!granted) {
-			permissionError.value = t('options.piholeselector.permissionDenied')
-			return
-		}
-	}
-
-	if (removedOrigins.length > 0) {
-		await browser.permissions.remove({ origins: removedOrigins })
-	}
-
-	permissionError.value = ''
-	emit(
-		'update:modelValue',
-		localValue.value.map((i) => ({ ...i })),
-	)
-	isDirty.value = false
-	for (const inst of localValue.value) {
-		void runTest(inst.id)
+function normalizeUrl(value: string): string | null {
+	const trimmed = value.trim()
+	if (!trimmed) return null
+	const withScheme = /^[a-z][a-z\d+.-]*:\/\//i.test(trimmed) ? trimmed : `http://${trimmed}`
+	try {
+		const url = new URL(withScheme)
+		if (url.protocol !== 'http:' && url.protocol !== 'https:') return null
+		const path = url.pathname.replace(/\/+$/, '').replace(/\/api$/, '')
+		return `${url.origin}${path}`
+	} catch {
+		return null
 	}
 }
 
-function toggleEdit(id: string): void {
-	editingId.value = editingId.value === id ? null : id
+function openForm(next: Draft): void {
+	draft.value = next
+	urlError.value = ''
+	permissionError.value = ''
+	showPassword.value = false
+	void nextTick(() => document.getElementById(`url-${next.id}`)?.focus())
 }
 
 function addInstance(): void {
-	const inst: PiholeInstance = {
+	openForm({
 		id: generateInstanceId(),
 		name: '',
 		baseUrl: 'http://pi.hole',
 		apiPassword: '',
-	}
-	localValue.value = [...localValue.value, inst]
-	isDirty.value = true
-	editingId.value = inst.id
+		isNew: true,
+	})
 }
 
-async function removeInstance(id: string): Promise<void> {
-	const inst = localValue.value.find((i) => i.id === id)
-	if (editingId.value === id) editingId.value = null
-	delete testStates.value[id]
-	localValue.value = localValue.value.filter((i) => i.id !== id)
-
-	if (inst?.baseUrl) {
-		const origin = toOrigin(inst.baseUrl)
-		const stillUsed = origin && localValue.value.some((i) => toOrigin(i.baseUrl) === origin)
-		if (origin && !stillUsed) await browser.permissions.remove({ origins: [origin] })
+function toggleEdit(inst: PiholeInstance): void {
+	if (draft.value?.id === inst.id) {
+		closeForm()
+	} else {
+		openForm({ ...inst, isNew: false })
 	}
-
-	emit(
-		'update:modelValue',
-		localValue.value.map((i) => ({ ...i })),
-	)
 }
 
-async function runTest(id: string): Promise<void> {
-	const inst = localValue.value.find((i) => i.id === id)
-	if (!inst?.baseUrl) {
-		delete testStates.value[id]
+function closeForm(): void {
+	draft.value = null
+}
+
+async function releaseOrigin(baseUrl: string, remaining: PiholeInstance[]): Promise<void> {
+	const origin = toOrigin(baseUrl)
+	if (origin && !remaining.some((i) => toOrigin(i.baseUrl) === origin)) {
+		await browser.permissions.remove({ origins: [origin] })
+	}
+}
+
+async function save(): Promise<void> {
+	const current = draft.value
+	if (!current) return
+
+	const baseUrl = normalizeUrl(current.baseUrl)
+	const origin = baseUrl && toOrigin(baseUrl)
+	if (!baseUrl || !origin) {
+		urlError.value = t('options.piholeselector.instance.url.invalid')
 		return
 	}
-	testStates.value[id] = { status: 'testing' }
+
+	const granted = await browser.permissions.request({ origins: [origin] })
+	if (!granted) {
+		permissionError.value = t('options.piholeselector.permissionDenied')
+		return
+	}
+
+	const { isNew, ...fields } = current
+	const saved: PiholeInstance = { ...fields, name: fields.name.trim(), baseUrl }
+	const previous = props.modelValue.find((i) => i.id === saved.id)
+	const next = isNew
+		? [...props.modelValue, saved]
+		: props.modelValue.map((i) => (i.id === saved.id ? saved : i))
+
+	emit('update:modelValue', next)
+	closeForm()
+	void runTest(saved)
+	if (previous) await releaseOrigin(previous.baseUrl, next)
+}
+
+async function confirmRemove(): Promise<void> {
+	const inst = removing.value
+	if (!inst) return
+	removing.value = null
+	if (draft.value?.id === inst.id) closeForm()
+	delete testStates.value[inst.id]
+
+	const next = props.modelValue.filter((i) => i.id !== inst.id)
+	emit('update:modelValue', next)
+	await releaseOrigin(inst.baseUrl, next)
+}
+
+async function runTest(inst: PiholeInstance): Promise<void> {
+	testStates.value[inst.id] = {
+		status: 'testing',
+		message: t('options.piholeselector.instance.testing'),
+	}
 	try {
 		await getPiHoleClient(inst).getSummary()
-		testStates.value[id] = {
+		testStates.value[inst.id] = {
 			status: 'ok',
 			message: t('options.piholeselector.instance.connected'),
 		}
 	} catch (e) {
 		const apiMessage = getApiMessageForError(e)
-		testStates.value[id] = {
+		testStates.value[inst.id] = {
 			status: 'error',
 			message: apiMessage
 				? t(apiMessage)
-				: e instanceof PiHoleError
+				: e instanceof Error
 					? e.message
-					: e instanceof Error
-						? e.message
-						: t('options.piholeselector.instance.connectionFailed'),
+					: t('options.piholeselector.instance.connectionFailed'),
 		}
 	}
 }
@@ -306,13 +174,209 @@ async function runTest(id: string): Promise<void> {
 watch(
 	() => props.modelValue,
 	(instances) => {
-		if (!isDirty.value) {
-			localValue.value = instances.map((i) => ({ ...i }))
-		}
 		for (const inst of instances) {
-			if (!testStates.value[inst.id]) void runTest(inst.id)
+			if (!testStates.value[inst.id]) void runTest(inst)
 		}
 	},
 	{ immediate: true },
 )
 </script>
+
+<template>
+	<div class="flex flex-col gap-3 rounded-lg border border-border bg-surface-3 px-3 py-2">
+		<div class="flex min-w-0 items-center gap-3">
+			<Server :size="18" class="shrink-0 text-secondary" />
+			<div class="min-w-0 flex-1">
+				<p class="text-sm font-medium">{{ t('options.piholeselector.title') }}</p>
+				<p class="mt-0.5 text-xs text-secondary">
+					{{ t('options.piholeselector.description') }}
+				</p>
+			</div>
+			<Button :disabled="draft?.isNew" @click="addInstance">
+				<Plus class="size-4" />
+				{{ t('options.piholeselector.addButton') }}
+			</Button>
+		</div>
+
+		<p
+			v-if="rows.length === 0"
+			class="rounded-lg border border-dashed border-border px-3 py-6 text-center text-sm text-secondary"
+		>
+			{{ t('options.piholeselector.empty') }}
+		</p>
+
+		<ul v-else class="flex flex-col gap-2 pb-1">
+			<li
+				v-for="inst in rows"
+				:key="inst.id"
+				class="overflow-hidden rounded-lg border bg-surface-control transition-colors"
+				:class="draft?.id === inst.id ? 'border-pihole-red/50' : 'border-border'"
+			>
+				<div class="flex min-w-0 items-center gap-3 px-3 py-2">
+					<button
+						type="button"
+						class="flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full disabled:cursor-default"
+						:title="testStates[inst.id]?.message ?? t('options.piholeselector.instance.retest')"
+						:aria-label="t('options.piholeselector.instance.retest')"
+						:disabled="draft?.isNew && draft.id === inst.id"
+						@click="runTest(inst)"
+					>
+						<Loader2
+							v-if="testStates[inst.id]?.status === 'testing'"
+							class="size-4 animate-spin text-secondary"
+						/>
+						<span
+							v-else
+							class="size-2.5 rounded-full"
+							:class="
+								testStates[inst.id]?.status === 'ok'
+									? 'bg-pihole-green ring-[3px] ring-pihole-green/25'
+									: testStates[inst.id]?.status === 'error'
+										? 'bg-pihole-red ring-[3px] ring-pihole-red/25'
+										: 'bg-border'
+							"
+						/>
+					</button>
+
+					<div class="min-w-0 flex-1">
+						<p class="truncate text-sm font-medium">{{ displayName(inst) }}</p>
+						<p class="truncate text-xs text-secondary">{{ inst.baseUrl }}</p>
+						<p
+							v-if="testStates[inst.id]?.status === 'error' && draft?.id !== inst.id"
+							class="truncate text-xs text-pihole-red"
+						>
+							{{ testStates[inst.id]?.message }}
+						</p>
+					</div>
+
+					<div v-if="!(draft?.isNew && draft.id === inst.id)" class="flex shrink-0 gap-1.5">
+						<Button
+							size="sm"
+							:active="draft?.id === inst.id"
+							:title="t('options.piholeselector.instance.edit')"
+							:aria-label="t('options.piholeselector.instance.edit')"
+							@click="toggleEdit(inst)"
+						>
+							<Pencil class="size-4" />
+						</Button>
+						<Button
+							size="sm"
+							:title="t('options.piholeselector.remove.button')"
+							:aria-label="t('options.piholeselector.remove.button')"
+							@click="removing = inst"
+						>
+							<Trash2 class="size-4" />
+						</Button>
+					</div>
+				</div>
+
+				<form
+					v-if="draft && draft.id === inst.id"
+					class="flex flex-col gap-3 border-t border-border px-3 pt-3 pb-3"
+					@submit.prevent="save"
+				>
+					<div class="flex flex-col gap-1.5">
+						<label class="text-xs font-medium text-secondary" :for="`url-${inst.id}`">
+							{{ t('options.piholeselector.instance.url.label') }}
+						</label>
+						<Input
+							:id="`url-${inst.id}`"
+							v-model="draft.baseUrl"
+							type="text"
+							inputmode="url"
+							autocomplete="off"
+							spellcheck="false"
+							placeholder="http://pi.hole"
+							class="w-full"
+							@input="urlError = ''"
+						/>
+						<p v-if="urlError" class="text-xs text-pihole-red">{{ urlError }}</p>
+					</div>
+
+					<div class="grid items-start gap-3 sm:grid-cols-2">
+						<div class="flex flex-col gap-1.5">
+							<label class="text-xs font-medium text-secondary" :for="`name-${inst.id}`">
+								{{ t('options.piholeselector.instance.name.label') }}
+							</label>
+							<Input
+								:id="`name-${inst.id}`"
+								v-model="draft.name"
+								type="text"
+								autocomplete="off"
+								class="w-full"
+								:placeholder="t('options.piholeselector.instance.name.placeholder')"
+							/>
+						</div>
+						<div class="flex flex-col gap-1.5">
+							<label class="text-xs font-medium text-secondary" :for="`pass-${inst.id}`">
+								{{ t('options.piholeselector.instance.apiPassword.label') }}
+							</label>
+							<div class="relative">
+								<Input
+									:id="`pass-${inst.id}`"
+									v-model="draft.apiPassword"
+									:type="showPassword ? 'text' : 'password'"
+									autocomplete="off"
+									class="w-full pe-9"
+									:placeholder="t('options.piholeselector.instance.apiPassword.placeholder')"
+								/>
+								<button
+									type="button"
+									class="absolute inset-e-2.5 top-1/2 -translate-y-1/2 cursor-pointer text-secondary transition-colors hover:text-primary"
+									:title="
+										showPassword
+											? t('options.piholeselector.instance.apiPassword.hide')
+											: t('options.piholeselector.instance.apiPassword.show')
+									"
+									@click="showPassword = !showPassword"
+								>
+									<EyeOff v-if="showPassword" class="size-4" />
+									<Eye v-else class="size-4" />
+								</button>
+							</div>
+							<p class="text-xs text-secondary">
+								{{ t('options.piholeselector.instance.apiPassword.hint') }}
+							</p>
+						</div>
+					</div>
+
+					<p
+						v-if="permissionError"
+						class="rounded-md border border-danger-border bg-danger-bg px-3 py-2 text-xs text-pihole-red"
+					>
+						{{ permissionError }}
+					</p>
+
+					<div class="flex justify-end gap-2">
+						<Button @click="closeForm">
+							{{ t('options.piholeselector.instance.cancel') }}
+						</Button>
+						<Button type="submit" variant="primary">
+							{{ t('options.piholeselector.instance.save') }}
+						</Button>
+					</div>
+				</form>
+			</li>
+		</ul>
+	</div>
+
+	<Modal :model-value="removing !== null" @update:model-value="removing = null">
+		<div class="mb-5 flex items-start gap-3">
+			<AlertTriangle class="mt-0.5 size-5 shrink-0 text-yellow-500" />
+			<div>
+				<h2 class="mb-1.5 text-sm font-semibold">
+					{{
+						t('options.piholeselector.remove.title', { name: removing && displayName(removing) })
+					}}
+				</h2>
+				<p class="text-xs text-secondary">{{ t('options.piholeselector.remove.description') }}</p>
+			</div>
+		</div>
+		<div class="flex justify-end gap-2">
+			<Button @click="removing = null">{{ t('options.piholeselector.remove.cancel') }}</Button>
+			<Button variant="primary" @click="confirmRemove">
+				{{ t('options.piholeselector.remove.confirm') }}
+			</Button>
+		</div>
+	</Modal>
+</template>

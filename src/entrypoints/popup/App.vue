@@ -33,7 +33,7 @@
 					<ExternalLink class="size-4" />
 					<span
 						v-if="settings.showDiagnosisBadge && messageCount > 0"
-						class="absolute -top-0.5 -end-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
+						class="absolute -top-0.5 -inset-e-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
 					>
 						{{ messageCount > 99 ? '99+' : messageCount }}
 					</span>

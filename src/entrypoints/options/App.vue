@@ -25,7 +25,7 @@
 
 		<!-- Sidebar -->
 		<aside
-			class="fixed inset-y-0 start-0 z-40 flex w-52 max-w-[85vw] flex-col border-e border-border-subtle bg-surface-2 transition-transform duration-200 ease-out sm:static sm:z-auto sm:h-screen sm:max-w-none"
+			class="fixed inset-y-0 inset-s-0 z-40 flex w-52 max-w-[85vw] flex-col border-e border-border-subtle bg-surface-2 transition-transform duration-200 ease-out sm:static sm:z-auto sm:h-screen sm:max-w-none"
 			:class="{ 'max-sm:-translate-x-full max-sm:rtl:translate-x-full': !sidebarOpen }"
 		>
 			<div class="flex items-center justify-between border-b border-border-subtle px-4 py-4">
