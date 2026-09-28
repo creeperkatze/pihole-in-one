@@ -1,9 +1,6 @@
 <template>
-	<div class="flex flex-col gap-3">
-		<template v-if="showAdd">
-			<DomainAdd :instances="instances" @added="load" />
-			<hr class="border-border" />
-		</template>
+	<div class="flex flex-col gap-2">
+		<DomainAdd v-if="showAdd" :instances="instances" @added="load" />
 
 		<div v-if="loading" class="flex items-center justify-center py-4">
 			<div

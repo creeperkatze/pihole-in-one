@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import BlockingCard from '../components/BlockingCard.vue'
 import DomainCard from '../components/DomainCard.vue'
 import StatsCard from '../components/StatsCard.vue'
@@ -15,6 +17,17 @@ const {
 	toggleBlocking,
 	disableFor,
 } = usePopupInstances()
+
+const showSite = computed(
+	() =>
+		settings.value!.showCurrentSite &&
+		Boolean(currentDomain.value) &&
+		!states.value[activeInstance.value]?.error,
+)
+const showStats = computed(() => settings.value!.showStats)
+const showSystem = computed(
+	() => settings.value!.showSystemInfo && Boolean(states.value[activeInstance.value]?.system),
+)
 </script>
 
 <template>
@@ -27,18 +40,15 @@ const {
 			@disable-for="disableFor(activeInstance, $event)"
 		/>
 
+		<StatsCard v-if="showStats" :summary="states[activeInstance]!.summary!" />
+
+		<SystemCard v-if="showSystem" :info="states[activeInstance]!.system!" />
+
 		<DomainCard
-			v-if="settings!.showCurrentSite && currentDomain && !states[activeInstance]?.error"
-			:key="currentDomain"
-			:domain="currentDomain"
+			v-if="showSite"
+			:key="currentDomain!"
+			:domain="currentDomain!"
 			:instances="settings!.instances"
-		/>
-
-		<StatsCard v-if="settings!.showStats" :summary="states[activeInstance]!.summary!" />
-
-		<SystemCard
-			v-if="settings!.showSystemInfo && states[activeInstance]?.system"
-			:info="states[activeInstance]!.system!"
 		/>
 	</div>
 </template>

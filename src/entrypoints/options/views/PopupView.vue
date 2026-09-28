@@ -33,12 +33,6 @@ const { t } = useI18n()
 					{{ t('popup.tabs.home') }}
 				</h2>
 				<OptionToggle
-					v-model="form.showCurrentSite"
-					:icon="Globe"
-					:label="t('options.popup.currentSite.label')"
-					:description="t('options.popup.currentSite.description')"
-				/>
-				<OptionToggle
 					v-model="form.showStats"
 					:icon="ChartColumn"
 					:label="t('options.popup.stats.label')"
@@ -49,6 +43,12 @@ const { t } = useI18n()
 					:icon="Activity"
 					:label="t('options.popup.systemInfo.label')"
 					:description="t('options.popup.systemInfo.description')"
+				/>
+				<OptionToggle
+					v-model="form.showCurrentSite"
+					:icon="Globe"
+					:label="t('options.popup.currentSite.label')"
+					:description="t('options.popup.currentSite.description')"
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
