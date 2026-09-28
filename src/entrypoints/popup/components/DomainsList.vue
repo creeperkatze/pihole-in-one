@@ -1,5 +1,7 @@
 <template>
 	<div class="flex flex-col gap-1.5">
+		<DomainAdd :instances="instances" @added="load" />
+
 		<div v-if="loading" class="flex items-center justify-center py-4">
 			<div
 				class="w-4 h-4 border-2 border-border border-t-pihole-red rounded-full animate-spin"
@@ -64,6 +66,7 @@ import { useI18n } from 'vue-i18n'
 import ItemRow from '../../../components/ui/ItemRow.vue'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
+import DomainAdd from './DomainAdd.vue'
 
 const props = defineProps<{
 	instances: PiholeInstance[]

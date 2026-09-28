@@ -177,7 +177,8 @@
 				"empty": "No domains added yet.",
 				"loadError": "Failed to load domains",
 				"remove": "Remove",
-				"removeError": "Failed to remove domain"
+				"removeError": "Failed to remove domain",
+				"addError": "Failed to add domain"
 			},
 			"regex": "Regex pattern",
 			"whitelisted": "Whitelisted"
