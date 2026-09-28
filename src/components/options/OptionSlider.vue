@@ -17,14 +17,14 @@
 					:max="max"
 					:step="step"
 					:model-value="inputVal"
-					class="w-16 text-right tabular-nums [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+					class="w-16 text-end tabular-nums [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 					@update:model-value="inputVal = +$event > max ? String(max) : $event"
 					@change="$emit('update:modelValue', Math.min(max, Math.max(min, +inputVal || min)))"
 				/>
 				<span v-if="suffix" class="text-sm text-secondary">{{ suffix }}</span>
 			</div>
 		</div>
-		<div :class="icon ? 'pl-7' : ''">
+		<div :class="icon ? 'ps-7' : ''">
 			<input
 				type="range"
 				:min="min"

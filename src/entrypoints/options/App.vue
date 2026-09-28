@@ -25,8 +25,8 @@
 
 		<!-- Sidebar -->
 		<aside
-			class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] flex-col border-r border-border-subtle bg-surface-2 transition-transform duration-200 ease-out sm:static sm:z-auto sm:h-screen sm:max-w-none sm:translate-x-0"
-			:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'"
+			class="fixed inset-y-0 start-0 z-40 flex w-52 max-w-[85vw] flex-col border-e border-border-subtle bg-surface-2 transition-transform duration-200 ease-out sm:static sm:z-auto sm:h-screen sm:max-w-none"
+			:class="{ 'max-sm:-translate-x-full max-sm:rtl:translate-x-full': !sidebarOpen }"
 		>
 			<div class="flex items-center justify-between border-b border-border-subtle px-4 py-4">
 				<a
@@ -43,26 +43,26 @@
 					:aria-label="t('options.sidebar.toggle.close')"
 					@click="sidebarOpen = false"
 				>
-					<ChevronLeft class="size-4" />
+					<ChevronLeft class="size-4 rtl:-scale-x-100" />
 				</button>
 			</div>
 			<div class="flex min-h-0 flex-1 flex-col">
 				<div class="border-b border-border-subtle px-3 py-3 sm:px-2 sm:py-2">
 					<div class="relative">
 						<Search
-							class="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+							class="size-4 absolute start-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
 						/>
 						<Input
 							v-model="searchQuery"
 							type="text"
 							:placeholder="t('options.search.placeholder')"
-							class="w-full rounded-lg pl-9 text-sm py-2"
-							:class="searchQuery ? 'pr-8' : 'pr-3'"
+							class="w-full rounded-lg ps-9 text-sm py-2"
+							:class="searchQuery ? 'pe-8' : 'pe-3'"
 						/>
 						<button
 							v-if="searchQuery"
 							type="button"
-							class="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-secondary"
+							class="absolute end-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-secondary"
 							@click="searchQuery = ''"
 						>
 							<XIcon class="size-4" />

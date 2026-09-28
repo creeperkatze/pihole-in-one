@@ -15,7 +15,7 @@
 		<span
 			class="pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm transform"
 			:class="[
-				modelValue ? 'translate-x-4' : 'translate-x-0',
+				modelValue ? 'translate-x-4 rtl:-translate-x-4' : 'translate-x-0',
 				mounted ? 'transition-transform duration-200' : '',
 			]"
 		></span>

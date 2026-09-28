@@ -4,7 +4,7 @@
 		class="card group rounded-lg border transition-colors duration-150 cursor-pointer flex items-center justify-between gap-2 px-2.5 py-2"
 		:style="{ '--c': color ?? '#a1a1aa' }"
 	>
-		<slot v-if="iconPosition === 'left'" name="icon" />
+		<slot v-if="iconPosition === 'start'" name="icon" />
 		<div class="min-w-0 flex-1">
 			<div class="text-sm font-semibold text-primary leading-tight">
 				{{ title }}
@@ -13,7 +13,7 @@
 				{{ description }}
 			</div>
 		</div>
-		<slot v-if="iconPosition === 'right'" name="icon" />
+		<slot v-if="iconPosition === 'end'" name="icon" />
 		<button
 			v-if="dismissible"
 			type="button"
@@ -36,7 +36,7 @@ withDefaults(
 		color?: string
 		title: string
 		description?: string
-		iconPosition?: 'left' | 'right'
+		iconPosition?: 'start' | 'end'
 		dismissible?: boolean
 		dismissLabel?: string
 	}>(),
@@ -44,7 +44,7 @@ withDefaults(
 		as: 'div',
 		color: undefined,
 		description: undefined,
-		iconPosition: 'right',
+		iconPosition: 'end',
 		dismissible: false,
 		dismissLabel: undefined,
 	},

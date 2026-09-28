@@ -18,7 +18,7 @@
 			</Button>
 		</div>
 
-		<div class="flex flex-col gap-2 pl-7">
+		<div class="flex flex-col gap-2 ps-7">
 			<div
 				v-if="localValue.length === 0"
 				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"

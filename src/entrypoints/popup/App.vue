@@ -33,7 +33,7 @@
 					<ExternalLink class="size-4" />
 					<span
 						v-if="settings.showDiagnosisBadge && messageCount > 0"
-						class="absolute -top-0.5 -right-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
+						class="absolute -top-0.5 -end-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
 					>
 						{{ messageCount > 99 ? '99+' : messageCount }}
 					</span>
@@ -80,7 +80,7 @@
 					:title="t('popup.donatePrompt.title')"
 					:description="t('popup.donatePrompt.message')"
 					class="mx-3 mt-3 shrink-0 no-underline"
-					icon-position="left"
+					icon-position="start"
 					dismissible
 					:dismiss-label="t('popup.donatePrompt.dismiss')"
 					@click="dismissDonate"

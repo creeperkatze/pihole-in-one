@@ -30,14 +30,7 @@
 				/>
 			</svg>
 			<div
-				class="absolute inset-0 pointer-events-none"
-				style="
-					background: linear-gradient(
-						to right,
-						color-mix(in srgb, var(--color-surface-3) 80%, transparent) 20%,
-						transparent 60%
-					);
-				"
+				class="absolute inset-0 pointer-events-none bg-linear-to-r rtl:bg-linear-to-l from-surface-3/80 from-20% to-transparent to-60%"
 			></div>
 			<div class="relative text-lg font-bold">{{ stat.value }}</div>
 			<div class="relative text-xs text-secondary mt-0.5">{{ stat.label }}</div>
