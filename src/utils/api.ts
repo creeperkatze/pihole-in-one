@@ -13,7 +13,6 @@ import {
 import { browser } from 'wxt/browser'
 
 import { DEFAULTS, getSettings, type PiholeInstance, watchSettings } from './settings'
-import { simulatingFetch } from './simulate-errors'
 
 type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
@@ -144,7 +143,6 @@ function createClient(target: ApiTarget, timeoutMs: number): ExtensionPiHoleClie
 		timeoutMs,
 		userAgent: USER_AGENT,
 		sessionStore: sessionStoreFor(target.apiPassword),
-		...(import.meta.env.DEV && { fetch: simulatingFetch }),
 	}
 	return new ExtensionPiHoleClient(options)
 }
