@@ -3,6 +3,7 @@ import { browser } from 'wxt/browser'
 import { getPiHoleClient } from '../utils/api'
 import { i18n, resolveLocale } from '../utils/i18n'
 import { getSettings, watchSettings } from '../utils/settings'
+import { isUpdateFromBeforeRedesign, redesignNoticeItem } from '../utils/whats-new'
 
 const ALARM = 'pihole-refresh'
 
@@ -92,4 +93,10 @@ export default defineBackground(() => {
 	})
 
 	browser.runtime.onStartup.addListener(() => void updateBadge())
+
+	browser.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
+		if (reason === 'update' && previousVersion && isUpdateFromBeforeRedesign(previousVersion)) {
+			void redesignNoticeItem.setValue(true)
+		}
+	})
 })

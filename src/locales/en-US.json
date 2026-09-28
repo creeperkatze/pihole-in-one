@@ -261,6 +261,15 @@
 			"groups": "Groups",
 			"home": "Home",
 			"lists": "Lists"
+		},
+		"whatsNew": {
+			"title": "What's new",
+			"items": {
+				"home": "A cleaner popup that shows right away whether the current site is blocked",
+				"domains": "Whitelist or block any domain, including regex patterns, from the Domains tab",
+				"piholes": "Simpler Pi-hole setup with connection status and custom icons"
+			},
+			"dismiss": "Dismiss"
 		}
 	},
 	"meta": {

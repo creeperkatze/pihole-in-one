@@ -73,11 +73,12 @@
 
 			<template v-else>
 				<div
-					v-if="donateVisible || states[activeInstance]?.error"
+					v-if="whatsNewVisible || donateVisible || states[activeInstance]?.error"
 					class="flex shrink-0 flex-col gap-2 border-b border-border p-2"
 				>
+					<WhatsNewCard v-if="whatsNewVisible" @dismiss="dismissWhatsNew" />
 					<Card
-						v-if="donateVisible"
+						v-else-if="donateVisible"
 						as="a"
 						href="https://ko-fi.com/creeperkatze"
 						target="_blank"
@@ -204,6 +205,7 @@ import Button from '../../components/ui/Button.vue'
 import { instanceIcon } from '../../utils/instance-icons'
 import { getLatestVersionTag } from '../../utils/update-check'
 import PopupTabs, { type PopupTab } from './components/PopupTabs.vue'
+import WhatsNewCard from './components/WhatsNewCard.vue'
 import { usePopupInstances } from './usePopupInstances'
 
 const { t } = useI18n()
@@ -224,6 +226,8 @@ const {
 	activeInstance,
 	donateVisible,
 	dismissDonate,
+	whatsNewVisible,
+	dismissWhatsNew,
 	refresh,
 	openOptions,
 	openPihole,

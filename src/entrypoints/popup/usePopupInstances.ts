@@ -9,6 +9,7 @@ import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient, type PiholeSummary } from '../../utils/api'
 import { formatDuration } from '../../utils/format'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
+import { redesignNoticeItem } from '../../utils/whats-new'
 
 export interface InstanceState {
 	summary: PiholeSummary | null
@@ -40,11 +41,16 @@ const settings = ref<ExtensionSettings | null>(null)
 const states = ref<InstanceState[]>([])
 const currentDomain = ref<string | null>(null)
 const donateVisible = ref(false)
+const whatsNewVisible = ref(false)
 
 let intervals: (ReturnType<typeof setInterval> | null)[] = []
 
 function isEnabled(i: number): boolean {
 	return states.value[i]?.summary?.blocking.blocking === 'enabled'
+}
+
+async function conditionallyShowWhatsNew(): Promise<void> {
+	whatsNewVisible.value = await redesignNoticeItem.getValue()
 }
 
 async function conditionallyShowDonate(): Promise<void> {
@@ -207,6 +213,11 @@ export function usePopupInstances() {
 		}
 	}
 
+	async function dismissWhatsNew(): Promise<void> {
+		whatsNewVisible.value = false
+		await redesignNoticeItem.setValue(false)
+	}
+
 	async function dismissDonate(): Promise<void> {
 		donateVisible.value = false
 		await donatePromptItem.setValue({ dismissed: true })
@@ -252,6 +263,7 @@ export function usePopupInstances() {
 			states.value = s.instances.map(() => makeState())
 			intervals = s.instances.map(() => null)
 			await fetchAll()
+			void conditionallyShowWhatsNew()
 			void conditionallyShowDonate()
 			if (!paramString(route.params.pihole)) {
 				await router.replace(`/${s.instances[0]!.id}/home`)
@@ -274,6 +286,7 @@ export function usePopupInstances() {
 		states,
 		currentDomain,
 		donateVisible,
+		whatsNewVisible,
 		activeInstance,
 		isEnabled,
 		statusSub,
@@ -281,6 +294,7 @@ export function usePopupInstances() {
 		toggleBlocking,
 		disableFor,
 		dismissDonate,
+		dismissWhatsNew,
 		openOptions,
 		openPihole,
 		switchInstance,
