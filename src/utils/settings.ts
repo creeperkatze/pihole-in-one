@@ -54,7 +54,7 @@ export function watchSettings(
 }
 
 export function isConfigured(settings: ExtensionSettings): boolean {
-	return settings.instances.length > 0 && Boolean(settings.instances[0].baseUrl)
+	return Boolean(settings.instances[0]?.baseUrl)
 }
 
 export function parseSettingsExport(json: string): ExtensionSettings {

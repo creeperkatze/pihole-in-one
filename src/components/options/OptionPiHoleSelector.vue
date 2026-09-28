@@ -125,13 +125,13 @@
 						v-else-if="testStates[inst.id]?.status === 'ok'"
 						class="px-3 py-2 rounded-[5px] text-xs border bg-success-bg border-success-border text-pihole-green"
 					>
-						{{ testStates[inst.id].message }}
+						{{ testStates[inst.id]?.message }}
 					</div>
 					<div
 						v-else-if="testStates[inst.id]?.status === 'error'"
 						class="px-3 py-2 rounded-[5px] text-xs border bg-danger-bg border-danger-border text-pihole-red"
 					>
-						{{ testStates[inst.id].message }}
+						{{ testStates[inst.id]?.message }}
 					</div>
 					<div
 						v-if="permissionError"
