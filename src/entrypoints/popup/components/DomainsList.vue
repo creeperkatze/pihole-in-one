@@ -1,6 +1,8 @@
 <template>
-	<div class="flex flex-col gap-1.5">
+	<div class="flex flex-col gap-3">
 		<DomainAdd :instances="instances" @added="load" />
+
+		<hr class="border-border" />
 
 		<div v-if="loading" class="flex items-center justify-center py-4">
 			<div
