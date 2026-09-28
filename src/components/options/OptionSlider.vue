@@ -27,7 +27,8 @@
 				:max="max"
 				:step="step"
 				:value="modelValue"
-				class="w-full accent-pihole-red cursor-pointer"
+				class="slider w-full cursor-pointer"
+				:style="{ '--fill': `${fill}%` }"
 				@input="$emit('update:modelValue', +($event.target as HTMLInputElement).value)"
 			/>
 		</div>
@@ -36,7 +37,7 @@
 
 <script setup lang="ts">
 import type { Component } from 'vue'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 import Input from '../ui/Input.vue'
 
@@ -56,6 +57,8 @@ defineEmits<{
 	'update:modelValue': [value: number]
 }>()
 
+const fill = computed(() => ((props.modelValue - props.min) / (props.max - props.min)) * 100)
+
 const inputVal = ref(String(props.modelValue))
 watch(
 	() => props.modelValue,
@@ -64,3 +67,70 @@ watch(
 	},
 )
 </script>
+
+<style scoped>
+.slider {
+	appearance: none;
+	height: 1rem;
+	background: transparent;
+	--track: linear-gradient(
+		to right,
+		var(--color-pihole-red) var(--fill),
+		var(--color-surface-control) var(--fill)
+	);
+}
+
+.slider:dir(rtl) {
+	--track: linear-gradient(
+		to left,
+		var(--color-pihole-red) var(--fill),
+		var(--color-surface-control) var(--fill)
+	);
+}
+
+.slider:focus-visible {
+	outline: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+	box-sizing: border-box;
+	height: 0.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: 9999px;
+	background: var(--track);
+}
+
+.slider::-moz-range-track {
+	box-sizing: border-box;
+	height: 0.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: 9999px;
+	background: var(--track);
+}
+
+.slider::-webkit-slider-thumb {
+	appearance: none;
+	margin-top: calc((0.5rem - 2px - 1rem) / 2);
+	width: 1rem;
+	height: 1rem;
+	border: none;
+	border-radius: 9999px;
+	background: var(--color-primary);
+}
+
+.slider::-moz-range-thumb {
+	width: 1rem;
+	height: 1rem;
+	border: none;
+	border-radius: 9999px;
+	background: var(--color-primary);
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px var(--color-pihole-red);
+}
+
+.slider:focus-visible::-moz-range-thumb {
+	box-shadow: 0 0 0 2px var(--color-pihole-red);
+}
+</style>

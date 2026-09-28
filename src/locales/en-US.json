@@ -11,6 +11,7 @@
 	},
 	"options": {
 		"title": "Settings",
+		"saveFailed": "Failed to save settings.",
 		"piholeselector": {
 			"instance": {
 				"fallbackName": "Pi-hole",
@@ -36,7 +37,8 @@
 			"addButton": "Add Pi-hole",
 			"description": "Configure one or more Pi-hole instances.",
 			"empty": "No Pi-holes configured. Add one to get started.",
-			"title": "Pi-holes"
+			"title": "Pi-holes",
+			"permissionDenied": "Permission denied. Grant access to your Pi-hole host to continue."
 		},
 		"colorScheme": {
 			"auto": "System default",

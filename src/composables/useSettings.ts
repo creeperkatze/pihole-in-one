@@ -1,7 +1,7 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 
 import { applyColorScheme } from '../utils/color-scheme'
-import { applyLocale, detectBrowserLocale } from '../utils/i18n'
+import { applyLocale, detectBrowserLocale, i18n } from '../utils/i18n'
 import { DEFAULTS, type ExtensionSettings, getSettings, saveSettings } from '../utils/settings'
 
 // Module-level singleton so all views share the same state
@@ -20,7 +20,7 @@ async function persist(): Promise<void> {
 		await saveSettings(JSON.parse(JSON.stringify(form)))
 		saveError.value = ''
 	} catch (e) {
-		saveError.value = e instanceof Error ? e.message : 'Failed to save settings.'
+		saveError.value = e instanceof Error ? e.message : i18n.global.t('options.saveFailed')
 	}
 }
 

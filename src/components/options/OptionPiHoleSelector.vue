@@ -221,7 +221,7 @@ async function save(): Promise<void> {
 	if (newOrigins.length > 0) {
 		const granted = await browser.permissions.request({ origins: newOrigins })
 		if (!granted) {
-			permissionError.value = 'Permission denied. Grant access to your Pi-hole host to continue.'
+			permissionError.value = t('options.piholeselector.permissionDenied')
 			return
 		}
 	}
