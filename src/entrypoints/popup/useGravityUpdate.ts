@@ -1,6 +1,6 @@
 import { computed, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
 
+import { useErrorMessage } from '../../composables/useApiMessages'
 import { updateGravity } from '../../utils/api'
 import type { PiholeInstance } from '../../utils/settings'
 
@@ -15,7 +15,7 @@ const states = reactive<Record<string, GravityState>>({})
 const resetTimers: Record<string, ReturnType<typeof setTimeout>> = {}
 
 export function useGravityUpdate(instance: () => PiholeInstance) {
-	const { t } = useI18n()
+	const describeError = useErrorMessage()
 
 	const state = computed<GravityState>(
 		() => states[instance().id] ?? { updating: false, updated: false, error: '' },
@@ -33,7 +33,7 @@ export function useGravityUpdate(instance: () => PiholeInstance) {
 				current.updated = false
 			}, 3000)
 		} catch (e) {
-			current.error = e instanceof Error ? e.message : t('popup.lists.gravity.error')
+			current.error = describeError(e, 'popup.lists.gravity.error')
 		} finally {
 			current.updating = false
 		}

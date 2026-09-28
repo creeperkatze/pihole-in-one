@@ -13,6 +13,7 @@ import {
 import { browser } from 'wxt/browser'
 
 import { DEFAULTS, getSettings, type PiholeInstance, watchSettings } from './settings'
+import { simulatingFetch } from './simulate-errors'
 
 type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
@@ -59,26 +60,55 @@ watchSettings((next) => {
 	currentTimeoutMs = next.connectionTimeout * 1000
 })
 
+async function passwordFingerprint(password: string): Promise<string> {
+	const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password))
+	return Array.from(new Uint8Array(digest).slice(0, 8), (b) =>
+		b.toString(16).padStart(2, '0'),
+	).join('')
+}
+
+// Sessions are keyed by URL and password so a session is never reused with other credentials
 class BrowserSessionStore implements SessionStore {
+	readonly #fingerprint: Promise<string>
+
+	constructor(password: string) {
+		this.#fingerprint = passwordFingerprint(password)
+	}
+
+	async #key(baseUrl: string): Promise<string> {
+		return `${baseUrl}#${await this.#fingerprint}`
+	}
+
 	async get(baseUrl: string): Promise<SessionEntry | null> {
 		const store = await sessionCacheItem.getValue()
-		return store[baseUrl] ?? null
+		return store[await this.#key(baseUrl)] ?? null
 	}
 
 	async set(baseUrl: string, entry: SessionEntry): Promise<void> {
+		const key = await this.#key(baseUrl)
 		const store = await sessionCacheItem.getValue()
-		store[baseUrl] = entry
+		store[key] = entry
 		await sessionCacheItem.setValue(store)
 	}
 
 	async delete(baseUrl: string): Promise<void> {
+		const key = await this.#key(baseUrl)
 		const store = await sessionCacheItem.getValue()
-		delete store[baseUrl]
+		delete store[key]
 		await sessionCacheItem.setValue(store)
 	}
 }
 
-const browserSessionStore = new BrowserSessionStore()
+const sessionStores = new Map<string, BrowserSessionStore>()
+
+function sessionStoreFor(password: string): BrowserSessionStore {
+	let store = sessionStores.get(password)
+	if (!store) {
+		store = new BrowserSessionStore(password)
+		sessionStores.set(password, store)
+	}
+	return store
+}
 
 class ExtensionPiHoleClient extends PiHoleClient {
 	async getSummary(): Promise<PiholeSummary> {
@@ -113,7 +143,8 @@ function createClient(target: ApiTarget, timeoutMs: number): ExtensionPiHoleClie
 		password: target.apiPassword,
 		timeoutMs,
 		userAgent: USER_AGENT,
-		sessionStore: browserSessionStore,
+		sessionStore: sessionStoreFor(target.apiPassword),
+		...(import.meta.env.DEV && { fetch: simulatingFetch }),
 	}
 	return new ExtensionPiHoleClient(options)
 }
@@ -137,6 +168,16 @@ export async function getSystemInfo(target: ApiTarget): Promise<PiholeSystemInfo
 		tempUnit: padd.sensors?.unit ?? 'C',
 		uptime: padd.system?.uptime ?? 0,
 	}
+}
+
+// Logs out on the Pi-hole and forgets the cached session, if there is one
+export async function endSession(target: ApiTarget): Promise<void> {
+	const store = sessionStoreFor(target.apiPassword)
+	if (!(await store.get(target.baseUrl))) return
+	await createClient(target, currentTimeoutMs)
+		.auth.logout()
+		.catch(() => {})
+	await store.delete(target.baseUrl)
 }
 
 // Gravity downloads every list, which takes much longer than a normal request

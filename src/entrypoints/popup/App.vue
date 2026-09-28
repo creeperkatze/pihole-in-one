@@ -271,7 +271,7 @@ const instanceTabs = computed<PopupTab[]>(
 
 onMounted(async () => {
 	if (root.value) resizeObserver.observe(root.value)
-	await init()
+	void init()
 
 	try {
 		const tag = await getLatestVersionTag()

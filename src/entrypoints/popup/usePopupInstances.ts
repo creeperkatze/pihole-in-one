@@ -1,11 +1,11 @@
 import { storage } from '@wxt-dev/storage'
-import { type BlockingStatus, PiHoleError } from 'pihole-js'
+import type { BlockingStatus } from 'pihole-js'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
-import { getApiMessageForError } from '../../composables/useApiMessages'
+import { useErrorMessage } from '../../composables/useApiMessages'
 import {
 	getPiHoleClient,
 	getSystemInfo,
@@ -74,6 +74,7 @@ async function conditionallyShowDonate(): Promise<void> {
 
 export function usePopupInstances() {
 	const { t } = useI18n()
+	const describeError = useErrorMessage()
 	const route = useRoute()
 	const router = useRouter()
 
@@ -152,14 +153,7 @@ export function usePopupInstances() {
 			state.summary = summary
 			syncTimer(i, summary.blocking)
 		} catch (e) {
-			const apiMessage = getApiMessageForError(e)
-			state.error = apiMessage
-				? t(apiMessage)
-				: e instanceof PiHoleError
-					? e.message
-					: e instanceof Error
-						? e.message
-						: t('popup.error.fetchFailed')
+			state.error = describeError(e, 'popup.error.fetchFailed')
 		}
 		state.system = await system
 	}
@@ -191,14 +185,7 @@ export function usePopupInstances() {
 			void browser.runtime.sendMessage({ type: 'refresh' })
 			await fetchSummary(i)
 		} catch (e) {
-			const apiMessage = getApiMessageForError(e)
-			state.error = apiMessage
-				? t(apiMessage)
-				: e instanceof PiHoleError
-					? e.message
-					: e instanceof Error
-						? e.message
-						: t('popup.error.actionFailed')
+			state.error = describeError(e, 'popup.error.actionFailed')
 		} finally {
 			state.toggling = false
 		}
@@ -217,14 +204,7 @@ export function usePopupInstances() {
 			void browser.runtime.sendMessage({ type: 'refresh' })
 			await fetchSummary(i)
 		} catch (e) {
-			const apiMessage = getApiMessageForError(e)
-			state.error = apiMessage
-				? t(apiMessage)
-				: e instanceof PiHoleError
-					? e.message
-					: e instanceof Error
-						? e.message
-						: t('popup.error.actionFailed')
+			state.error = describeError(e, 'popup.error.actionFailed')
 		} finally {
 			state.toggling = false
 		}

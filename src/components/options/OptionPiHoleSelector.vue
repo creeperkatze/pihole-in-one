@@ -4,8 +4,8 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { browser } from 'wxt/browser'
 
-import { getApiMessageForError } from '../../composables/useApiMessages'
-import { getPiHoleClient } from '../../utils/api'
+import { useErrorMessage } from '../../composables/useApiMessages'
+import { endSession, getPiHoleClient } from '../../utils/api'
 import { INSTANCE_ICON_IDS, INSTANCE_ICONS, instanceIcon } from '../../utils/instance-icons'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
 import Modal from '../Modal.vue'
@@ -22,6 +22,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const describeError = useErrorMessage()
 
 interface Draft extends PiholeInstance {
 	isNew: boolean
@@ -133,6 +134,12 @@ async function save(): Promise<void> {
 
 	emit('update:modelValue', next)
 	closeForm()
+	if (
+		previous &&
+		(previous.baseUrl !== saved.baseUrl || previous.apiPassword !== saved.apiPassword)
+	) {
+		await endSession(previous)
+	}
 	void runTest(saved)
 	if (previous) await releaseOrigin(previous.baseUrl, next)
 }
@@ -146,6 +153,7 @@ async function confirmRemove(): Promise<void> {
 
 	const next = props.modelValue.filter((i) => i.id !== inst.id)
 	emit('update:modelValue', next)
+	await endSession(inst)
 	await releaseOrigin(inst.baseUrl, next)
 }
 
@@ -161,14 +169,9 @@ async function runTest(inst: PiholeInstance): Promise<void> {
 			message: t('options.piholeselector.instance.connected'),
 		}
 	} catch (e) {
-		const apiMessage = getApiMessageForError(e)
 		testStates.value[inst.id] = {
 			status: 'error',
-			message: apiMessage
-				? t(apiMessage)
-				: e instanceof Error
-					? e.message
-					: t('options.piholeselector.instance.connectionFailed'),
+			message: describeError(e, 'options.piholeselector.instance.connectionFailed'),
 		}
 	}
 }

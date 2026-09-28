@@ -27,10 +27,10 @@
 <script setup lang="ts">
 import type { PiholeGroup } from 'pihole-js'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import ItemRow from '../../../components/ui/ItemRow.vue'
 import Toggle from '../../../components/ui/Toggle.vue'
+import { useErrorMessage } from '../../../composables/useApiMessages'
 import { getPiHoleClient } from '../../../utils/api'
 
 const props = defineProps<{
@@ -39,7 +39,7 @@ const props = defineProps<{
 	apiPassword: string
 }>()
 
-const { t } = useI18n()
+const describeError = useErrorMessage()
 
 const toggleError = ref('')
 const toggling = ref<string | null>(null)
@@ -55,7 +55,7 @@ async function toggle(group: PiholeGroup): Promise<void> {
 		})
 		group.enabled = !group.enabled
 	} catch (e) {
-		toggleError.value = e instanceof Error ? e.message : t('popup.groups.updateError')
+		toggleError.value = describeError(e, 'popup.groups.updateError')
 	} finally {
 		toggling.value = null
 	}

@@ -6,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/ui/Button.vue'
 import Input from '../../../components/ui/Input.vue'
+import { useErrorMessage } from '../../../composables/useApiMessages'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 
@@ -18,6 +19,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const describeError = useErrorMessage()
 
 const value = ref('')
 const regex = ref(false)
@@ -49,7 +51,7 @@ async function add(type: DomainType): Promise<void> {
 		value.value = ''
 		emit('added')
 	} catch (e) {
-		error.value = e instanceof Error ? e.message : t('popup.domains.list.addError')
+		error.value = describeError(e, 'popup.domains.list.addError')
 	} finally {
 		adding.value = false
 	}

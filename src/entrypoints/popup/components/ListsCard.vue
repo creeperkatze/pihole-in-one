@@ -27,10 +27,10 @@
 <script setup lang="ts">
 import type { PiholeList } from 'pihole-js'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import ItemRow from '../../../components/ui/ItemRow.vue'
 import Toggle from '../../../components/ui/Toggle.vue'
+import { useErrorMessage } from '../../../composables/useApiMessages'
 import { getPiHoleClient } from '../../../utils/api'
 
 const props = defineProps<{
@@ -39,7 +39,7 @@ const props = defineProps<{
 	apiPassword: string
 }>()
 
-const { t } = useI18n()
+const describeError = useErrorMessage()
 
 const error = ref('')
 const toggling = ref<string | null>(null)
@@ -66,7 +66,7 @@ async function toggle(list: PiholeList): Promise<void> {
 		})
 		list.enabled = !list.enabled
 	} catch (e) {
-		error.value = e instanceof Error ? e.message : t('popup.lists.updateError')
+		error.value = describeError(e, 'popup.lists.updateError')
 	} finally {
 		toggling.value = null
 	}

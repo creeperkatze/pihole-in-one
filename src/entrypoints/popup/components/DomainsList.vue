@@ -64,6 +64,7 @@ import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import ItemRow from '../../../components/ui/ItemRow.vue'
+import { useErrorMessage } from '../../../composables/useApiMessages'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 import DomainAdd from './DomainAdd.vue'
@@ -74,6 +75,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+const describeError = useErrorMessage()
 
 const entries = ref<DomainEntry[]>([])
 const loading = ref(true)
@@ -93,7 +95,7 @@ async function load(): Promise<void> {
 			.filter((d) => d.enabled)
 			.sort((a, b) => b.date_added - a.date_added)
 	} catch (e) {
-		loadError.value = e instanceof Error ? e.message : t('popup.domains.list.loadError')
+		loadError.value = describeError(e, 'popup.domains.list.loadError')
 	}
 }
 
@@ -112,7 +114,7 @@ async function removeEntry(entry: DomainEntry): Promise<void> {
 			(e) => !(e.type === entry.type && e.kind === entry.kind && e.domain === entry.domain),
 		)
 	} catch (e) {
-		loadError.value = e instanceof Error ? e.message : t('popup.domains.list.removeError')
+		loadError.value = describeError(e, 'popup.domains.list.removeError')
 	} finally {
 		removing.value = null
 	}
