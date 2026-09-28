@@ -1,5 +1,4 @@
 ;(function () {
 	var s = localStorage.getItem('colorScheme')
-	if (s === 'dark') document.documentElement.classList.add('dark')
-	else if (s === 'light') document.documentElement.classList.add('light')
+	if (s === 'dark' || s === 'light') document.documentElement.dataset.theme = s
 })()

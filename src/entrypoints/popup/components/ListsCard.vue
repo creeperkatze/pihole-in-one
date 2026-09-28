@@ -5,23 +5,21 @@
 		</div>
 
 		<div class="grid grid-cols-2 gap-1.5">
-			<div
-				v-for="list in lists"
-				:key="list.id"
-				class="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg border border-border bg-surface-3"
-			>
-				<div class="flex flex-col min-w-0">
+			<ItemRow v-for="list in lists" :key="list.id">
+				<div class="flex flex-col">
 					<span class="text-xs font-medium text-primary truncate">{{
 						list.comment || fileName(list)
 					}}</span>
 					<span class="text-[11px] text-secondary truncate">{{ fileName(list) }}</span>
 				</div>
-				<Toggle
-					:model-value="list.enabled"
-					:disabled="toggling === list.address"
-					@update:model-value="toggle(list)"
-				/>
-			</div>
+				<template #trailing>
+					<Toggle
+						:model-value="list.enabled"
+						:disabled="toggling === list.address"
+						@update:model-value="toggle(list)"
+					/>
+				</template>
+			</ItemRow>
 		</div>
 	</div>
 </template>
@@ -31,7 +29,8 @@ import type { PiholeList } from 'pihole-js'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import Toggle from '../../../components/Toggle.vue'
+import ItemRow from '../../../components/ui/ItemRow.vue'
+import Toggle from '../../../components/ui/Toggle.vue'
 import { getPiHoleClient } from '../../../utils/api'
 
 const props = defineProps<{

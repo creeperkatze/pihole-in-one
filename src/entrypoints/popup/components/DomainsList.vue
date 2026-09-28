@@ -13,12 +13,8 @@
 		</div>
 
 		<div v-else class="flex flex-col gap-1.5">
-			<div
-				v-for="entry in entries"
-				:key="`${entry.type}:${entry.kind}:${entry.domain}`"
-				class="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg border border-border bg-surface-3"
-			>
-				<div class="flex min-w-0 items-center gap-1.5">
+			<ItemRow v-for="entry in entries" :key="`${entry.type}:${entry.kind}:${entry.domain}`">
+				<template #leading>
 					<span
 						class="shrink-0"
 						:title="
@@ -32,27 +28,29 @@
 							aria-hidden="true"
 						/>
 					</span>
-					<span v-if="entry.kind === 'regex'" :title="t('popup.domains.regex')">
+					<span v-if="entry.kind === 'regex'" class="shrink-0" :title="t('popup.domains.regex')">
 						<Regex class="size-3.5 text-secondary" aria-hidden="true" />
 					</span>
-					<span
-						class="text-xs font-medium text-primary truncate"
-						:class="{ 'font-mono': entry.kind === 'regex' }"
-						:title="entry.domain"
-					>
-						{{ entry.domain }}
-					</span>
-				</div>
-				<button
-					type="button"
-					class="flex shrink-0 items-center justify-center size-6 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-					:disabled="removing === entry.domain"
-					:title="t('popup.domains.list.remove')"
-					@click="removeEntry(entry)"
+				</template>
+				<div
+					class="text-xs font-medium text-primary truncate"
+					:class="{ 'font-mono': entry.kind === 'regex' }"
+					:title="entry.domain"
 				>
-					<X class="size-3.5" />
-				</button>
-			</div>
+					{{ entry.domain }}
+				</div>
+				<template #trailing>
+					<button
+						type="button"
+						class="flex shrink-0 items-center justify-center size-6 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+						:disabled="removing === entry.domain"
+						:title="t('popup.domains.list.remove')"
+						@click="removeEntry(entry)"
+					>
+						<X class="size-3.5" />
+					</button>
+				</template>
+			</ItemRow>
 		</div>
 	</div>
 </template>
@@ -63,6 +61,7 @@ import type { DomainEntry } from 'pihole-js'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import ItemRow from '../../../components/ui/ItemRow.vue'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 

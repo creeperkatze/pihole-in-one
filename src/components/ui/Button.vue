@@ -1,55 +1,44 @@
-<template>
-	<button :type="type" :data-variant="variant" :class="classes">
-		<slot />
-	</button>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue'
 
 const props = withDefaults(
 	defineProps<{
-		variant?: 'default' | 'primary' | 'success' | 'danger' | 'outline'
-		size?: 'default' | 'small'
+		variant?: 'default' | 'primary' | 'success'
+		size?: 'sm' | 'md' | 'icon'
 		type?: 'button' | 'submit' | 'reset'
+		disabled?: boolean
+		active?: boolean
 	}>(),
 	{
 		variant: 'default',
-		size: 'default',
+		size: 'md',
 		type: 'button',
+		disabled: false,
+		active: false,
 	},
 )
 
-const variantClasses: Record<string, string> = {
-	default: 'border-border bg-surface-3 text-primary',
-	primary: 'bg-pihole-red border-pihole-red text-white',
-	success: 'bg-pihole-green border-pihole-green text-black',
-	danger: 'bg-pihole-red border-pihole-red text-white',
-	outline: 'bg-transparent border-border text-primary',
-}
-
 const classes = computed(() => [
-	'inline-flex items-center gap-1.5 border rounded-[5px] font-medium transition-colors duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed',
-	props.size === 'small' ? 'px-2.5 py-[3px] text-xs' : 'px-3.5 py-1.5',
-	variantClasses[props.variant],
+	'inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-md border font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50',
+	props.size === 'icon' ? 'size-9 p-0' : props.size === 'sm' ? 'h-8 px-3' : 'h-9 px-3',
+	props.variant === 'default' &&
+		'border-border bg-surface-control text-primary enabled:hover:bg-surface-hover',
+	props.variant === 'primary' &&
+		'border-pihole-red bg-pihole-red text-white enabled:hover:bg-pihole-red-hover',
+	props.variant === 'success' &&
+		'border-pihole-green bg-pihole-green text-black enabled:hover:bg-pihole-green-hover',
+	props.active && 'border-pihole-red bg-pihole-red/10 text-primary',
 ])
+
+defineSlots<{
+	default?: () => unknown
+	icon?: () => unknown
+}>()
 </script>
 
-<style scoped>
-button:hover:not(:disabled) {
-	background-color: var(--color-surface-hover);
-}
-
-button[data-variant='primary']:hover:not(:disabled),
-button[data-variant='danger']:hover:not(:disabled) {
-	background-color: #990000;
-}
-
-button[data-variant='success']:hover:not(:disabled) {
-	background-color: #009900;
-}
-
-button[data-variant='outline']:hover:not(:disabled) {
-	background-color: var(--color-surface-hover);
-}
-</style>
+<template>
+	<button :type="type" :disabled="disabled" :class="classes">
+		<slot />
+		<slot name="icon" />
+	</button>
+</template>

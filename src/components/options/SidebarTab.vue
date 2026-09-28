@@ -1,19 +1,3 @@
-<template>
-	<button
-		type="button"
-		class="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-start text-sm font-medium whitespace-nowrap transition-colors duration-150 cursor-pointer"
-		:class="
-			active
-				? 'bg-surface-raised text-primary shadow-xs border border-border'
-				: 'text-secondary hover:bg-surface-3 hover:text-primary border border-transparent'
-		"
-		@click="$emit('click')"
-	>
-		<component :is="icon" class="size-4" />
-		{{ label }}
-	</button>
-</template>
-
 <script setup lang="ts">
 import type { Component } from 'vue'
 
@@ -27,3 +11,19 @@ defineEmits<{
 	click: []
 }>()
 </script>
+
+<template>
+	<button
+		type="button"
+		class="flex w-full cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-start text-sm font-medium whitespace-nowrap transition-colors"
+		:class="
+			active
+				? 'border-pihole-red bg-pihole-red/10 text-primary'
+				: 'border-transparent text-secondary hover:border-border hover:bg-surface-hover hover:text-primary'
+		"
+		@click="$emit('click')"
+	>
+		<component :is="icon" :size="16" class="shrink-0" />
+		{{ label }}
+	</button>
+</template>

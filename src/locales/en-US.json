@@ -1,4 +1,7 @@
 {
+	"common": {
+		"select": "Select…"
+	},
 	"api": {
 		"error": {
 			"passwordIncorrect": "Password incorrect",
@@ -111,12 +114,6 @@
 		"language": {
 			"description": "Choose the language for the extension interface. Help translate on {crowdin}. Some languages may be incomplete.",
 			"label": "Language"
-		},
-		"search": {
-			"description": "Showing options matching \"{query}\"",
-			"noResults": "No options found",
-			"placeholder": "Search options...",
-			"title": "Search results"
 		},
 		"sidebar": {
 			"crowdin": {

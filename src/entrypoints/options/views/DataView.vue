@@ -1,3 +1,24 @@
+<script setup lang="ts">
+import { AlertTriangle, Download, RotateCcw, Upload } from '@lucide/vue'
+import { useI18n } from 'vue-i18n'
+
+import Modal from '../../../components/Modal.vue'
+import OptionButton from '../../../components/options/OptionButton.vue'
+import SectionHeader from '../../../components/options/SectionHeader.vue'
+import Button from '../../../components/ui/Button.vue'
+import {
+	importFeedback,
+	showExportWarning,
+	showResetConfirm,
+	useDataActions,
+} from '../../../composables/useDataActions'
+import { useSettings } from '../../../composables/useSettings'
+
+const { initialized } = useSettings()
+const { triggerExport, confirmExport, triggerImport, triggerReset, confirmReset } = useDataActions()
+const { t } = useI18n()
+</script>
+
 <template>
 	<section class="flex flex-col">
 		<SectionHeader :title="t('options.data.title')" :description="t('options.data.description')" />
@@ -7,21 +28,21 @@
 				:label="t('options.data.export.label')"
 				:description="t('options.data.export.description')"
 				:button-label="t('options.data.export.button')"
-				@action="triggerExport"
+				@click="triggerExport"
 			/>
 			<OptionButton
 				:icon="Upload"
 				:label="t('options.data.import.label')"
 				:description="t('options.data.import.description')"
 				:button-label="t('options.data.import.button')"
-				@action="triggerImport"
+				@click="triggerImport"
 			/>
 			<OptionButton
 				:icon="RotateCcw"
 				:label="t('options.data.reset.label')"
 				:description="t('options.data.reset.description')"
 				:button-label="t('options.data.reset.button')"
-				@action="triggerReset"
+				@click="triggerReset"
 			/>
 			<div
 				v-if="importFeedback"
@@ -53,7 +74,7 @@
 			<Button @click="showExportWarning = false">
 				{{ t('options.data.export.warning.cancel') }}
 			</Button>
-			<Button variant="danger" @click="confirmExport">
+			<Button variant="primary" @click="confirmExport">
 				{{ t('options.data.export.warning.confirm') }}
 			</Button>
 		</div>
@@ -75,77 +96,9 @@
 			<Button @click="showResetConfirm = false">
 				{{ t('options.data.reset.confirm.cancel') }}
 			</Button>
-			<Button variant="danger" @click="confirmReset">
+			<Button variant="primary" @click="confirmReset">
 				{{ t('options.data.reset.confirm.confirm') }}
 			</Button>
 		</div>
 	</Modal>
 </template>
-
-<script lang="ts">
-import {
-	Download as DownloadIcon,
-	RotateCcw as RotateCcwIcon,
-	Upload as UploadIcon,
-} from '@lucide/vue'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-import { useDataActions } from '../../../composables/useDataActions'
-
-export function useDataOptions() {
-	const { t } = useI18n()
-	const { triggerExport, triggerImport, triggerReset } = useDataActions()
-
-	const exportOption = computed(() => ({
-		id: 'export',
-		type: 'button' as const,
-		icon: DownloadIcon,
-		label: t('options.data.export.label'),
-		description: t('options.data.export.description'),
-		buttonLabel: t('options.data.export.button'),
-		onClick: triggerExport,
-	}))
-
-	const importOption = computed(() => ({
-		id: 'import',
-		type: 'button' as const,
-		icon: UploadIcon,
-		label: t('options.data.import.label'),
-		description: t('options.data.import.description'),
-		buttonLabel: t('options.data.import.button'),
-		onClick: triggerImport,
-	}))
-
-	const resetOption = computed(() => ({
-		id: 'reset',
-		type: 'button' as const,
-		icon: RotateCcwIcon,
-		label: t('options.data.reset.label'),
-		description: t('options.data.reset.description'),
-		buttonLabel: t('options.data.reset.button'),
-		onClick: triggerReset,
-	}))
-
-	return { exportOption, importOption, resetOption }
-}
-</script>
-
-<script setup lang="ts">
-import { AlertTriangle, Download, RotateCcw, Upload } from '@lucide/vue'
-
-import Button from '../../../components/Button.vue'
-import Modal from '../../../components/Modal.vue'
-import OptionButton from '../../../components/options/OptionButton.vue'
-import SectionHeader from '../../../components/options/SectionHeader.vue'
-import {
-	importFeedback,
-	showExportWarning,
-	showResetConfirm,
-} from '../../../composables/useDataActions'
-import { useSettings } from '../../../composables/useSettings'
-
-const { initialized } = useSettings()
-const { triggerExport, confirmExport, triggerImport, triggerReset, confirmReset } = useDataActions()
-const { t } = useI18n()
-</script>

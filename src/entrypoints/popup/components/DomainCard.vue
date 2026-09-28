@@ -21,7 +21,8 @@
 		></div>
 		<div v-else class="flex gap-1.5 shrink-0">
 			<Button
-				:variant="allowlistedByUser ? 'success' : 'outline'"
+				size="icon"
+				:variant="allowlistedByUser ? 'success' : 'default'"
 				:disabled="acting"
 				:title="
 					allowlistedByUser ? t('popup.domain.removeFromWhitelist') : t('popup.domain.whitelist')
@@ -31,7 +32,8 @@
 				<Check class="size-4" />
 			</Button>
 			<Button
-				:variant="blockedByUser ? 'danger' : 'outline'"
+				size="icon"
+				:variant="blockedByUser ? 'primary' : 'default'"
 				:disabled="acting"
 				:title="blockedByUser ? t('popup.domain.unblock') : t('popup.domain.block')"
 				@click="toggleBlock"
@@ -48,7 +50,7 @@ import type { DomainEntry } from 'pihole-js'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import Button from '../../../components/Button.vue'
+import Button from '../../../components/ui/Button.vue'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 

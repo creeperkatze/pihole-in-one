@@ -10,10 +10,6 @@ export interface PiholeInstance {
 export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
 export type ColorScheme = 'auto' | 'dark' | 'light'
 
-export type SettingsKeyOfType<V> = {
-	[K in keyof ExtensionSettings]: ExtensionSettings[K] extends V ? K : never
-}[keyof ExtensionSettings]
-
 export interface ExtensionSettings {
 	instances: PiholeInstance[]
 	refreshInterval: number

@@ -64,13 +64,6 @@ watch(
 	},
 )
 
-function setOption(
-	key: keyof Omit<ExtensionSettings, 'instances'>,
-	value: string | number | boolean,
-): void {
-	;(form as Record<string, unknown>)[key] = value
-}
-
 export function useSettings() {
 	onMounted(async () => {
 		if (initialized.value) return
@@ -84,5 +77,5 @@ export function useSettings() {
 		initialized.value = true
 	})
 
-	return { form, saveError, setOption, initialized }
+	return { form, saveError, initialized }
 }

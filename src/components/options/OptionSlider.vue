@@ -1,14 +1,10 @@
 <template>
-	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
-		<div class="flex items-center justify-between gap-4">
-			<div class="flex items-center gap-3 min-w-0">
-				<component :is="icon" v-if="icon" class="size-5 shrink-0 text-muted" />
-				<div>
-					<div class="text-sm font-medium">{{ label }}</div>
-					<div v-if="description" class="text-xs text-secondary mt-0.5">
-						{{ description }}
-					</div>
-				</div>
+	<div class="flex flex-col gap-2 rounded-lg border border-border bg-surface-3 px-3 py-2">
+		<div class="flex min-w-0 items-center gap-3">
+			<component :is="icon" v-if="icon" :size="18" class="shrink-0 text-secondary" />
+			<div class="min-w-0 flex-1">
+				<p class="text-sm font-medium">{{ label }}</p>
+				<p v-if="description" class="mt-0.5 text-xs text-secondary">{{ description }}</p>
 			</div>
 			<div class="flex items-center gap-1 shrink-0">
 				<Input
@@ -24,7 +20,7 @@
 				<span v-if="suffix" class="text-sm text-secondary">{{ suffix }}</span>
 			</div>
 		</div>
-		<div :class="icon ? 'ps-7' : ''">
+		<div :class="icon ? 'ps-7.5' : ''">
 			<input
 				type="range"
 				:min="min"
@@ -38,29 +34,11 @@
 	</div>
 </template>
 
-<script lang="ts">
-import type { SettingsKeyOfType } from '../../utils/settings'
-
-export type SliderOption = {
-	id: string
-	type: 'slider'
-	formKey: SettingsKeyOfType<number>
-	icon?: import('vue').Component
-	label: string
-	description: string
-	min: number
-	max: number
-	step: number
-	suffix?: string
-	format?: (v: number) => string
-}
-</script>
-
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { ref, watch } from 'vue'
 
-import Input from '../Input.vue'
+import Input from '../ui/Input.vue'
 
 const props = defineProps<{
 	icon?: Component

@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import Button from '../../../components/Button.vue'
+import Button from '../../../components/ui/Button.vue'
 
 defineProps<{
 	status: 'enabled' | 'disabled'

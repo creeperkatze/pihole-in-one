@@ -47,39 +47,15 @@
 				</button>
 			</div>
 			<div class="flex min-h-0 flex-1 flex-col">
-				<div class="border-b border-border-subtle px-3 py-3 sm:px-2 sm:py-2">
-					<div class="relative">
-						<Search
-							class="size-4 absolute start-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-						/>
-						<Input
-							v-model="searchQuery"
-							type="text"
-							:placeholder="t('options.search.placeholder')"
-							class="w-full rounded-lg ps-9 text-sm py-2"
-							:class="searchQuery ? 'pe-8' : 'pe-3'"
-						/>
-						<button
-							v-if="searchQuery"
-							type="button"
-							class="absolute end-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-secondary"
-							@click="searchQuery = ''"
-						>
-							<XIcon class="size-4" />
-						</button>
-					</div>
-				</div>
 				<nav class="flex flex-1 flex-col gap-1.5 px-3 py-3 sm:p-2">
-					<template v-if="!searchQuery">
-						<SidebarTab
-							v-for="tab in tabs"
-							:key="tab.id"
-							:icon="tab.icon"
-							:label="tab.label"
-							:active="route.path === '/' + tab.id"
-							@click="handleTabClick('/' + tab.id)"
-						/>
-					</template>
+					<SidebarTab
+						v-for="tab in tabs"
+						:key="tab.id"
+						:icon="tab.icon"
+						:label="tab.label"
+						:active="route.path === '/' + tab.id"
+						@click="handleTabClick('/' + tab.id)"
+					/>
 				</nav>
 
 				<!-- Bottom cards -->
@@ -178,12 +154,10 @@ import {
 	Database,
 	Loader2,
 	Menu,
-	Search,
 	Server,
 	SlidersHorizontal,
-	X as XIcon,
 } from '@lucide/vue'
-import { computed, onMounted, ref, watch, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
@@ -193,7 +167,6 @@ import GitHubLogo from '../../assets/icons/github.svg?component'
 import KofiLogo from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
 import Card from '../../components/Card.vue'
-import Input from '../../components/Input.vue'
 import SidebarTab from '../../components/options/SidebarTab.vue'
 import { useSettings } from '../../composables/useSettings'
 import { getLatestVersionTag } from '../../utils/update-check'
@@ -216,7 +189,6 @@ const tabs = computed(() => [
 ])
 
 const currentTabTitle = computed(() => {
-	if (route.path === '/search') return t('options.search.title')
 	return tabs.value.find((tab) => '/' + tab.id === route.path)?.label ?? 'Settings'
 })
 
@@ -224,35 +196,12 @@ watchEffect(() => {
 	document.title = `Pi-hole In One | ${currentTabTitle.value}`
 })
 
-const searchQuery = ref('')
-const lastTabPath = ref('/connection')
 const sidebarOpen = ref(false)
 
 const version = browser.runtime.getManifest().version
 const latestVersion = ref<string | null>(null)
 const isLatest = ref(false)
 const checking = ref(true)
-
-watch(
-	route,
-	(r) => {
-		if (r.path !== '/search') {
-			lastTabPath.value = r.path
-			searchQuery.value = ''
-		} else {
-			searchQuery.value = String(r.query.q ?? '')
-		}
-	},
-	{ immediate: true },
-)
-
-watch(searchQuery, (q) => {
-	if (q) {
-		router.push({ path: '/search', query: { q } })
-	} else {
-		router.push(lastTabPath.value)
-	}
-})
 
 function handleTabClick(path: string) {
 	router.push(path)

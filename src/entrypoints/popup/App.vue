@@ -96,7 +96,7 @@
 					class="mx-3 mt-3 flex shrink-0 items-center justify-between gap-2 rounded-[5px] border border-danger-border bg-danger-bg p-3 text-xs text-pihole-red"
 				>
 					<span>{{ states[activeInstance]?.error }}</span>
-					<Button variant="outline" size="small" class="shrink-0" @click="openOptions">
+					<Button size="sm" @click="openOptions">
 						{{ t('popup.error.fix') }}
 					</Button>
 				</div>
@@ -194,8 +194,8 @@ import { browser } from 'wxt/browser'
 
 import KofiIcon from '../../assets/icons/kofi.svg?component'
 import Logo from '../../assets/logo.svg?component'
-import Button from '../../components/Button.vue'
 import Card from '../../components/Card.vue'
+import Button from '../../components/ui/Button.vue'
 import { getLatestVersionTag } from '../../utils/update-check'
 import PopupTabs, { type PopupTab } from './components/PopupTabs.vue'
 import { usePopupInstances } from './usePopupInstances'

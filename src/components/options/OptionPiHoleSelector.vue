@@ -1,24 +1,20 @@
 <template>
-	<div class="flex flex-col gap-2 px-4 py-3 rounded-lg border border-border bg-surface-3">
-		<div class="flex items-center justify-between gap-3">
-			<div class="flex items-center gap-3">
-				<Server class="size-5 shrink-0 text-muted" />
-				<div>
-					<div class="text-sm font-medium">
-						{{ t('options.piholeselector.title') }}
-					</div>
-					<div class="text-xs text-secondary mt-0.5">
-						{{ t('options.piholeselector.description') }}
-					</div>
-				</div>
+	<div class="flex flex-col gap-2 rounded-lg border border-border bg-surface-3 px-3 py-2">
+		<div class="flex min-w-0 items-center gap-3">
+			<Server :size="18" class="shrink-0 text-secondary" />
+			<div class="min-w-0 flex-1">
+				<p class="text-sm font-medium">{{ t('options.piholeselector.title') }}</p>
+				<p class="mt-0.5 text-xs text-secondary">
+					{{ t('options.piholeselector.description') }}
+				</p>
 			</div>
-			<Button class="shrink-0" @click="addInstance">
+			<Button @click="addInstance">
 				<Plus class="size-4" />
 				{{ t('options.piholeselector.addButton') }}
 			</Button>
 		</div>
 
-		<div class="flex flex-col gap-2 ps-7">
+		<div class="flex flex-col gap-2 ps-7.5">
 			<div
 				v-if="localValue.length === 0"
 				class="flex flex-col items-center gap-2 py-6 rounded-lg border border-dashed border-border text-muted text-sm"
@@ -54,10 +50,10 @@
 							v-else-if="testStates[inst.id]?.status === 'error'"
 							class="size-4 text-pihole-red"
 						/>
-						<Button size="small" variant="outline" @click="void removeInstance(inst.id)">
+						<Button size="sm" @click="void removeInstance(inst.id)">
 							<Trash2 class="size-4" />
 						</Button>
-						<Button size="small" variant="outline" @click="toggleEdit(inst.id)">
+						<Button size="sm" @click="toggleEdit(inst.id)">
 							<ChevronDown
 								class="size-4 transition-transform duration-200"
 								:class="editingId === inst.id ? 'rotate-180' : ''"
@@ -155,15 +151,6 @@
 	</div>
 </template>
 
-<script lang="ts">
-export type PiHoleOption = {
-	id: string
-	type: 'pihole'
-	label: string
-	description: string
-}
-</script>
-
 <script setup lang="ts">
 import {
 	CheckCircle2,
@@ -183,8 +170,8 @@ import { browser } from 'wxt/browser'
 import { getApiMessageForError } from '../../composables/useApiMessages'
 import { getPiHoleClient } from '../../utils/api'
 import { generateInstanceId, type PiholeInstance } from '../../utils/settings'
-import Button from '../Button.vue'
-import Input from '../Input.vue'
+import Button from '../ui/Button.vue'
+import Input from '../ui/Input.vue'
 
 const props = defineProps<{
 	modelValue: PiholeInstance[]

@@ -7,7 +7,6 @@
 			<Button
 				v-for="preset in presets"
 				:key="preset.label"
-				variant="outline"
 				:disabled="disabled"
 				@click="$emit('select', preset.seconds)"
 			>
@@ -20,7 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import Button from '../../../components/Button.vue'
+import Button from '../../../components/ui/Button.vue'
 
 defineProps<{
 	disabled?: boolean
