@@ -13,12 +13,13 @@ const { settings, states, activeInstance } = usePopupInstances()
 
 <template>
 	<div v-if="states[activeInstance]?.summary" class="flex flex-col gap-3">
-		<GravityUpdate
-			:key="settings!.instances[activeInstance]!.id"
-			:instance="settings!.instances[activeInstance]!"
-		/>
-
-		<hr class="border-border" />
+		<template v-if="settings!.showGravityUpdate">
+			<GravityUpdate
+				:key="settings!.instances[activeInstance]!.id"
+				:instance="settings!.instances[activeInstance]!"
+			/>
+			<hr class="border-border" />
+		</template>
 
 		<ListsCard
 			v-if="states[activeInstance]!.summary!.lists.length"

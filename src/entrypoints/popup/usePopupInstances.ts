@@ -6,13 +6,19 @@ import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
 import { getApiMessageForError } from '../../composables/useApiMessages'
-import { getPiHoleClient, type PiholeSummary } from '../../utils/api'
+import {
+	getPiHoleClient,
+	getSystemInfo,
+	type PiholeSummary,
+	type PiholeSystemInfo,
+} from '../../utils/api'
 import { formatDuration } from '../../utils/format'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
 import { redesignNoticeItem } from '../../utils/whats-new'
 
 export interface InstanceState {
 	summary: PiholeSummary | null
+	system: PiholeSystemInfo | null
 	error: string
 	toggling: boolean
 	timerEndsAt: number | null
@@ -20,7 +26,14 @@ export interface InstanceState {
 }
 
 function makeState(): InstanceState {
-	return { summary: null, error: '', toggling: false, timerEndsAt: null, timerRemaining: null }
+	return {
+		summary: null,
+		system: null,
+		error: '',
+		toggling: false,
+		timerEndsAt: null,
+		timerRemaining: null,
+	}
 }
 
 interface DonatePromptState {
@@ -131,6 +144,9 @@ export function usePopupInstances() {
 		const state = states.value[i]
 		if (!inst || !state) return
 		state.error = ''
+		const system = settings.value?.showSystemInfo
+			? getSystemInfo(inst).catch(() => null)
+			: Promise.resolve(null)
 		try {
 			const summary = await getPiHoleClient(inst).getSummary()
 			state.summary = summary
@@ -145,6 +161,7 @@ export function usePopupInstances() {
 						? e.message
 						: t('popup.error.fetchFailed')
 		}
+		state.system = await system
 	}
 
 	async function fetchAll(): Promise<void> {

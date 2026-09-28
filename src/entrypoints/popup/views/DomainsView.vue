@@ -1,5 +1,5 @@
 <template>
-	<DomainsList v-if="settings" :instances="settings.instances" />
+	<DomainsList v-if="settings" :instances="settings.instances" :show-add="settings.showDomainAdd" />
 </template>
 
 <script setup lang="ts">

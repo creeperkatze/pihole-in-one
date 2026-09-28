@@ -2,6 +2,7 @@
 import BlockingCard from '../components/BlockingCard.vue'
 import DomainCard from '../components/DomainCard.vue'
 import StatsCard from '../components/StatsCard.vue'
+import SystemCard from '../components/SystemCard.vue'
 import { usePopupInstances } from '../usePopupInstances'
 
 const {
@@ -27,12 +28,17 @@ const {
 		/>
 
 		<DomainCard
-			v-if="currentDomain && !states[activeInstance]?.error"
+			v-if="settings!.showCurrentSite && currentDomain && !states[activeInstance]?.error"
 			:key="currentDomain"
 			:domain="currentDomain"
 			:instances="settings!.instances"
 		/>
 
-		<StatsCard :summary="states[activeInstance]!.summary!" />
+		<StatsCard v-if="settings!.showStats" :summary="states[activeInstance]!.summary!" />
+
+		<SystemCard
+			v-if="settings!.showSystemInfo && states[activeInstance]?.system"
+			:info="states[activeInstance]!.system!"
+		/>
 	</div>
 </template>

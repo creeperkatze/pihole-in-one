@@ -18,6 +18,14 @@ type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
 type SessionStoreShape = Record<string, SessionEntry>
 
+export interface PiholeSystemInfo {
+	cpu: number
+	memory: number
+	temperature: number | null
+	tempUnit: string
+	uptime: number
+}
+
 export interface PiholeSummary {
 	queries: SummaryStatsResponse['queries']
 	clients: SummaryStatsResponse['clients']
@@ -118,6 +126,17 @@ export function getPiHoleClient(target: ApiTarget): ExtensionPiHoleClient {
 	const client = createClient(target, currentTimeoutMs)
 	clientCache.set(cacheKey, client)
 	return client
+}
+
+export async function getSystemInfo(target: ApiTarget): Promise<PiholeSystemInfo> {
+	const padd = await getPiHoleClient(target).padd.getSummary()
+	return {
+		cpu: padd['%cpu'] ?? 0,
+		memory: padd['%mem'] ?? 0,
+		temperature: padd.sensors?.cpu_temp ?? null,
+		tempUnit: padd.sensors?.unit ?? 'C',
+		uptime: padd.system?.uptime ?? 0,
+	}
 }
 
 // Gravity downloads every list, which takes much longer than a normal request

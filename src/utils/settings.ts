@@ -19,6 +19,11 @@ export interface ExtensionSettings {
 	colorScheme: ColorScheme
 	locale: string
 	showDiagnosisBadge: boolean
+	showCurrentSite: boolean
+	showStats: boolean
+	showSystemInfo: boolean
+	showGravityUpdate: boolean
+	showDomainAdd: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -29,6 +34,11 @@ export const DEFAULTS: ExtensionSettings = {
 	colorScheme: 'auto',
 	locale: '',
 	showDiagnosisBadge: true,
+	showCurrentSite: true,
+	showStats: true,
+	showSystemInfo: false,
+	showGravityUpdate: true,
+	showDomainAdd: true,
 }
 
 const settingsItem = storage.defineItem<ExtensionSettings>('local:settings', {

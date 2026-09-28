@@ -168,7 +168,31 @@
 		"tabs": {
 			"connection": "Connection",
 			"customization": "Customization",
-			"data": "Data"
+			"data": "Data",
+			"popup": "Popup"
+		},
+		"popup": {
+			"title": "Popup",
+			"description": "Adjust the popup's layout and sections.",
+			"general": "General",
+			"currentSite": {
+				"label": "Current site",
+				"description": "Show whether the current site is blocked, with buttons to whitelist or block it."
+			},
+			"stats": {
+				"label": "Statistics",
+				"description": "Show today's queries, blocked queries, and cache hits with 24-hour graphs."
+			},
+			"systemInfo": {
+				"label": "System info",
+				"description": "Show CPU, memory, temperature, and uptime in the popup."
+			},
+			"gravityUpdate": {
+				"description": "Show a button to update gravity at the top of the lists view."
+			},
+			"domainAdd": {
+				"description": "Show a field to whitelist or block any domain at the top of the domains view."
+			}
 		}
 	},
 	"popup": {
@@ -272,6 +296,12 @@
 				"piholes": "Simpler Pi-hole setup with connection status and custom icons"
 			},
 			"dismiss": "Dismiss"
+		},
+		"system": {
+			"cpu": "CPU",
+			"memory": "Memory",
+			"temperature": "Temp",
+			"uptime": "Uptime"
 		}
 	},
 	"meta": {

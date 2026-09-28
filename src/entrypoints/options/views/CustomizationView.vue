@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Bell, Languages, Monitor, Tag } from '@lucide/vue'
+import { Languages, Monitor, Tag } from '@lucide/vue'
 import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,7 +8,6 @@ import EsFlag from '../../../assets/icons/flags/es.svg?component'
 import FrFlag from '../../../assets/icons/flags/fr.svg?component'
 import GbFlag from '../../../assets/icons/flags/gb.svg?component'
 import OptionSelect from '../../../components/options/OptionSelect.vue'
-import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
 import { LOCALES, type SupportedLocale } from '../../../utils/i18n'
@@ -86,12 +85,6 @@ const badgeModeOptions = computed(() => [
 				:description="t('options.customization.badge.description')"
 				:options="badgeModeOptions"
 				@update:model-value="form.badgeMode = $event as BadgeMode"
-			/>
-			<OptionToggle
-				v-model="form.showDiagnosisBadge"
-				:icon="Bell"
-				:label="t('options.customization.diagnosisBadge.label')"
-				:description="t('options.customization.diagnosisBadge.description')"
 			/>
 			<div
 				v-if="saveError"

@@ -148,6 +148,7 @@
 
 <script setup lang="ts">
 import {
+	AppWindow,
 	CheckCircle2,
 	ChevronLeft,
 	Clock,
@@ -185,6 +186,7 @@ const tabs = computed(() => [
 		label: t('options.tabs.customization'),
 		icon: SlidersHorizontal,
 	},
+	{ id: 'popup', label: t('options.tabs.popup'), icon: AppWindow },
 	{ id: 'data', label: t('options.tabs.data'), icon: Database },
 ])
 

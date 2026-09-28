@@ -1,8 +1,9 @@
 <template>
 	<div class="flex flex-col gap-3">
-		<DomainAdd :instances="instances" @added="load" />
-
-		<hr class="border-border" />
+		<template v-if="showAdd">
+			<DomainAdd :instances="instances" @added="load" />
+			<hr class="border-border" />
+		</template>
 
 		<div v-if="loading" class="flex items-center justify-center py-4">
 			<div
@@ -72,6 +73,7 @@ import DomainAdd from './DomainAdd.vue'
 
 const props = defineProps<{
 	instances: PiholeInstance[]
+	showAdd: boolean
 }>()
 
 const { t } = useI18n()
