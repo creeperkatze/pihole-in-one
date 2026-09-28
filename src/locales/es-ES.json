@@ -180,15 +180,10 @@
 			"queriesToday": "Peticiones de hoy"
 		},
 		"status": {
-			"title": "Estado",
 			"blockingDisabled": "Bloqueo desactivado",
 			"blockingEnabled": "Bloqueo activado",
-			"cpu": "CPU",
 			"disable": "Deshabilitar",
-			"enable": "Habilitar",
-			"memory": "Memoria",
-			"temperature": "Temperatura",
-			"uptime": "Tiempo de funcionamiento"
+			"enable": "Habilitar"
 		},
 		"statusSub": {
 			"clients": "{count} cliente(s) activo(s)",

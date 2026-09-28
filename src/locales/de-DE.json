@@ -168,7 +168,31 @@
 		"tabs": {
 			"connection": "Verbindung",
 			"customization": "Anpassung",
-			"data": "Daten"
+			"data": "Daten",
+			"popup": "Popup"
+		},
+		"popup": {
+			"title": "Popup",
+			"description": "Passe das Layout und die Bereiche des Popups an.",
+			"general": "Allgemein",
+			"currentSite": {
+				"label": "Aktuelle Seite",
+				"description": "Zeige, ob die aktuelle Seite blockiert ist, mit Schaltflächen, um sie auf die Whitelist zu setzen oder zu blockieren."
+			},
+			"stats": {
+				"label": "Statistiken",
+				"description": "Zeige die heutigen Anfragen, blockierten Anfragen und Cache-Treffer mit Verläufen der letzten 24 Stunden."
+			},
+			"systemInfo": {
+				"label": "Systeminfo",
+				"description": "Zeige CPU- und Speicherauslastung, Temperatur und Laufzeit im Popup."
+			},
+			"gravityUpdate": {
+				"description": "Zeige oben in der Listenansicht eine Schaltfläche, um Gravity zu aktualisieren."
+			},
+			"domainAdd": {
+				"description": "Zeige oben in der Domainansicht ein Feld, um beliebige Domains auf die Whitelist zu setzen oder zu blockieren."
+			}
 		}
 	},
 	"popup": {
@@ -189,6 +213,9 @@
 			"whitelistedByUser": "Vom Benutzer auf die Whitelist gesetzt"
 		},
 		"domains": {
+			"add": {
+				"title": "Domain hinzufügen"
+			},
 			"blocked": "Blockiert",
 			"list": {
 				"empty": "Noch keine Domains hinzugefügt.",
@@ -223,7 +250,14 @@
 		},
 		"lists": {
 			"empty": "Keine Listen gefunden.",
-			"updateError": "Liste konnte nicht aktualisiert werden"
+			"updateError": "Liste konnte nicht aktualisiert werden",
+			"gravity": {
+				"title": "Gravity aktualisieren",
+				"button": "Aktualisieren",
+				"running": "Wird aktualisiert",
+				"done": "Aktualisiert",
+				"error": "Gravity konnte nicht aktualisiert werden"
+			}
 		},
 		"notConfigured": {
 			"message": "Konfiguriere dein Pi-hole, um loszulegen.",
@@ -239,22 +273,14 @@
 			"queriesToday": "Anfragen heute"
 		},
 		"status": {
-			"title": "Status",
 			"blockingDisabled": "Blockieren deaktiviert",
 			"blockingEnabled": "Blockieren aktiviert",
-			"cpu": "CPU",
 			"disable": "Deaktivieren",
-			"enable": "Aktivieren",
-			"memory": "RAM",
-			"temperature": "Temp",
-			"uptime": "Laufzeit"
+			"enable": "Aktivieren"
 		},
 		"statusSub": {
 			"clients": "{count} Client(s) aktiv",
 			"reenables": "Re-aktiviert in {duration}"
-		},
-		"system": {
-			"empty": "Keine Systemdaten verfügbar."
 		},
 		"tabs": {
 			"domains": "Domains",
@@ -270,6 +296,12 @@
 				"piholes": "Einfachere Pi-hole-Einrichtung mit Verbindungsstatus und eigenen Symbolen"
 			},
 			"dismiss": "Schließen"
+		},
+		"system": {
+			"cpu": "CPU",
+			"memory": "RAM",
+			"temperature": "Temp",
+			"uptime": "Laufzeit"
 		}
 	},
 	"meta": {
