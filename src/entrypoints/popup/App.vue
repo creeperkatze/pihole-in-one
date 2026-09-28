@@ -1,6 +1,6 @@
 <template>
 	<div class="flex h-140 w-96 flex-col">
-		<header class="flex shrink-0 items-center justify-between px-3.5 py-3">
+		<header class="flex shrink-0 items-center justify-between border-b border-border px-3.5 py-3">
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
 				target="_blank"
@@ -48,8 +48,6 @@
 			</div>
 		</header>
 
-		<div class="h-px bg-border shrink-0"></div>
-
 		<div class="flex min-h-0 flex-1 flex-col">
 			<div v-if="loading" class="flex flex-1 flex-col items-center justify-center gap-3 py-8 px-5">
 				<div
@@ -79,7 +77,7 @@
 					color="#FF5E5B"
 					:title="t('popup.donatePrompt.title')"
 					:description="t('popup.donatePrompt.message')"
-					class="mx-3 mt-3 shrink-0 no-underline"
+					class="mx-2 mt-3 shrink-0 no-underline"
 					icon-position="start"
 					dismissible
 					:dismiss-label="t('popup.donatePrompt.dismiss')"
@@ -93,7 +91,7 @@
 
 				<div
 					v-if="states[activeInstance]?.error"
-					class="mx-3 mt-3 flex shrink-0 items-center justify-between gap-2 rounded-[5px] border border-danger-border bg-danger-bg p-3 text-xs text-pihole-red"
+					class="mx-2 mt-3 flex shrink-0 items-center justify-between gap-2 rounded-[5px] border border-danger-border bg-danger-bg p-3 text-xs text-pihole-red"
 				>
 					<span>{{ states[activeInstance]?.error }}</span>
 					<Button size="sm" @click="openOptions">
@@ -101,29 +99,29 @@
 					</Button>
 				</div>
 
-				<div class="sticky top-0 z-10 flex shrink-0 flex-col gap-2 bg-surface-1 px-3 pt-3 pb-2">
-					<template v-if="settings!.instances.length > 1">
-						<PopupTabs
-							:model-value="settings!.instances[activeInstance]?.id ?? ''"
-							:tabs="instanceTabs"
-							@update:model-value="switchInstance"
-						/>
-						<div class="h-px bg-border"></div>
-					</template>
-
-					<PopupTabs :model-value="currentTab" :tabs="tabs" @update:model-value="switchTab" />
-					<div class="h-px bg-border"></div>
+				<div class="sticky top-0 z-10 shrink-0 bg-surface-1">
+					<PopupTabs
+						v-if="settings!.instances.length > 1"
+						class="border-b border-border p-2"
+						:model-value="settings!.instances[activeInstance]?.id ?? ''"
+						:tabs="instanceTabs"
+						@update:model-value="switchInstance"
+					/>
+					<PopupTabs
+						class="border-b border-border p-2"
+						:model-value="currentTab"
+						:tabs="tabs"
+						@update:model-value="switchTab"
+					/>
 				</div>
 
-				<div class="flex flex-col gap-2 p-3 pt-0">
+				<div class="flex flex-col gap-2 px-2 py-3">
 					<RouterView />
 				</div>
 			</div>
 		</div>
 
-		<div class="h-px bg-border shrink-0"></div>
-
-		<div class="flex shrink-0 items-center gap-2 px-3 py-1.5">
+		<div class="flex shrink-0 items-center gap-2 border-t border-border px-3 py-1.5">
 			<div class="flex min-w-0 flex-1 items-center gap-2">
 				<span class="shrink-0 text-xs text-secondary">v{{ version }}</span>
 				<span v-if="updateChecking" class="flex min-w-0 items-center gap-1 text-xs text-muted">
