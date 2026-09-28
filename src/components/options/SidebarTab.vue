@@ -19,7 +19,7 @@ defineEmits<{
 		:class="
 			active
 				? 'border-pihole-red bg-pihole-red/10 text-primary'
-				: 'border-transparent text-secondary hover:border-border hover:bg-surface-hover hover:text-primary'
+				: 'border-transparent text-secondary hover:border-border hover:bg-surface-3 hover:text-primary'
 		"
 		@click="$emit('click')"
 	>
