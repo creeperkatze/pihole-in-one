@@ -94,7 +94,7 @@ watch(
 
 .slider::-webkit-slider-runnable-track {
 	box-sizing: border-box;
-	height: 0.5rem;
+	height: 0.5625rem;
 	border: 1px solid var(--color-border);
 	border-radius: 9999px;
 	background: var(--track);
@@ -102,7 +102,7 @@ watch(
 
 .slider::-moz-range-track {
 	box-sizing: border-box;
-	height: 0.5rem;
+	height: 0.5625rem;
 	border: 1px solid var(--color-border);
 	border-radius: 9999px;
 	background: var(--track);
@@ -110,12 +110,13 @@ watch(
 
 .slider::-webkit-slider-thumb {
 	appearance: none;
-	margin-top: calc((0.5rem - 2px - 1rem) / 2);
+	margin-top: calc((0.5625rem - 2px - 1rem) / 2);
 	width: 1rem;
 	height: 1rem;
 	border: none;
 	border-radius: 9999px;
 	background: var(--color-primary);
+	transition: background-color 150ms;
 }
 
 .slider::-moz-range-thumb {
@@ -124,6 +125,15 @@ watch(
 	border: none;
 	border-radius: 9999px;
 	background: var(--color-primary);
+	transition: background-color 150ms;
+}
+
+.slider:hover::-webkit-slider-thumb {
+	background: color-mix(in srgb, var(--color-primary) 75%, var(--color-surface-3));
+}
+
+.slider:hover::-moz-range-thumb {
+	background: color-mix(in srgb, var(--color-primary) 75%, var(--color-surface-3));
 }
 
 .slider:focus-visible::-webkit-slider-thumb {
