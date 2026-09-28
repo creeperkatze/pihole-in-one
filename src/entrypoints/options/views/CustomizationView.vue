@@ -1,19 +1,30 @@
 <script setup lang="ts">
 import { Bell, Languages, Monitor, Tag } from '@lucide/vue'
-import { computed } from 'vue'
+import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import DeFlag from '../../../assets/icons/flags/de.svg?component'
+import EsFlag from '../../../assets/icons/flags/es.svg?component'
+import FrFlag from '../../../assets/icons/flags/fr.svg?component'
+import GbFlag from '../../../assets/icons/flags/gb.svg?component'
 import OptionSelect from '../../../components/options/OptionSelect.vue'
 import OptionToggle from '../../../components/options/OptionToggle.vue'
 import SectionHeader from '../../../components/options/SectionHeader.vue'
 import { useSettings } from '../../../composables/useSettings'
-import { LOCALES } from '../../../utils/i18n'
+import { LOCALES, type SupportedLocale } from '../../../utils/i18n'
 import type { BadgeMode, ColorScheme } from '../../../utils/settings'
 
 const { form, saveError, initialized } = useSettings()
 const { t } = useI18n()
 
-const languageOptions = LOCALES.map((l) => ({ value: l.code, label: l.name }))
+const FLAGS: Record<SupportedLocale, Component> = {
+	'en-US': GbFlag,
+	'de-DE': DeFlag,
+	'es-ES': EsFlag,
+	'fr-FR': FrFlag,
+}
+
+const languageOptions = LOCALES.map((l) => ({ value: l.code, label: l.name, flag: FLAGS[l.code] }))
 
 const colorSchemeOptions = computed(() => [
 	{ value: 'auto', label: t('options.colorScheme.auto') },
@@ -42,6 +53,9 @@ const badgeModeOptions = computed(() => [
 				:label="t('options.language.label')"
 				:options="languageOptions"
 			>
+				<template #leading="{ option }">
+					<component :is="option.flag" class="h-3 w-4 shrink-0 rounded-[1px]" />
+				</template>
 				<template #description>
 					<i18n-t keypath="options.language.description" tag="span">
 						<template #crowdin>
