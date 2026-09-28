@@ -6,7 +6,7 @@ All Pi-hole requests go through `src/utils/api.ts`. It wraps [pihole-js](https:/
 
 - Get a client with `getPiHoleClient(instance)`. Clients are cached per URL, password and timeout, so calling it often is cheap.
 - Use the pihole-js namespaces directly, like `client.dns.getStatus()` or `client.groups.list()`.
-- `getSummary()` is the one extension-specific call. It loads everything the popup and the badge need in parallel. Optional parts like history, groups or PADD fall back to empty values when they fail, so an old or restricted Pi-hole still shows the basics.
+- `getSummary()` is the one extension-specific call. It loads everything the popup and the badge need in parallel. Optional parts like history, groups or lists fall back to empty values when they fail, so an old or restricted Pi-hole still shows the basics.
 - Sessions are stored in `browser.storage.local` under `sessionCache`, keyed by URL. They survive the service worker shutting down, so the extension doesn't log in on every refresh.
 - The connection timeout comes from the settings. Changing it clears the client cache.
 

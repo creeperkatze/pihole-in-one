@@ -2,7 +2,6 @@ import { storage } from '@wxt-dev/storage'
 import {
 	type BlockingStatus,
 	type HistoryPoint,
-	type PaddResponse,
 	PiHoleClient,
 	type PiHoleClientOptions,
 	type PiholeGroup,
@@ -19,14 +18,6 @@ type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
 type SessionStoreShape = Record<string, SessionEntry>
 
-export interface PiholeDiagnosis {
-	cpu: number
-	memory: number
-	temperature: number | null
-	tempUnit: string
-	uptime: number
-}
-
 export interface PiholeSummary {
 	queries: SummaryStatsResponse['queries']
 	clients: SummaryStatsResponse['clients']
@@ -34,7 +25,6 @@ export interface PiholeSummary {
 	history: HistoryPoint[]
 	groups: PiholeGroup[]
 	lists: PiholeList[]
-	diagnosis: PiholeDiagnosis | null
 	messageCount: number
 }
 
@@ -82,29 +72,16 @@ class BrowserSessionStore implements SessionStore {
 
 const browserSessionStore = new BrowserSessionStore()
 
-function normalizePadd(padd: PaddResponse | null): PiholeSummary['diagnosis'] {
-	if (!padd) return null
-	return {
-		cpu: padd['%cpu'] ?? 0,
-		memory: padd['%mem'] ?? 0,
-		temperature: padd.sensors?.cpu_temp ?? null,
-		tempUnit: padd.sensors?.unit ?? 'C',
-		uptime: padd.system?.uptime ?? 0,
-	}
-}
-
 class ExtensionPiHoleClient extends PiHoleClient {
 	async getSummary(): Promise<PiholeSummary> {
-		const [stats, blocking, historyRes, groupsRes, listsRes, paddRes, messagesRes] =
-			await Promise.all([
-				this.stats.getSummary(),
-				this.dns.getStatus(),
-				this.history.get().catch(() => ({ history: [] })),
-				this.groups.list().catch(() => ({ groups: [] })),
-				this.lists.list().catch(() => ({ lists: [] })),
-				this.padd.getSummary().catch(() => null),
-				this.info.getMessagesCount().catch(() => ({ count: 0 })),
-			])
+		const [stats, blocking, historyRes, groupsRes, listsRes, messagesRes] = await Promise.all([
+			this.stats.getSummary(),
+			this.dns.getStatus(),
+			this.history.get().catch(() => ({ history: [] })),
+			this.groups.list().catch(() => ({ groups: [] })),
+			this.lists.list().catch(() => ({ lists: [] })),
+			this.info.getMessagesCount().catch(() => ({ count: 0 })),
+		])
 
 		return {
 			queries: stats.queries,
@@ -113,7 +90,6 @@ class ExtensionPiHoleClient extends PiHoleClient {
 			history: historyRes.history,
 			groups: groupsRes.groups,
 			lists: listsRes.lists,
-			diagnosis: normalizePadd(paddRes),
 			messageCount: messagesRes.count,
 		}
 	}

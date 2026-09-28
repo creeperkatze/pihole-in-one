@@ -239,22 +239,14 @@
 			"queriesToday": "Queries Today"
 		},
 		"status": {
-			"title": "Status",
 			"blockingDisabled": "Blocking Disabled",
 			"blockingEnabled": "Blocking Enabled",
-			"cpu": "CPU",
 			"disable": "Disable",
-			"enable": "Enable",
-			"memory": "Memory",
-			"temperature": "Temp",
-			"uptime": "Uptime"
+			"enable": "Enable"
 		},
 		"statusSub": {
 			"clients": "{count} client(s) active",
 			"reenables": "Re-enables in {duration}"
-		},
-		"system": {
-			"empty": "No system data available."
 		},
 		"tabs": {
 			"domains": "Domains",
