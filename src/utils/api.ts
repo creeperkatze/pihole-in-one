@@ -99,19 +99,30 @@ function getClientCacheKey(target: ApiTarget): string {
 	return `${target.baseUrl}::${target.apiPassword}::${currentTimeoutMs}`
 }
 
+function createClient(target: ApiTarget, timeoutMs: number): ExtensionPiHoleClient {
+	const options: PiHoleClientOptions = {
+		baseUrl: target.baseUrl,
+		password: target.apiPassword,
+		timeoutMs,
+		userAgent: USER_AGENT,
+		sessionStore: browserSessionStore,
+	}
+	return new ExtensionPiHoleClient(options)
+}
+
 export function getPiHoleClient(target: ApiTarget): ExtensionPiHoleClient {
 	const cacheKey = getClientCacheKey(target)
 	const cached = clientCache.get(cacheKey)
 	if (cached) return cached
 
-	const options: PiHoleClientOptions = {
-		baseUrl: target.baseUrl,
-		password: target.apiPassword,
-		timeoutMs: currentTimeoutMs,
-		userAgent: USER_AGENT,
-		sessionStore: browserSessionStore,
-	}
-	const client = new ExtensionPiHoleClient(options)
+	const client = createClient(target, currentTimeoutMs)
 	clientCache.set(cacheKey, client)
 	return client
+}
+
+// Gravity downloads every list, which takes much longer than a normal request
+const GRAVITY_TIMEOUT_MS = 5 * 60 * 1000
+
+export function updateGravity(target: ApiTarget): Promise<string> {
+	return createClient(target, GRAVITY_TIMEOUT_MS).actions.updateGravity()
 }

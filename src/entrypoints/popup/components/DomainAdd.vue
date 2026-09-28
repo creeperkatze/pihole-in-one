@@ -57,7 +57,8 @@ async function add(type: DomainType): Promise<void> {
 </script>
 
 <template>
-	<div class="flex flex-col gap-1.5">
+	<section class="flex flex-col gap-2 rounded-lg border border-border bg-surface-3 px-3 py-2.5">
+		<p class="text-sm font-medium">{{ t('popup.domains.add.title') }}</p>
 		<form class="flex gap-1.5" @submit.prevent="add('deny')">
 			<Input
 				v-model="value"
@@ -99,5 +100,5 @@ async function add(type: DomainType): Promise<void> {
 			</Button>
 		</form>
 		<p v-if="error" class="text-xs text-pihole-red">{{ error }}</p>
-	</div>
+	</section>
 </template>

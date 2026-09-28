@@ -189,6 +189,9 @@
 			"whitelistedByUser": "Whitelisted by user"
 		},
 		"domains": {
+			"add": {
+				"title": "Add domain"
+			},
 			"blocked": "Blocked",
 			"list": {
 				"empty": "No domains added yet.",
@@ -223,7 +226,14 @@
 		},
 		"lists": {
 			"empty": "No lists found.",
-			"updateError": "Failed to update list"
+			"updateError": "Failed to update list",
+			"gravity": {
+				"title": "Update gravity",
+				"button": "Update",
+				"running": "Updating…",
+				"done": "Updated",
+				"error": "Failed to update gravity"
+			}
 		},
 		"notConfigured": {
 			"message": "Configure your Pi-hole to get started.",
