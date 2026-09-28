@@ -148,15 +148,10 @@
 			"queriesToday": "Consultas de hoje"
 		},
 		"status": {
-			"title": "Estado",
 			"blockingDisabled": "Bloqueio desativado",
 			"blockingEnabled": "Bloqueio ativado",
-			"cpu": "Processador",
 			"disable": "Desativar",
-			"enable": "Ativar",
-			"memory": "Memória",
-			"temperature": "Temporário",
-			"uptime": "Tempo de atividade"
+			"enable": "Ativar"
 		},
 		"statusSub": {
 			"clients": "{count} Cliente ativos",
