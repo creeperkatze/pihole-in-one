@@ -19,7 +19,6 @@
 					"label": "Nom",
 					"placeholder": "Pi-hole"
 				},
-				"noUrl": "Aucune URL définie",
 				"testing": "Test de connexion en cours...",
 				"url": {
 					"label": "URL"
@@ -105,12 +104,6 @@
 			"description": "Choisis la langue de l'interface de l'extension. Aide-nous à traduire via {crowdin}. Certaines langues peuvent être incomplètes.",
 			"label": "Langue"
 		},
-		"search": {
-			"description": "Affichage des résultats correspondant à «{query}»",
-			"noResults": "Aucunes options trouvées",
-			"placeholder": "Rechercher des options...",
-			"title": "Résultats de recherche"
-		},
 		"sidebar": {
 			"crowdin": {
 				"description": "Contribuer à la traduction",
@@ -181,7 +174,6 @@
 		"openInstance": "Ouvrir {name}",
 		"refresh": "Actualiser",
 		"settings": "Paramètres",
-		"statistics": "Statistiques",
 		"stats": {
 			"blockedToday": "Bloqué aujourd'hui",
 			"cached": "En cache",
