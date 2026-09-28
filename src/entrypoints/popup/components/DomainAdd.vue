@@ -67,7 +67,6 @@ async function add(type: DomainType): Promise<void> {
 				:placeholder="regex ? '(\\.|^)example\\.com$' : 'example.com'"
 				:disabled="adding"
 				class="min-w-0 flex-1"
-				:class="{ 'font-mono': regex }"
 				@input="error = ''"
 			/>
 			<Button
