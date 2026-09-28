@@ -36,7 +36,23 @@
 				"save": "Speichern",
 				"edit": "Bearbeiten",
 				"retest": "Verbindung erneut testen",
-				"cancel": "Abbrechen"
+				"cancel": "Abbrechen",
+				"icon": {
+					"label": "Symbol",
+					"options": {
+						"server": "Server",
+						"house": "Zuhause",
+						"building": "Büro",
+						"briefcase": "Arbeit",
+						"laptop": "Laptop",
+						"monitor": "Computer",
+						"router": "Router",
+						"wifi": "WLAN",
+						"cloud": "Cloud",
+						"hardDrive": "Speicher",
+						"cpu": "Raspberry Pi"
+					}
+				}
 			},
 			"addButton": "Pi-hole hinzufügen",
 			"description": "Konfiguriere eine oder mehrere Pi-Hole-Instanzen.",
@@ -245,6 +261,15 @@
 			"groups": "Gruppen",
 			"home": "Start",
 			"lists": "Listen"
+		},
+		"whatsNew": {
+			"title": "Neuigkeiten",
+			"items": {
+				"home": "Ein aufgeräumtes Popup, das sofort zeigt, ob die aktuelle Seite blockiert ist",
+				"domains": "Beliebige Domains, auch Regex-Muster, im Tab „Domains“ auf die Whitelist setzen oder blockieren",
+				"piholes": "Einfachere Pi-hole-Einrichtung mit Verbindungsstatus und eigenen Symbolen"
+			},
+			"dismiss": "Schließen"
 		}
 	},
 	"meta": {
