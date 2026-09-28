@@ -1,5 +1,9 @@
 <template>
-	<div class="flex h-140 w-96 flex-col">
+	<div
+		ref="root"
+		class="flex max-h-150 w-96 flex-col"
+		:style="lockedHeight ? { height: `${lockedHeight}px` } : undefined"
+	>
 		<header class="flex shrink-0 items-center justify-between border-b border-border px-3.5 py-3">
 			<a
 				href="https://github.com/creeperkatze/pihole-in-one"
@@ -185,7 +189,7 @@ import {
 	Star,
 	Users,
 } from '@lucide/vue'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { browser } from 'wxt/browser'
@@ -230,6 +234,14 @@ const currentTab = computed(() => {
 	return name && name !== 'root' ? String(name) : 'home'
 })
 
+// Other tabs keep the height of the home view so the popup doesn't resize between tabs
+const root = useTemplateRef('root')
+const homeHeight = ref<number | null>(null)
+const lockedHeight = computed(() => (currentTab.value === 'home' ? null : homeHeight.value))
+const resizeObserver = new ResizeObserver(() => {
+	if (currentTab.value === 'home' && root.value) homeHeight.value = root.value.offsetHeight
+})
+
 const messageCount = computed(() => states.value[activeInstance.value]?.summary?.messageCount ?? 0)
 
 const tabs = computed<PopupTab[]>(() => [
@@ -249,6 +261,7 @@ const instanceTabs = computed<PopupTab[]>(
 )
 
 onMounted(async () => {
+	if (root.value) resizeObserver.observe(root.value)
 	await init()
 
 	try {
@@ -263,6 +276,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+	resizeObserver.disconnect()
 	dispose()
 })
 </script>

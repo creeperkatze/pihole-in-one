@@ -1,51 +1,50 @@
 <template>
-	<div
-		class="flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-lg border transition-colors duration-150"
-		:class="
-			allowlistedByUser
-				? 'bg-success-bg border-success-border'
-				: isEffectivelyBlocked
-					? 'bg-danger-bg border-danger-border'
-					: 'bg-surface-3 border-border'
-		"
-	>
-		<div class="min-w-0">
-			<div class="text-[13px] font-semibold truncate max-w-45" :title="domain">
-				{{ domain }}
+	<section class="rounded-lg border border-border bg-surface-3">
+		<div class="flex items-center gap-3 px-3 py-2.5">
+			<Loader2 v-if="loading" class="size-5 shrink-0 animate-spin text-secondary" />
+			<component
+				:is="allowlistedByUser ? ShieldCheck : isEffectivelyBlocked ? ShieldBan : Shield"
+				v-else
+				class="size-5 shrink-0"
+				:class="toneClass"
+			/>
+			<div class="min-w-0 flex-1">
+				<p class="truncate text-sm font-semibold" :title="domain">{{ domain }}</p>
+				<p class="min-h-4 truncate text-xs" :class="toneClass">
+					{{ loading ? '' : statusText }}
+				</p>
 			</div>
-			<div class="text-[11px] text-secondary mt-px">{{ statusText }}</div>
 		</div>
-		<div
-			v-if="loading"
-			class="w-4 h-4 border-2 border-border border-t-pihole-red rounded-full animate-spin shrink-0"
-		></div>
-		<div v-else class="flex gap-1.5 shrink-0">
+
+		<div class="grid grid-cols-2 gap-2 border-t border-border px-3 py-2">
 			<Button
-				size="icon"
 				:variant="allowlistedByUser ? 'success' : 'default'"
-				:disabled="acting"
+				:disabled="loading || acting"
+				:aria-pressed="allowlistedByUser"
 				:title="
 					allowlistedByUser ? t('popup.domain.removeFromWhitelist') : t('popup.domain.whitelist')
 				"
 				@click="toggleAllowlist"
 			>
-				<Check class="size-4" />
+				<ShieldCheck class="size-4" :class="{ 'text-pihole-green': !allowlistedByUser }" />
+				{{ t('popup.domain.whitelist') }}
 			</Button>
 			<Button
-				size="icon"
 				:variant="blockedByUser ? 'primary' : 'default'"
-				:disabled="acting"
+				:disabled="loading || acting"
+				:aria-pressed="blockedByUser"
 				:title="blockedByUser ? t('popup.domain.unblock') : t('popup.domain.block')"
 				@click="toggleBlock"
 			>
-				<X class="size-4" />
+				<ShieldBan class="size-4" :class="{ 'text-pihole-red': !blockedByUser }" />
+				{{ t('popup.domain.block') }}
 			</Button>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script setup lang="ts">
-import { Check, X } from '@lucide/vue'
+import { Loader2, Shield, ShieldBan, ShieldCheck } from '@lucide/vue'
 import type { DomainEntry } from 'pihole-js'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -73,6 +72,14 @@ const blockedByGravity = computed(() => gravityListNames.value.length > 0)
 
 const isEffectivelyBlocked = computed(
 	() => (blockedByUser.value || blockedByGravity.value) && !allowlistedByUser.value,
+)
+
+const toneClass = computed(() =>
+	allowlistedByUser.value
+		? 'text-pihole-green'
+		: isEffectivelyBlocked.value
+			? 'text-pihole-red'
+			: 'text-secondary',
 )
 
 function listName(address: string, comment: string | null): string {

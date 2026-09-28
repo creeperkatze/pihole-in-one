@@ -1,11 +1,5 @@
 <template>
-	<div class="flex flex-col gap-2">
-		<div class="text-[11px] font-semibold text-secondary uppercase tracking-[0.5px]">
-			{{ t('popup.statistics') }}
-		</div>
-
-		<StatsGrid :stats="formattedStats" />
-	</div>
+	<StatsGrid :stats="formattedStats" />
 </template>
 
 <script setup lang="ts">

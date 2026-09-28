@@ -1,32 +1,7 @@
-<template>
-	<StatusCard
-		v-if="states[activeInstance]?.summary"
-		:status="isEnabled(activeInstance) ? 'enabled' : 'disabled'"
-		:sub="statusSub(activeInstance)"
-		:disabled="states[activeInstance]?.toggling"
-		@toggle="toggleBlocking(activeInstance)"
-	/>
-
-	<DisablePresets
-		v-if="isEnabled(activeInstance)"
-		:disabled="states[activeInstance]?.toggling"
-		@select="disableFor(activeInstance, $event)"
-	/>
-
-	<StatsCard v-if="states[activeInstance]?.summary" :summary="states[activeInstance]!.summary!" />
-
-	<DomainCard
-		v-if="currentDomain && !states[activeInstance]?.error"
-		:domain="currentDomain"
-		:instances="settings!.instances"
-	/>
-</template>
-
 <script setup lang="ts">
-import DisablePresets from '../components/DisablePresets.vue'
+import BlockingCard from '../components/BlockingCard.vue'
 import DomainCard from '../components/DomainCard.vue'
 import StatsCard from '../components/StatsCard.vue'
-import StatusCard from '../components/StatusCard.vue'
 import { usePopupInstances } from '../usePopupInstances'
 
 const {
@@ -40,3 +15,24 @@ const {
 	disableFor,
 } = usePopupInstances()
 </script>
+
+<template>
+	<div v-if="states[activeInstance]?.summary" class="flex flex-col gap-2">
+		<BlockingCard
+			:enabled="isEnabled(activeInstance)"
+			:sub="statusSub(activeInstance)"
+			:busy="states[activeInstance]?.toggling"
+			@toggle="toggleBlocking(activeInstance)"
+			@disable-for="disableFor(activeInstance, $event)"
+		/>
+
+		<DomainCard
+			v-if="currentDomain && !states[activeInstance]?.error"
+			:key="currentDomain"
+			:domain="currentDomain"
+			:instances="settings!.instances"
+		/>
+
+		<StatsCard :summary="states[activeInstance]!.summary!" />
+	</div>
+</template>

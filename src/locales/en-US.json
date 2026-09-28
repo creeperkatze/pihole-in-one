@@ -215,7 +215,6 @@
 		"openInstance": "Open {name}",
 		"refresh": "Refresh",
 		"settings": "Settings",
-		"statistics": "Statistics",
 		"stats": {
 			"blockedPercent": "Blocked %",
 			"blockedToday": "Blocked Today",
