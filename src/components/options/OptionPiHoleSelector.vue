@@ -209,8 +209,7 @@ watch(
 			<li
 				v-for="inst in rows"
 				:key="inst.id"
-				class="overflow-hidden rounded-lg border bg-surface-control transition-colors"
-				:class="draft?.id === inst.id ? 'border-pihole-red/50' : 'border-border'"
+				class="overflow-hidden rounded-lg border border-border bg-surface-control"
 			>
 				<div class="flex min-w-0 items-center gap-3 px-3 py-2">
 					<button
@@ -252,7 +251,6 @@ watch(
 					<div v-if="!(draft?.isNew && draft.id === inst.id)" class="flex shrink-0 gap-1.5">
 						<Button
 							size="sm"
-							:active="draft?.id === inst.id"
 							:title="t('options.piholeselector.instance.edit')"
 							:aria-label="t('options.piholeselector.instance.edit')"
 							@click="toggleEdit(inst)"
