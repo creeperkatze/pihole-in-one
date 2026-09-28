@@ -163,6 +163,7 @@
 		"disableFor": "Disable for",
 		"domain": {
 			"block": "Block",
+			"blockedByList": "Blocked by list \"{list}\"",
 			"blockedByListPlural": "Blocked by \"{list}\" +{count} more",
 			"blockedByUser": "Blocked by user",
 			"notBlocked": "Not blocked",

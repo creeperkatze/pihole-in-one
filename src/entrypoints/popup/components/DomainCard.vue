@@ -96,7 +96,8 @@ function listName(address: string, comment: string | null): string {
 const statusText = computed(() => {
 	if (allowlistedByUser.value) return t('popup.domain.whitelistedByUser')
 	if (blockedByUser.value) return t('popup.domain.blockedByUser')
-	if (gravityListNames.value.length === 1) return gravityListNames.value[0]
+	if (gravityListNames.value.length === 1)
+		return t('popup.domain.blockedByList', { list: gravityListNames.value[0] })
 	if (gravityListNames.value.length > 1)
 		return t('popup.domain.blockedByListPlural', {
 			list: gravityListNames.value[0],
