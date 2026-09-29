@@ -41,6 +41,21 @@ export function getApiMessageForError(error: unknown): string | undefined {
 	return undefined
 }
 
+// Errors the user fixes in the Pi-hole admin rather than in the extension settings
+const PIHOLE_SIDE_KEYS = new Set([
+	'api.error.noSeats',
+	'api.error.twoFactor',
+	'api.error.forbidden',
+	'api.error.server',
+	'api.error.database',
+	'api.error.rateLimited',
+])
+
+export function isPiholeSideError(error: unknown): boolean {
+	const key = getApiMessageForError(error)
+	return key !== undefined && PIHOLE_SIDE_KEYS.has(key)
+}
+
 export function useErrorMessage() {
 	const { t } = useI18n()
 

@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
-import { useErrorMessage } from '../../composables/useApiMessages'
+import { isPiholeSideError, useErrorMessage } from '../../composables/useApiMessages'
 import {
 	getPiHoleClient,
 	getSystemInfo,
@@ -20,6 +20,7 @@ export interface InstanceState {
 	summary: PiholeSummary | null
 	system: PiholeSystemInfo | null
 	error: string
+	errorOnPihole: boolean
 	toggling: boolean
 	timerEndsAt: number | null
 	timerRemaining: number | null
@@ -30,6 +31,7 @@ function makeState(): InstanceState {
 		summary: null,
 		system: null,
 		error: '',
+		errorOnPihole: false,
 		toggling: false,
 		timerEndsAt: null,
 		timerRemaining: null,
@@ -154,6 +156,7 @@ export function usePopupInstances() {
 			syncTimer(i, summary.blocking)
 		} catch (e) {
 			state.error = describeError(e, 'popup.error.fetchFailed')
+			state.errorOnPihole = isPiholeSideError(e)
 		}
 		state.system = await system
 	}
@@ -186,6 +189,7 @@ export function usePopupInstances() {
 			await fetchSummary(i)
 		} catch (e) {
 			state.error = describeError(e, 'popup.error.actionFailed')
+			state.errorOnPihole = isPiholeSideError(e)
 		} finally {
 			state.toggling = false
 		}
@@ -205,6 +209,7 @@ export function usePopupInstances() {
 			await fetchSummary(i)
 		} catch (e) {
 			state.error = describeError(e, 'popup.error.actionFailed')
+			state.errorOnPihole = isPiholeSideError(e)
 		} finally {
 			state.toggling = false
 		}

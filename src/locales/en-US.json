@@ -247,7 +247,8 @@
 		"error": {
 			"actionFailed": "Action failed",
 			"fetchFailed": "Failed to fetch status",
-			"fix": "Fix"
+			"fixInSettings": "Fix in settings",
+			"fixInPihole": "Fix in Pi-hole"
 		},
 		"footer": {
 			"checking": "Checking",

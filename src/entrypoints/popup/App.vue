@@ -59,21 +59,17 @@
 				></div>
 			</div>
 
-			<div
-				v-else-if="!configured"
-				class="flex flex-1 flex-col items-center justify-center gap-3 py-8 px-5"
-			>
-				<p class="m-0 text-secondary text-center">
-					{{ t('popup.notConfigured.message') }}
-				</p>
-				<Button variant="primary" @click="openOptions">
-					{{ t('popup.notConfigured.openSettings') }}
-				</Button>
+			<div v-else-if="!configured" class="flex flex-1 flex-col items-center justify-center">
+				<EmptyState :icon="Server" :text="t('popup.notConfigured.message')">
+					<Button variant="primary" @click="openOptions">
+						{{ t('popup.notConfigured.openSettings') }}
+					</Button>
+				</EmptyState>
 			</div>
 
 			<template v-else>
 				<div
-					v-if="whatsNewVisible || donateVisible || states[activeInstance]?.error"
+					v-if="whatsNewVisible || donateVisible"
 					class="flex shrink-0 flex-col gap-2 border-b border-border p-2"
 				>
 					<WhatsNewCard v-if="whatsNewVisible" @dismiss="dismissWhatsNew" />
@@ -97,16 +93,6 @@
 							<KofiIcon class="size-5 shrink-0 text-[#FF5E5B] opacity-75 group-hover:opacity-100" />
 						</template>
 					</Card>
-
-					<div
-						v-if="states[activeInstance]?.error"
-						class="flex items-center justify-between gap-2 rounded-lg border border-danger-border bg-danger-bg p-3 text-xs text-pihole-red"
-					>
-						<span>{{ states[activeInstance]?.error }}</span>
-						<Button size="sm" @click="openOptions">
-							{{ t('popup.error.fix') }}
-						</Button>
-					</div>
 				</div>
 
 				<PopupTabs
@@ -124,6 +110,25 @@
 				/>
 
 				<div class="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-2 py-3">
+					<EmptyState
+						v-if="states[activeInstance]?.error && !states[activeInstance]?.summary"
+						:icon="CircleAlert"
+						:text="states[activeInstance]!.error"
+						error
+					>
+						<Button size="sm" @click="fixError">
+							{{ fixLabel }}
+						</Button>
+					</EmptyState>
+					<div
+						v-else-if="states[activeInstance]?.error"
+						class="flex items-center justify-between gap-2 rounded-lg border border-danger-border bg-danger-bg p-3 text-xs text-pihole-red"
+					>
+						<span>{{ states[activeInstance]?.error }}</span>
+						<Button size="sm" @click="fixError">
+							{{ fixLabel }}
+						</Button>
+					</div>
 					<RouterView />
 				</div>
 			</template>
@@ -182,12 +187,14 @@
 <script setup lang="ts">
 import {
 	CheckCircle2,
+	CircleAlert,
 	Clock,
 	ExternalLink,
 	House,
 	List,
 	Loader2,
 	RefreshCw,
+	Server,
 	Settings,
 	Shield,
 	Star,
@@ -204,6 +211,7 @@ import Card from '../../components/Card.vue'
 import Button from '../../components/ui/Button.vue'
 import { instanceIcon } from '../../utils/instance-icons'
 import { getLatestVersionTag } from '../../utils/update-check'
+import EmptyState from './components/EmptyState.vue'
 import PopupTabs, { type PopupTab } from './components/PopupTabs.vue'
 import WhatsNewCard from './components/WhatsNewCard.vue'
 import { usePopupInstances } from './usePopupInstances'
@@ -249,6 +257,17 @@ const lockedHeight = computed(() => (currentTab.value === 'home' ? null : homeHe
 const resizeObserver = new ResizeObserver(() => {
 	if (currentTab.value === 'home' && root.value) homeHeight.value = root.value.offsetHeight
 })
+
+// Pi-hole side problems are fixed in its admin, everything else in the extension settings
+const fixOnPihole = computed(() => states.value[activeInstance.value]?.errorOnPihole ?? false)
+const fixLabel = computed(() =>
+	fixOnPihole.value ? t('popup.error.fixInPihole') : t('popup.error.fixInSettings'),
+)
+
+function fixError(): void {
+	if (fixOnPihole.value) openPihole(activeInstance.value)
+	else openOptions()
+}
 
 const messageCount = computed(() => states.value[activeInstance.value]?.summary?.messageCount ?? 0)
 

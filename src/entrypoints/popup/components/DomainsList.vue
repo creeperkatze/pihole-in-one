@@ -8,11 +8,13 @@
 			></div>
 		</div>
 
-		<div v-else-if="loadError" class="text-xs text-pihole-red py-1">{{ loadError }}</div>
+		<EmptyState v-else-if="loadError" :icon="CircleAlert" :text="loadError" error />
 
-		<div v-else-if="entries.length === 0" class="text-xs text-secondary py-1 text-center">
-			{{ t('popup.domains.list.empty') }}
-		</div>
+		<EmptyState
+			v-else-if="entries.length === 0"
+			:icon="List"
+			:text="t('popup.domains.list.empty')"
+		/>
 
 		<div v-else class="flex flex-col gap-1.5">
 			<ItemRow v-for="entry in entries" :key="`${entry.type}:${entry.kind}:${entry.domain}`">
@@ -58,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { Regex, ShieldBan, ShieldCheck, X } from '@lucide/vue'
+import { CircleAlert, List, Regex, ShieldBan, ShieldCheck, X } from '@lucide/vue'
 import type { DomainEntry } from 'pihole-js'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -68,6 +70,7 @@ import { useErrorMessage } from '../../../composables/useApiMessages'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 import DomainAdd from './DomainAdd.vue'
+import EmptyState from './EmptyState.vue'
 
 const props = defineProps<{
 	instances: PiholeInstance[]
