@@ -57,7 +57,7 @@ const items: ShowcaseItem[] = [
 	{
 		title: 'Show exactly what you want to see',
 		details:
-			'Pick which sections appear in the popup: stats as graphs or donut charts, group toggles, list toggles, and system status like CPU, memory, and temperature.',
+			'Pick which cards the popup shows: stats, system info like CPU, memory, and temperature, the current site, recently blocked domains, the gravity update, and the domain field.',
 		image: '/screenshots/popup.png',
 	},
 	{

@@ -10,7 +10,8 @@ A browser extension to control your Pi-hole conveniently from within the browser
 ![GitHub Repo stars](https://img.shields.io/github/stars/creeperkatze/pihole-in-one?style=flat)
 
 [❓ FAQ](https://pihole-in-one.creeperkatze.dev/faq) •
-[📝 Changelog](https://github.com/creeperkatze/pihole-in-one/releases)
+[📝 Changelog](https://github.com/creeperkatze/pihole-in-one/releases) •
+[💬 Discord](https://link.creeperkatze.dev/discord)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/creeperkatze)
 
@@ -36,11 +37,19 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 </tr>
 <tr>
 <td width="50%"><img src=".github/assets/screenshots/whitelisted.png" width="100%"><br><i>Allowlisted domain</i></td>
-<td width="50%"><img src=".github/assets/screenshots/connection.png" width="100%"><br><i>Connection options</i></td>
+<td width="50%"><img src=".github/assets/screenshots/groups.png" width="100%"><br><i>Groups</i></td>
 </tr>
 <tr>
+<td width="50%"><img src=".github/assets/screenshots/lists.png" width="100%"><br><i>Lists and gravity</i></td>
+<td width="50%"><img src=".github/assets/screenshots/domains.png" width="100%"><br><i>Domains</i></td>
+</tr>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/connection.png" width="100%"><br><i>Connection options</i></td>
 <td width="50%"><img src=".github/assets/screenshots/customization.png" width="100%"><br><i>Customization options</i></td>
+</tr>
+<tr>
 <td width="50%"><img src=".github/assets/screenshots/popup.png" width="100%"><br><i>Popup options</i></td>
+<td width="50%"><img src=".github/assets/screenshots/data.png" width="100%"><br><i>Data options</i></td>
 </tr>
 </table>
 
@@ -48,30 +57,41 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 <table>
 <tr>
-<td width="50%"><b>Blocking control</b><br>Toggle Pi-hole blocking on or off from the popup, or temporarily disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.</td>
-<td width="50%"><b>Domain management</b><br>See whether the current tab's domain is blocked or allowlisted and toggle it instantly, without opening the Pi-hole admin interface.</td>
+<td width="50%"><b>Blocking control</b><br>Toggle Pi-hole blocking from the popup, or disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.</td>
+<td width="50%"><b>Current site</b><br>See whether the current tab's domain is blocked, by you or by a list, and allowlist or block it with one click.</td>
 </tr>
 <tr>
-<td width="50%"><b>Stats</b><br>View today's query count, blocked count, block percentage, and cache hits, each with a 24-hour sparkline. Optional donut charts break down queries by status and type.</td>
-<td width="50%"><b>System info</b><br>See uptime, CPU load, memory usage, and temperature at a glance in the popup.</td>
+<td width="50%"><b>Domains</b><br>Allowlist or block any domain, including regex patterns, and remove entries again with one click.</td>
+<td width="50%"><b>Groups and lists</b><br>Enable or disable groups and individual blocklists, and update gravity right from the popup.</td>
 </tr>
 <tr>
-<td width="50%"><b>Groups and lists</b><br>Enable or disable blocking groups and individual blocklists, and trigger a gravity update to apply list changes, directly from the popup.</td>
-<td width="50%"><b>Multiple Pi-holes</b><br>Connect to multiple Pi-holes and switch between them with per-instance tabs in the popup.</td>
+<td width="50%"><b>Stats</b><br>View today's queries, blocked queries, block percentage, and cache hits, each with a 24-hour sparkline.</td>
+<td width="50%"><b>System info</b><br>See CPU usage, memory usage, temperature, and uptime at a glance.</td>
 </tr>
 <tr>
+<td width="50%"><b>Recently blocked</b><br>See which domains were blocked in the last few minutes, for your device or all devices, and allowlist them with one click.</td>
+<td width="50%"><b>Notices</b><br>The popup shows unread Pi-hole diagnosis messages and available Pi-hole updates on its "Open Pi-hole" button.</td>
+</tr>
+<tr>
+<td width="50%"><b>Multiple Pi-holes</b><br>Connect as many Pi-holes as you run, give each its own icon, and switch between them with tabs in the popup.</td>
 <td width="50%"><b>Toolbar badge</b><br>Shows blocked percentage, ON/OFF state, or active client count.</td>
-<td width="50%"><b>Customization</b><br>Adjust the popup layout, badge behavior, language, and more from the extension options.</td>
+</tr>
+<tr>
+<td width="50%"><b>Customization</b><br>Choose which cards the popup shows, your language, and light or dark mode.</td>
+<td width="50%"><b>Settings backup</b><br>Export your settings to a JSON file, import them in another browser, or reset everything to the defaults.</td>
 </tr>
 </table>
 
 ## ⚙️ Setup
 
-1. Open the extension options.
-2. Under **Connection**, click **Add Pi-hole** in the top-right of the Pi-holes section.
-3. Enter a name, your Pi-hole URL (e.g. `http://pi.hole` or `http://192.168.1.1`), and your **password** (your admin password, or an app password from Settings > API).
-4. Leave the password blank if your Pi-hole has no password set.
-5. The connection is tested automatically, a green checkmark confirms it's working.
+1. Open the extension settings.
+2. Under **Connection**, click **Add Pi-hole**.
+3. Enter your Pi-hole's address (e.g. `pi.hole` or `192.168.1.2`) and your **password** (your admin password, or an app password from Settings > API). Leave the password empty if your Pi-hole has none.
+4. Optionally give it a name and an icon, then click **Save** and allow access to your Pi-hole when the browser asks.
+5. The dot next to your Pi-hole turns green once it's connected.
+
+> [!TIP]
+> If your Pi-hole uses HTTPS with its own certificate, your browser has to trust that certificate first. See the [Pi-hole TLS documentation](https://docs.pi-hole.net/api/tls/).
 
 ## 🔒 Building from source
 

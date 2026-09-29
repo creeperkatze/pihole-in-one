@@ -10,7 +10,7 @@ Answers to questions you might run into before or after you've hit them.
 
 ### Which Pi-hole versions are supported?
 
-Pi-hole v6 only. The extension talks to Pi-hole's v6 API using an app password, not the legacy API token from v5. If you're still on v5, upgrade Pi-hole first.
+Pi-hole v6 only. The extension talks to Pi-hole's v6 API using your admin password or an app password, not the legacy API token from v5. If you're still on v5, upgrade Pi-hole first.
 
 ### What do I enter as the password?
 
