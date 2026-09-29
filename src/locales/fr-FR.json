@@ -151,8 +151,7 @@
 		},
 		"error": {
 			"actionFailed": "L'action a échoué",
-			"fetchFailed": "Impossible de récupérer le statut",
-			"fix": "Corriger"
+			"fetchFailed": "Impossible de récupérer le statut"
 		},
 		"footer": {
 			"checking": "En cours de vérification",

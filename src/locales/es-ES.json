@@ -151,8 +151,7 @@
 		},
 		"error": {
 			"actionFailed": "Acción fallida",
-			"fetchFailed": "No se ha podido obtener el estado",
-			"fix": "Reparar"
+			"fetchFailed": "No se ha podido obtener el estado"
 		},
 		"footer": {
 			"checking": "Comprobando",
