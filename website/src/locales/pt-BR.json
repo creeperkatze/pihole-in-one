@@ -10,6 +10,9 @@
 			"groups": {
 				"title": "Listas e grupos"
 			},
+			"stats": {
+				"title": "Estatísticas"
+			},
 			"systemInfo": {
 				"title": "Informação do sistema"
 			},
@@ -17,5 +20,8 @@
 				"title": "Barra de ferramentas de medalhas"
 			}
 		}
+	},
+	"nav": {
+		"donate": "Doe"
 	}
 }

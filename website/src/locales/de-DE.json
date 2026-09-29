@@ -56,5 +56,34 @@
 				"description": "Exportiere deine Einstellungen, importiere sie in einem anderen Browser oder fang mit den Standardwerten neu an."
 			}
 		}
+	},
+	"nav": {
+		"faq": "FAQ",
+		"translate": "Übersetzen",
+		"changelog": "Änderungsprotokoll",
+		"donate": "Spenden",
+		"donateLabel": "Auf Ko-fi spenden"
+	},
+	"theme": {
+		"onThisPage": "Auf dieser Seite",
+		"returnToTop": "Nach oben",
+		"menu": "Menü",
+		"appearance": "Darstellung",
+		"switchToLight": "Zum hellen Design wechseln",
+		"switchToDark": "Zum dunklen Design wechseln",
+		"changeLanguage": "Sprache ändern",
+		"skipToContent": "Zum Inhalt springen"
+	},
+	"notFound": {
+		"title": "Seite nicht gefunden",
+		"quote": "Diese Seite existiert nicht oder wurde verschoben.",
+		"linkText": "Zurück zur Startseite"
+	},
+	"stats": {
+		"users": "{browser}-Nutzer"
+	},
+	"footer": {
+		"madeBy": "Mit {heart} gemacht von {author}",
+		"notAffiliated": "Nicht mit Pi-hole verbunden"
 	}
 }

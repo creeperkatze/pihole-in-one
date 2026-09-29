@@ -13,6 +13,9 @@
 			"groups": {
 				"title": "Groupes et listes"
 			},
+			"stats": {
+				"title": "Statistiques"
+			},
 			"systemInfo": {
 				"title": "Info système"
 			},
@@ -23,5 +26,9 @@
 				"title": "Badge de la barre d'outils"
 			}
 		}
+	},
+	"nav": {
+		"donate": "Faire un don",
+		"donateLabel": "Faire un don sur Ko-fi"
 	}
 }
