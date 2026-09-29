@@ -13,6 +13,9 @@
 			"groups": {
 				"title": "Grupos y listas"
 			},
+			"stats": {
+				"title": "Estadísticas"
+			},
 			"systemInfo": {
 				"title": "Información del sistema"
 			},
@@ -23,5 +26,9 @@
 				"title": "Icono en la barra de herramientas"
 			}
 		}
+	},
+	"nav": {
+		"donate": "Donar",
+		"donateLabel": "Dona en Ko-fi"
 	}
 }
