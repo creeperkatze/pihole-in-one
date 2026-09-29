@@ -31,7 +31,7 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 
 <table>
 <tr>
-<td width="50%"><img src=".github/assets/screenshots/extension.png" width="100%"><br><i>Popup</i></td>
+<td width="50%"><img src=".github/assets/screenshots/home.png" width="100%"><br><i>Popup</i></td>
 <td width="50%"><img src=".github/assets/screenshots/blocked.png" width="100%"><br><i>Blocked domain</i></td>
 </tr>
 <tr>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
 interface ShowcaseItem {
 	title: string
 	details: string
@@ -10,7 +12,7 @@ const items: ShowcaseItem[] = [
 		title: 'Everything about your Pi-hole, one click away',
 		details:
 			"Toggle blocking on or off, or disable it for a preset duration so it re-enables automatically. See today's queries, blocked percentage, and cache hits, each with a 24-hour sparkline.",
-		image: '/screenshots/extension.png',
+		image: '/screenshots/home.png',
 	},
 	{
 		title: "Know when a domain's blocked, instantly",
@@ -22,6 +24,23 @@ const items: ShowcaseItem[] = [
 		title: 'Allowlist a domain without leaving the tab',
 		details: 'Toggle the current domain to allowlisted right from the popup, then reload and move on.',
 		image: '/screenshots/whitelisted.png',
+	},
+	{
+		title: 'Flip groups on and off',
+		details: 'Toggle any Pi-hole group from the popup, for example to pause filtering for one set of devices.',
+		image: '/screenshots/groups.png',
+	},
+	{
+		title: 'Control your blocklists and update gravity',
+		details:
+			'Enable or disable individual blocklists with a single toggle, and update gravity right away after changing them.',
+		image: '/screenshots/lists.png',
+	},
+	{
+		title: 'Block or allow any domain, even with regex',
+		details:
+			'Type a domain, choose exact or regex, and add it to the allowlist or blocklist. Remove entries again with one click.',
+		image: '/screenshots/domains.png',
 	},
 	{
 		title: 'Connect every Pi-hole you run',
@@ -41,7 +60,22 @@ const items: ShowcaseItem[] = [
 			'Pick which sections appear in the popup: stats as graphs or donut charts, group toggles, list toggles, and system status like CPU, memory, and temperature.',
 		image: '/screenshots/popup.png',
 	},
+	{
+		title: 'Take your settings with you',
+		details:
+			'Export your settings to a JSON file, import them on another browser, or reset everything to the defaults.',
+		image: '/screenshots/data.png',
+	},
 ]
+
+const active = ref<ShowcaseItem | null>(null)
+
+function onKeydown(event: KeyboardEvent) {
+	if (event.key === 'Escape') active.value = null
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
@@ -54,7 +88,7 @@ const items: ShowcaseItem[] = [
 					class="showcase-row"
 					:class="{ reverse: index % 2 === 1 }"
 				>
-					<div class="showcase-media">
+					<button type="button" class="showcase-media" :aria-label="item.title" @click="active = item">
 						<img
 							:src="item.image"
 							:alt="item.title"
@@ -63,7 +97,7 @@ const items: ShowcaseItem[] = [
 							loading="lazy"
 							decoding="async"
 						/>
-					</div>
+					</button>
 					<div class="showcase-text">
 						<h3>{{ item.title }}</h3>
 						<p>{{ item.details }}</p>
@@ -71,6 +105,11 @@ const items: ShowcaseItem[] = [
 				</article>
 			</div>
 		</div>
+		<Teleport to="body">
+			<div v-if="active" class="lightbox" @click="active = null">
+				<img :src="active.image" :alt="active.title" />
+			</div>
+		</Teleport>
 	</div>
 </template>
 
@@ -101,6 +140,10 @@ const items: ShowcaseItem[] = [
 .showcase-media {
 	flex: 1 1 0;
 	width: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: zoom-in;
 }
 
 .showcase-media img {
@@ -156,5 +199,23 @@ const items: ShowcaseItem[] = [
 		padding-left: 64px;
 		padding-right: 64px;
 	}
+}
+
+.lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	background: rgba(0, 0, 0, 0.85);
+	cursor: zoom-out;
+}
+
+.lightbox img {
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 12px;
 }
 </style>
