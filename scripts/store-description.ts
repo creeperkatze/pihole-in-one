@@ -43,13 +43,17 @@ const REPO_URL = 'https://github.com/creeperkatze/pihole-in-one'
 
 const features = [
 	'blocking',
-	'domain',
+	'currentSite',
+	'domains',
+	'groups',
 	'stats',
 	'systemInfo',
-	'groups',
+	'recentlyBlocked',
+	'notices',
 	'multiInstance',
 	'badge',
 	'customization',
+	'backup',
 ]
 
 function featureLines(): string {
