@@ -119,8 +119,7 @@
 		},
 		"error": {
 			"actionFailed": "Ação falhou",
-			"fetchFailed": "Não foi possível obter o modo atual",
-			"fix": "Consertar"
+			"fetchFailed": "Não foi possível obter o modo atual"
 		},
 		"footer": {
 			"checking": "Verificando",

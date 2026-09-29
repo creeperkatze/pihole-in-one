@@ -6,7 +6,19 @@
 		"error": {
 			"passwordIncorrect": "Passwort falsch",
 			"passwordRequired": "Passwort benötigt",
-			"timeout": "Zeitüberschreitung bei der Verbindung"
+			"timeout": "Zeitüberschreitung bei der Verbindung",
+			"authFailed": "Anmeldung fehlgeschlagen. Überprüfe das Passwort.",
+			"twoFactor": "Die Zwei-Faktor-Authentifizierung ist aktiviert. Verwende stattdessen ein App-Passwort aus „Einstellungen > API“.",
+			"rateLimited": "Zu viele Anmeldeversuche. Warte einen Moment und versuche es erneut.",
+			"noSeats": "Das Pi-hole hat keine freien Anmeldesitzungen mehr. Melde dich an anderer Stelle ab oder erhöhe das Sitzungslimit.",
+			"unreachable": "Das Pi-hole ist nicht erreichbar. Prüfe, ob die Adresse stimmt und es online ist.",
+			"notPihole": "Unter dieser Adresse wurde keine Pi-hole-API gefunden.",
+			"notFound": "Unter dieser Adresse wurde keine Pi-hole-API gefunden. Pi-hole v6 oder neuer ist erforderlich.",
+			"forbidden": "Das Pi-hole hat diese Aktion abgelehnt.",
+			"server": "Im Pi-hole ist ein interner Fehler aufgetreten.",
+			"invalidRegex": "Ungültiges Regex-Muster",
+			"database": "Die Pi-hole-Datenbank konnte nicht aktualisiert werden.",
+			"duplicate": "Diese Domain ist bereits in der Liste."
 		}
 	},
 	"options": {
@@ -192,6 +204,10 @@
 			},
 			"domainAdd": {
 				"description": "Zeige oben in der Domainansicht ein Feld, um beliebige Domains auf die Whitelist zu setzen oder zu blockieren."
+			},
+			"updateBadge": {
+				"label": "Abzeichen für Aktualisierungen",
+				"description": "Zeige ein Abzeichen auf der Schaltfläche „Pi-hole öffnen“ im Popup, wenn eine Pi-hole-Aktualisierung verfügbar ist."
 			}
 		}
 	},
@@ -235,7 +251,8 @@
 		"error": {
 			"actionFailed": "Aktion fehlgeschlagen",
 			"fetchFailed": "Status konnte nicht abgerufen werden",
-			"fix": "Beheben"
+			"fixInSettings": "In Einstellungen beheben",
+			"fixInPihole": "Im Pi-hole beheben"
 		},
 		"footer": {
 			"checking": "Wird überprüft",
@@ -302,7 +319,9 @@
 			"memory": "RAM",
 			"temperature": "Temp",
 			"uptime": "Laufzeit"
-		}
+		},
+		"diagnosisMessages": "{count, plural, one {# Diagnosemeldung} other {# Diagnosemeldungen}}",
+		"piholeUpdateAvailable": "Pi-hole-Aktualisierung verfügbar"
 	},
 	"meta": {
 		"summary": "Eine Browser-Erweiterung, mit der du dein Pi-hole bequem direkt im Browser steuern kannst.",
