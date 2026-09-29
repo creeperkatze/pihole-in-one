@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { Activity, ArrowUpCircle, ChartColumn, Globe, Info, Plus, RefreshCw } from '@lucide/vue'
+import {
+	Activity,
+	ArrowUpCircle,
+	ChartColumn,
+	Globe,
+	History,
+	Info,
+	Plus,
+	RefreshCw,
+} from '@lucide/vue'
 import { useI18n } from 'vue-i18n'
 
 import OptionToggle from '../../../components/options/OptionToggle.vue'
@@ -45,16 +54,22 @@ const { t } = useI18n()
 					:description="t('options.popup.stats.description')"
 				/>
 				<OptionToggle
+					v-model="form.showCurrentSite"
+					:icon="Globe"
+					:label="t('options.popup.currentSite.label')"
+					:description="t('options.popup.currentSite.description')"
+				/>
+				<OptionToggle
 					v-model="form.showSystemInfo"
 					:icon="Activity"
 					:label="t('options.popup.systemInfo.label')"
 					:description="t('options.popup.systemInfo.description')"
 				/>
 				<OptionToggle
-					v-model="form.showCurrentSite"
-					:icon="Globe"
-					:label="t('options.popup.currentSite.label')"
-					:description="t('options.popup.currentSite.description')"
+					v-model="form.showRecentlyBlocked"
+					:icon="History"
+					:label="t('popup.recentlyBlocked.title')"
+					:description="t('options.popup.recentlyBlocked.description')"
 				/>
 			</div>
 			<div class="flex flex-col gap-2">

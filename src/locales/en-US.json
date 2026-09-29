@@ -195,6 +195,9 @@
 				"label": "Statistics",
 				"description": "Show today's queries, blocked queries, and cache hits with 24-hour graphs."
 			},
+			"recentlyBlocked": {
+				"description": "Show the domains blocked for this device in the last 10 minutes, with a button to whitelist each one."
+			},
 			"systemInfo": {
 				"label": "System info",
 				"description": "Show CPU, memory, temperature, and uptime in the popup."
@@ -281,6 +284,13 @@
 			"openSettings": "Open Settings"
 		},
 		"openInstance": "Open {name}",
+		"recentlyBlocked": {
+			"title": "Recently blocked",
+			"thisDevice": "This device, last {minutes} minutes",
+			"allDevices": "All devices, last {minutes} minutes",
+			"empty": "Nothing was blocked.",
+			"loadError": "Failed to load recent queries"
+		},
 		"refresh": "Refresh",
 		"settings": "Settings",
 		"stats": {

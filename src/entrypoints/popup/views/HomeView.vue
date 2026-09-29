@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import BlockingCard from '../components/BlockingCard.vue'
 import DomainCard from '../components/DomainCard.vue'
+import RecentlyBlockedCard from '../components/RecentlyBlockedCard.vue'
 import StatsCard from '../components/StatsCard.vue'
 import SystemCard from '../components/SystemCard.vue'
 import { usePopupInstances } from '../usePopupInstances'
@@ -24,6 +25,9 @@ const showSite = computed(
 		Boolean(currentDomain.value) &&
 		!states.value[activeInstance.value]?.error,
 )
+const showRecentlyBlocked = computed(
+	() => settings.value!.showRecentlyBlocked && !states.value[activeInstance.value]?.error,
+)
 const showStats = computed(() => settings.value!.showStats)
 const showSystem = computed(
 	() => settings.value!.showSystemInfo && Boolean(states.value[activeInstance.value]?.padd),
@@ -42,13 +46,15 @@ const showSystem = computed(
 
 		<StatsCard v-if="showStats" :summary="states[activeInstance]!.summary!" />
 
-		<SystemCard v-if="showSystem" :padd="states[activeInstance]!.padd!" />
-
 		<DomainCard
 			v-if="showSite"
 			:key="currentDomain!"
 			:domain="currentDomain!"
 			:instances="settings!.instances"
 		/>
+
+		<SystemCard v-if="showSystem" :padd="states[activeInstance]!.padd!" />
+
+		<RecentlyBlockedCard v-if="showRecentlyBlocked" :instances="settings!.instances" />
 	</div>
 </template>

@@ -21,6 +21,7 @@ export interface ExtensionSettings {
 	showDiagnosisBadge: boolean
 	showUpdateBadge: boolean
 	showCurrentSite: boolean
+	showRecentlyBlocked: boolean
 	showStats: boolean
 	showSystemInfo: boolean
 	showGravityUpdate: boolean
@@ -37,6 +38,7 @@ export const DEFAULTS: ExtensionSettings = {
 	showDiagnosisBadge: true,
 	showUpdateBadge: true,
 	showCurrentSite: true,
+	showRecentlyBlocked: false,
 	showStats: true,
 	showSystemInfo: false,
 	showGravityUpdate: true,
