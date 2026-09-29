@@ -72,7 +72,7 @@ export default defineConfig({
 	],
 	locales: {
 		root: locale('English', 'en-US', '/'),
-		de: locale('Deutsch', 'de-DE', '/de/'),
+		'de-DE': locale('Deutsch', 'de-DE', '/de-DE/'),
 	},
 	vite: {
 		plugins: [svgLoader()],

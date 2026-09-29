@@ -9,7 +9,7 @@ files:
     translation: /website/src/locales/%locale%.json
     skip_untranslated_strings: true
   - source: /website/faq.md
-    translation: /website/%two_letters_code%/faq.md
+    translation: /website/%locale%/faq.md
     skip_untranslated_files: true
 
 project_id_env: CROWDIN_PROJECT_ID
