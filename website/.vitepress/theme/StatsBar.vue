@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, n } = useI18n()
 
 const CHROME_ID = 'gaaobidjebianpcngcfpkniaocibidhe'
 const FIREFOX_SLUG = 'pihole-in-one'
@@ -43,9 +46,13 @@ const cards = computed(() => {
 	const { chrome, firefox, edge } = stats.value
 
 	const list: { label: string; value: string }[] = []
-	if (chrome !== null) list.push({ label: 'Chrome Users', value: chrome.toLocaleString() })
-	if (firefox !== null) list.push({ label: 'Firefox Users', value: firefox.toLocaleString() })
-	if (edge !== null) list.push({ label: 'Edge Users', value: edge.toLocaleString() })
+	const add = (browser: string, users: number | null) => {
+		if (users === null) return
+		list.push({ label: t('stats.users', { browser }), value: n(users) })
+	}
+	add('Chrome', chrome)
+	add('Firefox', firefox)
+	add('Edge', edge)
 	return list
 })
 </script>

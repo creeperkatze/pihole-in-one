@@ -156,24 +156,5 @@
 			"clients": "{count} Cliente ativos",
 			"reenables": "Reativa em {duration}"
 		}
-	},
-	"meta": {
-		"description": {
-			"featuresTitle": "Aspectos:"
-		},
-		"feature": {
-			"blocking": {
-				"title": "Controle de bloqueamento"
-			},
-			"groups": {
-				"title": "Listas e grupos"
-			},
-			"systemInfo": {
-				"title": "Informação do sistema"
-			},
-			"badge": {
-				"title": "Barra de ferramentas de medalhas"
-			}
-		}
 	}
 }

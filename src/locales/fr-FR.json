@@ -188,30 +188,5 @@
 			"clients": "{count} client(s) actif(s)",
 			"reenables": "Réactivation dans {duration}"
 		}
-	},
-	"meta": {
-		"summary": "Une extension de navigateur pour contrôler votre Pi-hole facilement à partir du navigateur.",
-		"description": {
-			"footer": "Pi-hole In One est <link>un logiciel libre</link>.",
-			"disclaimer": "L’extension n’est ni associée ni approuvée par Pi-hole.",
-			"featuresTitle": "Fonctionnalités :"
-		},
-		"feature": {
-			"blocking": {
-				"title": "Contrôle du blocage"
-			},
-			"groups": {
-				"title": "Groupes et listes"
-			},
-			"systemInfo": {
-				"title": "Info système"
-			},
-			"multiInstance": {
-				"title": "Plusieurs Pi-holes"
-			},
-			"badge": {
-				"title": "Badge de la barre d'outils"
-			}
-		}
 	}
 }

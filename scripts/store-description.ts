@@ -3,7 +3,7 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const directory = dirname(fileURLToPath(import.meta.url))
-const localesDirectory = resolve(directory, '../src/locales')
+const localesDirectory = resolve(directory, '../website/src/locales')
 
 const language =
 	process.argv.find(

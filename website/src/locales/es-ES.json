@@ -1,0 +1,27 @@
+{
+	"meta": {
+		"summary": "Una extensión de navegador para controlar tu Pi-hole cómodamente desde tu navegador.",
+		"description": {
+			"footer": "Pi-hole In One es <link>de código abierto</link>.",
+			"disclaimer": "Esta extensión no está asociada ni respaldada por Pi-hole.",
+			"featuresTitle": "Características:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Control del bloqueo"
+			},
+			"groups": {
+				"title": "Grupos y listas"
+			},
+			"systemInfo": {
+				"title": "Información del sistema"
+			},
+			"multiInstance": {
+				"title": "Múltiples Pi-hole"
+			},
+			"badge": {
+				"title": "Icono en la barra de herramientas"
+			}
+		}
+	}
+}

@@ -1,22 +1,28 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import HeartIcon from './icons/heart.svg'
+
+const { t } = useI18n()
 </script>
 
 <template>
 	<footer class="site-footer">
 		<div class="footer-inner">
 			<p class="footer-text">
-				Made with
-				<HeartIcon class="heart-icon" />
-				by
-				<a
-					href="https://github.com/creeperkatze"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="footer-link"
-					>Creeperkatze</a
-				>
-				· Not affiliated with Pi-hole
+				<i18n-t keypath="footer.madeBy" scope="global">
+					<template #heart><HeartIcon class="heart-icon" /></template>
+					<template #author>
+						<a
+							href="https://github.com/creeperkatze"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Creeperkatze</a
+						>
+					</template>
+				</i18n-t>
+				· {{ t('footer.notAffiliated') }}
 			</p>
 		</div>
 	</footer>

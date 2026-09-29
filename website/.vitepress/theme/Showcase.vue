@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 interface ShowcaseItem {
 	title: string
@@ -7,66 +8,26 @@ interface ShowcaseItem {
 	image: string
 }
 
-const items: ShowcaseItem[] = [
-	{
-		title: 'Everything about your Pi-hole, one click away',
-		details:
-			"Toggle blocking on or off, or disable it for a preset duration so it re-enables automatically. See today's queries, blocked percentage, and cache hits, each with a 24-hour sparkline.",
-		image: '/screenshots/home.png',
-	},
-	{
-		title: "Know when a domain's blocked, instantly",
-		details:
-			"The popup highlights the current tab's domain in red when it's blocked, and shows which list blocked it, without opening the Pi-hole admin interface.",
-		image: '/screenshots/blocked.png',
-	},
-	{
-		title: 'Allowlist a domain without leaving the tab',
-		details: 'Toggle the current domain to allowlisted right from the popup, then reload and move on.',
-		image: '/screenshots/whitelisted.png',
-	},
-	{
-		title: 'Flip groups on and off',
-		details: 'Toggle any Pi-hole group from the popup, for example to pause filtering for one set of devices.',
-		image: '/screenshots/groups.png',
-	},
-	{
-		title: 'Control your blocklists and update gravity',
-		details:
-			'Enable or disable individual blocklists with a single toggle, and update gravity right away after changing them.',
-		image: '/screenshots/lists.png',
-	},
-	{
-		title: 'Block or allow any domain, even with regex',
-		details:
-			'Type a domain, choose exact or regex, and add it to the allowlist or blocklist. Remove entries again with one click.',
-		image: '/screenshots/domains.png',
-	},
-	{
-		title: 'Connect every Pi-hole you run',
-		details:
-			'Add as many Pi-hole instances as you want, and switch between them with per-instance tabs right in the popup.',
-		image: '/screenshots/connection.png',
-	},
-	{
-		title: 'Make it feel like yours',
-		details:
-			'Choose your language, force light or dark mode, and decide what the toolbar badge shows: blocked percentage, on/off state, or active client count.',
-		image: '/screenshots/customization.png',
-	},
-	{
-		title: 'Show exactly what you want to see',
-		details:
-			'Pick which cards the popup shows: stats, system info like CPU, memory, and temperature, the current site, recently blocked domains, the gravity update, and the domain field.',
-		image: '/screenshots/popup.png',
-	},
-	{
-		title: 'Take your settings with you',
-		details:
-			'Export your settings to a JSON file, import them on another browser, or reset everything to the defaults.',
-		image: '/screenshots/data.png',
-	},
+const features = [
+	{ key: 'blocking', image: '/screenshots/home.png' },
+	{ key: 'currentSite', image: '/screenshots/blocked.png' },
+	{ key: 'domains', image: '/screenshots/domains.png' },
+	{ key: 'groups', image: '/screenshots/lists.png' },
+	{ key: 'multiInstance', image: '/screenshots/connection.png' },
+	{ key: 'badge', image: '/screenshots/customization.png' },
+	{ key: 'customization', image: '/screenshots/popup.png' },
+	{ key: 'backup', image: '/screenshots/data.png' },
 ]
+
+const { t } = useI18n()
+
+const items = computed<ShowcaseItem[]>(() =>
+	features.map(({ key, image }) => ({
+		title: t(`meta.feature.${key}.title`),
+		details: t(`meta.feature.${key}.description`),
+		image,
+	})),
+)
 
 const active = ref<ShowcaseItem | null>(null)
 
@@ -84,7 +45,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 			<div class="showcase-inner">
 				<article
 					v-for="(item, index) in items"
-					:key="item.title"
+					:key="item.image"
 					class="showcase-row"
 					:class="{ reverse: index % 2 === 1 }"
 				>

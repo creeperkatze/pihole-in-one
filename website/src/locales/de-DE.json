@@ -1,0 +1,60 @@
+{
+	"meta": {
+		"summary": "Eine Browser-Erweiterung, mit der du dein Pi-hole bequem direkt im Browser steuern kannst.",
+		"description": {
+			"footer": "Pi-hole In One ist <link>Open Source</link>.",
+			"disclaimer": "Die Erweiterung ist nicht mit Pi-hole assoziiert oder von Pi-hole empfohlen.",
+			"featuresTitle": "Funktionen:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Blockierungssteuerung",
+				"description": "Schalte die Blockierung mit einem Klick ein oder aus, oder pausiere sie für 10 Sekunden bis eine Stunde und lass sie sich von selbst wieder einschalten."
+			},
+			"currentSite": {
+				"title": "Aktuelle Seite",
+				"description": "Sieh auf einen Blick, ob die Seite, auf der du bist, blockiert ist und von welcher Liste, und setze sie dann mit einem Klick auf die Whitelist oder blockiere sie."
+			},
+			"domains": {
+				"title": "Domains",
+				"description": "Setze beliebige Domains oder mit Regex ganze Muster auf die Whitelist oder blockiere sie, ohne das Admin-Interface des Pi-holes zu öffnen."
+			},
+			"groups": {
+				"title": "Gruppen und Listen",
+				"description": "Schalte Gruppen und Blocklisten ein oder aus und aktualisiere Gravity direkt danach."
+			},
+			"stats": {
+				"title": "Statistiken",
+				"description": "Behalte die heutigen Anfragen, blockierten Anfragen, den Blockierungsanteil und die Cache-Treffer im Blick, jeweils mit einem Verlauf der letzten 24 Stunden."
+			},
+			"systemInfo": {
+				"title": "Systeminfo",
+				"description": "Prüfe CPU, Arbeitsspeicher, Temperatur und Laufzeit deines Pi-holes auf einen Blick."
+			},
+			"recentlyBlocked": {
+				"title": "Kürzlich blockiert",
+				"description": "Finde heraus, was gerade auf deinem Gerät oder in deinem ganzen Netzwerk blockiert wurde, und setze es sofort auf die Whitelist."
+			},
+			"notices": {
+				"title": "Hinweise",
+				"description": "Werde direkt im Popup auf ungelesene Diagnosemeldungen und verfügbare Pi-hole-Updates hingewiesen."
+			},
+			"multiInstance": {
+				"title": "Mehrere Pi-holes",
+				"description": "Verwalte alle deine Pi-holes, gib jedem ein eigenes Symbol und wechsle mit einem Klick zwischen ihnen."
+			},
+			"badge": {
+				"title": "Abzeichen in der Symbolleiste",
+				"description": "Zeige den Blockierungsanteil, den Blockierungsstatus oder die Anzahl aktiver Clients direkt auf dem Erweiterungssymbol."
+			},
+			"customization": {
+				"title": "Dein Popup, wie du es willst",
+				"description": "Wähle, welche Karten das Popup zeigt, stelle deine Sprache ein und entscheide dich für hell oder dunkel."
+			},
+			"backup": {
+				"title": "Einstellungen sichern",
+				"description": "Exportiere deine Einstellungen, importiere sie in einem anderen Browser oder fang mit den Standardwerten neu an."
+			}
+		}
+	}
+}

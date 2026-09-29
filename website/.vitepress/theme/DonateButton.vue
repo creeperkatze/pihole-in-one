@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import HeartIcon from './icons/heart.svg'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -8,10 +12,10 @@ import HeartIcon from './icons/heart.svg'
 		target="_blank"
 		rel="noopener noreferrer"
 		class="donate-button"
-		aria-label="Donate on Ko-fi"
+		:aria-label="t('nav.donateLabel')"
 	>
 		<HeartIcon class="heart-icon" />
-		Donate
+		{{ t('nav.donate') }}
 	</a>
 </template>
 

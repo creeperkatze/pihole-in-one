@@ -2,7 +2,8 @@ import { readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const localesDir = join(dirname(fileURLToPath(import.meta.url)), '../src/locales')
+const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+const localesDirs = [join(root, 'src/locales'), join(root, 'website/src/locales')]
 const sourceFile = 'en-US.json'
 
 function prune(messages) {
@@ -18,13 +19,15 @@ function prune(messages) {
 	return pruned
 }
 
-for (const file of readdirSync(localesDir)) {
-	if (!file.endsWith('.json') || file === sourceFile) continue
-	const path = join(localesDir, file)
-	const messages = prune(JSON.parse(readFileSync(path, 'utf8')))
-	if (Object.keys(messages).length) {
-		writeFileSync(path, `${JSON.stringify(messages, null, '\t')}\n`)
-	} else {
-		rmSync(path)
+for (const localesDir of localesDirs) {
+	for (const file of readdirSync(localesDir)) {
+		if (!file.endsWith('.json') || file === sourceFile) continue
+		const path = join(localesDir, file)
+		const messages = prune(JSON.parse(readFileSync(path, 'utf8')))
+		if (Object.keys(messages).length) {
+			writeFileSync(path, `${JSON.stringify(messages, null, '\t')}\n`)
+		} else {
+			rmSync(path)
+		}
 	}
 }

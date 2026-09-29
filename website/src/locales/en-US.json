@@ -1,0 +1,89 @@
+{
+	"meta": {
+		"summary": "A browser extension to control your Pi-hole conveniently from within the browser.",
+		"description": {
+			"footer": "Pi-hole In One is <link>open source</link>.",
+			"disclaimer": "The extension is not associated with or endorsed by Pi-hole.",
+			"featuresTitle": "Features:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Blocking control",
+				"description": "Turn blocking on or off with one click, or pause it for anywhere from 10 seconds to an hour and let it switch back on by itself."
+			},
+			"currentSite": {
+				"title": "Current site",
+				"description": "See at a glance whether the site you're on is blocked, and by which list, then allowlist or block it in one click."
+			},
+			"domains": {
+				"title": "Domains",
+				"description": "Allowlist or block any domain, or a whole pattern with regex, without opening the Pi-hole admin interface."
+			},
+			"groups": {
+				"title": "Groups and lists",
+				"description": "Switch groups and blocklists on or off, and update gravity right after."
+			},
+			"stats": {
+				"title": "Statistics",
+				"description": "Keep an eye on today's queries, blocked queries, block rate, and cache hits, each with a 24-hour graph."
+			},
+			"systemInfo": {
+				"title": "System info",
+				"description": "Check your Pi-hole's CPU, memory, temperature, and uptime at a glance."
+			},
+			"recentlyBlocked": {
+				"title": "Recently blocked",
+				"description": "Find out what just got blocked on your device or your whole network, and allowlist it on the spot."
+			},
+			"notices": {
+				"title": "Notices",
+				"description": "Get a heads-up about unread diagnosis messages and available Pi-hole updates right in the popup."
+			},
+			"multiInstance": {
+				"title": "Multiple Pi-holes",
+				"description": "Manage every Pi-hole you run, give each its own icon, and switch between them with one click."
+			},
+			"badge": {
+				"title": "Toolbar badge",
+				"description": "Show the block rate, blocking status, or number of active clients right on the extension icon."
+			},
+			"customization": {
+				"title": "Your popup, your way",
+				"description": "Choose which cards the popup shows, pick your language, and go light or dark."
+			},
+			"backup": {
+				"title": "Settings backup",
+				"description": "Export your settings, import them in another browser, or start over with the defaults."
+			}
+		}
+	},
+	"nav": {
+		"faq": "FAQ",
+		"translate": "Translate",
+		"changelog": "Changelog",
+		"donate": "Donate",
+		"donateLabel": "Donate on Ko-fi"
+	},
+	"theme": {
+		"onThisPage": "On this page",
+		"returnToTop": "Return to top",
+		"menu": "Menu",
+		"appearance": "Appearance",
+		"switchToLight": "Switch to light theme",
+		"switchToDark": "Switch to dark theme",
+		"changeLanguage": "Change language",
+		"skipToContent": "Skip to content"
+	},
+	"notFound": {
+		"title": "Page not found",
+		"quote": "This page doesn't exist, or it has moved.",
+		"linkText": "Back to the home page"
+	},
+	"stats": {
+		"users": "{browser} users"
+	},
+	"footer": {
+		"madeBy": "Made with {heart} by {author}",
+		"notAffiliated": "Not affiliated with Pi-hole"
+	}
+}

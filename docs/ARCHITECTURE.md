@@ -7,3 +7,4 @@
 - `src/composables/`: shared Vue composables
 - `src/utils/`: shared utilities (API client, formatting, i18n setup, settings)
 - `src/locales/`: one message file per locale (`en-US.json` is the source, others via Crowdin)
+- `website/`: the VitePress website, with its own message files in `website/src/locales/` that also hold the store listing

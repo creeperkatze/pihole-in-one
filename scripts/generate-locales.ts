@@ -3,7 +3,7 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const directory = dirname(fileURLToPath(import.meta.url))
-const localesDirectory = resolve(directory, '../src/locales')
+const localesDirectory = resolve(directory, '../website/src/locales')
 const publicDirectory = resolve(directory, '../src/public')
 
 type MessageFile = { meta?: { summary?: string } }
