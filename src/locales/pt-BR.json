@@ -165,23 +165,14 @@
 			"blocking": {
 				"title": "Controle de bloqueamento"
 			},
-			"domain": {
-				"title": "Gerenciamento dos domínios"
-			},
-			"stats": {
-				"title": "Dados"
+			"groups": {
+				"title": "Listas e grupos"
 			},
 			"systemInfo": {
 				"title": "Informação do sistema"
 			},
-			"groups": {
-				"title": "Listas e grupos"
-			},
 			"badge": {
 				"title": "Barra de ferramentas de medalhas"
-			},
-			"customization": {
-				"title": "Customização"
 			}
 		}
 	}

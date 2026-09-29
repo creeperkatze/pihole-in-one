@@ -198,36 +198,19 @@
 		},
 		"feature": {
 			"blocking": {
-				"title": "Contrôle du blocage",
-				"description": "Active ou désactive le blocage Pi-hole depuis la fenêtre contextuelle, ou désactive-le temporairement pour une durée prédéfinie (10 s, 30 s, 5 min, 30 min, 1 h) pour qu'il se réactive automatiquement."
-			},
-			"domain": {
-				"title": "Gestion de domaines",
-				"description": "Vérifie si le domaine de l'onglet actuel est bloqué ou autorisé, et modifie ce paramètre en un clin d'œil, sans avoir à ouvrir l'interface d'administration de Pi-hole."
-			},
-			"stats": {
-				"title": "Statistiques",
-				"description": "Consulte le nombre de requêtes du jour, le nombre de requêtes bloquées, le pourcentage de blocage et le nombre d'accès au cache, chacun avec un graphique sur 24 heures. Des graphiques optionnels permettent de ventiler les requêtes par statut et par type."
-			},
-			"systemInfo": {
-				"title": "Info système",
-				"description": "Consulte d'un seul coup d'œil la disponibilité, la charge du processeur, l'utilisation de la mémoire et la température dans la fenêtre contextuelle."
+				"title": "Contrôle du blocage"
 			},
 			"groups": {
-				"title": "Groupes et listes",
-				"description": "Active ou désactive les groupes de blocage et les listes de blocage individuelles directement depuis la fenêtre contextuelle."
+				"title": "Groupes et listes"
+			},
+			"systemInfo": {
+				"title": "Info système"
 			},
 			"multiInstance": {
-				"title": "Plusieurs Pi-holes",
-				"description": "Connecte-toi à plusieurs Pi-holes et passe de l'un à l'autre grâce aux onglets dédiés à chaque instance dans la fenêtre contextuelle."
+				"title": "Plusieurs Pi-holes"
 			},
 			"badge": {
-				"title": "Badge de la barre d'outils",
-				"description": "Affiche le pourcentage de blocages, l'état activé/désactivé ou le nombre de clients actifs."
-			},
-			"customization": {
-				"title": "Personnalisation",
-				"description": "Ajustez la mise en page des popups, le comportement des badges, la langue, et plus encore à partir des options d'extension."
+				"title": "Badge de la barre d'outils"
 			}
 		}
 	}
