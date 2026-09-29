@@ -7,6 +7,7 @@ Every locale is one nested JSON file in `src/locales`, named by its code, like `
 - Add strings to `src/locales/en-US.json` only. Other languages come from [Crowdin](https://crowdin.com/project/pihole-in-one) and are never edited by hand.
 - Use them with `t('popup.status.title')` from `useI18n()`. Outside components, like in the background worker, use `i18n.global.t`.
 - For links or formatting inside a string, use a placeholder and `<i18n-t>` with a slot, like the Crowdin link in the language setting.
+- Strings use [ICU message syntax](https://formatjs.github.io/docs/core-concepts/icu-syntax/), compiled by `intl-messageformat`. Write plurals as `{count, plural, one {# message} other {# messages}}` so every language can use its own plural forms. An apostrophe before `{` or `}` escapes it.
 - A key is either a string or a group of keys, never both.
 - Top-level groups: `common` for shared words, `api` for API errors, `options` and `popup` for the two pages, and `meta` for the store listing.
 

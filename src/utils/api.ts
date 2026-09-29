@@ -18,14 +18,6 @@ type ApiTarget = Pick<PiholeInstance, 'baseUrl' | 'apiPassword'>
 
 type SessionStoreShape = Record<string, SessionEntry>
 
-export interface PiholeSystemInfo {
-	cpu: number
-	memory: number
-	temperature: number | null
-	tempUnit: string
-	uptime: number
-}
-
 export interface PiholeSummary {
 	queries: SummaryStatsResponse['queries']
 	clients: SummaryStatsResponse['clients']
@@ -157,15 +149,16 @@ export function getPiHoleClient(target: ApiTarget): ExtensionPiHoleClient {
 	return client
 }
 
-export async function getSystemInfo(target: ApiTarget): Promise<PiholeSystemInfo> {
-	const padd = await getPiHoleClient(target).padd.getSummary()
-	return {
-		cpu: padd['%cpu'] ?? 0,
-		memory: padd['%mem'] ?? 0,
-		temperature: padd.sensors?.cpu_temp ?? null,
-		tempUnit: padd.sensors?.unit ?? 'C',
-		uptime: padd.system?.uptime ?? 0,
+export async function hasPiholeUpdate(target: ApiTarget): Promise<boolean> {
+	const { version } = await getPiHoleClient(target).info.getVersion()
+	if (version.docker?.local) {
+		return Boolean(version.docker.remote) && version.docker.local !== version.docker.remote
 	}
+	return [version.core, version.web, version.ftl].some((component) => {
+		const local = component?.local?.version
+		const remote = component?.remote?.version
+		return Boolean(local && remote) && local !== remote
+	})
 }
 
 // Logs out on the Pi-hole and forgets the cached session, if there is one

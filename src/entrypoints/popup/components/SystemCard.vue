@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { Clock, Cpu, MemoryStick, Thermometer } from '@lucide/vue'
+import type { PaddResponse } from 'pihole-js'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { PiholeSystemInfo } from '../../../utils/api'
 import { formatDuration } from '../../../utils/format'
 
 const props = defineProps<{
-	info: PiholeSystemInfo
+	padd: PaddResponse
 }>()
 
 const { t } = useI18n()
@@ -21,7 +21,11 @@ function toCelsius(value: number, unit: string): number {
 }
 
 const tiles = computed(() => {
-	const { cpu, memory, temperature, tempUnit, uptime } = props.info
+	const cpu = props.padd['%cpu'] ?? 0
+	const memory = props.padd['%mem'] ?? 0
+	const temperature = props.padd.sensors?.cpu_temp ?? null
+	const tempUnit = props.padd.sensors?.unit ?? 'C'
+	const uptime = props.padd.system?.uptime ?? 0
 	const hot = temperature !== null && toCelsius(temperature, tempUnit) >= HOT_CELSIUS
 	return [
 		{ icon: Cpu, label: t('popup.system.cpu'), value: `${cpu.toFixed(1)}%`, color: 'text-sky-500' },

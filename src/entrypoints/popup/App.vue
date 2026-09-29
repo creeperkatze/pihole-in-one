@@ -25,13 +25,7 @@
 				<button
 					v-if="configured && settings"
 					class="relative flex items-center justify-center p-1.5 border-0 rounded-[5px] bg-transparent text-secondary hover:bg-surface-hover hover:text-primary transition-colors duration-150 cursor-pointer"
-					:title="
-						t('popup.openInstance', {
-							name:
-								settings.instances[activeInstance]?.name ||
-								t('options.piholeselector.instance.fallbackName'),
-						})
-					"
+					:title="openTitle"
 					@click="openPihole(activeInstance)"
 				>
 					<ExternalLink class="size-4" />
@@ -40,6 +34,12 @@
 						class="absolute -top-0.5 -inset-e-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-yellow-500 px-0.75 text-[9px] leading-none font-bold text-black"
 					>
 						{{ messageCount > 99 ? '99+' : messageCount }}
+					</span>
+					<span
+						v-if="settings.showUpdateBadge && piholeUpdateAvailable"
+						class="absolute -bottom-0.5 -inset-e-0.5 flex size-3.5 items-center justify-center rounded-full bg-sky-500 text-white"
+					>
+						<ArrowUp class="size-2.5" :stroke-width="3" />
 					</span>
 				</button>
 				<button
@@ -186,6 +186,7 @@
 
 <script setup lang="ts">
 import {
+	ArrowUp,
 	CheckCircle2,
 	CircleAlert,
 	Clock,
@@ -268,6 +269,27 @@ function fixError(): void {
 	if (fixOnPihole.value) openPihole(activeInstance.value)
 	else openOptions()
 }
+
+const piholeUpdateAvailable = computed(
+	() => states.value[activeInstance.value]?.updateAvailable ?? false,
+)
+
+const openTitle = computed(() => {
+	const lines = [
+		t('popup.openInstance', {
+			name:
+				settings.value?.instances[activeInstance.value]?.name ||
+				t('options.piholeselector.instance.fallbackName'),
+		}),
+	]
+	if (settings.value?.showDiagnosisBadge && messageCount.value > 0) {
+		lines.push(t('popup.diagnosisMessages', { count: messageCount.value }))
+	}
+	if (settings.value?.showUpdateBadge && piholeUpdateAvailable.value) {
+		lines.push(t('popup.piholeUpdateAvailable'))
+	}
+	return lines.join('\n')
+})
 
 const messageCount = computed(() => states.value[activeInstance.value]?.summary?.messageCount ?? 0)
 

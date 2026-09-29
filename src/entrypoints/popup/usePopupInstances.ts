@@ -1,24 +1,20 @@
 import { storage } from '@wxt-dev/storage'
-import type { BlockingStatus } from 'pihole-js'
+import type { BlockingStatus, PaddResponse } from 'pihole-js'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { browser } from 'wxt/browser'
 
 import { isPiholeSideError, useErrorMessage } from '../../composables/useApiMessages'
-import {
-	getPiHoleClient,
-	getSystemInfo,
-	type PiholeSummary,
-	type PiholeSystemInfo,
-} from '../../utils/api'
+import { getPiHoleClient, hasPiholeUpdate, type PiholeSummary } from '../../utils/api'
 import { formatDuration } from '../../utils/format'
 import { type ExtensionSettings, getSettings, isConfigured } from '../../utils/settings'
 import { redesignNoticeItem } from '../../utils/whats-new'
 
 export interface InstanceState {
 	summary: PiholeSummary | null
-	system: PiholeSystemInfo | null
+	padd: PaddResponse | null
+	updateAvailable: boolean
 	error: string
 	errorOnPihole: boolean
 	toggling: boolean
@@ -29,7 +25,8 @@ export interface InstanceState {
 function makeState(): InstanceState {
 	return {
 		summary: null,
-		system: null,
+		padd: null,
+		updateAvailable: false,
 		error: '',
 		errorOnPihole: false,
 		toggling: false,
@@ -147,9 +144,14 @@ export function usePopupInstances() {
 		const state = states.value[i]
 		if (!inst || !state) return
 		state.error = ''
-		const system = settings.value?.showSystemInfo
-			? getSystemInfo(inst).catch(() => null)
+		const padd = settings.value?.showSystemInfo
+			? getPiHoleClient(inst)
+					.padd.getSummary()
+					.catch(() => null)
 			: Promise.resolve(null)
+		const updateAvailable = settings.value?.showUpdateBadge
+			? hasPiholeUpdate(inst).catch(() => false)
+			: Promise.resolve(false)
 		try {
 			const summary = await getPiHoleClient(inst).getSummary()
 			state.summary = summary
@@ -158,7 +160,8 @@ export function usePopupInstances() {
 			state.error = describeError(e, 'popup.error.fetchFailed')
 			state.errorOnPihole = isPiholeSideError(e)
 		}
-		state.system = await system
+		state.padd = await padd
+		state.updateAvailable = await updateAvailable
 	}
 
 	async function fetchAll(): Promise<void> {

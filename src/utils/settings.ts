@@ -19,6 +19,7 @@ export interface ExtensionSettings {
 	colorScheme: ColorScheme
 	locale: string
 	showDiagnosisBadge: boolean
+	showUpdateBadge: boolean
 	showCurrentSite: boolean
 	showStats: boolean
 	showSystemInfo: boolean
@@ -34,6 +35,7 @@ export const DEFAULTS: ExtensionSettings = {
 	colorScheme: 'auto',
 	locale: '',
 	showDiagnosisBadge: true,
+	showUpdateBadge: true,
 	showCurrentSite: true,
 	showStats: true,
 	showSystemInfo: false,

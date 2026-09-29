@@ -1,4 +1,5 @@
-import { createI18n } from 'vue-i18n'
+import { IntlMessageFormat } from 'intl-messageformat'
+import { type CompileError, createI18n, type MessageCompiler, type MessageContext } from 'vue-i18n'
 
 import deDE from '../locales/de-DE.json'
 import enUS from '../locales/en-US.json'
@@ -67,7 +68,19 @@ export function detectBrowserLocale(): SupportedLocale {
 	return 'en-US'
 }
 
+// Messages use ICU syntax, like {count, plural, one {# item} other {# items}}
+const messageCompiler: MessageCompiler = (message, { locale, key, onError }) => {
+	if (typeof message !== 'string') {
+		onError?.(new Error(`Message ${key} is not a string`) as CompileError)
+		return () => key
+	}
+	const formatter = new IntlMessageFormat(message, locale, undefined, { ignoreTag: true })
+	// Slot values like links come back as an array of parts, which <i18n-t> renders
+	return (ctx: MessageContext) => formatter.format(ctx.values) as string
+}
+
 export const i18n = createI18n({
+	messageCompiler,
 	legacy: false,
 	locale: detectBrowserLocale(),
 	fallbackLocale: 'en-US',

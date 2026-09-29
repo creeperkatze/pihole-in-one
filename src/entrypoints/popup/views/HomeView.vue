@@ -26,7 +26,7 @@ const showSite = computed(
 )
 const showStats = computed(() => settings.value!.showStats)
 const showSystem = computed(
-	() => settings.value!.showSystemInfo && Boolean(states.value[activeInstance.value]?.system),
+	() => settings.value!.showSystemInfo && Boolean(states.value[activeInstance.value]?.padd),
 )
 </script>
 
@@ -42,7 +42,7 @@ const showSystem = computed(
 
 		<StatsCard v-if="showStats" :summary="states[activeInstance]!.summary!" />
 
-		<SystemCard v-if="showSystem" :info="states[activeInstance]!.system!" />
+		<SystemCard v-if="showSystem" :padd="states[activeInstance]!.padd!" />
 
 		<DomainCard
 			v-if="showSite"

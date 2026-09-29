@@ -204,6 +204,10 @@
 			},
 			"domainAdd": {
 				"description": "Show a field to whitelist or block any domain at the top of the domains view."
+			},
+			"updateBadge": {
+				"label": "Update notice badge",
+				"description": "Show a badge on the popup’s \"Open Pi-hole\" button when a Pi-hole update is available."
 			}
 		}
 	},
@@ -315,7 +319,9 @@
 			"memory": "Memory",
 			"temperature": "Temp",
 			"uptime": "Uptime"
-		}
+		},
+		"diagnosisMessages": "{count, plural, one {# diagnosis message} other {# diagnosis messages}}",
+		"piholeUpdateAvailable": "Pi-hole update available"
 	},
 	"meta": {
 		"summary": "A browser extension to control your Pi-hole conveniently from within the browser.",

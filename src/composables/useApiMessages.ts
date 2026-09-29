@@ -1,4 +1,4 @@
-import { PiHoleError } from 'pihole-js'
+import { type ApiErrorBody, PiHoleError } from 'pihole-js'
 import { useI18n } from 'vue-i18n'
 
 const CODE_KEYS: Record<string, string> = {
@@ -14,8 +14,7 @@ const CODE_KEYS: Record<string, string> = {
 }
 
 function hintOf(error: PiHoleError): string | undefined {
-	const body = error.body as { error?: { hint?: unknown } } | undefined
-	return typeof body?.error?.hint === 'string' ? body.error.hint : undefined
+	return (error.body as ApiErrorBody | undefined)?.error?.hint ?? undefined
 }
 
 function keyForPiHoleError(error: PiHoleError): string | undefined {

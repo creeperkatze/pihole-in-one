@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Activity, Bell, ChartColumn, Globe, Plus, RefreshCw } from '@lucide/vue'
+import { Activity, ArrowUpCircle, ChartColumn, Globe, Info, Plus, RefreshCw } from '@lucide/vue'
 import { useI18n } from 'vue-i18n'
 
 import OptionToggle from '../../../components/options/OptionToggle.vue'
@@ -23,9 +23,15 @@ const { t } = useI18n()
 				</h2>
 				<OptionToggle
 					v-model="form.showDiagnosisBadge"
-					:icon="Bell"
+					:icon="Info"
 					:label="t('options.customization.diagnosisBadge.label')"
 					:description="t('options.customization.diagnosisBadge.description')"
+				/>
+				<OptionToggle
+					v-model="form.showUpdateBadge"
+					:icon="ArrowUpCircle"
+					:label="t('options.popup.updateBadge.label')"
+					:description="t('options.popup.updateBadge.description')"
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
