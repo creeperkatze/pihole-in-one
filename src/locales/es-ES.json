@@ -198,36 +198,19 @@
 		},
 		"feature": {
 			"blocking": {
-				"title": "Control del bloqueo",
-				"description": "Activa o desactiva el bloqueo de Pi-hole desde la ventana emergente, o desactívalo temporalmente durante un tiempo preestablecido (10s, 30s, 5m, 30m, 1h) para que se vuelva a activar automáticamente."
-			},
-			"domain": {
-				"title": "Gestión de dominios",
-				"description": "Comprueba si el dominio de la pestaña actual está bloqueado o permitido y cámbialo intstantáneamente, sin abrir la interfaz de administración de Pi-hole."
-			},
-			"stats": {
-				"title": "Estadísticas",
-				"description": "Consulta el recuento de consultas de hoy, el número de consultas bloqueadas, el porcentaje de bloqueos y resultados en la caché, cada uno con una gráfica de tendencia de 24 horas. Los gráficos de anillo opcionales desglosan las consultas por estado y tipo."
-			},
-			"systemInfo": {
-				"title": "Información del sistema",
-				"description": "Consulta el tiempo en funcionamiento, la carga de la CPU y la temperatura de un vistazo en la ventana emergente."
+				"title": "Control del bloqueo"
 			},
 			"groups": {
-				"title": "Grupos y listas",
-				"description": "Activa o desactiva grupos de bloqueo y listas de bloqueo individuales directamente desde la ventana emergente."
+				"title": "Grupos y listas"
+			},
+			"systemInfo": {
+				"title": "Información del sistema"
 			},
 			"multiInstance": {
-				"title": "Múltiples Pi-hole",
-				"description": "Conéctate a varios Pi-holes y cambia entre ellos con una pestaña por instancia en la ventana emergente."
+				"title": "Múltiples Pi-hole"
 			},
 			"badge": {
-				"title": "Icono en la barra de herramientas",
-				"description": "Muestra el porcentaje de bloqueos, si está encendido o el número de clientes activos."
-			},
-			"customization": {
-				"title": "Personalización",
-				"description": "Ajusta la disposición de la ventana emergente, el comportamiento del icono, el idioma y más desde las opciones de la extensión."
+				"title": "Icono en la barra de herramientas"
 			}
 		}
 	}

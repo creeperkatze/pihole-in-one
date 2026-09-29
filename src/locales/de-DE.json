@@ -195,6 +195,9 @@
 				"label": "Statistiken",
 				"description": "Zeige die heutigen Anfragen, blockierten Anfragen und Cache-Treffer mit Verläufen der letzten 24 Stunden."
 			},
+			"recentlyBlocked": {
+				"description": "Zeige die Domains, die in den letzten 10 Minuten für dieses Gerät blockiert wurden, mit einer Schaltfläche, um jede auf die Whitelist zu setzen."
+			},
 			"systemInfo": {
 				"label": "Systeminfo",
 				"description": "Zeige CPU- und Speicherauslastung, Temperatur und Laufzeit im Popup."
@@ -281,6 +284,13 @@
 			"openSettings": "Einstellungen öffnen"
 		},
 		"openInstance": "{name} öffnen",
+		"recentlyBlocked": {
+			"title": "Kürzlich blockiert",
+			"thisDevice": "Dieses Gerät, letzte {minutes} Minuten",
+			"allDevices": "Alle Geräte, letzte {minutes} Minuten",
+			"empty": "Es wurde nichts blockiert.",
+			"loadError": "Letzte Anfragen konnten nicht geladen werden"
+		},
 		"refresh": "Aktualisieren",
 		"settings": "Einstellungen",
 		"stats": {
@@ -333,35 +343,51 @@
 		"feature": {
 			"blocking": {
 				"title": "Blockierungssteuerung",
-				"description": "Schalte die Blockierung des Pi-holes über das Popup-Fenster ein oder aus oder deaktiviere sie vorübergehend für einen voreingestellten Zeitraum (10s, 30s, 5m, 30m, 1h) damit sie sich automatisch wieder aktiviert."
+				"description": "Schalte die Blockierung mit einem Klick ein oder aus, oder pausiere sie für 10 Sekunden bis eine Stunde und lass sie sich von selbst wieder einschalten."
 			},
-			"domain": {
-				"title": "Domainverwaltung",
-				"description": "Prüfe, ob die Domain des aktuellen Tabs blockiert oder auf der Whitelist steht, und schalte sie sofort um, ohne das Admin-Interface des Pi-holes zu öffnen."
+			"currentSite": {
+				"title": "Aktuelle Seite",
+				"description": "Sieh auf einen Blick, ob die Seite, auf der du bist, blockiert ist und von welcher Liste, und setze sie dann mit einem Klick auf die Whitelist oder blockiere sie."
 			},
-			"stats": {
-				"title": "Statistiken",
-				"description": "Sieh dir die Anzahl der heutigen Anfragen, die Anzahl der blockierten Anfragen, den Blockierungsanteil und die Cache-Treffer an, jeweils mit einer Sparkline für die letzten 24 Stunden. Optionale Ringdiagramme zeigen die Aufteilung der Anfragen nach Status und Typ."
-			},
-			"systemInfo": {
-				"title": "Systeminfo",
-				"description": "Sieh dir im Popup auf einen Blick die Laufzeit, CPU-Auslastung, Speicherauslastung und Temperatur an."
+			"domains": {
+				"title": "Domains",
+				"description": "Setze beliebige Domains oder mit Regex ganze Muster auf die Whitelist oder blockiere sie, ohne das Admin-Interface des Pi-holes zu öffnen."
 			},
 			"groups": {
 				"title": "Gruppen und Listen",
-				"description": "Aktiviere oder deaktiviere Blockierungsgruppen und einzelne Blocklisten direkt im Popup-Fenster."
+				"description": "Schalte Gruppen und Blocklisten ein oder aus und aktualisiere Gravity direkt danach."
+			},
+			"stats": {
+				"title": "Statistiken",
+				"description": "Behalte die heutigen Anfragen, blockierten Anfragen, den Blockierungsanteil und die Cache-Treffer im Blick, jeweils mit einem Verlauf der letzten 24 Stunden."
+			},
+			"systemInfo": {
+				"title": "Systeminfo",
+				"description": "Prüfe CPU, Arbeitsspeicher, Temperatur und Laufzeit deines Pi-holes auf einen Blick."
+			},
+			"recentlyBlocked": {
+				"title": "Kürzlich blockiert",
+				"description": "Finde heraus, was gerade auf deinem Gerät oder in deinem ganzen Netzwerk blockiert wurde, und setze es sofort auf die Whitelist."
+			},
+			"notices": {
+				"title": "Hinweise",
+				"description": "Werde direkt im Popup auf ungelesene Diagnosemeldungen und verfügbare Pi-hole-Updates hingewiesen."
 			},
 			"multiInstance": {
 				"title": "Mehrere Pi-holes",
-				"description": "Verbinde mehrere Pi-Holes und wechsle im Popup-Fenster mithilfe von Registerkarten zwischen ihnen hin und her."
+				"description": "Verwalte alle deine Pi-holes, gib jedem ein eigenes Symbol und wechsle mit einem Klick zwischen ihnen."
 			},
 			"badge": {
 				"title": "Abzeichen in der Symbolleiste",
-				"description": "Zeigt den blockierten Anteil, den Ein-/Aus-Status oder die Anzahl der aktiven Clients an."
+				"description": "Zeige den Blockierungsanteil, den Blockierungsstatus oder die Anzahl aktiver Clients direkt auf dem Erweiterungssymbol."
 			},
 			"customization": {
-				"title": "Anpassung",
-				"description": "Passe das Layout des Popups, das Verhalten des Abzeichens, die Sprache und vieles mehr in den Erweiterungsoptionen an."
+				"title": "Dein Popup, wie du es willst",
+				"description": "Wähle, welche Karten das Popup zeigt, stelle deine Sprache ein und entscheide dich für hell oder dunkel."
+			},
+			"backup": {
+				"title": "Einstellungen sichern",
+				"description": "Exportiere deine Einstellungen, importiere sie in einem anderen Browser oder fang mit den Standardwerten neu an."
 			}
 		}
 	}
