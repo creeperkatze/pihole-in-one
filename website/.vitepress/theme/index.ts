@@ -1,36 +1,28 @@
 /* eslint-disable simple-import-sort/imports */
 
-import { defineComponent, h, watchEffect } from 'vue'
-import { type Theme, useData } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import { browserStoreStats, createTheme } from '../shared/theme'
 
-import { i18n } from '../i18n'
-import DonateButton from './DonateButton.vue'
-import HeroLogo from './HeroLogo.vue'
-import Showcase from './Showcase.vue'
-import SiteFooter from './SiteFooter.vue'
-import StatsBar from './StatsBar.vue'
+import { messages } from '../messages'
+import Logo from './icons/logo.svg?skipsvgo'
+// Must come after the theme so the brand colors win
 import './custom.css'
 
-export default {
-	extends: DefaultTheme,
-	enhanceApp({ app }) {
-		app.use(i18n)
-	},
-	Layout: defineComponent({
-		setup() {
-			const { lang } = useData()
-			watchEffect(() => {
-				i18n.global.locale.value = lang.value as typeof i18n.global.locale.value
-			})
-			return () =>
-				h(DefaultTheme.Layout, null, {
-					'nav-bar-content-after': () => h(DonateButton),
-					'home-hero-info-before': () => h(HeroLogo),
-					'home-features-before': () => h(StatsBar),
-					'home-features-after': () => h(Showcase),
-					'layout-bottom': () => h(SiteFooter),
-				})
-		},
+export default createTheme({
+	messages,
+	logo: Logo,
+	stats: browserStoreStats({
+		chrome: 'gaaobidjebianpcngcfpkniaocibidhe',
+		firefox: 'pihole-in-one',
+		edge: 'hbigjlhijpiegpnbdhmdgdlfbcgljdao',
 	}),
-} satisfies Theme
+	showcase: [
+		{ key: 'blocking', image: '/screenshots/home.png' },
+		{ key: 'currentSite', image: '/screenshots/blocked.png' },
+		{ key: 'domains', image: '/screenshots/domains.png' },
+		{ key: 'groups', image: '/screenshots/lists.png' },
+		{ key: 'multiInstance', image: '/screenshots/connection.png' },
+		{ key: 'badge', image: '/screenshots/customization.png' },
+		{ key: 'customization', image: '/screenshots/popup.png' },
+		{ key: 'backup', image: '/screenshots/data.png' },
+	],
+})
