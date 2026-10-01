@@ -6,14 +6,20 @@ export default defineSiteConfig(
 		title: 'Pi-hole In One',
 		url: 'https://pihole-in-one.creeperkatze.dev',
 		repo: 'creeperkatze/pihole-in-one',
-		crowdin: 'pihole-in-one',
 		version: process.env.VERSION,
 		messages,
 		locales: [
 			{ label: 'English', lang: 'en-US' },
 			{ label: 'Deutsch', lang: 'de-DE' },
 		],
-		nav: (t, link) => [{ text: t('nav.faq'), link: `${link}faq` }],
+		nav: (t, link) => [
+			{ text: t('nav.faq'), link: `${link}faq` },
+			{
+				text: t('nav.translate'),
+				link: 'https://crowdin.com/project/pihole-in-one',
+				target: '_blank',
+			},
+		],
 		socialLinks: [{ icon: 'discord', link: 'https://link.creeperkatze.dev/discord' }],
 	},
 	{
