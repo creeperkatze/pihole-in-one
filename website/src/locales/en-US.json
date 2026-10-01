@@ -82,6 +82,10 @@
 	"stats": {
 		"users": "{browser} users"
 	},
+	"featured": {
+		"title": "Featured",
+		"description": "Articles and posts that cover Pi-hole In One."
+	},
 	"footer": {
 		"madeBy": "Made with {heart} by {author}",
 		"notAffiliated": "Not affiliated with Pi-hole"
