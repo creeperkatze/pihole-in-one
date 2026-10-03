@@ -25,7 +25,7 @@ A translated file does nothing on its own. To enable a language, import its file
 
 The website has its own message files in `website/src/locales`, set up the same way with vue-i18n and ICU syntax. `meta` holds the store listing, which the website also shows. The other groups are the website UI.
 
-- The FAQ is translated as a whole markdown file. Crowdin writes `website/de-DE/faq.md` and so on, but only once a language is fully translated.
-- To enable a website language, import its file in `website/.vitepress/i18n.ts` and add it to `locales` and `rewrites` in `website/.vitepress/config.mts`, so `de-DE/` is served as `/de/`. Then copy `website/index.md` to its folder, like `website/de-DE/index.md`.
+- The FAQ is translated as a whole markdown file. Crowdin writes `website/de/faq.md` and so on, but only once a language is fully translated.
+- To enable a website language, import its file in `website/.vitepress/messages.ts` and add it to `messages`. Its home page at `/de/` and so on comes from `website/[locale]/index.md`.
 - `pnpm intl:generate` writes `src/public/_locales/*/messages.json` from each locale's `meta.summary`. The manifest uses it as the extension description.
 - `node scripts/store-description.ts [locale] [--markdown] [--summary]` prints the full store description for a locale.

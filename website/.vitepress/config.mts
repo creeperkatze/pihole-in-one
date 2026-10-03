@@ -8,12 +8,8 @@ export default defineSiteConfig(
 		repo: 'creeperkatze/pihole-in-one',
 		version: process.env.VERSION,
 		messages,
-		locales: [
-			{ label: 'English', lang: 'en-US' },
-			{ label: 'Deutsch', lang: 'de-DE' },
-		],
-		nav: (t, link) => [
-			{ text: t('nav.faq'), link: `${link}faq` },
+		nav: (t, prefix) => [
+			{ text: t('nav.faq'), link: `${prefix}/faq` },
 			{
 				text: t('nav.translate'),
 				link: 'https://crowdin.com/project/pihole-in-one',
