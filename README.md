@@ -26,7 +26,18 @@ Install from your browser's extension store:
 - **[Firefox Add-Ons](https://addons.mozilla.org/firefox/addon/pihole-in-one/)** ![Mozilla Add-on Version](https://img.shields.io/amo/v/pihole-in-one?label=)![Mozilla Add-on Users](https://img.shields.io/amo/users/pihole-in-one?style=flat&color=yellow)
 - **[Edge Add-Ons](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao)** ![Edge Addon Version](https://img.shields.io/badge/dynamic/json?label=&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao)![Edge Addon Users](https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fhbigjlhijpiegpnbdhmdgdlfbcgljdao?style=flat&color=yellow)
 
-Prefer to build from source? See [Building from source](#-building-from-source) below.
+Prefer to build from source? See [🔒 Building from source](#-building-from-source) below.
+
+## ⚙️ Setup
+
+1. Open the extension settings.
+2. Under **Connection**, click **Add Pi-hole**.
+3. Enter your Pi-hole's address (e.g. `pi.hole` or `192.168.1.2`) and your **password** (your admin password, or an app password from Settings > API). Leave the password empty if your Pi-hole has none.
+4. Optionally give it a name and an icon, then click **Save** and allow access to your Pi-hole when the browser asks.
+5. The dot next to your Pi-hole turns green once it's connected.
+
+> [!TIP]
+> If your Pi-hole uses HTTPS with its own certificate, your browser has to trust that certificate first. See the [Pi-hole TLS documentation](https://docs.pi-hole.net/api/tls/).
 
 ## ✨ Features
 
@@ -64,17 +75,6 @@ Prefer to build from source? See [Building from source](#-building-from-source) 
 <td width="50%"><img src=".github/assets/screenshots/data.png"></td>
 </tr>
 </table>
-
-## ⚙️ Setup
-
-1. Open the extension settings.
-2. Under **Connection**, click **Add Pi-hole**.
-3. Enter your Pi-hole's address (e.g. `pi.hole` or `192.168.1.2`) and your **password** (your admin password, or an app password from Settings > API). Leave the password empty if your Pi-hole has none.
-4. Optionally give it a name and an icon, then click **Save** and allow access to your Pi-hole when the browser asks.
-5. The dot next to your Pi-hole turns green once it's connected.
-
-> [!TIP]
-> If your Pi-hole uses HTTPS with its own certificate, your browser has to trust that certificate first. See the [Pi-hole TLS documentation](https://docs.pi-hole.net/api/tls/).
 
 ## 🔒 Building from source
 
