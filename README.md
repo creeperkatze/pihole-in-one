@@ -28,57 +28,40 @@ Install from your browser's extension store:
 
 Prefer to build from source? See [Building from source](#-building-from-source) below.
 
-## 📸 Screenshots
-
-<table>
-<tr>
-<td width="50%"><img src=".github/assets/screenshots/home.png" width="100%"><br><i>Popup</i></td>
-<td width="50%"><img src=".github/assets/screenshots/blocked.png" width="100%"><br><i>Blocked domain</i></td>
-</tr>
-<tr>
-<td width="50%"><img src=".github/assets/screenshots/whitelisted.png" width="100%"><br><i>Allowlisted domain</i></td>
-<td width="50%"><img src=".github/assets/screenshots/groups.png" width="100%"><br><i>Groups</i></td>
-</tr>
-<tr>
-<td width="50%"><img src=".github/assets/screenshots/lists.png" width="100%"><br><i>Lists and gravity</i></td>
-<td width="50%"><img src=".github/assets/screenshots/domains.png" width="100%"><br><i>Domains</i></td>
-</tr>
-<tr>
-<td width="50%"><img src=".github/assets/screenshots/connection.png" width="100%"><br><i>Connection options</i></td>
-<td width="50%"><img src=".github/assets/screenshots/customization.png" width="100%"><br><i>Customization options</i></td>
-</tr>
-<tr>
-<td width="50%"><img src=".github/assets/screenshots/popup.png" width="100%"><br><i>Popup options</i></td>
-<td width="50%"><img src=".github/assets/screenshots/data.png" width="100%"><br><i>Data options</i></td>
-</tr>
-</table>
-
 ## ✨ Features
 
 <table>
 <tr>
-<td width="50%"><b>Blocking control</b><br>Toggle Pi-hole blocking from the popup, or disable it for a preset duration (10s, 30s, 5m, 30m, 1h) so it re-enables automatically.</td>
-<td width="50%"><b>Current site</b><br>See whether the current tab's domain is blocked, by you or by a list, and allowlist or block it with one click.</td>
+<td width="50%"><img src=".github/assets/screenshots/home.png"></td>
+<td width="50%"><h3>Blocking control</h3>Turn blocking on or off with one click, or pause it for anywhere from 10 seconds to an hour and let it switch back on by itself.</td>
 </tr>
 <tr>
-<td width="50%"><b>Domains</b><br>Allowlist or block any domain, including regex patterns, and remove entries again with one click.</td>
-<td width="50%"><b>Groups and lists</b><br>Enable or disable groups and individual blocklists, and update gravity right from the popup.</td>
+<td width="50%"><h3>Current site</h3>See at a glance whether the site you're on is blocked, and by which list, then allowlist or block it in one click.</td>
+<td width="50%"><img src=".github/assets/screenshots/blocked.png"></td>
 </tr>
 <tr>
-<td width="50%"><b>Stats</b><br>View today's queries, blocked queries, block percentage, and cache hits, each with a 24-hour sparkline.</td>
-<td width="50%"><b>System info</b><br>See CPU usage, memory usage, temperature, and uptime at a glance.</td>
+<td width="50%"><img src=".github/assets/screenshots/domains.png"></td>
+<td width="50%"><h3>Domains</h3>Allowlist or block any domain, or a whole pattern with regex, without opening the Pi-hole admin interface.</td>
 </tr>
 <tr>
-<td width="50%"><b>Recently blocked</b><br>See which domains were blocked in the last few minutes, for your device or all devices, and allowlist them with one click.</td>
-<td width="50%"><b>Notices</b><br>The popup shows unread Pi-hole diagnosis messages and available Pi-hole updates on its "Open Pi-hole" button.</td>
+<td width="50%"><h3>Groups and lists</h3>Switch groups and blocklists on or off, and update gravity right after.</td>
+<td width="50%"><img src=".github/assets/screenshots/lists.png"></td>
 </tr>
 <tr>
-<td width="50%"><b>Multiple Pi-holes</b><br>Connect as many Pi-holes as you run, give each its own icon, and switch between them with tabs in the popup.</td>
-<td width="50%"><b>Toolbar badge</b><br>Shows blocked percentage, ON/OFF state, or active client count.</td>
+<td width="50%"><img src=".github/assets/screenshots/connection.png"></td>
+<td width="50%"><h3>Multiple Pi-holes</h3>Manage every Pi-hole you run, give each its own icon, and switch between them with one click.</td>
 </tr>
 <tr>
-<td width="50%"><b>Customization</b><br>Choose which cards the popup shows, your language, and light or dark mode.</td>
-<td width="50%"><b>Settings backup</b><br>Export your settings to a JSON file, import them in another browser, or reset everything to the defaults.</td>
+<td width="50%"><h3>Toolbar badge</h3>Show the block rate, blocking status, or number of active clients right on the extension icon.</td>
+<td width="50%"><img src=".github/assets/screenshots/customization.png"></td>
+</tr>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/popup.png"></td>
+<td width="50%"><h3>Your popup, your way</h3>Choose which cards the popup shows, pick your language, and go light or dark.</td>
+</tr>
+<tr>
+<td width="50%"><h3>Settings backup</h3>Export your settings, import them in another browser, or start over with the defaults.</td>
+<td width="50%"><img src=".github/assets/screenshots/data.png"></td>
 </tr>
 </table>
 
