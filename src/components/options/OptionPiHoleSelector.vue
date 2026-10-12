@@ -254,8 +254,8 @@ watch(
 						<p class="truncate text-sm font-medium">{{ displayName(inst) }}</p>
 						<p class="truncate text-xs text-secondary">{{ inst.baseUrl }}</p>
 						<p
-							v-if="testStates[inst.id]?.status === 'error' && draft?.id !== inst.id"
-							class="truncate text-xs text-pihole-red"
+							v-if="testStates[inst.id]?.status === 'error'"
+							class="text-xs wrap-break-word text-pihole-red"
 						>
 							{{ testStates[inst.id]?.message }}
 						</p>

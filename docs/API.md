@@ -15,6 +15,7 @@ All Pi-hole requests go through `src/utils/api.ts`. It wraps [pihole-js](https:/
 ## Errors
 
 - pihole-js throws `PiHoleError` with a `code`. `getApiMessageForError()` in `src/composables/useApiMessages.ts` turns known codes into a translation key. Add new codes there instead of matching error text.
+- A Pi-hole whose `webserver.port` redirects http to https fails like an unreachable host when its certificate isn't trusted. When an `http://` request fails at the network level, the client checks for a redirect and throws `HttpsRedirectError` instead, so the user sees why.
 
 ## Host permissions
 

@@ -124,6 +124,34 @@ class ExtensionPiHoleClient extends PiHoleClient {
 	}
 }
 
+export class HttpsRedirectError extends Error {}
+
+async function isRedirect(url: string, signal?: AbortSignal | null): Promise<boolean> {
+	try {
+		const response = await fetch(url, { redirect: 'manual', signal })
+		return response.type === 'opaqueredirect'
+	} catch {
+		return false
+	}
+}
+
+// Tells an http to https redirect apart from an unreachable host
+const fetchWithRedirectCheck: typeof fetch = async (input, init) => {
+	try {
+		return await fetch(input, init)
+	} catch (error) {
+		const url = String(input)
+		if (
+			error instanceof TypeError &&
+			url.startsWith('http:') &&
+			(await isRedirect(url, init?.signal))
+		) {
+			throw new HttpsRedirectError()
+		}
+		throw error
+	}
+}
+
 function getClientCacheKey(target: ApiTarget): string {
 	return `${target.baseUrl}::${target.apiPassword}::${currentTimeoutMs}`
 }
@@ -134,6 +162,7 @@ function createClient(target: ApiTarget, timeoutMs: number): ExtensionPiHoleClie
 		password: target.apiPassword,
 		timeoutMs,
 		userAgent: USER_AGENT,
+		fetch: fetchWithRedirectCheck,
 		sessionStore: sessionStoreFor(target.apiPassword),
 	}
 	return new ExtensionPiHoleClient(options)

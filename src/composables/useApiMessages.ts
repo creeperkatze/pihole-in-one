@@ -1,6 +1,8 @@
 import { type ApiErrorBody, PiHoleError } from 'pihole-js'
 import { useI18n } from 'vue-i18n'
 
+import { HttpsRedirectError } from '../utils/api'
+
 const CODE_KEYS: Record<string, string> = {
 	PASSWORD_INCORRECT: 'api.error.passwordIncorrect',
 	PASSWORD_REQUIRED: 'api.error.passwordRequired',
@@ -30,6 +32,7 @@ function keyForPiHoleError(error: PiHoleError): string | undefined {
 // Returns the translation key for errors with a known cause
 export function getApiMessageForError(error: unknown): string | undefined {
 	if (error instanceof PiHoleError) return keyForPiHoleError(error)
+	if (error instanceof HttpsRedirectError) return 'api.error.httpsRedirect'
 	// fetch throws a TypeError when the host can't be reached at all
 	if (error instanceof TypeError) return 'api.error.unreachable'
 	// A web page instead of the API fails to parse as JSON

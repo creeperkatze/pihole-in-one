@@ -12,6 +12,7 @@
 			"rateLimited": "Too many login attempts. Wait a moment and try again.",
 			"noSeats": "The Pi-hole has no free login sessions left. Log out elsewhere or raise the session limit.",
 			"unreachable": "Can't reach the Pi-hole. Check that the address is correct and it's online.",
+			"httpsRedirect": "This address redirects to HTTPS. Use the https:// address instead, or turn off the redirect in the Pi-hole's webserver.port setting.",
 			"notPihole": "No Pi-hole API found at this address.",
 			"notFound": "No Pi-hole API found at this address. Pi-hole v6 or newer is required.",
 			"forbidden": "The Pi-hole denied this action.",
