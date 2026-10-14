@@ -242,6 +242,7 @@
 			"on": "ON"
 		},
 		"disableFor": "Disable for",
+		"extendBy": "Extend pause by",
 		"customPause": {
 			"title": "Custom duration",
 			"backOnAt": "Blocking turns back on at {time}"

@@ -40,6 +40,7 @@ const showSystem = computed(
 			:enabled="isEnabled(activeInstance)"
 			:sub="statusSub(activeInstance)"
 			:busy="states[activeInstance]?.toggling"
+			:pause-ends-at="states[activeInstance]?.timerEndsAt ?? null"
 			@toggle="toggleBlocking(activeInstance)"
 			@disable-for="disableFor(activeInstance, $event)"
 		/>

@@ -11,10 +11,11 @@ import Toggle from '../../../components/ui/Toggle.vue'
 import { PAUSE_PRESETS } from '../../../utils/actions'
 import { formatDuration } from '../../../utils/format'
 
-defineProps<{
+const props = defineProps<{
 	enabled: boolean
 	sub?: string
 	busy?: boolean
+	pauseEndsAt?: number | null
 }>()
 
 const emit = defineEmits<{
@@ -25,6 +26,17 @@ const emit = defineEmits<{
 const { t, locale } = useI18n()
 
 const presets = PAUSE_PRESETS.map((seconds) => ({ label: formatDuration(seconds), seconds }))
+const extendPresets = PAUSE_PRESETS.map((seconds) => ({
+	label: `+${formatDuration(seconds)}`,
+	seconds,
+}))
+
+// Pi-hole replaces the timer, so the new pause is what is left plus the extra time
+function extend(seconds: number): void {
+	if (!props.pauseEndsAt) return
+	const remaining = Math.max(0, Math.round((props.pauseEndsAt - Date.now()) / 1000))
+	emit('disableFor', remaining + seconds)
+}
 
 const customPauseItem = storage.defineItem<number>('local:customPauseSeconds', {
 	fallback: 15 * 60,
@@ -138,6 +150,21 @@ function submitCustom(): void {
 						</p>
 					</div>
 				</Popover>
+			</div>
+		</div>
+
+		<div v-else-if="pauseEndsAt" class="flex flex-col gap-1.5 border-t border-border px-3 py-2">
+			<span class="text-xs text-secondary">{{ t('popup.extendBy') }}</span>
+			<div class="grid grid-cols-5 gap-1.5">
+				<Button
+					v-for="preset in extendPresets"
+					:key="preset.seconds"
+					size="sm"
+					:disabled="busy"
+					@click="extend(preset.seconds)"
+				>
+					{{ preset.label }}
+				</Button>
 			</div>
 		</div>
 	</section>
