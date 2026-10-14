@@ -8,7 +8,7 @@ export interface PiholeInstance {
 	icon?: string
 }
 
-export type BadgeMode = 'off' | 'state' | 'percentage' | 'clients'
+export type BadgeMode = 'off' | 'state' | 'percentage' | 'blocked' | 'queries' | 'clients'
 export type ColorScheme = 'auto' | 'dark' | 'light'
 
 export interface ExtensionSettings {

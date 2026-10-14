@@ -36,6 +36,8 @@ const badgeModeOptions = computed(() => [
 	{ value: 'off', label: t('options.customization.badge.off') },
 	{ value: 'state', label: t('options.customization.badge.state') },
 	{ value: 'percentage', label: t('options.customization.badge.percentage') },
+	{ value: 'blocked', label: t('options.customization.badge.blocked') },
+	{ value: 'queries', label: t('options.customization.badge.queries') },
 	{ value: 'clients', label: t('options.customization.badge.clients') },
 ])
 </script>

@@ -1,65 +1,11 @@
 import { browser } from 'wxt/browser'
 
-import { getPiHoleClient } from '../utils/api'
+import { COUNTDOWN_ALARM, updateBadge } from '../utils/badge'
 import { buildContextMenu, contextMenuKey, handleContextMenuClick } from '../utils/context-menu'
-import { i18n, resolveLocale } from '../utils/i18n'
 import { DEFAULTS, getSettings, watchSettings } from '../utils/settings'
 import { isUpdateFromBeforeRedesign, redesignNoticeItem } from '../utils/whats-new'
 
 const ALARM = 'pihole-refresh'
-
-async function updateBadge(): Promise<void> {
-	const action = browser.action ?? browser.browserAction
-	const settings = await getSettings()
-	i18n.global.locale.value = resolveLocale(settings.locale)
-	if (settings.badgeMode === 'off' || settings.instances.length === 0) {
-		await action.setBadgeText({ text: '' })
-		return
-	}
-	try {
-		const summaries = await Promise.all(
-			settings.instances.map((inst) =>
-				getPiHoleClient(inst)
-					.getSummary()
-					.catch(() => null),
-			),
-		)
-		const valid = summaries.filter((s) => s !== null)
-		if (valid.length === 0) {
-			await action.setBadgeText({ text: '' })
-			return
-		}
-
-		const allEnabled = valid.every((s) => s.blocking.blocking === 'enabled')
-		const anyEnabled = valid.some((s) => s.blocking.blocking === 'enabled')
-
-		if (!anyEnabled) {
-			await action.setBadgeText({ text: i18n.global.t('popup.badge.off') })
-			await action.setBadgeBackgroundColor({ color: '#ef4444' })
-			return
-		}
-
-		const color = allEnabled ? '#22c55e' : '#f97316' // green = all on, orange = mixed
-		let text: string
-
-		if (settings.badgeMode === 'state') {
-			text = i18n.global.t('popup.badge.on')
-		} else if (settings.badgeMode === 'clients') {
-			const totalClients = valid.reduce((sum, s) => sum + s.clients.active, 0)
-			text = String(totalClients)
-		} else {
-			const totalQueries = valid.reduce((sum, s) => sum + s.queries.total, 0)
-			const totalBlocked = valid.reduce((sum, s) => sum + s.queries.blocked, 0)
-			const pct = totalQueries > 0 ? Math.round((totalBlocked / totalQueries) * 100) : 0
-			text = `${pct}%`
-		}
-
-		await action.setBadgeText({ text })
-		await action.setBadgeBackgroundColor({ color })
-	} catch {
-		// Keep last known badge state on error rather than clearing it
-	}
-}
 
 async function scheduleAlarm(): Promise<void> {
 	const settings = await getSettings()
@@ -74,7 +20,7 @@ export default defineBackground(() => {
 
 	void scheduleAlarm()
 	browser.alarms.onAlarm.addListener((alarm) => {
-		if (alarm.name === ALARM) void updateBadge()
+		if (alarm.name === ALARM || alarm.name === COUNTDOWN_ALARM) void updateBadge()
 	})
 
 	// Rebuilt on every start so the items always match the current settings

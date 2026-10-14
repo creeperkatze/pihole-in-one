@@ -108,8 +108,10 @@
 		},
 		"customization": {
 			"badge": {
+				"blocked": "Blocked today",
 				"clients": "Active clients",
-				"description": "What to display on the extension icon badge.",
+				"description": "What to display on the extension icon badge. While blocking is paused, it counts down the time left.",
+				"queries": "Queries today",
 				"label": "Badge appearance",
 				"off": "Off",
 				"percentage": "Percentage blocked",
