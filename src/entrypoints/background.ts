@@ -1,8 +1,9 @@
 import { browser } from 'wxt/browser'
 
 import { getPiHoleClient } from '../utils/api'
+import { buildContextMenu, contextMenuKey, handleContextMenuClick } from '../utils/context-menu'
 import { i18n, resolveLocale } from '../utils/i18n'
-import { getSettings, watchSettings } from '../utils/settings'
+import { DEFAULTS, getSettings, watchSettings } from '../utils/settings'
 import { isUpdateFromBeforeRedesign, redesignNoticeItem } from '../utils/whats-new'
 
 const ALARM = 'pihole-refresh'
@@ -76,11 +77,21 @@ export default defineBackground(() => {
 		if (alarm.name === ALARM) void updateBadge()
 	})
 
+	// Rebuilt on every start so the items always match the current settings
+	void getSettings().then(buildContextMenu)
+	browser.contextMenus.onClicked.addListener((info, tab) => {
+		void handleContextMenuClick(info, tab).then(() => updateBadge())
+	})
+
 	// Re-check immediately when settings change
 	watchSettings((next, prev) => {
 		void updateBadge()
 		if (prev?.refreshInterval !== next.refreshInterval) {
 			void browser.alarms.clear(ALARM).then(() => scheduleAlarm())
+		}
+		const nextWithDefaults = { ...DEFAULTS, ...next }
+		if (!prev || contextMenuKey({ ...DEFAULTS, ...prev }) !== contextMenuKey(nextWithDefaults)) {
+			void buildContextMenu(nextWithDefaults)
 		}
 	})
 

@@ -2,6 +2,13 @@
 	"common": {
 		"select": "Select…"
 	},
+	"contextMenu": {
+		"disable": "Disable blocking",
+		"indefinitely": "Until enabled again",
+		"enable": "Enable blocking",
+		"whitelist": "Whitelist this site",
+		"block": "Block this site"
+	},
 	"api": {
 		"error": {
 			"passwordIncorrect": "Password incorrect",
@@ -109,6 +116,10 @@
 				"state": "State"
 			},
 			"description": "Adjust the appearance and behavior of the extension.",
+			"contextMenu": {
+				"label": "Right-click menu",
+				"description": "Turn blocking on or off and whitelist or block the current site by right-clicking a page."
+			},
 			"diagnosisBadge": {
 				"description": "Show a badge on the popup’s \"Open Pi-hole\" button when there are unread diagnosis messages.",
 				"label": "Diagnosis notice badge"

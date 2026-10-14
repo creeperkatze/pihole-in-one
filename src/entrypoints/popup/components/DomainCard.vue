@@ -50,6 +50,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/ui/Button.vue'
+import { domainRegex } from '../../../utils/actions'
 import { getPiHoleClient } from '../../../utils/api'
 import type { PiholeInstance } from '../../../utils/settings'
 
@@ -107,11 +108,6 @@ const statusText = computed(() => {
 })
 
 const primary = computed(() => props.instances[0])
-
-function domainRegex(domain: string): string {
-	const escaped = domain.replace(/\./g, '\\.')
-	return `(^|\\.)(${escaped})$`
-}
 
 async function fetchStatus(): Promise<void> {
 	if (!primary.value) return

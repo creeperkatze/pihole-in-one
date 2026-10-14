@@ -26,6 +26,7 @@ export interface ExtensionSettings {
 	showSystemInfo: boolean
 	showGravityUpdate: boolean
 	showDomainAdd: boolean
+	showContextMenu: boolean
 }
 
 export const DEFAULTS: ExtensionSettings = {
@@ -43,6 +44,7 @@ export const DEFAULTS: ExtensionSettings = {
 	showSystemInfo: false,
 	showGravityUpdate: true,
 	showDomainAdd: true,
+	showContextMenu: true,
 }
 
 const settingsItem = storage.defineItem<ExtensionSettings>('local:settings', {

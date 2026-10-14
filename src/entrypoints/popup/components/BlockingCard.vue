@@ -3,6 +3,8 @@ import { useI18n } from 'vue-i18n'
 
 import Button from '../../../components/ui/Button.vue'
 import Toggle from '../../../components/ui/Toggle.vue'
+import { PAUSE_PRESETS } from '../../../utils/actions'
+import { formatDuration } from '../../../utils/format'
 
 defineProps<{
 	enabled: boolean
@@ -17,13 +19,7 @@ defineEmits<{
 
 const { t } = useI18n()
 
-const presets = [
-	{ label: '10s', seconds: 10 },
-	{ label: '30s', seconds: 30 },
-	{ label: '5m', seconds: 5 * 60 },
-	{ label: '30m', seconds: 30 * 60 },
-	{ label: '1h', seconds: 60 * 60 },
-]
+const presets = PAUSE_PRESETS.map((seconds) => ({ label: formatDuration(seconds), seconds }))
 </script>
 
 <template>

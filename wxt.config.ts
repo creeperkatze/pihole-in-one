@@ -40,7 +40,7 @@ export default defineConfig({
 		optional_host_permissions: ['*://*/*'],
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Firefox requires optional_permissions instead of optional_host_permissions
 		...(browser === 'firefox' && { optional_permissions: ['*://*/*' as any] }),
-		permissions: ['storage', 'alarms', 'activeTab'],
+		permissions: ['storage', 'alarms', 'activeTab', 'contextMenus'],
 		browser_specific_settings: {
 			gecko: {
 				id: 'pihole-in-one@creeperkatze.dev',
