@@ -2,6 +2,14 @@
 	"common": {
 		"select": "Select…"
 	},
+	"durationInput": {
+		"label": "Duration",
+		"decrease": "Shorter",
+		"increase": "Longer",
+		"unit": "Unit",
+		"minutes": "min",
+		"hours": "h"
+	},
 	"contextMenu": {
 		"disable": "Disable blocking",
 		"indefinitely": "Until enabled again",
@@ -234,6 +242,10 @@
 			"on": "ON"
 		},
 		"disableFor": "Disable for",
+		"customPause": {
+			"title": "Custom duration",
+			"backOnAt": "Blocking turns back on at {time}"
+		},
 		"domain": {
 			"block": "Block",
 			"blockedByList": "Blocked by list \"{list}\"",
