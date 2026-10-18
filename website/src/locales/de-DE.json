@@ -82,6 +82,10 @@
 	"stats": {
 		"users": "{browser}-Nutzer"
 	},
+	"featured": {
+		"title": "Vorgestellt",
+		"description": "Artikel und Beiträge, die über Pi-hole In One berichten."
+	},
 	"footer": {
 		"madeBy": "Mit {heart} gemacht von {author}",
 		"notAffiliated": "Nicht mit Pi-hole verbunden"

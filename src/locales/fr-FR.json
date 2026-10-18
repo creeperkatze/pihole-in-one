@@ -51,7 +51,6 @@
 		"customization": {
 			"badge": {
 				"clients": "Clients actifs",
-				"description": "Ce qu'il faut afficher sur le badge de l'icône de l'extension.",
 				"label": "Apparence du badge",
 				"off": "Désactivé",
 				"percentage": "Pourcentage de blocage",

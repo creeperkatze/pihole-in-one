@@ -2,6 +2,21 @@
 	"common": {
 		"select": "Auswählen…"
 	},
+	"durationInput": {
+		"label": "Dauer",
+		"decrease": "Kürzer",
+		"increase": "Länger",
+		"unit": "Einheit",
+		"minutes": "min",
+		"hours": "Std."
+	},
+	"contextMenu": {
+		"disable": "Blockieren deaktivieren",
+		"indefinitely": "Bis wieder aktiviert",
+		"enable": "Blockieren aktivieren",
+		"whitelist": "Diese Seite zur Whitelist hinzufügen",
+		"block": "Diese Seite blockieren"
+	},
 	"api": {
 		"error": {
 			"passwordIncorrect": "Passwort falsch",
@@ -12,6 +27,7 @@
 			"rateLimited": "Zu viele Anmeldeversuche. Warte einen Moment und versuche es erneut.",
 			"noSeats": "Das Pi-hole hat keine freien Anmeldesitzungen mehr. Melde dich an anderer Stelle ab oder erhöhe das Sitzungslimit.",
 			"unreachable": "Das Pi-hole ist nicht erreichbar. Prüfe, ob die Adresse stimmt und es online ist.",
+			"httpsRedirect": "Diese Adresse leitet zu HTTPS weiter. Verwende stattdessen die https://-Adresse oder deaktiviere die Weiterleitung in der Einstellung „webserver.port“ des Pi-Holes.",
 			"notPihole": "Unter dieser Adresse wurde keine Pi-hole-API gefunden.",
 			"notFound": "Unter dieser Adresse wurde keine Pi-hole-API gefunden. Pi-hole v6 oder neuer ist erforderlich.",
 			"forbidden": "Das Pi-hole hat diese Aktion abgelehnt.",
@@ -100,14 +116,20 @@
 		},
 		"customization": {
 			"badge": {
+				"blocked": "Heute blockiert",
 				"clients": "Aktive Clients",
-				"description": "Was auf dem Abzeichens des Erweiterungssymbol angezeigt wird.",
+				"description": "Was auf dem Abzeichen des Erweiterungssymbols angezeigt werden soll. Solange die Blockierung pausiert ist, wird die verbleibende Zeit heruntergezählt.",
+				"queries": "Anfragen heute",
 				"label": "Darstellung des Abzeichens",
 				"off": "Aus",
 				"percentage": "Blockierter Anteil",
 				"state": "Status"
 			},
 			"description": "Passe das Aussehen und Verhalten der Erweiterung an.",
+			"contextMenu": {
+				"label": "Rechtsklick-Menü",
+				"description": "Schalte die Blockierung per Rechtsklick auf eine Seite ein oder aus, oder setze die aktuelle Seite auf die Whitelist bzw. blockiere sie."
+			},
 			"diagnosisBadge": {
 				"description": "Zeige ein Abzeichen auf der Schaltfläche „Pi-hole öffnen“ im Popup, wenn es ungelesene Diagnosemeldungen gibt.",
 				"label": "Abzeichen für Diagnosemeldungen"
@@ -220,6 +242,11 @@
 			"on": "AN"
 		},
 		"disableFor": "Deaktivieren für",
+		"extendBy": "Pause verlängern um",
+		"customPause": {
+			"title": "Eigene Dauer",
+			"backOnAt": "Die Blockierung wird um {time} wieder aktiviert"
+		},
 		"domain": {
 			"block": "Blockieren",
 			"blockedByList": "Blockiert von Liste „{list}“",
