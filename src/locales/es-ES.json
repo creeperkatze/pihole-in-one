@@ -51,7 +51,6 @@
 		"customization": {
 			"badge": {
 				"clients": "Clientes activos",
-				"description": "Qué mostrar en el icono de la extensión.",
 				"label": "Apariencia del icono",
 				"off": "Nada",
 				"percentage": "Porcentaje bloqueado",
