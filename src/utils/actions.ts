@@ -7,7 +7,7 @@ export const PAUSE_PRESETS = [10, 30, 5 * 60, 30 * 60, 60 * 60]
 
 // Matches the domain and all of its subdomains
 export function domainRegex(domain: string): string {
-	const escaped = domain.replace(/\./g, '\\.')
+	const escaped = domain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 	return `(^|\\.)(${escaped})$`
 }
 
