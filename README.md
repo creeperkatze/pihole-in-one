@@ -130,7 +130,7 @@ New translations are automatically pulled every Monday.
 
 Contributions are always welcome!
 
-Please ensure you run `pnpm lint:fix` before opening a pull request.
+Please ensure you run `pnpm lint:fix` and `pnpm fmt` before opening a pull request.
 
 ## 📜 License
 

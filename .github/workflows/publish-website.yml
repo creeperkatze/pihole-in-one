@@ -7,13 +7,18 @@ on:
   push:
     branches: [main]
     paths:
-      - "website/**"
-      - "package.json"
-      - ".github/workflows/publish-website.yml"
+      - 'website/**'
+      - 'package.json'
+      - '.github/workflows/publish-website.yml'
 
 jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+
   publish:
     name: Build and Publish
+    needs: ci
     runs-on: ubuntu-latest
     permissions:
       contents: read

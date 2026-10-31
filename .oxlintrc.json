@@ -1,0 +1,15 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["typescript", "unicorn", "oxc", "vue"],
+	"env": {
+		"browser": true,
+		"webextensions": true
+	},
+	"categories": {
+		"correctness": "error"
+	},
+	"rules": {
+		"typescript/no-explicit-any": "warn"
+	},
+	"ignorePatterns": ["website/.vitepress/shared/"]
+}

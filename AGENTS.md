@@ -8,8 +8,9 @@ This project uses pnpm.
 
 - `pnpm build` / `pnpm build:firefox` build for Chrome/Edge or Firefox.
 - `pnpm zip` / `pnpm zip:firefox` package a zip for Chrome/Edge or Firefox.
-- `pnpm lint` / `pnpm lint:fix` lint, optionally auto-fixing.
-- `pnpm typecheck` checks the types. CI runs it together with `pnpm lint`.
+- `pnpm lint` / `pnpm lint:fix` lint with oxlint, optionally auto-fixing.
+- `pnpm fmt` / `pnpm fmt:check` format with oxfmt, or only check the formatting.
+- `pnpm typecheck` checks the types. CI runs it together with `pnpm lint` and `pnpm fmt:check`.
 - `pnpm intl:generate` regenerates `src/public/_locales` from `meta.summary` in each website locale file.
 - Never run the `release:*` scripts or push tags. Releases are done by the maintainer.
 

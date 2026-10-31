@@ -1,0 +1,24 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"singleQuote": true,
+	"semi": false,
+	"sortPackageJson": false,
+	"sortImports": {
+		"partitionByComment": true,
+		"groups": [
+			"side_effect",
+			"builtin",
+			["external", "internal", "subpath", "unknown"],
+			["parent", "sibling", "index", "style"]
+		]
+	},
+	"ignorePatterns": [
+		"src/locales/*.json",
+		"!src/locales/en-US.json",
+		"website/src/locales/*.json",
+		"!website/src/locales/en-US.json",
+		"website/*/faq.md",
+		"src/public/_locales/",
+		"website/.vitepress/shared/"
+	]
+}

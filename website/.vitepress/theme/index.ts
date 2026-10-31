@@ -1,10 +1,7 @@
-/* eslint-disable simple-import-sort/imports */
-
 import { h } from 'vue'
 
-import { browserStoreStats, createTheme, Showcase, type ShowcaseItem } from '../shared/theme'
-
 import { messages } from '../messages'
+import { browserStoreStats, createTheme, Showcase, type ShowcaseItem } from '../shared/theme'
 import Featured from './components/Featured.vue'
 import Logo from './icons/logo.svg?skipsvgo'
 // Must come after the theme so the brand colors win

@@ -24,15 +24,15 @@ on:
         default: false
 
 jobs:
-  test:
-    name: Test
-    uses: ./.github/workflows/test.yml
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
     with:
       ref: ${{ inputs.tag }}
 
   build:
     name: Build
-    needs: test
+    needs: ci
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -84,24 +84,24 @@ jobs:
       - name: Publish to the stores
         uses: creeperkatze/extension-publish@67710e469fb1db85eac50c0cfe18779f9de5bdfb # v1.0.12
         with:
-          chrome-client-id:     ${{ inputs.chrome && secrets.CHROME_CLIENT_ID || '' }}
+          chrome-client-id: ${{ inputs.chrome && secrets.CHROME_CLIENT_ID || '' }}
           chrome-client-secret: ${{ inputs.chrome && secrets.CHROME_CLIENT_SECRET || '' }}
           chrome-refresh-token: ${{ inputs.chrome && secrets.CHROME_REFRESH_TOKEN || '' }}
-          chrome-publisher-id:  ${{ inputs.chrome && secrets.CHROME_PUBLISHER_ID || '' }}
-          chrome-extension-id:  ${{ inputs.chrome && secrets.CHROME_EXTENSION_ID || '' }}
-          chrome-zip-path:      ${{ inputs.chrome && steps.zips.outputs.chrome || '' }}
-          chrome-publish:       ${{ inputs.upload-only && 'false' || 'true' }}
+          chrome-publisher-id: ${{ inputs.chrome && secrets.CHROME_PUBLISHER_ID || '' }}
+          chrome-extension-id: ${{ inputs.chrome && secrets.CHROME_EXTENSION_ID || '' }}
+          chrome-zip-path: ${{ inputs.chrome && steps.zips.outputs.chrome || '' }}
+          chrome-publish: ${{ inputs.upload-only && 'false' || 'true' }}
 
-          firefox-api-key:      ${{ inputs.firefox && secrets.FIREFOX_JWT_ISSUER || '' }}
-          firefox-api-secret:   ${{ inputs.firefox && secrets.FIREFOX_JWT_SECRET || '' }}
+          firefox-api-key: ${{ inputs.firefox && secrets.FIREFOX_JWT_ISSUER || '' }}
+          firefox-api-secret: ${{ inputs.firefox && secrets.FIREFOX_JWT_SECRET || '' }}
           firefox-extension-id: ${{ inputs.firefox && 'pihole-in-one@creeperkatze.dev' || '' }}
-          firefox-xpi-path:     ${{ inputs.firefox && steps.zips.outputs.firefox || '' }}
-          firefox-license:      AGPL-3.0-only
+          firefox-xpi-path: ${{ inputs.firefox && steps.zips.outputs.firefox || '' }}
+          firefox-license: AGPL-3.0-only
           firefox-compatibility-firefox: true
           firefox-compatibility-android: true
 
-          edge-api-key:         ${{ inputs.edge && secrets.EDGE_API_KEY || '' }}
-          edge-client-id:       ${{ inputs.edge && secrets.EDGE_CLIENT_ID || '' }}
-          edge-product-id:      ${{ inputs.edge && secrets.EDGE_PRODUCT_ID || '' }}
-          edge-zip-path:        ${{ inputs.edge && steps.zips.outputs.chrome || '' }}
-          edge-publish:         ${{ inputs.upload-only && 'false' || 'true' }}
+          edge-api-key: ${{ inputs.edge && secrets.EDGE_API_KEY || '' }}
+          edge-client-id: ${{ inputs.edge && secrets.EDGE_CLIENT_ID || '' }}
+          edge-product-id: ${{ inputs.edge && secrets.EDGE_PRODUCT_ID || '' }}
+          edge-zip-path: ${{ inputs.edge && steps.zips.outputs.chrome || '' }}
+          edge-publish: ${{ inputs.upload-only && 'false' || 'true' }}
