@@ -12,7 +12,7 @@ This project uses pnpm.
 - `pnpm fmt` / `pnpm fmt:check` format with oxfmt, or only check the formatting.
 - `pnpm typecheck` checks the types. CI runs it together with `pnpm lint` and `pnpm fmt:check`.
 - `pnpm intl:generate` regenerates `src/public/_locales` from `meta.summary` in each website locale file.
-- Never run the `release:*` scripts or push tags. Releases are done by the maintainer.
+- Never run the `release` script or push tags. Releases are done by the maintainer.
 
 ## Rules
 

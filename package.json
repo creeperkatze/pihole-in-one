@@ -18,9 +18,8 @@
 		"fmt": "oxfmt",
 		"fmt:check": "oxfmt --check",
 		"typecheck": "vue-tsc --noEmit",
-		"release:patch": "pnpm version patch && git push && git push --tags",
-		"release:minor": "pnpm version minor && git push && git push --tags",
-		"release:major": "pnpm version major && git push && git push --tags"
+		"release": "pnpm version -m \"chore(release): v%s\"",
+		"postversion": "git push --follow-tags"
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.3.0",
