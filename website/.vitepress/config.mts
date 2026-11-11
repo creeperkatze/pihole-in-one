@@ -16,7 +16,6 @@ export default defineSiteConfig(
 				target: '_blank',
 			},
 		],
-		socialLinks: [{ icon: 'discord', link: 'https://link.creeperkatze.dev/discord' }],
 	},
 	{
 		themeConfig: {
