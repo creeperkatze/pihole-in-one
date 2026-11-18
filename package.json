@@ -19,6 +19,8 @@
 		"fmt:check": "oxfmt --check",
 		"typecheck": "vue-tsc --noEmit",
 		"release": "pnpm version -m \"chore(release): v%s\"",
+		"preversion": "node scripts/changelog.js notes Unreleased",
+		"version": "node scripts/changelog.js release && git add CHANGELOG.md",
 		"postversion": "git push --follow-tags"
 	},
 	"dependencies": {

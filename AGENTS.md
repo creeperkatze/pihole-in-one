@@ -24,6 +24,11 @@ This project uses pnpm.
 - SVGs are imported as Vue components via the `?component` suffix (vite-svg-loader).
 - Only write a comment when the code can't explain something itself. Keep it short and simple: no em dashes, no semicolons, no nested clauses.
 
+## Changelog
+
+- Add every user-facing change to `## [Unreleased]` in `CHANGELOG.md`, under `### Added`, `### Changed`, `### Fixed` or `### Security`. Write entries for users. Never edit released sections.
+- `pnpm release` moves the entries into the new version. That section becomes the GitHub release notes.
+
 For the folder layout, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 For the API client, sessions and host permissions, see [docs/API.md](docs/API.md).
 For translations and the Crowdin sync, see [docs/LOCALIZATION.md](docs/LOCALIZATION.md).
