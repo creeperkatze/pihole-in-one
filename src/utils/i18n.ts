@@ -1,12 +1,13 @@
 import { IntlMessageFormat } from 'intl-messageformat'
 import { type CompileError, createI18n, type MessageCompiler, type MessageContext } from 'vue-i18n'
 
+import csCZ from '../locales/cs-CZ.json'
 import deDE from '../locales/de-DE.json'
 import enUS from '../locales/en-US.json'
 import esES from '../locales/es-ES.json'
 import frFR from '../locales/fr-FR.json'
 
-const messages = { 'en-US': enUS, 'de-DE': deDE, 'es-ES': esES, 'fr-FR': frFR }
+const messages = { 'en-US': enUS, 'cs-CZ': csCZ, 'de-DE': deDE, 'es-ES': esES, 'fr-FR': frFR }
 
 export interface LocaleDefinition {
 	code: keyof typeof messages
@@ -19,7 +20,7 @@ export const LOCALES: LocaleDefinition[] = [
 	// { code: 'af-ZA', name: 'Afrikaans' },
 	// { code: 'ar-SA', name: 'العربية', dir: 'rtl' },
 	// { code: 'ca-ES', name: 'Català' },
-	// { code: 'cs-CZ', name: 'Čeština' },
+	{ code: 'cs-CZ', name: 'Čeština' },
 	// { code: 'da-DK', name: 'Dansk' },
 	{ code: 'de-DE', name: 'Deutsch' },
 	// { code: 'el-GR', name: 'Ελληνικά' },

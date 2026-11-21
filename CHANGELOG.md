@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added Czech translation.
+
 ## [1.5.0] - 2026-10-18
 
 ### Added

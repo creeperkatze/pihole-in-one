@@ -3,6 +3,7 @@ import { Languages, Monitor, SquareMousePointer, Tag } from '@lucide/vue'
 import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import CzFlag from '../../../assets/icons/flags/cz.svg?component'
 import DeFlag from '../../../assets/icons/flags/de.svg?component'
 import EsFlag from '../../../assets/icons/flags/es.svg?component'
 import FrFlag from '../../../assets/icons/flags/fr.svg?component'
@@ -19,6 +20,7 @@ const { t } = useI18n()
 
 const FLAGS: Record<SupportedLocale, Component> = {
 	'en-US': GbFlag,
+	'cs-CZ': CzFlag,
 	'de-DE': DeFlag,
 	'es-ES': EsFlag,
 	'fr-FR': FrFlag,
