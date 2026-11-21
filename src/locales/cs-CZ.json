@@ -1,0 +1,363 @@
+{
+	"common": {
+		"select": "Vybrat…"
+	},
+	"durationInput": {
+		"label": "Doba trvání",
+		"decrease": "Kratší",
+		"increase": "Delší",
+		"unit": "Jednotka",
+		"minutes": "min",
+		"hours": "hod"
+	},
+	"contextMenu": {
+		"disable": "Vypnout blokování",
+		"indefinitely": "Dokud není znovu povoleno",
+		"enable": "Zapnout blokování",
+		"whitelist": "Přidat tuto stránku na seznam povolených",
+		"block": "Zablokovat tuto stránku"
+	},
+	"api": {
+		"error": {
+			"passwordIncorrect": "Nesprávné heslo",
+			"passwordRequired": "Vyžadováno heslo",
+			"timeout": "Časový limit spojení vypršel",
+			"authFailed": "Přihlášení se nezdařilo. Zkontrolujte heslo.",
+			"twoFactor": "Je zapnuto 2FA ověřování. Použijte heslo aplikace, které najdete v části Nastavení > API.",
+			"rateLimited": "Příliš mnoho pokusů o přihlášení. Počkejte chvíli a zkuste to znovu.",
+			"noSeats": "Pi-hole již nemá k dispozici žádné volné přihlašovací relace. Odhlaste se jinde nebo zvyšte limit relací.",
+			"unreachable": "Nelze se připojit k Pi-hole. Zkontrolujte, zda je adresa správná a zda je server online.",
+			"httpsRedirect": "Tato adresa přesměrovává na HTTPS. Použijte adresu https:// nebo vypněte přesměrování v nastavení „webserver.port“ v Pi-hole.",
+			"notPihole": "Na této adrese nebylo nalezeno žádné API Pi-hole.",
+			"notFound": "Na této adrese nebylo nalezeno žádné rozhraní API Pi-hole. Je vyžadována verze Pi-hole v6 nebo novější.",
+			"forbidden": "Pi-hole tuto akci zamítl.",
+			"server": "V Pi-hole došlo k interní chybě.",
+			"invalidRegex": "Neplatný vzor regulárního výrazu",
+			"database": "Databázi Pi-hole se nepodařilo aktualizovat.",
+			"duplicate": "Tato doména již je na seznamu."
+		}
+	},
+	"options": {
+		"title": "Nastavení",
+		"saveFailed": "Nepodařilo se uložit nastavení.",
+		"piholeselector": {
+			"instance": {
+				"fallbackName": "Pi-hole",
+				"apiPassword": {
+					"hint": "Vaše heslo administrátora nebo heslo aplikace z Nastavení > API.",
+					"label": "Heslo",
+					"placeholder": "Pokud není nic nastaveno, ponechte pole prázdné",
+					"show": "Zobrazit heslo",
+					"hide": "Skrýt heslo"
+				},
+				"connected": "Připojeno!",
+				"connectionFailed": "Připojení se nezdařilo",
+				"name": {
+					"label": "Název",
+					"placeholder": "Pi-hole"
+				},
+				"testing": "Testování připojení...",
+				"url": {
+					"label": "URL",
+					"invalid": "Zadejte platnou adresu, například http://pi.hole"
+				},
+				"save": "Uložit",
+				"edit": "Upravit",
+				"retest": "Znovu otestovat připojení",
+				"cancel": "Zrušit",
+				"icon": {
+					"label": "Ikona",
+					"options": {
+						"server": "Server",
+						"house": "Domů",
+						"building": "Kancelář",
+						"briefcase": "Práce",
+						"laptop": "Notebook",
+						"monitor": "Počítač",
+						"router": "Router",
+						"wifi": "Wi-Fi",
+						"cloud": "Cloud",
+						"hardDrive": "Úložiště",
+						"cpu": "Raspberry Pi"
+					}
+				}
+			},
+			"addButton": "Přidat Pi-hole",
+			"description": "Konfigurace jedné nebo více Pi-hole instancí.",
+			"empty": "Není nakonfigurován žádný Pi-hole. Přidejte jeden a můžete začít.",
+			"title": "Pi-holes",
+			"permissionDenied": "Oprávnění zamítnuto. Chcete-li pokračovat, povolte přístup k hostiteli Pi-hole.",
+			"remove": {
+				"button": "Odebrat",
+				"title": "Odebrat {name}?",
+				"description": "Jeho adresa a heslo jsou odstraněny z rozšíření. Můžete je kdykoliv přidat znovu.",
+				"cancel": "Zrušit",
+				"confirm": "Odebrat"
+			}
+		},
+		"colorScheme": {
+			"auto": "Výchozí systémové nastavení",
+			"dark": "Tmavé",
+			"description": "Vyberte si mezi světlým, tmavým nebo výchozím nastavením systému.",
+			"label": "Barevné schéma",
+			"light": "Světlé"
+		},
+		"connection": {
+			"connectionTimeout": {
+				"description": "Jak dlouho je třeba čekat, než bude požadavek zaslaný na Pi-hole považován za neúspěšný.",
+				"label": "Časový limit připojení"
+			},
+			"description": "Spravujte své instance Pi-hole a nastavení obnovy odznaků.",
+			"refreshInterval": {
+				"description": "Jak často se odznak obnovuje. Vyberte mezi jednou minutou a jednou hodinou.",
+				"label": "Interval obnovení odznaku"
+			},
+			"title": "Spojení"
+		},
+		"customization": {
+			"badge": {
+				"blocked": "Dnes zablokováno",
+				"clients": "Aktivní klienti",
+				"description": "Co se má zobrazit na štítku ikony rozšíření. Pokud je blokování pozastaveno, odpočítává se zbývající čas.",
+				"queries": "Dotazů dnes",
+				"label": "Vzhled odznaku",
+				"off": "Vypnout",
+				"percentage": "Procento zablokovaných",
+				"state": "Stav"
+			},
+			"description": "Upravte vzhled a chování rozšíření.",
+			"contextMenu": {
+				"label": "Menu pravým tlačítkem myši",
+				"description": "Kliknutím pravým tlačítkem myši na stránku můžete zapnout nebo vypnout blokování a přidat aktuální web na seznam povolených stránek nebo jej zablokovat."
+			},
+			"diagnosisBadge": {
+				"description": "Zobrazte odznak na tlačítku \"Otevřít Pi-hole\" v pop-up okně, když jsou nepřečtené diagnostické zprávy.",
+				"label": "Odznak s upozorněním na diagnostiku"
+			},
+			"title": "Přizpůsobení"
+		},
+		"data": {
+			"description": "Exportovat a importovat nastavení rozšíření.",
+			"export": {
+				"button": "Export",
+				"description": "Stáhněte si aktuální nastavení jako JSON soubor.",
+				"label": "Export nastavení",
+				"warning": {
+					"cancel": "Zrušit",
+					"confirm": "Export",
+					"description": "Exportovaný soubor bude obsahovat vaše hesla pro Pi-hole v prostém textu. Uchovávejte jej v bezpečí a nesdílejte jej.",
+					"title": "Exportovat nastavení?"
+				}
+			},
+			"import": {
+				"button": "Import",
+				"description": "Obnovte nastavení z dříve exportovaného JSON souboru.",
+				"error": {
+					"invalid": "Neplatný soubor s nastavením",
+					"read": "Nepodařilo se načíst soubor"
+				},
+				"label": "Import nastavení",
+				"success": "Nastavení bylo úspěšně importováno"
+			},
+			"reset": {
+				"button": "Obnovit",
+				"confirm": {
+					"cancel": "Zrušit",
+					"confirm": "Obnovit",
+					"description": "Tímto obnovíte všechna nastavení do výchozího nastavení a odstraní všechny nakonfigurované Pi-hole instance. Tuto akci nelze vrátit zpět.",
+					"title": "Obnovit nastavení?"
+				},
+				"description": "Obnovit všechna nastavení na výchozí hodnoty.",
+				"label": "Obnovit nastavení"
+			},
+			"title": "Data"
+		},
+		"footer": {
+			"checking": "Kontroluji",
+			"latestVersion": "Nejnovější verze",
+			"updateAvailable": "Aktualizace k dispozici"
+		},
+		"language": {
+			"description": "Vyberte jazyk rozhraní rozšíření. Pomozte s překladem na {crowdin}. Některé jazykové verze mohou být neúplné.",
+			"label": "Jazyk"
+		},
+		"sidebar": {
+			"crowdin": {
+				"description": "Pomozte s překladem",
+				"title": "Zobrazit na Crowdin"
+			},
+			"github": {
+				"description": "Ohodnoťte hvězdičkou",
+				"title": "Zobrazit na GitHubu"
+			},
+			"kofi": {
+				"description": "Koupit mi kávu",
+				"title": "Přispějte na Ko-fi"
+			},
+			"toggle": {
+				"close": "Skrýt postranní panel",
+				"open": "Zobrazit postranní panel"
+			}
+		},
+		"tabs": {
+			"connection": "Připojení",
+			"customization": "Přizpůsobení",
+			"data": "Data",
+			"popup": "Vyskakovací okno"
+		},
+		"popup": {
+			"title": "Vyskakovací okno",
+			"description": "Upravte rozložení a sekce vyskakovacího okna.",
+			"general": "Obecné",
+			"currentSite": {
+				"label": "Aktuální stránka",
+				"description": "Zobrazit, zda je aktuální webová stránka blokována, s tlačítky pro zařazení na seznam povolených stránek nebo pro její blokování."
+			},
+			"stats": {
+				"label": "Statistiky",
+				"description": "Zobrazit dnešní dotazy, zablokované dotazy a zásahy do mezipaměti pomocí 24hodinových grafů."
+			},
+			"recentlyBlocked": {
+				"description": "Zobrazit domény zablokované pro toto zařízení za posledních 10 minut s tlačítkem pro zařazení každé z nich na bílou listinu."
+			},
+			"systemInfo": {
+				"label": "Informace o systému",
+				"description": "Zobrazte CPU, paměť, teplotu a dostupnost v pop-popue vyskakovacím okně."
+			},
+			"gravityUpdate": {
+				"description": "Zobrazit tlačítko pro aktualizaci Gravity v horní části zobrazení seznamů."
+			},
+			"domainAdd": {
+				"description": "V horní části zobrazení domén se zobrazí pole, ve kterém můžete jakoukoli doménu zařadit na seznam povolených nebo zablokovaných."
+			},
+			"updateBadge": {
+				"label": "Odznak oznámení o aktualizaci",
+				"description": "Zobrazit odznak na tlačítku \"Otevřít Pi-hole\" ve vyskakovacím okně, když je k dispozici aktualizace Pi-hole."
+			}
+		}
+	},
+	"popup": {
+		"badge": {
+			"off": "VYP",
+			"on": "ZAP"
+		},
+		"disableFor": "Zakázat pro",
+		"extendBy": "Prodloužit pauzu o",
+		"customPause": {
+			"title": "Vlastní doba trvání",
+			"backOnAt": "Blokování se znovu zapíná v {time}"
+		},
+		"domain": {
+			"block": "Blokovat",
+			"blockedByList": "Zablokováno seznamem \"{list}\"",
+			"blockedByListPlural": "Zablokováno \"{list}\" +{count} další",
+			"blockedByUser": "Zablokováno uživatelem",
+			"notBlocked": "Není zablokováno",
+			"removeFromWhitelist": "Odstranit z whitelistu",
+			"unblock": "Odblokovat",
+			"whitelist": "Whitelist",
+			"whitelistedByUser": "Přidáno uživatelem na whitelist"
+		},
+		"domains": {
+			"add": {
+				"title": "Přidat doménu"
+			},
+			"blocked": "Blokováno",
+			"list": {
+				"empty": "Zatím nebyly přidány žádné domény.",
+				"loadError": "Načtení domén se nezdařilo",
+				"remove": "Odebrat",
+				"removeError": "Nepodařilo se odebrat doménu",
+				"addError": "Nepodařilo se přidat doménu"
+			},
+			"regex": "Vzor regulárního výrazu",
+			"whitelisted": "Přidáno na whitelist"
+		},
+		"donatePrompt": {
+			"dismiss": "Zrušit",
+			"message": "Pi-hole In One bude vždy zdarma, s otevřeným zdrojovým kódem a bez reklam. Pokud vám tento projekt přijde užitečný, zvažte prosím podporu jeho vývoje malým příspěvkem.",
+			"title": "Podpořte rozšíření"
+		},
+		"error": {
+			"actionFailed": "Akce neúspěšná",
+			"fetchFailed": "Nepodařilo se načíst stav",
+			"fixInSettings": "Oprava v nastaveních",
+			"fixInPihole": "Oprava v Pi-hole"
+		},
+		"footer": {
+			"checking": "Kontroluji",
+			"donate": "Darujte",
+			"latestVersion": "Nejnovější verze",
+			"starOnGitHub": "Na GitHubu",
+			"updateAvailable": "Aktualizace k dispozici"
+		},
+		"groups": {
+			"empty": "Nebyly nalezeny žádné skupiny.",
+			"updateError": "Nepodařilo se aktualizovat skupinu"
+		},
+		"lists": {
+			"empty": "Nebyly nalezeny žádné seznamy.",
+			"updateError": "Nepodařilo se aktualizovat seznam",
+			"gravity": {
+				"title": "Aktualizace gravity",
+				"button": "Aktualizovat",
+				"running": "Aktualizace",
+				"done": "Aktualizováno",
+				"error": "Nepodařilo se aktualizovat gravity"
+			}
+		},
+		"notConfigured": {
+			"message": "Nakonfigurujte svůj Pi-hole a můžete začít.",
+			"openSettings": "Otevřít Nastavení"
+		},
+		"openInstance": "Otevřít {name}",
+		"recentlyBlocked": {
+			"title": "Nedávno zablokováno",
+			"thisDevice": "Toto zařízení, poslední {minutes} minuty",
+			"allDevices": "Všechna zařízení, posledních {minutes} minut",
+			"empty": "Nic nebylo zablokováno.",
+			"loadError": "Nepodařilo se načíst nedávné dotazy"
+		},
+		"refresh": "Aktualizovat",
+		"settings": "Nastavení",
+		"stats": {
+			"blockedPercent": "Zablokováno %",
+			"blockedToday": "Zablokováno dnes",
+			"cached": "Uloženo do mezipaměti",
+			"queriesToday": "Dotazů dnes"
+		},
+		"status": {
+			"blockingDisabled": "Blokování zakázáno",
+			"blockingEnabled": "Blokování povoleno",
+			"disable": "Zakázat",
+			"enable": "Povolit"
+		},
+		"statusSub": {
+			"clients": "{count} aktivní klient(i)",
+			"reenables": "Znovu povolí v {duration}"
+		},
+		"tabs": {
+			"domains": "Domény",
+			"groups": "Skupiny",
+			"home": "Domů",
+			"lists": "Seznamy"
+		},
+		"whatsNew": {
+			"title": "Co je nového",
+			"items": {
+				"home": "Čistší vyskakovací okno, které ihned ukáže, zda je aktuální stránka zablokovaná",
+				"domains": "Na kartě „Domény“ můžete jakoukoli doménu přidat na whitelist nebo zablokovat, včetně vzorců regulárních výrazů",
+				"piholes": "Jednodušší nastavení Pi-hole s informacemi o stavu připojení a vlastními ikonami"
+			},
+			"dismiss": "Zrušit"
+		},
+		"system": {
+			"cpu": "CPU",
+			"memory": "Paměť",
+			"temperature": "Teplota",
+			"uptime": "Doba běhu"
+		},
+		"diagnosisMessages": "{count, plural, one {# diagnostická zpráva} few {# diagnostické zprávy} many {# diagnostických zpráv} other {# diagnostických zpráv}}",
+		"piholeUpdateAvailable": "K dispozici je aktualizace Pi-hole"
+	}
+}
