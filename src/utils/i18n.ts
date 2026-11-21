@@ -1,21 +1,21 @@
 import { IntlMessageFormat } from 'intl-messageformat'
 import { type CompileError, createI18n, type MessageCompiler, type MessageContext } from 'vue-i18n'
 
-import csCZ from '../locales/cs-CZ.json'
-import deDE from '../locales/de-DE.json'
-import enUS from '../locales/en-US.json'
-import esES from '../locales/es-ES.json'
-import frFR from '../locales/fr-FR.json'
+type Messages = typeof import('../locales/en-US.json')
 
-const messages = { 'en-US': enUS, 'cs-CZ': csCZ, 'de-DE': deDE, 'es-ES': esES, 'fr-FR': frFR }
+// A locale without a file yet falls back to en-US
+const files = import.meta.glob<Messages>('../locales/*.json', { eager: true, import: 'default' })
+const messages = Object.fromEntries(
+	Object.entries(files).map(([path, file]) => [path.replace(/^.*\/|\.json$/g, ''), file]),
+) as Record<SupportedLocale, Messages>
 
 export interface LocaleDefinition {
-	code: keyof typeof messages
+	code: string
 	name: string
 	dir?: 'ltr' | 'rtl'
 }
 
-export const LOCALES: LocaleDefinition[] = [
+export const LOCALES = [
 	{ code: 'en-US', name: 'English' },
 	// { code: 'af-ZA', name: 'Afrikaans' },
 	// { code: 'ar-SA', name: 'العربية', dir: 'rtl' },
@@ -46,14 +46,14 @@ export const LOCALES: LocaleDefinition[] = [
 	// { code: 'vi-VN', name: 'Tiếng Việt' },
 	// { code: 'zh-CN', name: '简体中文' },
 	// { code: 'zh-TW', name: '繁體中文' },
-]
+] as const satisfies readonly LocaleDefinition[]
 
-export type SupportedLocale = LocaleDefinition['code']
+export type SupportedLocale = (typeof LOCALES)[number]['code']
 
-const LOCALE_CODES = new Set(LOCALES.map((l) => l.code))
+const LOCALE_CODES = new Set<string>(LOCALES.map((l) => l.code))
 
 function isSupportedLocale(value: string): value is SupportedLocale {
-	return LOCALE_CODES.has(value as SupportedLocale)
+	return LOCALE_CODES.has(value)
 }
 
 export function detectBrowserLocale(): SupportedLocale {
@@ -96,5 +96,6 @@ export function applyLocale(locale: string) {
 	const code = resolveLocale(locale)
 	i18n.global.locale.value = code
 	document.documentElement.lang = code
-	document.documentElement.dir = LOCALES.find((l) => l.code === code)?.dir ?? 'ltr'
+	const definition: LocaleDefinition | undefined = LOCALES.find((l) => l.code === code)
+	document.documentElement.dir = definition?.dir ?? 'ltr'
 }

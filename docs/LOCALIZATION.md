@@ -19,7 +19,7 @@ Every locale is one nested JSON file in `src/locales`, named by its code, like `
 
 ## Enabling a language
 
-A translated file does nothing on its own. To enable a language, import its file in `src/utils/i18n.ts`, add it to `messages`, and uncomment its entry in `LOCALES`. Then add its flag from `src/assets/icons/flags` to `FLAGS` in `CustomizationView.vue`. The typecheck fails until you do. Set `dir: 'rtl'` for right-to-left languages. The pages then set `<html lang>` and `dir` through `applyLocale()`.
+A translated file does nothing on its own. Every file in `src/locales` is loaded automatically. To enable a language, uncomment its entry in `LOCALES` in `src/utils/i18n.ts`. It can be enabled before its file is pulled and falls back to English until then. Then add its flag from `src/assets/icons/flags` to `FLAGS` in `CustomizationView.vue`. The typecheck fails until you do. Set `dir: 'rtl'` for right-to-left languages. The pages then set `<html lang>` and `dir` through `applyLocale()`.
 
 ## Website and store listing
 
