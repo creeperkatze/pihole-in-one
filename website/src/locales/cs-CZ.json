@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"summary": "Rozšíření prohlížeče pro pohodlné ovládání vašeho Pi-hole přímo z prohlížeče.",
+		"description": {
+			"footer": "Pi-hole In One je <link>open source</link>.",
+			"disclaimer": "Toto rozšíření není spojeno ani podporováno projektem Pi-hole.",
+			"featuresTitle": "Vlastnosti:"
+		},
+		"feature": {
+			"blocking": {
+				"title": "Řízení blokování",
+				"description": "Blokování můžete zapnout nebo vypnout jediným kliknutím, případně jej pozastavit na dobu od 10 sekund do jedné hodiny a nechat jej, aby se samo znovu zapnulo."
+			},
+			"currentSite": {
+				"title": "Aktuální stránka",
+				"description": "Na první pohled zjistíte, zda je stránka, na které se právě nacházíte, blokována a podle jakého seznamu, a poté ji jedním kliknutím můžete přidat na seznam povolených stránek nebo ji zablokovat."
+			},
+			"domains": {
+				"title": "Domény",
+				"description": "Povolit nebo zablokovat libovolnou doménu či celý vzor pomocí regulárního výrazu, aniž byste museli otevírat administrační rozhraní Pi-hole."
+			},
+			"groups": {
+				"title": "Skupiny a seznamy",
+				"description": "Zapněte nebo vypněte skupiny a seznamy blokovaných uživatelů a ihned poté aktualizujte gravity."
+			},
+			"stats": {
+				"title": "Statistiky",
+				"description": "Sledujte dnešní dotazy, zablokované dotazy, míru blokování a dotazy do mezipaměti, přičemž u každé z těchto položek je k dispozici 24hodinový graf."
+			},
+			"systemInfo": {
+				"title": "Informace o systému",
+				"description": "Na první pohled zkontrolujte CPU, paměť, teplotu a dostupnost vašeho Pi-hole."
+			},
+			"recentlyBlocked": {
+				"title": "Nedávno zablokováno",
+				"description": "Zjistěte, co se právě zablokovalo na vašem zařízení nebo v celé síti, a okamžitě to povolte."
+			},
+			"notices": {
+				"title": "Oznámení",
+				"description": "Dostaňte upozornění na nepřečtené diagnostické zprávy a dostupné aktualizace Pi-hole přímo ve vyskakovacím okně."
+			},
+			"multiInstance": {
+				"title": "Více Pi-hole",
+				"description": "Spravujte každý Pi-hole, který spustíte, dejte každému vlastní ikonu a přepínejte mezi nimi jedním kliknutím."
+			},
+			"badge": {
+				"title": "Odznak na panelu nástrojů",
+				"description": "Zobrazte míru blokování, stav blokování nebo počet aktivních klientů přímo na ikoně rozšíření."
+			},
+			"customization": {
+				"title": "Vaše vyskakovací okno, vaše cesta",
+				"description": "Vyberte, které karty se zobrazí ve vyskakovacím okně, zvolte jazyk a zvolte světlý nebo tmavý vzhled."
+			},
+			"backup": {
+				"title": "Nastavení zálohování",
+				"description": "Exportujte svá nastavení, importujte je do jiného prohlížeče nebo začněte znovu s výchozími hodnotami."
+			}
+		}
+	},
+	"nav": {
+		"faq": "Často kladené dotazy",
+		"translate": "Přeložit",
+		"changelog": "Seznam změn",
+		"donate": "Přispějte",
+		"donateLabel": "Přispějte na Ko-fi"
+	},
+	"theme": {
+		"onThisPage": "Na této stránce",
+		"returnToTop": "Zpět nahoru",
+		"menu": "Menu",
+		"appearance": "Vzhled",
+		"switchToLight": "Přepnout na světlý motiv",
+		"switchToDark": "Přepnout na tmavý motiv",
+		"changeLanguage": "Změnit jazyk",
+		"skipToContent": "Přeskočit na obsah"
+	},
+	"notFound": {
+		"title": "Stránka nenalezena",
+		"quote": "Tato stránka neexistuje nebo byla přesunuta.",
+		"linkText": "Zpět na domovskou stránku"
+	},
+	"stats": {
+		"users": "{browser} uživatelé"
+	},
+	"featured": {
+		"title": "Doporučené",
+		"description": "Články a příspěvky věnované Pi-hole In One."
+	},
+	"footer": {
+		"madeBy": "Vyrobeno s {heart} od {author}",
+		"notAffiliated": "Není spojeno s Pi-hole"
+	}
+}
