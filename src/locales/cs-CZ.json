@@ -131,7 +131,7 @@
 				"description": "Kliknutím pravým tlačítkem myši na stránku můžete zapnout nebo vypnout blokování a přidat aktuální web na seznam povolených stránek nebo jej zablokovat."
 			},
 			"diagnosisBadge": {
-				"description": "Zobrazte odznak na tlačítku \"Otevřít Pi-hole\" v pop-up okně, když jsou nepřečtené diagnostické zprávy.",
+				"description": "Zobrazit odznak na tlačítku \"Otevřít Pi-hole\" ve vyskakovacím okně, když jsou některé diagnostické zprávy nepřečtené.",
 				"label": "Odznak s upozorněním na diagnostiku"
 			},
 			"title": "Přizpůsobení"
@@ -164,7 +164,7 @@
 				"confirm": {
 					"cancel": "Zrušit",
 					"confirm": "Obnovit",
-					"description": "Tímto obnovíte všechna nastavení do výchozího nastavení a odstraní všechny nakonfigurované Pi-hole instance. Tuto akci nelze vrátit zpět.",
+					"description": "Tímto obnovíte všechna nastavení do výchozího nastavení a odstraníte všechny nakonfigurované Pi-hole instance. Tuto akci nelze vrátit zpět.",
 					"title": "Obnovit nastavení?"
 				},
 				"description": "Obnovit všechna nastavení na výchozí hodnoty.",
@@ -218,17 +218,17 @@
 				"description": "Zobrazit dnešní dotazy, zablokované dotazy a zásahy do mezipaměti pomocí 24hodinových grafů."
 			},
 			"recentlyBlocked": {
-				"description": "Zobrazit domény zablokované pro toto zařízení za posledních 10 minut s tlačítkem pro zařazení každé z nich na bílou listinu."
+				"description": "Zobrazit domény zablokované pro toto zařízení za posledních 10 minut s tlačítkem pro zařazení každé z nich na whitelist."
 			},
 			"systemInfo": {
 				"label": "Informace o systému",
-				"description": "Zobrazte CPU, paměť, teplotu a dostupnost v pop-popue vyskakovacím okně."
+				"description": "Zobrazit CPU, paměť, teplotu a dobu běhu ve vyskakovacím okně."
 			},
 			"gravityUpdate": {
 				"description": "Zobrazit tlačítko pro aktualizaci Gravity v horní části zobrazení seznamů."
 			},
 			"domainAdd": {
-				"description": "V horní části zobrazení domén se zobrazí pole, ve kterém můžete jakoukoli doménu zařadit na seznam povolených nebo zablokovaných."
+				"description": "V horní části zobrazení domén se zobrazí pole, ve kterém můžete jakoukoli doménu zařadit na whitelist nebo blacklist."
 			},
 			"updateBadge": {
 				"label": "Odznak oznámení o aktualizaci",
@@ -313,7 +313,7 @@
 		"openInstance": "Otevřít {name}",
 		"recentlyBlocked": {
 			"title": "Nedávno zablokováno",
-			"thisDevice": "Toto zařízení, poslední {minutes} minuty",
+			"thisDevice": "Toto zařízení, posledních {minutes} minut",
 			"allDevices": "Všechna zařízení, posledních {minutes} minut",
 			"empty": "Nic nebylo zablokováno.",
 			"loadError": "Nepodařilo se načíst nedávné dotazy"
@@ -323,18 +323,18 @@
 		"stats": {
 			"blockedPercent": "Zablokováno %",
 			"blockedToday": "Zablokováno dnes",
-			"cached": "Uloženo do mezipaměti",
+			"cached": "V mezipaměti",
 			"queriesToday": "Dotazů dnes"
 		},
 		"status": {
-			"blockingDisabled": "Blokování zakázáno",
-			"blockingEnabled": "Blokování povoleno",
-			"disable": "Zakázat",
-			"enable": "Povolit"
+			"blockingDisabled": "Blokování vypnuto",
+			"blockingEnabled": "Blokování zapnuto",
+			"disable": "Vypnout",
+			"enable": "Zapnout"
 		},
 		"statusSub": {
 			"clients": "{count} aktivní klient(i)",
-			"reenables": "Znovu povolí v {duration}"
+			"reenables": "Znovu se zapne za {duration}"
 		},
 		"tabs": {
 			"domains": "Domény",
